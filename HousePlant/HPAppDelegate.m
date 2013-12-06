@@ -7,6 +7,7 @@
 //
 
 #import "HPAppDelegate.h"
+#import <Parse/Parse.h>
 #import "HPStartingViewController.h"
 
 @implementation HPAppDelegate
@@ -17,6 +18,9 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+    [Parse setApplicationId:@"pffKUgYNCSZx4SSe6e136mVL5DhBnQAZHRCz5elA"
+                  clientKey:@"Z0KNYfiDbSkGtT01OJzgEpqzGAkTmOimEVXF30wO"];
+    [PFAnalytics trackAppOpenedWithLaunchOptions:launchOptions];
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     // Override point for customization after application launch.
     self.window.backgroundColor = [UIColor whiteColor];
