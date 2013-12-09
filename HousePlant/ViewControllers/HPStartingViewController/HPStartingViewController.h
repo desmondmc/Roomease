@@ -9,5 +9,7 @@
 #import <UIKit/UIKit.h>
 
 @interface HPStartingViewController : UIViewController
+- (IBAction)onLoginPress:(id)sender;
+- (IBAction)onSignupPress:(id)sender;
 
 @end
