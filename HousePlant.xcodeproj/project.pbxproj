@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		641AF380FE954A6D996B029D /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F2ADBFAE68984DBDA17CC3D1 /* libPods.a */; };
+		F78D484E185AAB03000A79BC /* HPNetworkObject.m in Sources */ = {isa = PBXBuildFile; fileRef = F78D484D185AAB03000A79BC /* HPNetworkObject.m */; };
+		F78D4851185AAF90000A79BC /* HPUser.m in Sources */ = {isa = PBXBuildFile; fileRef = F78D4850185AAF90000A79BC /* HPUser.m */; };
+		F78D4854185AC0E2000A79BC /* HPHouse.m in Sources */ = {isa = PBXBuildFile; fileRef = F78D4853185AC0E2000A79BC /* HPHouse.m */; };
 		F7A1221A18522A4100E51B06 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F7A1221918522A4100E51B06 /* Foundation.framework */; };
 		F7A1221C18522A4100E51B06 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F7A1221B18522A4100E51B06 /* CoreGraphics.framework */; };
 		F7A1221E18522A4100E51B06 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F7A1221D18522A4100E51B06 /* UIKit.framework */; };
@@ -50,6 +53,12 @@
 /* Begin PBXFileReference section */
 		CABE67E5142742FBABED9A90 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
 		F2ADBFAE68984DBDA17CC3D1 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		F78D484C185AAB03000A79BC /* HPNetworkObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HPNetworkObject.h; path = NetworkObjects/HPNetworkObject.h; sourceTree = "<group>"; };
+		F78D484D185AAB03000A79BC /* HPNetworkObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HPNetworkObject.m; path = NetworkObjects/HPNetworkObject.m; sourceTree = "<group>"; };
+		F78D484F185AAF90000A79BC /* HPUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HPUser.h; path = NetworkObjects/HPUser.h; sourceTree = "<group>"; };
+		F78D4850185AAF90000A79BC /* HPUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HPUser.m; path = NetworkObjects/HPUser.m; sourceTree = "<group>"; };
+		F78D4852185AC0E2000A79BC /* HPHouse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HPHouse.h; path = NetworkObjects/HPHouse.h; sourceTree = "<group>"; };
+		F78D4853185AC0E2000A79BC /* HPHouse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HPHouse.m; path = NetworkObjects/HPHouse.m; sourceTree = "<group>"; };
 		F7A1221618522A4100E51B06 /* HousePlant.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HousePlant.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F7A1221918522A4100E51B06 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		F7A1221B18522A4100E51B06 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -120,6 +129,19 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		F78D484B185AA9DA000A79BC /* NetworkObjects */ = {
+			isa = PBXGroup;
+			children = (
+				F78D484C185AAB03000A79BC /* HPNetworkObject.h */,
+				F78D484D185AAB03000A79BC /* HPNetworkObject.m */,
+				F78D484F185AAF90000A79BC /* HPUser.h */,
+				F78D4850185AAF90000A79BC /* HPUser.m */,
+				F78D4852185AC0E2000A79BC /* HPHouse.h */,
+				F78D4853185AC0E2000A79BC /* HPHouse.m */,
+			);
+			name = NetworkObjects;
+			sourceTree = "<group>";
+		};
 		F7A1220D18522A4100E51B06 = {
 			isa = PBXGroup;
 			children = (
@@ -166,6 +188,7 @@
 		F7A1222118522A4100E51B06 /* HousePlant */ = {
 			isa = PBXGroup;
 			children = (
+				F78D484B185AA9DA000A79BC /* NetworkObjects */,
 				F7A1225318522AD000E51B06 /* ViewControllers */,
 				F7A1222A18522A4100E51B06 /* HPAppDelegate.h */,
 				F7A1222B18522A4100E51B06 /* HPAppDelegate.m */,
@@ -357,7 +380,10 @@
 			files = (
 				F7A1225118522ABE00E51B06 /* HPStartingViewController.m in Sources */,
 				F7A1222C18522A4100E51B06 /* HPAppDelegate.m in Sources */,
+				F78D484E185AAB03000A79BC /* HPNetworkObject.m in Sources */,
 				F7A1222F18522A4100E51B06 /* HousePlant.xcdatamodeld in Sources */,
+				F78D4854185AC0E2000A79BC /* HPHouse.m in Sources */,
+				F78D4851185AAF90000A79BC /* HPUser.m in Sources */,
 				F7A1222818522A4100E51B06 /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
