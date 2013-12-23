@@ -64,4 +64,6 @@
 - (IBAction)onUsernameClearPress:(id)sender {
     _usernameTextField.text = @"";
 }
+- (IBAction)onSigninPress:(id)sender {
+}
 @end

@@ -32,6 +32,9 @@
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
                     <state key="highlighted" image="LoginButtonPressed"/>
+                    <connections>
+                        <action selector="onSigninPress:" destination="-1" eventType="touchUpInside" id="Gqn-3h-7L0"/>
+                    </connections>
                 </button>
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="TextFieldBar" translatesAutoresizingMaskIntoConstraints="NO" id="5cv-qj-9dR">
                     <rect key="frame" x="0.0" y="77" width="320" height="93"/>
@@ -62,38 +65,23 @@
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <fontDescription key="fontDescription" name="Avenir-Light" family="Avenir" pointSize="15"/>
                     <state key="normal" title="Forgot Password?"/>
+                    <state key="highlighted">
+                        <color key="titleColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
                 </button>
-                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" usesAttributedText="YES" minimumFontSize="15" translatesAutoresizingMaskIntoConstraints="NO" id="vqc-fu-Zhm" userLabel="Text Field - Username">
+                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" usesAttributedText="YES" placeholder="Username" minimumFontSize="15" translatesAutoresizingMaskIntoConstraints="NO" id="vqc-fu-Zhm" userLabel="Text Field - Username">
                     <rect key="frame" x="81" y="86" width="192" height="30"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <attributedString key="attributedText">
-                        <fragment content="Username">
-                            <attributes>
-                                <color key="NSColor" red="0.16470588743686676" green="0.49803924560546875" blue="0.49411767721176147" alpha="1" colorSpace="deviceRGB"/>
-                                <font key="NSFont" size="15" name="Avenir-Roman"/>
-                                <font key="NSOriginalFont" size="15" name="Avenir-Roman"/>
-                                <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
-                            </attributes>
-                        </fragment>
-                    </attributedString>
+                    <attributedString key="attributedText"/>
                     <textInputTraits key="textInputTraits"/>
                     <connections>
                         <outlet property="delegate" destination="-1" id="zCX-YM-i9K"/>
                     </connections>
                 </textField>
-                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" usesAttributedText="YES" minimumFontSize="15" translatesAutoresizingMaskIntoConstraints="NO" id="2Je-Tl-QcG" userLabel="Text Field - Password">
+                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" usesAttributedText="YES" placeholder="Password" minimumFontSize="15" translatesAutoresizingMaskIntoConstraints="NO" id="2Je-Tl-QcG" userLabel="Text Field - Password">
                     <rect key="frame" x="81" y="131" width="192" height="30"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <attributedString key="attributedText">
-                        <fragment content="Password">
-                            <attributes>
-                                <color key="NSColor" red="0.16470588743686676" green="0.49803924560546875" blue="0.49411767721176147" alpha="1" colorSpace="deviceRGB"/>
-                                <font key="NSFont" size="15" name="Avenir-Roman"/>
-                                <font key="NSOriginalFont" size="15" name="Avenir-Roman"/>
-                                <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
-                            </attributes>
-                        </fragment>
-                    </attributedString>
+                    <attributedString key="attributedText"/>
                     <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                     <connections>
                         <outlet property="delegate" destination="-1" id="LYJ-za-YkE"/>

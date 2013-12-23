@@ -18,6 +18,7 @@
 - (IBAction)onPasswordClearPress:(id)sender;
 @property (weak, nonatomic) IBOutlet UIButton *usernameClearButton;
 @property (weak, nonatomic) IBOutlet UIButton *passwordClearButton;
+- (IBAction)onSigninPress:(id)sender;
 
 
 @end
