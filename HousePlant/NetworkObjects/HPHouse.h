@@ -7,7 +7,14 @@
 //
 
 #import "HPNetworkObject.h"
+#import <CoreLocation/CoreLocation.h>
 
 @interface HPHouse : HPNetworkObject
+
+@property (strong, nonatomic) NSString *houseName;
+@property (strong, nonatomic) NSArray *users;
+@property (strong, nonatomic) CLLocation *location;
+
+//@property (strong, nonatomic) HPList *location;
 
 @end
