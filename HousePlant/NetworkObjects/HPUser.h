@@ -17,7 +17,11 @@
 @property (strong, nonatomic) HPHouse *house;
 @property (strong, nonatomic) CLLocation *location;
 
-+(void) loginUser;
+//Class method that
++ (HPUser *) loginUserWithUsername:(NSString *)username andPassword:(NSString *)password;
++ (HPUser *) getLoggedInUser;
 
+- (BOOL) logoutCurrentUser;
+- (BOOL) signUpWithUsername:(NSString *)username andPassword:(NSString *)password;
 
 @end

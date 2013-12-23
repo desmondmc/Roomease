@@ -7,7 +7,28 @@
 //
 
 #import "HPUser.h"
+#import <Parse/Parse.h>
 
 @implementation HPUser
+
++ (HPUser *) loginUserWithUsername:(NSString *)username andPassword:(NSString *)password
+{
+    [PFUser logInWithUsername:username password:password];
+    return [self getLoggedInUser];
+}
+
++ (HPUser *) getLoggedInUser
+{
+    HPUser *user = [[HPUser alloc] init];
+    user.username = [PFUser currentUser].username;
+    //TODO this HPUser should have everything a PFUser has.
+    return user;
+}
+
+- (BOOL) logoutCurrentUser
+{
+    [PFUser logOut];
+    return true;
+}
 
 @end

@@ -7,14 +7,23 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "AMPAvatarView.h"
 
-@interface HPSignupViewController : UIViewController <UITextFieldDelegate>
+@interface HPSignupViewController : UIViewController <UITextFieldDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate>
 @property (weak, nonatomic) IBOutlet UITextField *usernameTextField;
 @property (weak, nonatomic) IBOutlet UITextField *passwordTextField;
-- (IBAction)onSignupPress:(id)sender;
+
 @property (weak, nonatomic) IBOutlet UIButton *usernameClearButton;
-- (IBAction)onUsernameClearButtonPress:(id)sender;
+
 @property (weak, nonatomic) IBOutlet UIButton *passwordClearButton;
+
+@property (weak, nonatomic) IBOutlet UIImageView *blankProfilePicImage;
+@property (weak, nonatomic) IBOutlet AMPAvatarView *setProfilePicImage;
+
+
 - (IBAction)onPasswordClearButtonPress:(id)sender;
+- (IBAction)onEditProfilePicturePress:(id)sender;
+- (IBAction)onSignupPress:(id)sender;
+- (IBAction)onUsernameClearButtonPress:(id)sender;
 
 @end
