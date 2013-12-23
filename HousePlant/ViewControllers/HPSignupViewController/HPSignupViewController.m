@@ -59,6 +59,10 @@
 - (IBAction)onUsernameClearButtonPress:(id)sender {
     _usernameTextField.text = @"";
 }
+
+- (IBAction)onBackPress:(id)sender {
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
 - (IBAction)onPasswordClearButtonPress:(id)sender {
     _passwordTextField.text = @"";
 }

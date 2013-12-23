@@ -25,5 +25,6 @@
 - (IBAction)onEditProfilePicturePress:(id)sender;
 - (IBAction)onSignupPress:(id)sender;
 - (IBAction)onUsernameClearButtonPress:(id)sender;
+- (IBAction)onBackPress:(id)sender;
 
 @end

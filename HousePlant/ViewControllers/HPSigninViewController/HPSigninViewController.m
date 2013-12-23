@@ -66,4 +66,8 @@
 }
 - (IBAction)onSigninPress:(id)sender {
 }
+
+- (IBAction)onBackPress:(id)sender {
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
 @end
