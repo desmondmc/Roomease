@@ -8,6 +8,7 @@
 
 #import "HPStartingViewController.h"
 #import "HPSigninViewController.h"
+#import "HPSignupViewController.h"
 
 @interface HPStartingViewController ()
 
@@ -45,5 +46,10 @@
 }
 
 - (IBAction)onSignupPress:(id)sender {
+    HPSignupViewController *signunViewController = [[HPSignupViewController alloc] init];
+    signunViewController.modalTransitionStyle = UIModalTransitionStyleCoverVertical;
+    
+    // initialize the navigation controller and present it
+    [self presentViewController:signunViewController animated:YES completion:nil];
 }
 @end

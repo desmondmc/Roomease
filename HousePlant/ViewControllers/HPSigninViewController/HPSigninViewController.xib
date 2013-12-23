@@ -25,7 +25,7 @@
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                 </imageView>
                 <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zIv-Wx-R3H">
-                    <rect key="frame" x="76" y="192" width="168" height="35"/>
+                    <rect key="frame" x="76" y="205" width="168" height="35"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
                     <state key="normal" image="LoginButtonNormal">
@@ -37,40 +37,31 @@
                     </connections>
                 </button>
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="TextFieldBar" translatesAutoresizingMaskIntoConstraints="NO" id="5cv-qj-9dR">
-                    <rect key="frame" x="0.0" y="77" width="320" height="93"/>
+                    <rect key="frame" x="0.0" y="91" width="320" height="93"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 </imageView>
                 <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="TextFieldBarHighlight" translatesAutoresizingMaskIntoConstraints="NO" id="4yn-rP-Syr" userLabel="Username - TextFieldBarHighlight">
-                    <rect key="frame" x="0.0" y="77" width="320" height="47"/>
+                    <rect key="frame" x="0.0" y="91" width="320" height="47"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 </imageView>
                 <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="TextFieldBarHighlight" translatesAutoresizingMaskIntoConstraints="NO" id="ahJ-H1-dK9" userLabel="Password - TextFieldBarHighlight">
-                    <rect key="frame" x="0.0" y="124" width="320" height="46"/>
+                    <rect key="frame" x="0.0" y="138" width="320" height="46"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 </imageView>
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="LoginTextSymbol" translatesAutoresizingMaskIntoConstraints="NO" id="eD3-tv-9RL">
-                    <rect key="frame" x="48" y="87" width="25" height="25"/>
+                    <rect key="frame" x="48" y="101" width="25" height="25"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 </imageView>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="SignupTextSymbol" translatesAutoresizingMaskIntoConstraints="NO" id="6hn-8G-LgF">
-                    <rect key="frame" x="48" y="133" width="25" height="25"/>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="PasswordTextSymbol" translatesAutoresizingMaskIntoConstraints="NO" id="6hn-8G-LgF">
+                    <rect key="frame" x="48" y="147" width="25" height="25"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 </imageView>
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="MainDivider" translatesAutoresizingMaskIntoConstraints="NO" id="o3Z-e9-QCq">
-                    <rect key="frame" x="0.0" y="124" width="320" height="1"/>
+                    <rect key="frame" x="0.0" y="138" width="320" height="1"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 </imageView>
-                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="p6v-EO-FdP">
-                    <rect key="frame" x="100" y="235" width="121" height="44"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <fontDescription key="fontDescription" name="Avenir-Light" family="Avenir" pointSize="15"/>
-                    <state key="normal" title="Forgot Password?"/>
-                    <state key="highlighted">
-                        <color key="titleColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                    </state>
-                </button>
                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" usesAttributedText="YES" placeholder="Username" minimumFontSize="15" translatesAutoresizingMaskIntoConstraints="NO" id="vqc-fu-Zhm" userLabel="Text Field - Username">
-                    <rect key="frame" x="81" y="86" width="192" height="30"/>
+                    <rect key="frame" x="81" y="100" width="192" height="30"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <attributedString key="attributedText"/>
                     <textInputTraits key="textInputTraits"/>
@@ -79,7 +70,7 @@
                     </connections>
                 </textField>
                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" usesAttributedText="YES" placeholder="Password" minimumFontSize="15" translatesAutoresizingMaskIntoConstraints="NO" id="2Je-Tl-QcG" userLabel="Text Field - Password">
-                    <rect key="frame" x="81" y="131" width="192" height="30"/>
+                    <rect key="frame" x="81" y="145" width="192" height="30"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <attributedString key="attributedText"/>
                     <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
@@ -88,7 +79,7 @@
                     </connections>
                 </textField>
                 <button hidden="YES" opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rlc-zX-7Tk" userLabel="usernameClearButton">
-                    <rect key="frame" x="281" y="92" width="19" height="19"/>
+                    <rect key="frame" x="281" y="106" width="19" height="19"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
                     <state key="normal" image="XCircle">
@@ -99,7 +90,7 @@
                     </connections>
                 </button>
                 <button hidden="YES" opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UOE-Vr-CHS" userLabel="passwordClearButton">
-                    <rect key="frame" x="281" y="136" width="19" height="19"/>
+                    <rect key="frame" x="281" y="150" width="19" height="19"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
                     <state key="normal" image="XCircle">
@@ -108,6 +99,15 @@
                     <connections>
                         <action selector="onPasswordClearPress:" destination="-1" eventType="touchUpInside" id="79E-Zi-IzJ"/>
                     </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="p6v-EO-FdP">
+                    <rect key="frame" x="100" y="248" width="121" height="44"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <fontDescription key="fontDescription" name="Avenir-Light" family="Avenir" pointSize="15"/>
+                    <state key="normal" title="Forgot Password?"/>
+                    <state key="highlighted">
+                        <color key="titleColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
                 </button>
             </subviews>
             <color key="backgroundColor" red="0.392156899" green="0.81568634510000004" blue="0.74117648599999997" alpha="1" colorSpace="deviceRGB"/>
@@ -121,7 +121,7 @@
         <image name="LoginButtonPressed" width="168" height="35"/>
         <image name="LoginTextSymbol" width="25" height="25"/>
         <image name="MainDivider" width="320" height="1"/>
-        <image name="SignupTextSymbol" width="25" height="25"/>
+        <image name="PasswordTextSymbol" width="25" height="25"/>
         <image name="TextFieldBar" width="320" height="93"/>
         <image name="TextFieldBarHighlight" width="319" height="46"/>
         <image name="XCircle" width="19" height="19"/>

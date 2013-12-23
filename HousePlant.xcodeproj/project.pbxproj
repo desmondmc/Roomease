@@ -10,6 +10,8 @@
 		641AF380FE954A6D996B029D /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F2ADBFAE68984DBDA17CC3D1 /* libPods.a */; };
 		F765357B1867C3840046263B /* HPSigninViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F76535791867C3840046263B /* HPSigninViewController.m */; };
 		F765357C1867C3840046263B /* HPSigninViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F765357A1867C3840046263B /* HPSigninViewController.xib */; };
+		F76535811867D1B20046263B /* HPSignupViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F765357F1867D1B20046263B /* HPSignupViewController.m */; };
+		F76535821867D1B20046263B /* HPSignupViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F76535801867D1B20046263B /* HPSignupViewController.xib */; };
 		F78D484E185AAB03000A79BC /* HPNetworkObject.m in Sources */ = {isa = PBXBuildFile; fileRef = F78D484D185AAB03000A79BC /* HPNetworkObject.m */; };
 		F78D4851185AAF90000A79BC /* HPUser.m in Sources */ = {isa = PBXBuildFile; fileRef = F78D4850185AAF90000A79BC /* HPUser.m */; };
 		F78D4854185AC0E2000A79BC /* HPHouse.m in Sources */ = {isa = PBXBuildFile; fileRef = F78D4853185AC0E2000A79BC /* HPHouse.m */; };
@@ -58,6 +60,9 @@
 		F76535781867C3840046263B /* HPSigninViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HPSigninViewController.h; path = ViewControllers/HPSigninViewController/HPSigninViewController.h; sourceTree = "<group>"; };
 		F76535791867C3840046263B /* HPSigninViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HPSigninViewController.m; path = ViewControllers/HPSigninViewController/HPSigninViewController.m; sourceTree = "<group>"; };
 		F765357A1867C3840046263B /* HPSigninViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = HPSigninViewController.xib; path = ViewControllers/HPSigninViewController/HPSigninViewController.xib; sourceTree = "<group>"; };
+		F765357E1867D1B20046263B /* HPSignupViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HPSignupViewController.h; path = ViewControllers/HPSignupViewController/HPSignupViewController.h; sourceTree = "<group>"; };
+		F765357F1867D1B20046263B /* HPSignupViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HPSignupViewController.m; path = ViewControllers/HPSignupViewController/HPSignupViewController.m; sourceTree = "<group>"; };
+		F76535801867D1B20046263B /* HPSignupViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = HPSignupViewController.xib; path = ViewControllers/HPSignupViewController/HPSignupViewController.xib; sourceTree = "<group>"; };
 		F78D484C185AAB03000A79BC /* HPNetworkObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HPNetworkObject.h; path = NetworkObjects/HPNetworkObject.h; sourceTree = "<group>"; };
 		F78D484D185AAB03000A79BC /* HPNetworkObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HPNetworkObject.m; path = NetworkObjects/HPNetworkObject.m; sourceTree = "<group>"; };
 		F78D484F185AAF90000A79BC /* HPUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HPUser.h; path = NetworkObjects/HPUser.h; sourceTree = "<group>"; };
@@ -142,6 +147,16 @@
 				F765357A1867C3840046263B /* HPSigninViewController.xib */,
 			);
 			name = HPSigninViewController;
+			sourceTree = "<group>";
+		};
+		F765357D1867D16B0046263B /* HPSignupViewController */ = {
+			isa = PBXGroup;
+			children = (
+				F765357E1867D1B20046263B /* HPSignupViewController.h */,
+				F765357F1867D1B20046263B /* HPSignupViewController.m */,
+				F76535801867D1B20046263B /* HPSignupViewController.xib */,
+			);
+			name = HPSignupViewController;
 			sourceTree = "<group>";
 		};
 		F78D484B185AA9DA000A79BC /* NetworkObjects */ = {
@@ -246,6 +261,7 @@
 		F7A1225318522AD000E51B06 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				F765357D1867D16B0046263B /* HPSignupViewController */,
 				F76535771867BF630046263B /* HPSigninViewController */,
 				F7A1225418522ADB00E51B06 /* HPStartingViewController */,
 			);
@@ -342,6 +358,7 @@
 			files = (
 				F7A1222618522A4100E51B06 /* InfoPlist.strings in Resources */,
 				F7A1223118522A4100E51B06 /* Images.xcassets in Resources */,
+				F76535821867D1B20046263B /* HPSignupViewController.xib in Resources */,
 				F765357C1867C3840046263B /* HPSigninViewController.xib in Resources */,
 				F7A1225218522ABE00E51B06 /* HPStartingViewController.xib in Resources */,
 			);
@@ -398,6 +415,7 @@
 				F7A1225118522ABE00E51B06 /* HPStartingViewController.m in Sources */,
 				F7A1222C18522A4100E51B06 /* HPAppDelegate.m in Sources */,
 				F765357B1867C3840046263B /* HPSigninViewController.m in Sources */,
+				F76535811867D1B20046263B /* HPSignupViewController.m in Sources */,
 				F78D484E185AAB03000A79BC /* HPNetworkObject.m in Sources */,
 				F7A1222F18522A4100E51B06 /* HousePlant.xcdatamodeld in Sources */,
 				F78D4854185AC0E2000A79BC /* HPHouse.m in Sources */,
