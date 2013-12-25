@@ -16,6 +16,7 @@
 @implementation HPSignupViewController
 {
     NSData *imageData;
+    AMPAvatarView *avatar2;
 }
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -30,6 +31,10 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    avatar2 = [[AMPAvatarView alloc] initWithFrame:CGRectMake(8, 108, 58, 58)];
+    [self.view addSubview:avatar2];
+    [avatar2 setHidden:YES];
+    [self.view bringSubviewToFront:_editProfileButton];
     // Do any additional setup after loading the view from its nib.
 }
 
@@ -63,6 +68,18 @@
     user.username = _usernameTextField.text;
     user.password = _passwordTextField.text;
 
+    if (imageData)
+    {
+        PFFile *imageFile = [PFFile fileWithName:@"profile_pic.jpg" data:imageData];
+        
+        // Save PFFile
+        if (![imageFile save]) {
+            NSLog(@"Error saving profile picture.");
+        };
+        
+        user[@"profilePic"] = imageFile;
+    }
+    
     [user signUpInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
         if (!error) {
             // Hooray! Let them use the app now.
@@ -106,17 +123,15 @@
     
     UIImage *chosenImage = info[UIImagePickerControllerEditedImage];
     
-    AMPAvatarView *avatar2 = [[AMPAvatarView alloc] initWithFrame:CGRectMake(8, 108, 58, 58)];
     avatar2.image = chosenImage;
     
     [avatar2 setBorderWith:0.0];
     [avatar2 setShadowRadius:0.0];
-    [self.view addSubview:avatar2];
-    [self.view bringSubviewToFront:_editProfileButton];
+    _setProfilePicImage.image = chosenImage;
     
     imageData = UIImageJPEGRepresentation(chosenImage, 1.0f);
     
-    
+    [avatar2 setHidden:NO];
     [picker dismissViewControllerAnimated:YES completion:NULL];
     
 }
@@ -128,12 +143,6 @@
 
 - (void)uploadProfilePic
 {
-    if (imageData)
-    {
-        PFFile *imageFile = [PFFile fileWithName:@"profile_pic.jpg" data:imageData];
-        
-        // Save PFFile
-        [imageFile save];
-    }
+
 }
 @end
