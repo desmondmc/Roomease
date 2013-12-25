@@ -14,6 +14,9 @@
 @end
 
 @implementation HPSignupViewController
+{
+    NSData *imageData;
+}
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -64,6 +67,7 @@
         if (!error) {
             // Hooray! Let them use the app now.
             NSLog(@"User signed up successfully!");
+            [self uploadProfilePic];
         } else {
             NSString *errorString = [error userInfo][@"error"];
             NSLog(@"Error signing up user: %@", errorString);
@@ -110,6 +114,9 @@
     [self.view addSubview:avatar2];
     [self.view bringSubviewToFront:_editProfileButton];
     
+    imageData = UIImageJPEGRepresentation(chosenImage, 1.0f);
+    
+    
     [picker dismissViewControllerAnimated:YES completion:NULL];
     
 }
@@ -117,5 +124,16 @@
 - (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker
 {
     [[UIApplication sharedApplication] setStatusBarHidden:NO];
+}
+
+- (void)uploadProfilePic
+{
+    if (imageData)
+    {
+        PFFile *imageFile = [PFFile fileWithName:@"profile_pic.jpg" data:imageData];
+        
+        // Save PFFile
+        [imageFile save];
+    }
 }
 @end
