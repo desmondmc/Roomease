@@ -29,6 +29,17 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
+    CGSize screenSize = [[UIScreen mainScreen] bounds].size;
+
+    if (screenSize.height > 480.0f)
+    {
+        /*Do iPhone 5 stuff here.*/
+        [_buttonView setFrame:CGRectMake(0, 425, _buttonView.frame.size.width, _buttonView.frame.size.height)];
+        
+    } else {
+        /*Do iPhone Classic stuff here.*/
+        [_buttonView setFrame:CGRectMake(0, 338, _buttonView.frame.size.width, _buttonView.frame.size.height)];
+    }
 }
 
 - (void)didReceiveMemoryWarning

@@ -68,27 +68,40 @@
 }
 
 - (IBAction)onEditProfilePicturePress:(id)sender {
-    /* Note: This image processing is all test code. It needs to be tweeked to work with a phones camera.*/
-    //Crop the image into a square.
-    CGRect cropRect = CGRectMake(100, 0, 700, 700);
-    CGImageRef imageRef = CGImageCreateWithImageInRect([UIImage imageNamed:@"testProfilePic"].CGImage, cropRect);
-    
-    AMPAvatarView *avatar2 = [[AMPAvatarView alloc] initWithFrame:CGRectMake(8, 108, 58, 58)];
-    avatar2.image = [UIImage imageWithCGImage:imageRef];
-    
-    [avatar2 setBorderWith:0.0];
-    [avatar2 setShadowRadius:0.0];
-    [self.view addSubview:avatar2];
+
     
     //Todo save profile picture to Parse.
 	
     //[self.setProfilePicImage setImage:[UIImage imageNamed:@"testProfilePic"]];
     
-//    UIImagePickerController *picker = [[UIImagePickerController alloc] init];
-//    picker.delegate = self;
-//    picker.allowsEditing = YES;
-//    picker.sourceType = UIImagePickerControllerCameraCaptureModePhoto;
-//    
-//    [self presentViewController:picker animated:YES completion:NULL];
+    UIImagePickerController *picker = [[UIImagePickerController alloc] init];
+    picker.delegate = self;
+    picker.allowsEditing = YES;
+    picker.sourceType = UIImagePickerControllerSourceTypeCamera;
+    picker.cameraDevice = UIImagePickerControllerCameraDeviceFront;
+    [[UIApplication sharedApplication] setStatusBarHidden:YES];
+    
+    [self presentViewController:picker animated:YES completion:NULL];
+}
+
+- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info {
+    
+    UIImage *chosenImage = info[UIImagePickerControllerEditedImage];
+    
+    AMPAvatarView *avatar2 = [[AMPAvatarView alloc] initWithFrame:CGRectMake(8, 108, 58, 58)];
+    avatar2.image = chosenImage;
+    
+    [avatar2 setBorderWith:0.0];
+    [avatar2 setShadowRadius:0.0];
+    [self.view addSubview:avatar2];
+    [self.view bringSubviewToFront:_editProfileButton];
+    
+    [picker dismissViewControllerAnimated:YES completion:NULL];
+    
+}
+
+- (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker
+{
+    [[UIApplication sharedApplication] setStatusBarHidden:NO];
 }
 @end

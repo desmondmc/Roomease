@@ -19,6 +19,7 @@
 
 @property (weak, nonatomic) IBOutlet UIImageView *blankProfilePicImage;
 @property (weak, nonatomic) IBOutlet AMPAvatarView *setProfilePicImage;
+@property (weak, nonatomic) IBOutlet UIButton *editProfileButton;
 
 
 - (IBAction)onPasswordClearButtonPress:(id)sender;
