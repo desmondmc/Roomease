@@ -7,6 +7,7 @@
 //
 
 #import "HPSignupViewController.h"
+#import <Parse/Parse.h>
 
 @interface HPSignupViewController ()
 
@@ -31,7 +32,7 @@
 
 - (void)viewDidAppear:(BOOL)animated
 {
-    [_usernameTextField select:nil];
+    //[_usernameTextField select:nil];
 }
 
 - (void)didReceiveMemoryWarning
@@ -55,6 +56,19 @@
 }
 
 - (IBAction)onSignupPress:(id)sender {
+    PFUser *user = [PFUser user];
+    user.username = _usernameTextField.text;
+    user.password = _passwordTextField.text;
+
+    [user signUpInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+        if (!error) {
+            // Hooray! Let them use the app now.
+            NSLog(@"User signed up successfully!");
+        } else {
+            NSString *errorString = [error userInfo][@"error"];
+            NSLog(@"Error signing up user: %@", errorString);
+        }
+    }];
 }
 - (IBAction)onUsernameClearButtonPress:(id)sender {
     _usernameTextField.text = @"";

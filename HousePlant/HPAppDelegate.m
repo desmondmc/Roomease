@@ -26,6 +26,7 @@
     self.window.backgroundColor = [UIColor whiteColor];
     self.window.rootViewController = [[HPStartingViewController alloc] init];
     [self.window makeKeyAndVisible];
+    
     return YES;
 }
 
