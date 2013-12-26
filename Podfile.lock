@@ -1,13 +1,16 @@
 PODS:
   - AMPAvatarView (1.0.3)
+  - CSNotificationView (0.3.3)
   - Reachability (3.1.1)
 
 DEPENDENCIES:
   - AMPAvatarView (~> 1.0.3)
+  - CSNotificationView (~> 0.3.3)
   - Reachability (~> 3.1.0)
 
 SPEC CHECKSUMS:
   AMPAvatarView: 473eae59b5d71dfdeed18803917bfc2a9e0a0a42
+  CSNotificationView: f14352657afe7255be9fb2446eb99d5914b97b5d
   Reachability: be4883bb93f31e38266ae3365e5600a317aae735
 
 COCOAPODS: 0.28.0

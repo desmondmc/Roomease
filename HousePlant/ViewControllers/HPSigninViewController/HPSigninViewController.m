@@ -7,6 +7,8 @@
 //
 
 #import "HPSigninViewController.h"
+#import <Parse/Parse.h>
+#import "CSNotificationView.h"
 
 @interface HPSigninViewController ()
 
@@ -65,6 +67,31 @@
     _usernameTextField.text = @"";
 }
 - (IBAction)onSigninPress:(id)sender {
+    [PFUser logInWithUsernameInBackground:_usernameTextField.text password:_passwordTextField.text
+                                    block:^(PFUser *user, NSError *error) {
+                                        if (user) {
+                                            // Do stuff after successful login.
+                                            [CSNotificationView showInViewController:self
+                                                                               style:CSNotificationViewStyleSuccess
+                                                                             message:@"You've successfully logged in."];
+                                        } else {
+                                            // The login failed. Check error to see why.
+                                            if([error code] == 101)
+                                            {
+                                                [CSNotificationView showInViewController:self
+                                                                                   style:CSNotificationViewStyleError
+                                                                                 message:@"Bad username and password combination."];
+                                            }
+                                            else
+                                            {
+                                                [CSNotificationView showInViewController:self
+                                                                                   style:CSNotificationViewStyleError
+                                                                                 message:@"An error occured."];
+                                            }
+                                            
+
+                                        }
+                                    }];
 }
 
 - (IBAction)onBackPress:(id)sender {

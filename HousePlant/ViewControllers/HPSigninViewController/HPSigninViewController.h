@@ -9,15 +9,19 @@
 #import <UIKit/UIKit.h>
 
 @interface HPSigninViewController : UIViewController <UITextFieldDelegate>
+
 @property (weak, nonatomic) IBOutlet UIImageView *usernameHighlight;
 @property (weak, nonatomic) IBOutlet UIImageView *passwordHighlight;
-@property (weak, nonatomic) IBOutlet UITextField *usernameTextField;
 
+@property (weak, nonatomic) IBOutlet UITextField *usernameTextField;
 @property (weak, nonatomic) IBOutlet UITextField *passwordTextField;
-- (IBAction)onUsernameClearPress:(id)sender;
-- (IBAction)onPasswordClearPress:(id)sender;
+
 @property (weak, nonatomic) IBOutlet UIButton *usernameClearButton;
 @property (weak, nonatomic) IBOutlet UIButton *passwordClearButton;
+
+- (IBAction)onUsernameClearPress:(id)sender;
+- (IBAction)onPasswordClearPress:(id)sender;
+
 - (IBAction)onSigninPress:(id)sender;
 - (IBAction)onBackPress:(id)sender;
 
