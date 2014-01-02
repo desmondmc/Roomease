@@ -7,8 +7,10 @@
 //
 
 #import "HPSigninViewController.h"
-#import <Parse/Parse.h>
 #import "CSNotificationView.h"
+#import "HPMainViewController.h"
+#import <Parse/Parse.h>
+
 
 @interface HPSigninViewController ()
 
@@ -74,6 +76,11 @@
                                             [CSNotificationView showInViewController:self
                                                                                style:CSNotificationViewStyleSuccess
                                                                              message:@"You've successfully logged in."];
+                                            HPMainViewController *mainViewController = [[HPMainViewController alloc] init];
+                                            mainViewController.modalTransitionStyle = UIModalTransitionStyleCoverVertical;
+                                            
+                                            // initialize the navigation controller and present it
+                                            [self presentViewController:mainViewController animated:YES completion:nil];
                                         } else {
                                             // The login failed. Check error to see why.
                                             if([error code] == 101)

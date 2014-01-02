@@ -21,6 +21,11 @@
     [Parse setApplicationId:@"XHCHyd9ulQaBtrftLcxgMV94dJj9SIWENiHW3AxO"
                   clientKey:@"27dbihYWPciSGR7hEUKuGr0riju4gGGR1YrBan8C"];
     [PFAnalytics trackAppOpenedWithLaunchOptions:launchOptions];
+    
+    // Store the deviceToken in the current installation and save it to Parse.
+    PFInstallation *currentInstallation = [PFInstallation currentInstallation];
+    [currentInstallation saveInBackground];
+    
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     // Override point for customization after application launch.
     self.window.backgroundColor = [UIColor whiteColor];

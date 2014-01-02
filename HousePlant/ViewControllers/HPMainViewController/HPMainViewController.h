@@ -7,7 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <CoreLocation/CoreLocation.h>
 
-@interface HPMainViewController : UIViewController
+@interface HPMainViewController : UIViewController <CLLocationManagerDelegate>
+- (IBAction)onEnableLocationServicesPress:(id)sender;
 
 @end

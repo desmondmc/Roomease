@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		641AF380FE954A6D996B029D /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F2ADBFAE68984DBDA17CC3D1 /* libPods.a */; };
+		F711387E1876086B00D9BA9E /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F7A6F4A81852320A00CEB9FD /* CoreLocation.framework */; };
 		F765357B1867C3840046263B /* HPSigninViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F76535791867C3840046263B /* HPSigninViewController.m */; };
 		F765357C1867C3840046263B /* HPSigninViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F765357A1867C3840046263B /* HPSigninViewController.xib */; };
 		F76535811867D1B20046263B /* HPSignupViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F765357F1867D1B20046263B /* HPSignupViewController.m */; };
@@ -35,7 +36,6 @@
 		F7A1225218522ABE00E51B06 /* HPStartingViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F7A1225018522ABE00E51B06 /* HPStartingViewController.xib */; };
 		F7A6F4A91852320A00CEB9FD /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F7A6F4A61852320A00CEB9FD /* AudioToolbox.framework */; };
 		F7A6F4AA1852320A00CEB9FD /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F7A6F4A71852320A00CEB9FD /* CFNetwork.framework */; };
-		F7A6F4AB1852320A00CEB9FD /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F7A6F4A81852320A00CEB9FD /* CoreLocation.framework */; };
 		F7A6F4B21852324000CEB9FD /* libz.1.1.3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = F7A6F4AC1852324000CEB9FD /* libz.1.1.3.dylib */; };
 		F7A6F4B31852324000CEB9FD /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F7A6F4AD1852324000CEB9FD /* MobileCoreServices.framework */; };
 		F7A6F4B41852324000CEB9FD /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F7A6F4AE1852324000CEB9FD /* QuartzCore.framework */; };
@@ -110,6 +110,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F711387E1876086B00D9BA9E /* CoreLocation.framework in Frameworks */,
 				F7A6F4B21852324000CEB9FD /* libz.1.1.3.dylib in Frameworks */,
 				F7A6F4B31852324000CEB9FD /* MobileCoreServices.framework in Frameworks */,
 				F7A6F4B41852324000CEB9FD /* QuartzCore.framework in Frameworks */,
@@ -119,7 +120,6 @@
 				F7A6F4B71852324000CEB9FD /* SystemConfiguration.framework in Frameworks */,
 				F7A6F4A91852320A00CEB9FD /* AudioToolbox.framework in Frameworks */,
 				F7A6F4AA1852320A00CEB9FD /* CFNetwork.framework in Frameworks */,
-				F7A6F4AB1852320A00CEB9FD /* CoreLocation.framework in Frameworks */,
 				F7A1221C18522A4100E51B06 /* CoreGraphics.framework in Frameworks */,
 				F7A1222018522A4100E51B06 /* CoreData.framework in Frameworks */,
 				F7A1221E18522A4100E51B06 /* UIKit.framework in Frameworks */,

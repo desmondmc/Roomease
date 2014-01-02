@@ -13,7 +13,9 @@
 @end
 
 @implementation HPMainViewController
-
+{
+    CLLocationManager *locationManager;
+}
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -27,6 +29,12 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
+    
+    CLGeocoder *geocoder = [[CLGeocoder alloc] init];
+    [geocoder geocodeAddressString:@"377 Gladstone Ave" inRegion:nil
+                 completionHandler:^(NSArray *placemarks, NSError *error) {
+        NSLog(@"placemarks: %@", placemarks);
+    }];
 }
 
 - (void)didReceiveMemoryWarning
@@ -35,4 +43,24 @@
     // Dispose of any resources that can be recreated.
 }
 
+- (IBAction)onEnableLocationServicesPress:(id)sender {
+    // Create the location manager if this object does not
+    // already have one.
+    if (nil == locationManager)
+        locationManager = [[CLLocationManager alloc] init];
+    
+    locationManager.delegate = self;
+    locationManager.desiredAccuracy = kCLLocationAccuracyBest;
+    
+    // Set a movement threshold for new events.
+    locationManager.distanceFilter = 500; // meters
+    
+    [locationManager startUpdatingLocation];
+    
+    CLGeocoder *geocoder = [[CLGeocoder alloc] init];
+    [geocoder geocodeAddressString:@"377 Gladstone" inRegion:nil
+                 completionHandler:^(NSArray *placemarks, NSError *error) {
+                     NSLog(@"placemarks: %@", placemarks);
+                 }];
+}
 @end
