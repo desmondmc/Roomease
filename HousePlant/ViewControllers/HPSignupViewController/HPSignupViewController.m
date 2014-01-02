@@ -7,6 +7,7 @@
 //
 
 #import "HPSignupViewController.h"
+#import "CSNotificationView.h"
 #import <Parse/Parse.h>
 
 @interface HPSignupViewController ()
@@ -84,9 +85,15 @@
         if (!error) {
             // Hooray! Let them use the app now.
             NSLog(@"User signed up successfully!");
+            [CSNotificationView showInViewController:self
+                                               style:CSNotificationViewStyleSuccess
+                                             message:@"You've successfully signed up."];
             [self uploadProfilePic];
         } else {
             NSString *errorString = [error userInfo][@"error"];
+            [CSNotificationView showInViewController:self
+                                               style:CSNotificationViewStyleError
+                                             message:@"There was an error signing up."];
             NSLog(@"Error signing up user: %@", errorString);
         }
     }];
@@ -149,6 +156,7 @@
 - (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker
 {
     [[UIApplication sharedApplication] setStatusBarHidden:NO];
+    [picker dismissViewControllerAnimated:YES completion:NULL];
 }
 
 - (void)uploadProfilePic

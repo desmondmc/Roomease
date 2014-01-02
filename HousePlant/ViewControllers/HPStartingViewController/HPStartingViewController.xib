@@ -23,6 +23,32 @@
                             <rect key="frame" x="0.0" y="0.0" width="320" height="93"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         </imageView>
+                        <button opaque="NO" contentMode="scaleToFill" placeholderIntrinsicWidth="320" placeholderIntrinsicHeight="46" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="O0L-PT-aD6" userLabel="ButtonLogin">
+                            <rect key="frame" x="0.0" y="0.0" width="320" height="47"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                            <state key="normal">
+                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                            <state key="selected" image="TextFieldBarHighlight"/>
+                            <state key="highlighted" image="TextFieldBarHighlight"/>
+                            <connections>
+                                <action selector="onLoginPress:" destination="-1" eventType="touchUpInside" id="Iik-dD-guc"/>
+                            </connections>
+                        </button>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="QZK-G0-lB2" userLabel="ButtonSignup">
+                            <rect key="frame" x="0.0" y="48" width="320" height="46"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                            <state key="normal">
+                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                            <state key="selected" image="TextFieldBarHighlight"/>
+                            <state key="highlighted" image="TextFieldBarHighlight"/>
+                            <connections>
+                                <action selector="onSignupPress:" destination="-1" eventType="touchUpInside" id="f23-bn-xIq"/>
+                            </connections>
+                        </button>
                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ArrowIcon" id="nxK-pu-w3K">
                             <rect key="frame" x="275" y="11" width="25" height="25"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -57,32 +83,6 @@
                             <rect key="frame" x="0.0" y="47" width="320" height="1"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         </imageView>
-                        <button opaque="NO" contentMode="scaleToFill" placeholderIntrinsicWidth="320" placeholderIntrinsicHeight="46" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="O0L-PT-aD6" userLabel="ButtonLogin">
-                            <rect key="frame" x="0.0" y="0.0" width="320" height="46"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                            <state key="normal">
-                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                            </state>
-                            <state key="selected" image="TextFieldBarHighlight"/>
-                            <state key="highlighted" image="TextFieldBarHighlight"/>
-                            <connections>
-                                <action selector="onLoginPress:" destination="-1" eventType="touchUpInside" id="Iik-dD-guc"/>
-                            </connections>
-                        </button>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="QZK-G0-lB2" userLabel="ButtonSignup">
-                            <rect key="frame" x="0.0" y="48" width="320" height="46"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                            <state key="normal">
-                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                            </state>
-                            <state key="selected" image="TextFieldBarHighlight"/>
-                            <state key="highlighted" image="TextFieldBarHighlight"/>
-                            <connections>
-                                <action selector="onSignupPress:" destination="-1" eventType="touchUpInside" id="f23-bn-xIq"/>
-                            </connections>
-                        </button>
                     </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                 </view>
