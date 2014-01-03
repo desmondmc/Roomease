@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		641AF380FE954A6D996B029D /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F2ADBFAE68984DBDA17CC3D1 /* libPods.a */; };
 		F711387E1876086B00D9BA9E /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F7A6F4A81852320A00CEB9FD /* CoreLocation.framework */; };
+		F71138801877008600D9BA9E /* ottawa.gpx in Resources */ = {isa = PBXBuildFile; fileRef = F711387F1877008600D9BA9E /* ottawa.gpx */; };
 		F765357B1867C3840046263B /* HPSigninViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F76535791867C3840046263B /* HPSigninViewController.m */; };
 		F765357C1867C3840046263B /* HPSigninViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F765357A1867C3840046263B /* HPSigninViewController.xib */; };
 		F76535811867D1B20046263B /* HPSignupViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F765357F1867D1B20046263B /* HPSignupViewController.m */; };
@@ -58,6 +59,7 @@
 /* Begin PBXFileReference section */
 		CABE67E5142742FBABED9A90 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
 		F2ADBFAE68984DBDA17CC3D1 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		F711387F1877008600D9BA9E /* ottawa.gpx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = ottawa.gpx; sourceTree = "<group>"; };
 		F76535781867C3840046263B /* HPSigninViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HPSigninViewController.h; path = ViewControllers/HPSigninViewController/HPSigninViewController.h; sourceTree = "<group>"; };
 		F76535791867C3840046263B /* HPSigninViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HPSigninViewController.m; path = ViewControllers/HPSigninViewController/HPSigninViewController.m; sourceTree = "<group>"; };
 		F765357A1867C3840046263B /* HPSigninViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = HPSigninViewController.xib; path = ViewControllers/HPSigninViewController/HPSigninViewController.xib; sourceTree = "<group>"; };
@@ -244,6 +246,7 @@
 		F7A1222218522A4100E51B06 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				F711387F1877008600D9BA9E /* ottawa.gpx */,
 				F7A1222318522A4100E51B06 /* HousePlant-Info.plist */,
 				F7A1222418522A4100E51B06 /* InfoPlist.strings */,
 				F7A1222718522A4100E51B06 /* main.m */,
@@ -378,6 +381,7 @@
 				F7653589186F67CA0046263B /* HPMainViewController.xib in Resources */,
 				F765357C1867C3840046263B /* HPSigninViewController.xib in Resources */,
 				F7A1225218522ABE00E51B06 /* HPStartingViewController.xib in Resources */,
+				F71138801877008600D9BA9E /* ottawa.gpx in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

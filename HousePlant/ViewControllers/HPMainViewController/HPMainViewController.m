@@ -7,6 +7,7 @@
 //
 
 #import "HPMainViewController.h"
+#import <Parse/Parse.h>
 
 @interface HPMainViewController ()
 
@@ -29,6 +30,8 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
+    
+    _usernameLabel.text = [NSString stringWithFormat:@"Hello %@!", [PFUser currentUser].username];
     
     CLGeocoder *geocoder = [[CLGeocoder alloc] init];
     [geocoder geocodeAddressString:@"377 Gladstone Ave" inRegion:nil
@@ -58,9 +61,13 @@
     [locationManager startUpdatingLocation];
     
     CLGeocoder *geocoder = [[CLGeocoder alloc] init];
-    [geocoder geocodeAddressString:@"377 Gladstone" inRegion:nil
+    [geocoder geocodeAddressString:_addressField.text inRegion:nil
                  completionHandler:^(NSArray *placemarks, NSError *error) {
                      NSLog(@"placemarks: %@", placemarks);
                  }];
+}
+- (IBAction)onLogoutPress:(id)sender {
+    [PFUser logOut];
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 @end

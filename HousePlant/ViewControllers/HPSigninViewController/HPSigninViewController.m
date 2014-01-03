@@ -73,9 +73,6 @@
                                     block:^(PFUser *user, NSError *error) {
                                         if (user) {
                                             // Do stuff after successful login.
-                                            [CSNotificationView showInViewController:self
-                                                                               style:CSNotificationViewStyleSuccess
-                                                                             message:@"You've successfully logged in."];
                                             HPMainViewController *mainViewController = [[HPMainViewController alloc] init];
                                             mainViewController.modalTransitionStyle = UIModalTransitionStyleCoverVertical;
                                             
