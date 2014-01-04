@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface HPJoinHouseViewController : UIViewController
+@interface HPJoinHouseViewController : UIViewController <UITextFieldDelegate>
 - (IBAction)onBackPress:(id)sender;
 @property (weak, nonatomic) IBOutlet UITextField *houseNameTextField;
 @property (weak, nonatomic) IBOutlet UITextField *passwordTextField;

@@ -7,6 +7,7 @@
 //
 
 #import "HPSignupViewController.h"
+#import "HPLoginRouter.h"
 
 @interface HPSignupViewController ()
 
@@ -66,27 +67,13 @@
     PFUser *user = [PFUser user];
     user.username = _usernameTextField.text;
     user.password = _passwordTextField.text;
-
-    if (imageData)
-    {
-        PFFile *imageFile = [PFFile fileWithName:@"profile_pic.jpg" data:imageData];
-        
-        // Save PFFile
-        if (![imageFile save]) {
-            NSLog(@"Error saving profile picture.");
-        };
-        
-        user[@"profilePic"] = imageFile;
-    }
     
     [user signUpInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
         if (!error) {
             // Hooray! Let them use the app now.
             NSLog(@"User signed up successfully!");
-            [CSNotificationView showInViewController:self
-                                               style:CSNotificationViewStyleSuccess
-                                             message:@"You've successfully signed up."];
-            [self uploadProfilePic];
+            
+            [self handleSuccessfulSignup];
         } else {
             NSString *errorString = [error userInfo][@"error"];
             [CSNotificationView showInViewController:self
@@ -157,8 +144,25 @@
     [picker dismissViewControllerAnimated:YES completion:NULL];
 }
 
+- (void)handleSuccessfulSignup
+{
+    [self uploadProfilePic];
+    // initialize the navigation controller and present it
+    [self presentViewController:[HPLoginRouter getFirstViewToLoadForUser] animated:YES completion:nil];
+}
+
 - (void)uploadProfilePic
 {
-
+    if (imageData)
+    {
+        PFFile *imageFile = [PFFile fileWithName:@"profile_pic.jpg" data:imageData];
+        
+        // Save PFFile
+        if (![imageFile save]) {
+            NSLog(@"Error saving profile picture.");
+        };
+        
+        [PFUser currentUser][@"profilePic"] = imageFile;
+    }
 }
 @end

@@ -7,6 +7,8 @@
 //
 
 #import "HPNoHomeViewController.h"
+#import "HPCreateHouseViewController.h"
+#import "HPJoinHouseViewController.h"
 
 @interface HPNoHomeViewController ()
 
@@ -37,10 +39,21 @@
 
 - (IBAction)onCreateHousePress:(id)sender {
     //Load CreateHouseView.
+    HPCreateHouseViewController *createViewController = [[HPCreateHouseViewController alloc] init];
+    createViewController.modalTransitionStyle = UIModalTransitionStyleCoverVertical;
+    
+    // initialize the navigation controller and present it
+    [self presentViewController:createViewController animated:YES completion:nil];
 }
 
 - (IBAction)onJoinHousePress:(id)sender {
     //Load JoinHouseView
+    //Load CreateHouseView.
+    HPJoinHouseViewController *joinHouseViewController = [[HPJoinHouseViewController alloc] init];
+    joinHouseViewController.modalTransitionStyle = UIModalTransitionStyleCoverVertical;
+    
+    // initialize the navigation controller and present it
+    [self presentViewController:joinHouseViewController animated:YES completion:nil];
 }
 
 - (IBAction)onBackPress:(id)sender {

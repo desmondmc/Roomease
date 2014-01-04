@@ -8,12 +8,16 @@
 
 #import <UIKit/UIKit.h>
 
-@interface HPCreateHouseViewController : UIViewController
+@interface HPCreateHouseViewController : UIViewController <UITextFieldDelegate>
 @property (weak, nonatomic) IBOutlet UITextField *confirmPasswordField;
 - (IBAction)onConfirmPasswordClearPress:(id)sender;
 @property (weak, nonatomic) IBOutlet UITextField *houseNameField;
 @property (weak, nonatomic) IBOutlet UITextField *passwordField;
 - (IBAction)onHouseNameClearPress:(id)sender;
 - (IBAction)onPasswordClearPress:(id)sender;
+@property (weak, nonatomic) IBOutlet UIButton *confirmPassClearButton;
+@property (weak, nonatomic) IBOutlet UIButton *houseNameClearButton;
+@property (weak, nonatomic) IBOutlet UIButton *passwordClearButton;
+- (IBAction)onBackPress:(id)sender;
 
 @end

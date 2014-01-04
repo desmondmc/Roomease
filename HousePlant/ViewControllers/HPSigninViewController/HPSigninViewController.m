@@ -8,6 +8,7 @@
 
 #import "HPSigninViewController.h"
 #import "HPMainViewController.h"
+#import "HPLoginRouter.h"
 
 
 @interface HPSigninViewController ()
@@ -71,11 +72,7 @@
                                     block:^(PFUser *user, NSError *error) {
                                         if (user) {
                                             // Do stuff after successful login.
-                                            HPMainViewController *mainViewController = [[HPMainViewController alloc] init];
-                                            mainViewController.modalTransitionStyle = UIModalTransitionStyleCoverVertical;
-                                            
-                                            // initialize the navigation controller and present it
-                                            [self presentViewController:mainViewController animated:YES completion:nil];
+                                            [self presentViewController:[HPLoginRouter getFirstViewToLoadForUser] animated:YES completion:nil];
                                         } else {
                                             // The login failed. Check error to see why.
                                             if([error code] == 101)
