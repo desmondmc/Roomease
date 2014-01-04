@@ -19,5 +19,6 @@
 @property (weak, nonatomic) IBOutlet UIButton *houseNameClearButton;
 @property (weak, nonatomic) IBOutlet UIButton *passwordClearButton;
 - (IBAction)onBackPress:(id)sender;
+- (IBAction)onMoveInPress:(id)sender;
 
 @end
