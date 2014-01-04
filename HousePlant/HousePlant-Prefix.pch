@@ -14,4 +14,8 @@
     #import <UIKit/UIKit.h>
     #import <Foundation/Foundation.h>
     #import <CoreData/CoreData.h>
+    #import <Parse/Parse.h>
 #endif
+
+//Shit to always include.
+#import "CSNotificationView.h"

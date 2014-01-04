@@ -7,7 +7,6 @@
 //
 
 #import "HPMainViewController.h"
-#import <Parse/Parse.h>
 
 @interface HPMainViewController ()
 

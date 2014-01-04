@@ -10,6 +10,12 @@
 		641AF380FE954A6D996B029D /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F2ADBFAE68984DBDA17CC3D1 /* libPods.a */; };
 		F711387E1876086B00D9BA9E /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F7A6F4A81852320A00CEB9FD /* CoreLocation.framework */; };
 		F71138801877008600D9BA9E /* ottawa.gpx in Resources */ = {isa = PBXBuildFile; fileRef = F711387F1877008600D9BA9E /* ottawa.gpx */; };
+		F711388518777B8800D9BA9E /* HPNoHomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F711388318777B8800D9BA9E /* HPNoHomeViewController.m */; };
+		F711388618777B8800D9BA9E /* HPNoHomeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F711388418777B8800D9BA9E /* HPNoHomeViewController.xib */; };
+		F711388B1877832000D9BA9E /* HPCreateHouseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F71138891877832000D9BA9E /* HPCreateHouseViewController.m */; };
+		F711388C1877832000D9BA9E /* HPCreateHouseViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F711388A1877832000D9BA9E /* HPCreateHouseViewController.xib */; };
+		F71138911877837D00D9BA9E /* HPJoinHouseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F711388F1877837D00D9BA9E /* HPJoinHouseViewController.m */; };
+		F71138921877837D00D9BA9E /* HPJoinHouseViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F71138901877837D00D9BA9E /* HPJoinHouseViewController.xib */; };
 		F765357B1867C3840046263B /* HPSigninViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F76535791867C3840046263B /* HPSigninViewController.m */; };
 		F765357C1867C3840046263B /* HPSigninViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F765357A1867C3840046263B /* HPSigninViewController.xib */; };
 		F76535811867D1B20046263B /* HPSignupViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F765357F1867D1B20046263B /* HPSignupViewController.m */; };
@@ -60,6 +66,15 @@
 		CABE67E5142742FBABED9A90 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
 		F2ADBFAE68984DBDA17CC3D1 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		F711387F1877008600D9BA9E /* ottawa.gpx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = ottawa.gpx; sourceTree = "<group>"; };
+		F711388218777B8800D9BA9E /* HPNoHomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HPNoHomeViewController.h; path = ViewControllers/HPNoHomeViewController/HPNoHomeViewController.h; sourceTree = "<group>"; };
+		F711388318777B8800D9BA9E /* HPNoHomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HPNoHomeViewController.m; path = ViewControllers/HPNoHomeViewController/HPNoHomeViewController.m; sourceTree = "<group>"; };
+		F711388418777B8800D9BA9E /* HPNoHomeViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = HPNoHomeViewController.xib; path = ViewControllers/HPNoHomeViewController/HPNoHomeViewController.xib; sourceTree = "<group>"; };
+		F71138881877832000D9BA9E /* HPCreateHouseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HPCreateHouseViewController.h; path = ViewControllers/HPCreateHouseViewController/HPCreateHouseViewController.h; sourceTree = "<group>"; };
+		F71138891877832000D9BA9E /* HPCreateHouseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HPCreateHouseViewController.m; path = ViewControllers/HPCreateHouseViewController/HPCreateHouseViewController.m; sourceTree = "<group>"; };
+		F711388A1877832000D9BA9E /* HPCreateHouseViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = HPCreateHouseViewController.xib; path = ViewControllers/HPCreateHouseViewController/HPCreateHouseViewController.xib; sourceTree = "<group>"; };
+		F711388E1877837D00D9BA9E /* HPJoinHouseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HPJoinHouseViewController.h; path = ViewControllers/HPJoinHouseViewController/HPJoinHouseViewController.h; sourceTree = "<group>"; };
+		F711388F1877837D00D9BA9E /* HPJoinHouseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HPJoinHouseViewController.m; path = ViewControllers/HPJoinHouseViewController/HPJoinHouseViewController.m; sourceTree = "<group>"; };
+		F71138901877837D00D9BA9E /* HPJoinHouseViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = HPJoinHouseViewController.xib; path = ViewControllers/HPJoinHouseViewController/HPJoinHouseViewController.xib; sourceTree = "<group>"; };
 		F76535781867C3840046263B /* HPSigninViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HPSigninViewController.h; path = ViewControllers/HPSigninViewController/HPSigninViewController.h; sourceTree = "<group>"; };
 		F76535791867C3840046263B /* HPSigninViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HPSigninViewController.m; path = ViewControllers/HPSigninViewController/HPSigninViewController.m; sourceTree = "<group>"; };
 		F765357A1867C3840046263B /* HPSigninViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = HPSigninViewController.xib; path = ViewControllers/HPSigninViewController/HPSigninViewController.xib; sourceTree = "<group>"; };
@@ -144,6 +159,36 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		F711388118777B3600D9BA9E /* HPNoHomeViewController */ = {
+			isa = PBXGroup;
+			children = (
+				F711388218777B8800D9BA9E /* HPNoHomeViewController.h */,
+				F711388318777B8800D9BA9E /* HPNoHomeViewController.m */,
+				F711388418777B8800D9BA9E /* HPNoHomeViewController.xib */,
+			);
+			name = HPNoHomeViewController;
+			sourceTree = "<group>";
+		};
+		F7113887187782FC00D9BA9E /* HPCreateHouseViewController */ = {
+			isa = PBXGroup;
+			children = (
+				F71138881877832000D9BA9E /* HPCreateHouseViewController.h */,
+				F71138891877832000D9BA9E /* HPCreateHouseViewController.m */,
+				F711388A1877832000D9BA9E /* HPCreateHouseViewController.xib */,
+			);
+			name = HPCreateHouseViewController;
+			sourceTree = "<group>";
+		};
+		F711388D1877835E00D9BA9E /* HPJoinHouseViewController */ = {
+			isa = PBXGroup;
+			children = (
+				F711388E1877837D00D9BA9E /* HPJoinHouseViewController.h */,
+				F711388F1877837D00D9BA9E /* HPJoinHouseViewController.m */,
+				F71138901877837D00D9BA9E /* HPJoinHouseViewController.xib */,
+			);
+			name = HPJoinHouseViewController;
+			sourceTree = "<group>";
+		};
 		F76535771867BF630046263B /* HPSigninViewController */ = {
 			isa = PBXGroup;
 			children = (
@@ -276,6 +321,9 @@
 		F7A1225318522AD000E51B06 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				F711388D1877835E00D9BA9E /* HPJoinHouseViewController */,
+				F7113887187782FC00D9BA9E /* HPCreateHouseViewController */,
+				F711388118777B3600D9BA9E /* HPNoHomeViewController */,
 				F7653584186F67110046263B /* HPMainViewController */,
 				F765357D1867D16B0046263B /* HPSignupViewController */,
 				F76535771867BF630046263B /* HPSigninViewController */,
@@ -375,11 +423,14 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F711388618777B8800D9BA9E /* HPNoHomeViewController.xib in Resources */,
 				F7A1222618522A4100E51B06 /* InfoPlist.strings in Resources */,
 				F7A1223118522A4100E51B06 /* Images.xcassets in Resources */,
 				F76535821867D1B20046263B /* HPSignupViewController.xib in Resources */,
 				F7653589186F67CA0046263B /* HPMainViewController.xib in Resources */,
+				F71138921877837D00D9BA9E /* HPJoinHouseViewController.xib in Resources */,
 				F765357C1867C3840046263B /* HPSigninViewController.xib in Resources */,
+				F711388C1877832000D9BA9E /* HPCreateHouseViewController.xib in Resources */,
 				F7A1225218522ABE00E51B06 /* HPStartingViewController.xib in Resources */,
 				F71138801877008600D9BA9E /* ottawa.gpx in Resources */,
 			);
@@ -437,9 +488,12 @@
 				F7A1222C18522A4100E51B06 /* HPAppDelegate.m in Sources */,
 				F765357B1867C3840046263B /* HPSigninViewController.m in Sources */,
 				F76535811867D1B20046263B /* HPSignupViewController.m in Sources */,
+				F711388518777B8800D9BA9E /* HPNoHomeViewController.m in Sources */,
 				F78D484E185AAB03000A79BC /* HPNetworkObject.m in Sources */,
+				F711388B1877832000D9BA9E /* HPCreateHouseViewController.m in Sources */,
 				F7653588186F67CA0046263B /* HPMainViewController.m in Sources */,
 				F7A1222F18522A4100E51B06 /* HousePlant.xcdatamodeld in Sources */,
+				F71138911877837D00D9BA9E /* HPJoinHouseViewController.m in Sources */,
 				F78D4854185AC0E2000A79BC /* HPHouse.m in Sources */,
 				F7A1222818522A4100E51B06 /* main.m in Sources */,
 			);

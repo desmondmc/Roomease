@@ -7,8 +7,6 @@
 //
 
 #import "HPSignupViewController.h"
-#import "CSNotificationView.h"
-#import <Parse/Parse.h>
 
 @interface HPSignupViewController ()
 
