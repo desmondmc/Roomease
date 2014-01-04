@@ -48,7 +48,6 @@
 
 - (IBAction)onJoinHousePress:(id)sender {
     //Load JoinHouseView
-    //Load CreateHouseView.
     HPJoinHouseViewController *joinHouseViewController = [[HPJoinHouseViewController alloc] init];
     joinHouseViewController.modalTransitionStyle = UIModalTransitionStyleCoverVertical;
     

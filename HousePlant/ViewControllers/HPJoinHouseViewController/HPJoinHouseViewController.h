@@ -12,8 +12,10 @@
 - (IBAction)onBackPress:(id)sender;
 @property (weak, nonatomic) IBOutlet UITextField *houseNameTextField;
 @property (weak, nonatomic) IBOutlet UITextField *passwordTextField;
-- (IBAction)onHouseNameClearPress:(id)sender;
-- (IBAction)onPasswordClearPress:(id)sender;
+@property (weak, nonatomic) IBOutlet UIButton *houseNameClearButton;
+- (IBAction)houseNameClearButtonPress:(id)sender;
+@property (weak, nonatomic) IBOutlet UIButton *passwordClearButton;
+- (IBAction)passwordClearButtonPress:(id)sender;
 
 
 @end

@@ -43,6 +43,9 @@
     [_confirmPassClearButton setHidden:true];
 }
 
+
+/*** User interface sheeet ***/
+
 - (void)textFieldDidBeginEditing:(UITextField *)textField
 {
     if (textField == _houseNameField)
@@ -63,7 +66,6 @@
         [_passwordClearButton setHidden:true];
         [_confirmPassClearButton setHidden:false];
     }
-    
 }
 
 

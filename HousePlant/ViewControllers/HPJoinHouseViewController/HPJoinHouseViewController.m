@@ -35,13 +35,30 @@
     // Dispose of any resources that can be recreated.
 }
 
-- (IBAction)onBackPress:(id)sender {
-}
-- (IBAction)onHouseNameClearPress:(id)sender {
-    _houseNameTextField.text = @"";
+
+/*** User interface sheeet ***/
+- (void)textFieldDidBeginEditing:(UITextField *)textField
+{
+    if (textField == _houseNameTextField)
+    {
+        [_houseNameClearButton setHidden:false];
+        [_passwordClearButton setHidden:true];
+    }
+    else if (textField == _passwordTextField)
+    {
+        [_houseNameClearButton setHidden:true];
+        [_passwordClearButton setHidden:false];
+    }
 }
 
-- (IBAction)onPasswordClearPress:(id)sender {
+- (IBAction)onBackPress:(id)sender {
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+- (IBAction)houseNameClearButtonPress:(id)sender {
+    _houseNameTextField.text = @"";
+}
+- (IBAction)passwordClearButtonPress:(id)sender {
     _passwordTextField.text = @"";
 }
 @end

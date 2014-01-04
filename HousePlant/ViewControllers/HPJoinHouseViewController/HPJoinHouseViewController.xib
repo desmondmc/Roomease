@@ -6,8 +6,9 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="HPJoinHouseViewController">
             <connections>
+                <outlet property="houseNameClearButton" destination="4MJ-yQ-eho" id="3sU-FN-cMv"/>
                 <outlet property="houseNameTextField" destination="xek-fc-yhm" id="VuQ-IC-C6g"/>
-                <outlet property="onHouseNameClearPress" destination="4MJ-yQ-eho" id="tZp-ww-pNd"/>
+                <outlet property="passwordClearButton" destination="azc-Ay-2Cd" id="edL-VT-XPx"/>
                 <outlet property="passwordTextField" destination="SfE-LX-eJU" id="2Pa-ov-aYY"/>
                 <outlet property="view" destination="1" id="3"/>
             </connections>
@@ -50,12 +51,18 @@
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <attributedString key="attributedText"/>
                             <textInputTraits key="textInputTraits"/>
+                            <connections>
+                                <outlet property="delegate" destination="-1" id="oAp-Rw-XW1"/>
+                            </connections>
                         </textField>
                         <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" usesAttributedText="YES" placeholder="Password" minimumFontSize="15" translatesAutoresizingMaskIntoConstraints="NO" id="SfE-LX-eJU" userLabel="Text Field - Password">
                             <rect key="frame" x="79" y="55" width="192" height="30"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <attributedString key="attributedText"/>
                             <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
+                            <connections>
+                                <outlet property="delegate" destination="-1" id="uov-fH-63e"/>
+                            </connections>
                         </textField>
                         <button hidden="YES" opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4MJ-yQ-eho" userLabel="houseNameClearButton">
                             <rect key="frame" x="281" y="14" width="19" height="19"/>
@@ -65,7 +72,7 @@
                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                             </state>
                             <connections>
-                                <action selector="onHouseNameClearPress:" destination="-1" eventType="touchUpInside" id="8H6-VH-1VH"/>
+                                <action selector="houseNameClearButtonPress:" destination="-1" eventType="touchUpInside" id="T9f-wW-DMp"/>
                             </connections>
                         </button>
                         <button hidden="YES" opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="azc-Ay-2Cd" userLabel="passwordClearButton">
@@ -76,7 +83,7 @@
                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                             </state>
                             <connections>
-                                <action selector="onPasswordClearPress:" destination="-1" eventType="touchUpInside" id="v4C-G0-gGq"/>
+                                <action selector="passwordClearButtonPress:" destination="-1" eventType="touchUpInside" id="1Bt-Bq-enG"/>
                             </connections>
                         </button>
                     </subviews>
@@ -98,7 +105,7 @@
                     </connections>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tuJ-1l-gQe">
-                    <rect key="frame" x="76" y="209" width="168" height="35"/>
+                    <rect key="frame" x="76" y="162" width="168" height="35"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
                     <state key="normal" image="MoveInButtonNormal">
