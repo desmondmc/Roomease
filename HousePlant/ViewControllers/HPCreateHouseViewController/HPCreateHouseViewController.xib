@@ -6,6 +6,9 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="HPCreateHouseViewController">
             <connections>
+                <outlet property="confirmPasswordField" destination="hNm-b2-frt" id="qjo-nW-YRH"/>
+                <outlet property="houseNameField" destination="7JR-M7-82m" id="H9c-N1-cTh"/>
+                <outlet property="passwordField" destination="54E-5m-VKX" id="baH-ND-3pI"/>
                 <outlet property="view" destination="1" id="3"/>
             </connections>
         </placeholder>
@@ -13,9 +16,139 @@
         <view contentMode="scaleToFill" id="1">
             <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TYO-ZD-dMt" userLabel="Button - Back">
+                    <rect key="frame" x="13" y="24" width="13" height="17"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                    <state key="normal" image="BackButton">
+                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                </button>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="CreateHouseHeader" translatesAutoresizingMaskIntoConstraints="NO" id="NNc-Od-Tof">
+                    <rect key="frame" x="82" y="26" width="157" height="15"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                </imageView>
+                <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="0Ma-NT-Gpp">
+                    <rect key="frame" x="0.0" y="91" width="320" height="140"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <subviews>
+                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="TextFieldBar" translatesAutoresizingMaskIntoConstraints="NO" id="fhC-x8-OtM" userLabel="Image View Text box backgrou">
+                            <rect key="frame" x="0.0" y="46" width="320" height="140"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        </imageView>
+                        <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="TextFieldBarHighlight" translatesAutoresizingMaskIntoConstraints="NO" id="Eam-gX-mS5" userLabel="Username - TextFieldBarHighlight">
+                            <rect key="frame" x="0.0" y="93" width="320" height="47"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        </imageView>
+                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="ConfirmPasswordSymbol" translatesAutoresizingMaskIntoConstraints="NO" id="rgd-Ju-GMD" userLabel="Image View - ConfirmIcon">
+                            <rect key="frame" x="46" y="103" width="25" height="25"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        </imageView>
+                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" usesAttributedText="YES" placeholder="Confirm Password" minimumFontSize="15" translatesAutoresizingMaskIntoConstraints="NO" id="hNm-b2-frt" userLabel="Text Field - House Name">
+                            <rect key="frame" x="79" y="102" width="192" height="30"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <attributedString key="attributedText"/>
+                            <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
+                        </textField>
+                        <button hidden="YES" opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="97Z-n3-1HJ" userLabel="confPassClearButton">
+                            <rect key="frame" x="281" y="106" width="19" height="19"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                            <state key="normal" image="XCircle">
+                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                            <connections>
+                                <action selector="onConfirmPasswordClearPress:" destination="-1" eventType="touchUpInside" id="oWQ-vc-IDM"/>
+                            </connections>
+                        </button>
+                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="MainDivider" translatesAutoresizingMaskIntoConstraints="NO" id="Brb-JL-Kbu" userLabel="Image View - MainDivider2">
+                            <rect key="frame" x="0.0" y="93" width="320" height="1"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        </imageView>
+                        <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="txn-Hh-Ekk">
+                            <rect key="frame" x="0.0" y="0.0" width="320" height="93"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <subviews>
+                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="TextFieldBar" translatesAutoresizingMaskIntoConstraints="NO" id="SOt-0h-kSt">
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="93"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                </imageView>
+                                <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="TextFieldBarHighlight" translatesAutoresizingMaskIntoConstraints="NO" id="a3T-rp-LHZ" userLabel="Username - TextFieldBarHighlight">
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="47"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                </imageView>
+                                <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="TextFieldBarHighlight" translatesAutoresizingMaskIntoConstraints="NO" id="yvo-aq-pRS" userLabel="Password - TextFieldBarHighlight">
+                                    <rect key="frame" x="0.0" y="47" width="320" height="46"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                </imageView>
+                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="HouseIcon" translatesAutoresizingMaskIntoConstraints="NO" id="dwp-Ig-c1i">
+                                    <rect key="frame" x="46" y="11" width="25" height="25"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                </imageView>
+                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="PasswordTextSymbol" translatesAutoresizingMaskIntoConstraints="NO" id="ppp-Y9-ahb">
+                                    <rect key="frame" x="46" y="57" width="25" height="25"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                </imageView>
+                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="MainDivider" translatesAutoresizingMaskIntoConstraints="NO" id="zBb-gO-pFY">
+                                    <rect key="frame" x="0.0" y="46" width="320" height="1"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                </imageView>
+                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" usesAttributedText="YES" placeholder="House Name" minimumFontSize="15" translatesAutoresizingMaskIntoConstraints="NO" id="7JR-M7-82m" userLabel="Text Field - House Name">
+                                    <rect key="frame" x="79" y="9" width="192" height="30"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <attributedString key="attributedText"/>
+                                    <textInputTraits key="textInputTraits"/>
+                                </textField>
+                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" usesAttributedText="YES" placeholder="Password" minimumFontSize="15" translatesAutoresizingMaskIntoConstraints="NO" id="54E-5m-VKX" userLabel="Text Field - Password">
+                                    <rect key="frame" x="79" y="55" width="192" height="30"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <attributedString key="attributedText"/>
+                                    <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
+                                </textField>
+                                <button hidden="YES" opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dnm-eq-7qE" userLabel="houseNameClearButton">
+                                    <rect key="frame" x="281" y="14" width="19" height="19"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                    <state key="normal" image="XCircle">
+                                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                    </state>
+                                    <connections>
+                                        <action selector="onHouseNameClearPress:" destination="-1" eventType="touchUpInside" id="0mc-uV-XeQ"/>
+                                    </connections>
+                                </button>
+                                <button hidden="YES" opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5aT-nB-Shw" userLabel="passwordClearButton">
+                                    <rect key="frame" x="281" y="60" width="19" height="19"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                    <state key="normal" image="XCircle">
+                                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                    </state>
+                                    <connections>
+                                        <action selector="onPasswordClearPress:" destination="-1" eventType="touchUpInside" id="JRq-sZ-jLh"/>
+                                    </connections>
+                                </button>
+                            </subviews>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        </view>
+                    </subviews>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                </view>
+            </subviews>
             <color key="backgroundColor" red="0.392156899" green="0.81568634510000004" blue="0.74117648599999997" alpha="1" colorSpace="deviceRGB"/>
             <simulatedStatusBarMetrics key="simulatedStatusBarMetrics"/>
             <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
         </view>
     </objects>
+    <resources>
+        <image name="BackButton" width="13" height="17"/>
+        <image name="ConfirmPasswordSymbol" width="20" height="22"/>
+        <image name="CreateHouseHeader" width="157" height="15"/>
+        <image name="HouseIcon" width="20" height="22"/>
+        <image name="MainDivider" width="320" height="1"/>
+        <image name="PasswordTextSymbol" width="25" height="25"/>
+        <image name="TextFieldBar" width="320" height="93"/>
+        <image name="TextFieldBarHighlight" width="319" height="46"/>
+        <image name="XCircle" width="19" height="19"/>
+    </resources>
 </document>

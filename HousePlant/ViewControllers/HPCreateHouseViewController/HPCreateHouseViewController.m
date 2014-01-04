@@ -35,4 +35,11 @@
     // Dispose of any resources that can be recreated.
 }
 
+- (IBAction)onConfirmPasswordClearPress:(id)sender {
+}
+- (IBAction)onHouseNameClearPress:(id)sender {
+}
+
+- (IBAction)onPasswordClearPress:(id)sender {
+}
 @end

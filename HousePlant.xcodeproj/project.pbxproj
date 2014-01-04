@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		641AF380FE954A6D996B029D /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F2ADBFAE68984DBDA17CC3D1 /* libPods.a */; };
+		F710E5FA187862B700BD9D54 /* HPLoginRouter.m in Sources */ = {isa = PBXBuildFile; fileRef = F710E5F9187862B700BD9D54 /* HPLoginRouter.m */; };
 		F711387E1876086B00D9BA9E /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F7A6F4A81852320A00CEB9FD /* CoreLocation.framework */; };
 		F71138801877008600D9BA9E /* ottawa.gpx in Resources */ = {isa = PBXBuildFile; fileRef = F711387F1877008600D9BA9E /* ottawa.gpx */; };
 		F711388518777B8800D9BA9E /* HPNoHomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F711388318777B8800D9BA9E /* HPNoHomeViewController.m */; };
@@ -65,6 +66,8 @@
 /* Begin PBXFileReference section */
 		CABE67E5142742FBABED9A90 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
 		F2ADBFAE68984DBDA17CC3D1 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		F710E5F8187862B700BD9D54 /* HPLoginRouter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HPLoginRouter.h; path = HelperClasses/HPLoginRouter.h; sourceTree = "<group>"; };
+		F710E5F9187862B700BD9D54 /* HPLoginRouter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HPLoginRouter.m; path = HelperClasses/HPLoginRouter.m; sourceTree = "<group>"; };
 		F711387F1877008600D9BA9E /* ottawa.gpx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = ottawa.gpx; sourceTree = "<group>"; };
 		F711388218777B8800D9BA9E /* HPNoHomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HPNoHomeViewController.h; path = ViewControllers/HPNoHomeViewController/HPNoHomeViewController.h; sourceTree = "<group>"; };
 		F711388318777B8800D9BA9E /* HPNoHomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HPNoHomeViewController.m; path = ViewControllers/HPNoHomeViewController/HPNoHomeViewController.m; sourceTree = "<group>"; };
@@ -159,6 +162,23 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		F710E5FB187862BE00BD9D54 /* HelperClasses */ = {
+			isa = PBXGroup;
+			children = (
+				F710E5FC187862DE00BD9D54 /* HPLoginRouter */,
+			);
+			name = HelperClasses;
+			sourceTree = "<group>";
+		};
+		F710E5FC187862DE00BD9D54 /* HPLoginRouter */ = {
+			isa = PBXGroup;
+			children = (
+				F710E5F8187862B700BD9D54 /* HPLoginRouter.h */,
+				F710E5F9187862B700BD9D54 /* HPLoginRouter.m */,
+			);
+			name = HPLoginRouter;
+			sourceTree = "<group>";
+		};
 		F711388118777B3600D9BA9E /* HPNoHomeViewController */ = {
 			isa = PBXGroup;
 			children = (
@@ -276,6 +296,7 @@
 		F7A1222118522A4100E51B06 /* HousePlant */ = {
 			isa = PBXGroup;
 			children = (
+				F710E5FB187862BE00BD9D54 /* HelperClasses */,
 				F78D484B185AA9DA000A79BC /* NetworkObjects */,
 				F7A1225318522AD000E51B06 /* ViewControllers */,
 				F7A1222A18522A4100E51B06 /* HPAppDelegate.h */,
@@ -493,6 +514,7 @@
 				F711388B1877832000D9BA9E /* HPCreateHouseViewController.m in Sources */,
 				F7653588186F67CA0046263B /* HPMainViewController.m in Sources */,
 				F7A1222F18522A4100E51B06 /* HousePlant.xcdatamodeld in Sources */,
+				F710E5FA187862B700BD9D54 /* HPLoginRouter.m in Sources */,
 				F71138911877837D00D9BA9E /* HPJoinHouseViewController.m in Sources */,
 				F78D4854185AC0E2000A79BC /* HPHouse.m in Sources */,
 				F7A1222818522A4100E51B06 /* main.m in Sources */,
