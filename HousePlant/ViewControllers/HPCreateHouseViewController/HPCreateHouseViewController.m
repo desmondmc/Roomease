@@ -7,6 +7,7 @@
 //
 
 #import "HPCreateHouseViewController.h"
+#import "HPMainViewController.h"
 
 @interface HPCreateHouseViewController ()
 
@@ -84,6 +85,13 @@
 }
 
 - (IBAction)onMoveInPress:(id)sender {
+    [_activityIndicator setHidden:false];
+    [self createHouseAndMoveInUser];
+    [_activityIndicator setHidden:true];
+}
+
+- (void) createHouseAndMoveInUser
+{
     //Check if House and password are valid
     NSString *validateString = [self validateUsernameAndPasswordSubmission];
     
@@ -93,12 +101,29 @@
                                          message:validateString];
         return;
     }
+    
     //Create house parse object
+    PFObject *newHouse = [PFObject objectWithClassName:@"House"];
+    
+    //Add password and houseName to house.
+    newHouse[@"name"] = _houseNameField.text;
+    newHouse[@"password"] = _passwordField.text;
     
     //Add current user to the house.
-    //Add password and houseName to house.
+    [newHouse addUniqueObjectsFromArray:@[[PFUser currentUser]] forKey:@"users"];
+    
+    if(![newHouse save])
+    {
+        [CSNotificationView showInViewController:self
+                                           style:CSNotificationViewStyleError
+                                         message:@"There was an error building you house. Please try again."];
+        return;
+    }
     
     //load the main view.
+    HPMainViewController *mainViewController = [[HPMainViewController alloc] init];
+    mainViewController.modalTransitionStyle = UIModalTransitionStyleCoverVertical;
+    [self presentViewController:mainViewController animated:YES completion:nil];
 }
 
 - (NSString *) validateUsernameAndPasswordSubmission

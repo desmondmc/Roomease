@@ -6,6 +6,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="HPCreateHouseViewController">
             <connections>
+                <outlet property="activityIndicator" destination="wfx-ac-0rd" id="hRN-mO-KF2"/>
                 <outlet property="confirmPassClearButton" destination="97Z-n3-1HJ" id="5en-TR-IQu"/>
                 <outlet property="confirmPasswordField" destination="hNm-b2-frt" id="qjo-nW-YRH"/>
                 <outlet property="houseNameClearButton" destination="dnm-eq-7qE" id="K3f-mm-rft"/>
@@ -161,6 +162,10 @@
                         <action selector="onMoveInPress:" destination="-1" eventType="touchUpInside" id="iDT-jx-pb5"/>
                     </connections>
                 </button>
+                <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" animating="YES" style="white" id="wfx-ac-0rd">
+                    <rect key="frame" x="252" y="217" width="20" height="20"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                </activityIndicatorView>
             </subviews>
             <color key="backgroundColor" red="0.392156899" green="0.81568634510000004" blue="0.74117648599999997" alpha="1" colorSpace="deviceRGB"/>
             <simulatedStatusBarMetrics key="simulatedStatusBarMetrics"/>
