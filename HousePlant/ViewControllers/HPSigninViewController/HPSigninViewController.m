@@ -72,7 +72,15 @@
                                     block:^(PFUser *user, NSError *error) {
                                         if (user) {
                                             // Do stuff after successful login.
-                                            [self presentViewController:[HPLoginRouter getFirstViewToLoadForUser] animated:YES completion:nil];
+                                            UIViewController *viewController = [HPLoginRouter getFirstViewToLoadForUser];
+                                            if (viewController) {
+                                                [self presentViewController:[HPLoginRouter getFirstViewToLoadForUser] animated:YES completion:nil];
+                                            }
+                                            else
+                                            {
+                                                [self presentViewController:[HPLoginRouter getFirstViewToLoadForUser] animated:YES completion:nil];
+                                            }
+                                            
                                         } else {
                                             // The login failed. Check error to see why.
                                             if([error code] == 101)

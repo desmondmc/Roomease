@@ -7,6 +7,7 @@
 //
 
 #import "HPJoinHouseViewController.h"
+#import "HPMainViewController.h"
 
 @interface HPJoinHouseViewController ()
 
@@ -60,5 +61,61 @@
 }
 - (IBAction)passwordClearButtonPress:(id)sender {
     _passwordTextField.text = @"";
+}
+
+- (IBAction)onMoveInButtonPress:(id)sender {
+    [_activityIndicator setHidden:false];
+    [self joinUserToHouse];
+    [_activityIndicator setHidden:true];
+}
+
+- (void) joinUserToHouse
+{
+    NSString *errorString = [self validateUserInputs];
+    
+    if (errorString) {
+        [CSNotificationView showInViewController:self
+                                           style:CSNotificationViewStyleError
+                                         message:errorString];
+        return;
+    }
+    
+    //load the main view.
+    HPMainViewController *mainViewController = [[HPMainViewController alloc] init];
+    mainViewController.modalTransitionStyle = UIModalTransitionStyleCoverVertical;
+    
+    // initialize the navigation controller and present it
+    [self presentViewController:mainViewController animated:YES completion:nil];
+}
+
+- (NSString *) validateUserInputs
+{
+    if (_houseNameTextField.text.length < 1)
+    {
+        return @"Please enter a house name.";
+    }
+    if (_passwordTextField.text.length < 1) {
+        return @"Please enter a password.";
+    }
+    
+    PFQuery *query = [PFQuery queryWithClassName:@"House"];
+    [query whereKey:@"name" equalTo:_houseNameTextField.text];
+    NSArray *houseArray = [query findObjects];
+    
+    if (houseArray.count == 0) {
+        
+        return @"Could not find house. Remember house names are case sensative.";
+    }
+    
+    PFObject *house = [houseArray objectAtIndex:0];
+    
+    [house addObject:[PFUser currentUser] forKey:@"users"];
+    
+    if(![house save])
+    {
+        return @"There was an error moving in. Please try again.";
+    }
+    
+    return nil;
 }
 @end

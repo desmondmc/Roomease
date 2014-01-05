@@ -7,6 +7,7 @@
 //
 
 #import "HPMainViewController.h"
+#import "HPStartingViewController.h"
 
 @interface HPMainViewController ()
 
@@ -67,6 +68,7 @@
 }
 - (IBAction)onLogoutPress:(id)sender {
     [PFUser logOut];
-    [self dismissViewControllerAnimated:YES completion:nil];
+    HPStartingViewController *startingViewController = [[HPStartingViewController alloc] init];
+    [self presentViewController:startingViewController animated:NO completion:nil];
 }
 @end

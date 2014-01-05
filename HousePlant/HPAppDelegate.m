@@ -7,8 +7,9 @@
 //
 
 #import "HPAppDelegate.h"
-#import <Parse/Parse.h>
+#import "HPMainViewController.h"
 #import "HPStartingViewController.h"
+#import "HPNoHomeViewController.h"
 
 @implementation HPAppDelegate
 
@@ -27,9 +28,29 @@
     [currentInstallation saveInBackground];
     
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+    
     // Override point for customization after application launch.
     self.window.backgroundColor = [UIColor whiteColor];
-    self.window.rootViewController = [[HPStartingViewController alloc] init];
+    [[PFUser currentUser] fetch];
+    PFUser *currentUser = [PFUser currentUser];
+    if (currentUser) {
+        
+        
+        PFObject *house = [currentUser objectForKey:@"home"];
+        if (house) {
+            self.window.rootViewController = [[HPMainViewController alloc] init];
+        }
+        else
+        {
+            self.window.rootViewController = [[HPStartingViewController alloc] init];
+        }
+    }
+    else
+    {
+        self.window.rootViewController = [[HPStartingViewController alloc] init];
+    }
+    
+    
     [self.window makeKeyAndVisible];
     
     return YES;

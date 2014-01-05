@@ -16,6 +16,8 @@
 - (IBAction)houseNameClearButtonPress:(id)sender;
 @property (weak, nonatomic) IBOutlet UIButton *passwordClearButton;
 - (IBAction)passwordClearButtonPress:(id)sender;
+- (IBAction)onMoveInButtonPress:(id)sender;
+@property (weak, nonatomic) IBOutlet UIActivityIndicatorView *activityIndicator;
 
 
 @end
