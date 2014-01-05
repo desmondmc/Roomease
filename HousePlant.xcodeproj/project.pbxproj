@@ -9,6 +9,9 @@
 /* Begin PBXBuildFile section */
 		641AF380FE954A6D996B029D /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F2ADBFAE68984DBDA17CC3D1 /* libPods.a */; };
 		F710E5FA187862B700BD9D54 /* HPLoginRouter.m in Sources */ = {isa = PBXBuildFile; fileRef = F710E5F9187862B700BD9D54 /* HPLoginRouter.m */; };
+		F710E6041879213800BD9D54 /* main.js in Sources */ = {isa = PBXBuildFile; fileRef = F710E5FF1879213800BD9D54 /* main.js */; };
+		F710E6051879213800BD9D54 /* global.json in Resources */ = {isa = PBXBuildFile; fileRef = F710E6011879213800BD9D54 /* global.json */; };
+		F710E6061879213800BD9D54 /* index.html in Resources */ = {isa = PBXBuildFile; fileRef = F710E6031879213800BD9D54 /* index.html */; };
 		F711387E1876086B00D9BA9E /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F7A6F4A81852320A00CEB9FD /* CoreLocation.framework */; };
 		F71138801877008600D9BA9E /* ottawa.gpx in Resources */ = {isa = PBXBuildFile; fileRef = F711387F1877008600D9BA9E /* ottawa.gpx */; };
 		F711388518777B8800D9BA9E /* HPNoHomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F711388318777B8800D9BA9E /* HPNoHomeViewController.m */; };
@@ -68,6 +71,9 @@
 		F2ADBFAE68984DBDA17CC3D1 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		F710E5F8187862B700BD9D54 /* HPLoginRouter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HPLoginRouter.h; path = HelperClasses/HPLoginRouter.h; sourceTree = "<group>"; };
 		F710E5F9187862B700BD9D54 /* HPLoginRouter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HPLoginRouter.m; path = HelperClasses/HPLoginRouter.m; sourceTree = "<group>"; };
+		F710E5FF1879213800BD9D54 /* main.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = main.js; sourceTree = "<group>"; };
+		F710E6011879213800BD9D54 /* global.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = global.json; sourceTree = "<group>"; };
+		F710E6031879213800BD9D54 /* index.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = index.html; sourceTree = "<group>"; };
 		F711387F1877008600D9BA9E /* ottawa.gpx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = ottawa.gpx; sourceTree = "<group>"; };
 		F711388218777B8800D9BA9E /* HPNoHomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HPNoHomeViewController.h; path = ViewControllers/HPNoHomeViewController/HPNoHomeViewController.h; sourceTree = "<group>"; };
 		F711388318777B8800D9BA9E /* HPNoHomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HPNoHomeViewController.m; path = ViewControllers/HPNoHomeViewController/HPNoHomeViewController.m; sourceTree = "<group>"; };
@@ -179,6 +185,40 @@
 			name = HPLoginRouter;
 			sourceTree = "<group>";
 		};
+		F710E5FD1879213800BD9D54 /* HPCloudCode */ = {
+			isa = PBXGroup;
+			children = (
+				F710E5FE1879213800BD9D54 /* cloud */,
+				F710E6001879213800BD9D54 /* config */,
+				F710E6021879213800BD9D54 /* public */,
+			);
+			path = HPCloudCode;
+			sourceTree = "<group>";
+		};
+		F710E5FE1879213800BD9D54 /* cloud */ = {
+			isa = PBXGroup;
+			children = (
+				F710E5FF1879213800BD9D54 /* main.js */,
+			);
+			path = cloud;
+			sourceTree = "<group>";
+		};
+		F710E6001879213800BD9D54 /* config */ = {
+			isa = PBXGroup;
+			children = (
+				F710E6011879213800BD9D54 /* global.json */,
+			);
+			path = config;
+			sourceTree = "<group>";
+		};
+		F710E6021879213800BD9D54 /* public */ = {
+			isa = PBXGroup;
+			children = (
+				F710E6031879213800BD9D54 /* index.html */,
+			);
+			path = public;
+			sourceTree = "<group>";
+		};
 		F711388118777B3600D9BA9E /* HPNoHomeViewController */ = {
 			isa = PBXGroup;
 			children = (
@@ -253,6 +293,7 @@
 		F7A1220D18522A4100E51B06 = {
 			isa = PBXGroup;
 			children = (
+				F710E5FD1879213800BD9D54 /* HPCloudCode */,
 				F7A1222118522A4100E51B06 /* HousePlant */,
 				F7A1223E18522A4100E51B06 /* HousePlantTests */,
 				F7A1221818522A4100E51B06 /* Frameworks */,
@@ -449,9 +490,11 @@
 				F7A1223118522A4100E51B06 /* Images.xcassets in Resources */,
 				F76535821867D1B20046263B /* HPSignupViewController.xib in Resources */,
 				F7653589186F67CA0046263B /* HPMainViewController.xib in Resources */,
+				F710E6051879213800BD9D54 /* global.json in Resources */,
 				F71138921877837D00D9BA9E /* HPJoinHouseViewController.xib in Resources */,
 				F765357C1867C3840046263B /* HPSigninViewController.xib in Resources */,
 				F711388C1877832000D9BA9E /* HPCreateHouseViewController.xib in Resources */,
+				F710E6061879213800BD9D54 /* index.html in Resources */,
 				F7A1225218522ABE00E51B06 /* HPStartingViewController.xib in Resources */,
 				F71138801877008600D9BA9E /* ottawa.gpx in Resources */,
 			);
@@ -516,6 +559,7 @@
 				F7A1222F18522A4100E51B06 /* HousePlant.xcdatamodeld in Sources */,
 				F710E5FA187862B700BD9D54 /* HPLoginRouter.m in Sources */,
 				F71138911877837D00D9BA9E /* HPJoinHouseViewController.m in Sources */,
+				F710E6041879213800BD9D54 /* main.js in Sources */,
 				F78D4854185AC0E2000A79BC /* HPHouse.m in Sources */,
 				F7A1222818522A4100E51B06 /* main.m in Sources */,
 			);

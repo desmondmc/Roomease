@@ -1,0 +1,14 @@
+{
+    "applications": {
+        "House Plant": {
+            "applicationId": "XHCHyd9ulQaBtrftLcxgMV94dJj9SIWENiHW3AxO", 
+            "masterKey": "pv0h6dvTlqru7BjDMJTQwACLk4abRNRzB73kZqMK"
+        }, 
+        "_default": {
+            "link": "House Plant"
+        }
+    }, 
+    "global": {
+        "parseVersion": "1.2.15"
+    }
+}

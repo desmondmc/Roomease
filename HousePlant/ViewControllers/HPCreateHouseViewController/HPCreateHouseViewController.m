@@ -112,6 +112,8 @@
     //Add current user to the house.
     [newHouse addUniqueObjectsFromArray:@[[PFUser currentUser]] forKey:@"users"];
     
+    //[PFCloud callFunction:@"saveNewHouse" withParameters:@{@"user": [PFUser currentUser], @"house": newHouse}];
+    
     if(![newHouse save])
     {
         [CSNotificationView showInViewController:self
