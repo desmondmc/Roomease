@@ -46,7 +46,7 @@
                     </state>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jIR-sy-qFr" userLabel="Button - Back">
-                    <rect key="frame" x="13" y="24" width="13" height="17"/>
+                    <rect key="frame" x="0.0" y="20" width="38" height="25"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
                     <state key="normal" image="BackButton">
@@ -60,16 +60,16 @@
                     <rect key="frame" x="0.0" y="61" width="320" height="93"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <subviews>
+                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="TextFieldBar" translatesAutoresizingMaskIntoConstraints="NO" id="5cv-qj-9dR">
+                            <rect key="frame" x="0.0" y="0.0" width="320" height="93"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        </imageView>
                         <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="TextFieldBarHighlight" translatesAutoresizingMaskIntoConstraints="NO" id="4yn-rP-Syr" userLabel="Username - TextFieldBarHighlight">
                             <rect key="frame" x="0.0" y="0.0" width="320" height="47"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         </imageView>
                         <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="TextFieldBarHighlight" translatesAutoresizingMaskIntoConstraints="NO" id="ahJ-H1-dK9" userLabel="Password - TextFieldBarHighlight">
                             <rect key="frame" x="0.0" y="47" width="320" height="46"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        </imageView>
-                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="TextFieldBar" translatesAutoresizingMaskIntoConstraints="NO" id="5cv-qj-9dR">
-                            <rect key="frame" x="0.0" y="0.0" width="320" height="93"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         </imageView>
                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="LoginTextSymbol" translatesAutoresizingMaskIntoConstraints="NO" id="T1r-xr-6tt">

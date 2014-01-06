@@ -54,18 +54,30 @@
         [_houseNameClearButton setHidden:false];
         [_passwordClearButton setHidden:true];
         [_confirmPassClearButton setHidden:true];
+        
+        [_houseNameHighlight setHidden:false];
+        [_passwordHighlight setHidden:true];
+        [_confirmPasswordHighlight setHidden:true];
     }
     else if (textField == _passwordField)
     {
         [_houseNameClearButton setHidden:true];
         [_passwordClearButton setHidden:false];
         [_confirmPassClearButton setHidden:true];
+        
+        [_houseNameHighlight setHidden:true];
+        [_passwordHighlight setHidden:false];
+        [_confirmPasswordHighlight setHidden:false];
     }
     else if (textField == _confirmPasswordField)
     {
         [_houseNameClearButton setHidden:true];
         [_passwordClearButton setHidden:true];
         [_confirmPassClearButton setHidden:false];
+        
+        [_houseNameHighlight setHidden:true];
+        [_passwordHighlight setHidden:true];
+        [_confirmPasswordHighlight setHidden:false];
     }
 }
 

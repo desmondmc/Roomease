@@ -44,11 +44,16 @@
     {
         [_houseNameClearButton setHidden:false];
         [_passwordClearButton setHidden:true];
+        [_houseNameTextHighlight setHidden:false];
+        [_passwordTextHighlight setHidden:true];
+        
     }
     else if (textField == _passwordTextField)
     {
         [_houseNameClearButton setHidden:true];
         [_passwordClearButton setHidden:false];
+        [_houseNameTextHighlight setHidden:true];
+        [_passwordTextHighlight setHidden:false];
     }
 }
 

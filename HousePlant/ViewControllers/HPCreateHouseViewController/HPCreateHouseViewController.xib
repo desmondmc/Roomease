@@ -9,10 +9,13 @@
                 <outlet property="activityIndicator" destination="wfx-ac-0rd" id="hRN-mO-KF2"/>
                 <outlet property="confirmPassClearButton" destination="97Z-n3-1HJ" id="5en-TR-IQu"/>
                 <outlet property="confirmPasswordField" destination="hNm-b2-frt" id="qjo-nW-YRH"/>
+                <outlet property="confirmPasswordHighlight" destination="Eam-gX-mS5" id="iXl-ZI-C5I"/>
                 <outlet property="houseNameClearButton" destination="dnm-eq-7qE" id="K3f-mm-rft"/>
                 <outlet property="houseNameField" destination="7JR-M7-82m" id="H9c-N1-cTh"/>
+                <outlet property="houseNameHighlight" destination="a3T-rp-LHZ" id="F2S-Qc-05Q"/>
                 <outlet property="passwordClearButton" destination="5aT-nB-Shw" id="gwD-Zv-K8O"/>
                 <outlet property="passwordField" destination="54E-5m-VKX" id="baH-ND-3pI"/>
+                <outlet property="passwordHighlight" destination="yvo-aq-pRS" id="CoD-TI-qpg"/>
                 <outlet property="view" destination="1" id="3"/>
             </connections>
         </placeholder>
@@ -22,7 +25,7 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="TYO-ZD-dMt" userLabel="Button - Back">
-                    <rect key="frame" x="13" y="24" width="13" height="17"/>
+                    <rect key="frame" x="0.0" y="20" width="38" height="25"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
                     <state key="normal" image="BackButton">

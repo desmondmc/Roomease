@@ -18,6 +18,8 @@
 - (IBAction)passwordClearButtonPress:(id)sender;
 - (IBAction)onMoveInButtonPress:(id)sender;
 @property (weak, nonatomic) IBOutlet UIActivityIndicatorView *activityIndicator;
+@property (weak, nonatomic) IBOutlet UIImageView *houseNameTextHighlight;
+@property (weak, nonatomic) IBOutlet UIImageView *passwordTextHighlight;
 
 
 @end

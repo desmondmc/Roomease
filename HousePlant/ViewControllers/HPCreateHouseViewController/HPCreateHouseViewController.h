@@ -20,6 +20,9 @@
 @property (weak, nonatomic) IBOutlet UIButton *passwordClearButton;
 - (IBAction)onBackPress:(id)sender;
 - (IBAction)onMoveInPress:(id)sender;
+@property (weak, nonatomic) IBOutlet UIImageView *houseNameHighlight;
 @property (weak, nonatomic) IBOutlet UIActivityIndicatorView *activityIndicator;
+@property (weak, nonatomic) IBOutlet UIImageView *confirmPasswordHighlight;
+@property (weak, nonatomic) IBOutlet UIImageView *passwordHighlight;
 
 @end
