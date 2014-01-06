@@ -67,6 +67,19 @@
 - (IBAction)onUsernameClearPress:(id)sender {
     _usernameTextField.text = @"";
 }
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textField
+{
+    if (textField == _usernameTextField) {
+        [_passwordTextField becomeFirstResponder];
+    }
+    else
+    {
+        [self onSigninPress:nil];
+    }
+    return YES;
+}
+
 - (IBAction)onSigninPress:(id)sender {
     [PFUser logInWithUsernameInBackground:_usernameTextField.text password:_passwordTextField.text
                                     block:^(PFUser *user, NSError *error) {

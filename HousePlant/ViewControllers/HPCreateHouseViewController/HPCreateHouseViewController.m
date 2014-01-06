@@ -69,6 +69,21 @@
     }
 }
 
+- (BOOL)textFieldShouldReturn:(UITextField *)textField
+{
+    if (textField == _houseNameField) {
+        [_passwordField becomeFirstResponder];
+    }
+    else if (textField == _passwordField)
+    {
+        [_confirmPasswordField becomeFirstResponder];
+    }
+    else
+    {
+        [self onMoveInPress:nil];
+    }
+    return YES;
+}
 
 - (IBAction)onConfirmPasswordClearPress:(id)sender {
     _confirmPasswordField.text = @"";

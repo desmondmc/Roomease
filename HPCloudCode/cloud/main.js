@@ -14,6 +14,6 @@ Parse.Cloud.afterSave("House", function(request, response) {
 //                        Parse.User.current().set("home", request.object);
 //                        Parse.User.current().save();
 //                      }
-                      Parse.User.current().set("home", request.object);
-                      Parse.User.current().save();
+                       Parse.User.current().set("home", request.object);
+                       Parse.User.current().save();
 });

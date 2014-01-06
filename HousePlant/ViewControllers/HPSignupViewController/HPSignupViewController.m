@@ -31,7 +31,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    avatar2 = [[AMPAvatarView alloc] initWithFrame:CGRectMake(8, 108, 58, 58)];
+    avatar2 = [[AMPAvatarView alloc] initWithFrame:CGRectMake(8, 79, 58, 58)];
     [self.view addSubview:avatar2];
     [avatar2 setHidden:YES];
     [self.view bringSubviewToFront:_editProfileButton];
@@ -61,6 +61,19 @@
         [_usernameClearButton setHidden:true];
         [_passwordClearButton setHidden:false];
     }
+}
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textField
+{
+    if (textField == _usernameTextField) {
+        [_passwordTextField becomeFirstResponder];
+    }
+    else
+    {
+        [self onSignupPress:nil];
+    }
+    
+    return YES;
 }
 
 - (IBAction)onSignupPress:(id)sender {

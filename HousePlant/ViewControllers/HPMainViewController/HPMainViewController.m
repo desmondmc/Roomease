@@ -32,7 +32,10 @@
     // Do any additional setup after loading the view from its nib.
     
     _usernameLabel.text = [NSString stringWithFormat:@"Hello %@!", [PFUser currentUser].username];
+    PFObject *home = [[PFUser currentUser] objectForKey:@"home"];
+    [home fetch];
     
+    _houseLabel.text = [NSString stringWithFormat:@"You are a roommate at %@!", [home objectForKey:@"name"]];
     CLGeocoder *geocoder = [[CLGeocoder alloc] init];
     [geocoder geocodeAddressString:@"377 Gladstone Ave" inRegion:nil
                  completionHandler:^(NSArray *placemarks, NSError *error) {

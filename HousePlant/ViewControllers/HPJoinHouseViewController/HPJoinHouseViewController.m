@@ -52,6 +52,19 @@
     }
 }
 
+- (BOOL)textFieldShouldReturn:(UITextField *)textField
+{
+    if (textField == _houseNameTextField) {
+        [_passwordTextField becomeFirstResponder];
+    }
+    else
+    {
+        [self onMoveInButtonPress:nil];
+    }
+    return YES;
+}
+
+
 - (IBAction)onBackPress:(id)sender {
     [self dismissViewControllerAnimated:YES completion:nil];
 }
