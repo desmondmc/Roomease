@@ -32,6 +32,7 @@
     // Do any additional setup after loading the view from its nib.
     
     _usernameLabel.text = [NSString stringWithFormat:@"Hello %@!", [PFUser currentUser].username];
+    [[PFUser currentUser] fetch];
     PFObject *home = [[PFUser currentUser] objectForKey:@"home"];
     [home fetch];
     
