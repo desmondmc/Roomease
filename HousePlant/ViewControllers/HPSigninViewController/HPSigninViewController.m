@@ -81,6 +81,18 @@
 }
 
 - (IBAction)onSigninPress:(id)sender {
+    if (_usernameTextField.text.length < 1) {
+        [CSNotificationView showInViewController:self
+                                           style:CSNotificationViewStyleError
+                                         message:@"Please enter a username."];
+        return;
+    }
+    if (_passwordTextField.text.length < 1) {
+        [CSNotificationView showInViewController:self
+                                           style:CSNotificationViewStyleError
+                                         message:@"Please enter a password."];
+        return;
+    }
     [PFUser logInWithUsernameInBackground:_usernameTextField.text password:_passwordTextField.text
                                     block:^(PFUser *user, NSError *error) {
                                         if (user) {
