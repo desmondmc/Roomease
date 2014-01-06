@@ -219,6 +219,19 @@
 			path = public;
 			sourceTree = "<group>";
 		};
+		F710E607187B0C0600BD9D54 /* HPLogin+Onboarding */ = {
+			isa = PBXGroup;
+			children = (
+				F711388D1877835E00D9BA9E /* HPJoinHouseViewController */,
+				F7113887187782FC00D9BA9E /* HPCreateHouseViewController */,
+				F711388118777B3600D9BA9E /* HPNoHomeViewController */,
+				F765357D1867D16B0046263B /* HPSignupViewController */,
+				F76535771867BF630046263B /* HPSigninViewController */,
+				F7A1225418522ADB00E51B06 /* HPStartingViewController */,
+			);
+			name = "HPLogin+Onboarding";
+			sourceTree = "<group>";
+		};
 		F711388118777B3600D9BA9E /* HPNoHomeViewController */ = {
 			isa = PBXGroup;
 			children = (
@@ -383,13 +396,8 @@
 		F7A1225318522AD000E51B06 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
-				F711388D1877835E00D9BA9E /* HPJoinHouseViewController */,
-				F7113887187782FC00D9BA9E /* HPCreateHouseViewController */,
-				F711388118777B3600D9BA9E /* HPNoHomeViewController */,
+				F710E607187B0C0600BD9D54 /* HPLogin+Onboarding */,
 				F7653584186F67110046263B /* HPMainViewController */,
-				F765357D1867D16B0046263B /* HPSignupViewController */,
-				F76535771867BF630046263B /* HPSigninViewController */,
-				F7A1225418522ADB00E51B06 /* HPStartingViewController */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
