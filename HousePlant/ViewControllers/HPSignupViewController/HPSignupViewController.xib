@@ -41,11 +41,11 @@
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 </imageView>
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="LoginTextSymbol" translatesAutoresizingMaskIntoConstraints="NO" id="W1s-mY-mc5">
-                    <rect key="frame" x="75" y="70" width="25" height="25"/>
+                    <rect key="frame" x="75" y="73" width="20" height="22"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 </imageView>
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="PasswordTextSymbol" translatesAutoresizingMaskIntoConstraints="NO" id="APQ-44-al3">
-                    <rect key="frame" x="75" y="116" width="25" height="25"/>
+                    <rect key="frame" x="75" y="119" width="20" height="22"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 </imageView>
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="MainDivider" translatesAutoresizingMaskIntoConstraints="NO" id="73D-VT-IYn">

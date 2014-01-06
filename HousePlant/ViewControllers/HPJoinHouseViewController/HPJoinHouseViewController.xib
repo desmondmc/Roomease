@@ -36,11 +36,11 @@
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         </imageView>
                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="HouseIcon" translatesAutoresizingMaskIntoConstraints="NO" id="oFb-IW-z2S">
-                            <rect key="frame" x="46" y="11" width="25" height="25"/>
+                            <rect key="frame" x="46" y="13" width="20" height="22"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         </imageView>
                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="PasswordTextSymbol" translatesAutoresizingMaskIntoConstraints="NO" id="2vf-1k-zUH">
-                            <rect key="frame" x="46" y="57" width="25" height="25"/>
+                            <rect key="frame" x="46" y="59" width="20" height="22"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         </imageView>
                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="MainDivider" translatesAutoresizingMaskIntoConstraints="NO" id="phu-mo-DZ6">

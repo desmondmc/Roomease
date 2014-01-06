@@ -38,11 +38,6 @@
     // Do any additional setup after loading the view from its nib.
 }
 
-- (void)viewDidAppear:(BOOL)animated
-{
-    //[_usernameTextField select:nil];
-}
-
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
@@ -88,10 +83,17 @@
             
             [self handleSuccessfulSignup];
         } else {
-            NSString *errorString = [error userInfo][@"error"];
+            NSString *errorString = @"There was an error signing up.";
+            
+            if ([error code] == kPFErrorUsernameTaken)
+            {
+                errorString = @"Username already taken.";
+            }
+            
+            
             [CSNotificationView showInViewController:self
                                                style:CSNotificationViewStyleError
-                                             message:@"There was an error signing up."];
+                                             message:errorString];
             NSLog(@"Error signing up user: %@", errorString);
         }
     }];

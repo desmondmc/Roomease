@@ -49,7 +49,7 @@
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         </imageView>
                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ConfirmPasswordSymbol" id="rgd-Ju-GMD" userLabel="Image View - ConfirmIcon">
-                            <rect key="frame" x="46" y="103" width="25" height="25"/>
+                            <rect key="frame" x="47" y="106" width="20" height="22"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         </imageView>
                         <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" usesAttributedText="YES" placeholder="Confirm Password" minimumFontSize="15" id="hNm-b2-frt" userLabel="Text Field - House Name">
@@ -93,11 +93,11 @@
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 </imageView>
                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="HouseIcon" id="dwp-Ig-c1i">
-                                    <rect key="frame" x="46" y="11" width="25" height="25"/>
+                                    <rect key="frame" x="46" y="13" width="20" height="22"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 </imageView>
                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="PasswordTextSymbol" id="ppp-Y9-ahb">
-                                    <rect key="frame" x="46" y="57" width="25" height="25"/>
+                                    <rect key="frame" x="46" y="57" width="20" height="22"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 </imageView>
                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="MainDivider" id="zBb-gO-pFY">
