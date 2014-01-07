@@ -19,6 +19,16 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+    //Ping parse to add it to the DNS record to speed up first use in new area.
+    if([Reachability reachabilityWithHostname:@"www.parse.com"].isReachable)
+    {
+        NSLog(@"Can reach www.parse.com");
+    }
+    else
+    {
+        NSLog(@"Could not reach parse.");
+    }
+    
     [Parse setApplicationId:@"XHCHyd9ulQaBtrftLcxgMV94dJj9SIWENiHW3AxO"
                   clientKey:@"27dbihYWPciSGR7hEUKuGr0riju4gGGR1YrBan8C"];
     [PFAnalytics trackAppOpenedWithLaunchOptions:launchOptions];

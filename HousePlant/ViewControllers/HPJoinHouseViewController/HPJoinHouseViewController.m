@@ -127,6 +127,12 @@
     
     PFObject *house = [houseArray objectAtIndex:0];
     
+    NSString *housePassword = [house objectForKey:@"password"];
+    if(![housePassword isEqualToString:_passwordTextField.text])
+    {
+        return @"Password does not match this house.";
+    }
+    
     [house addObject:[PFUser currentUser] forKey:@"users"];
     
     if(![house save])

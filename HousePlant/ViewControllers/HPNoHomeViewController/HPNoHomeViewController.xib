@@ -86,11 +86,11 @@
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                 </view>
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="CreateJoinHouseHeader" id="lPl-C4-lXo">
-                    <rect key="frame" x="52" y="26" width="217" height="16"/>
+                    <rect key="frame" x="52" y="32" width="217" height="16"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 </imageView>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="NNJ-za-h7N" userLabel="Button - Back">
-                    <rect key="frame" x="-11" y="17" width="60" height="31"/>
+                    <rect key="frame" x="-11" y="24" width="60" height="31"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
                     <state key="normal" image="BackButton">
