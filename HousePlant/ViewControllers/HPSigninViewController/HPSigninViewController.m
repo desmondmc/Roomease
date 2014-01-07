@@ -81,6 +81,13 @@
 }
 
 - (IBAction)onSigninPress:(id)sender {
+    [_activityIndicator setHidden:false];
+    [self loginUser];
+    [_activityIndicator setHidden:true];
+}
+
+- (void) loginUser
+{
     if (_usernameTextField.text.length < 1) {
         [CSNotificationView showInViewController:self
                                            style:CSNotificationViewStyleError
@@ -121,7 +128,7 @@
                                                                                  message:@"An error occured."];
                                             }
                                             
-
+                                            
                                         }
                                     }];
 }

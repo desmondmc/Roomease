@@ -31,17 +31,80 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     
-    _usernameLabel.text = [NSString stringWithFormat:@"Hello %@!", [PFUser currentUser].username];
+    _usernameLabel.text = [NSString stringWithFormat:@"You are %@!", [PFUser currentUser].username];
     [[PFUser currentUser] fetch];
     PFObject *home = [[PFUser currentUser] objectForKey:@"home"];
     [home fetch];
     
-    _houseLabel.text = [NSString stringWithFormat:@"You are a roommate at %@!", [home objectForKey:@"name"]];
+    _houseLabel.text = [NSString stringWithFormat:@"Welcome to %@!", [home objectForKey:@"name"]];
+    
+    NSArray *users = [home objectForKey:@"users"];
+    
+    NSUInteger tempUserCount;
+    if (users.count > 3) {
+        tempUserCount = 4;
+    }
+    else
+    {
+        tempUserCount = users.count;
+    }
+    
+    [self hideUnusedUserImagesWithUserCount:tempUserCount];
+    
+    for (int userIndex = 0; userIndex <tempUserCount; userIndex++) {
+        PFUser *user = [users objectAtIndex:userIndex];
+        [user fetch];
+        switch (userIndex) {
+            case 0:
+                _houseMateName1.text = [user objectForKey:@"username"];
+                break;
+            case 1:
+                _houseMateName2.text = [user objectForKey:@"username"];
+                break;
+            case 2:
+                _houseMateName3.text = [user objectForKey:@"username"];
+                break;
+            case 3:
+                _houseMateName4.text = [user objectForKey:@"username"];
+                break;
+            default:
+                break;
+        }
+        
+    }
+    
     CLGeocoder *geocoder = [[CLGeocoder alloc] init];
     [geocoder geocodeAddressString:@"377 Gladstone Ave" inRegion:nil
                  completionHandler:^(NSArray *placemarks, NSError *error) {
         NSLog(@"placemarks: %@", placemarks);
     }];
+}
+
+- (void) hideUnusedUserImagesWithUserCount:(NSUInteger)count
+{
+    if (count > 3) {
+        return;
+    }
+    if (count == 1) {
+        goto hide3;
+    }
+    if (count == 2)
+    {
+        goto hide2;
+    }
+    if (count == 3) {
+        goto hide1;
+    }
+    
+hide3:
+    [_houseMateImage2 setHidden:true];
+    [_houseMateName2 setHidden:true];
+hide2:
+    [_houseMateImage3 setHidden:true];
+    [_houseMateName3 setHidden:true];
+hide1:
+    [_houseMateImage4 setHidden:true];
+    [_houseMateName4 setHidden:true];
 }
 
 - (void)didReceiveMemoryWarning

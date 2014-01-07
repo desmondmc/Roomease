@@ -24,6 +24,7 @@
 
 - (IBAction)onSigninPress:(id)sender;
 - (IBAction)onBackPress:(id)sender;
+@property (weak, nonatomic) IBOutlet UIActivityIndicatorView *activityIndicator;
 
 
 @end

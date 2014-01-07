@@ -6,6 +6,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="HPSignupViewController">
             <connections>
+                <outlet property="activityIndicator" destination="HLH-6x-zUI" id="w6i-6V-VHg"/>
                 <outlet property="blankProfilePicImage" destination="LWi-HD-030" id="Lgn-Ed-LvB"/>
                 <outlet property="editProfileButton" destination="XYL-pF-vAK" id="Qju-bC-wqt"/>
                 <outlet property="passwordClearButton" destination="iix-lk-xdB" id="kIv-f8-bWE"/>
@@ -118,6 +119,10 @@
                         <action selector="onBackPress:" destination="-1" eventType="touchUpInside" id="YVP-Y3-jec"/>
                     </connections>
                 </button>
+                <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" animating="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="HLH-6x-zUI">
+                    <rect key="frame" x="252" y="170" width="20" height="20"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                </activityIndicatorView>
             </subviews>
             <color key="backgroundColor" red="0.392156899" green="0.81568634510000004" blue="0.74117648599999997" alpha="1" colorSpace="deviceRGB"/>
             <simulatedStatusBarMetrics key="simulatedStatusBarMetrics"/>

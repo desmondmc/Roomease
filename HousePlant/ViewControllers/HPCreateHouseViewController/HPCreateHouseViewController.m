@@ -159,8 +159,8 @@
 
 - (NSString *) validateUsernameAndPasswordSubmission
 {
-    if (_houseNameField.text.length < 6) {
-        return @"House name must be at least 6 characters.";
+    if (_houseNameField.text.length < 1) {
+        return @"Please enter a house name :)";
     }
     
     if (![_passwordField.text isEqualToString:_confirmPasswordField.text]) {

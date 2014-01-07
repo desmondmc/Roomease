@@ -6,6 +6,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="HPSigninViewController">
             <connections>
+                <outlet property="activityIndicator" destination="a0X-Qr-Olz" id="sHX-mC-mdx"/>
                 <outlet property="passwordClearButton" destination="4o7-9V-OJx" id="jqi-wN-SUr"/>
                 <outlet property="passwordHighlight" destination="ahJ-H1-dK9" id="UQc-eD-o0o"/>
                 <outlet property="passwordTextField" destination="Qbp-gH-c5y" id="7Vq-AB-txh"/>
@@ -36,6 +37,10 @@
                         <action selector="onSigninPress:" destination="-1" eventType="touchUpInside" id="Gqn-3h-7L0"/>
                     </connections>
                 </button>
+                <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" animating="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="a0X-Qr-Olz">
+                    <rect key="frame" x="252" y="170" width="20" height="20"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                </activityIndicatorView>
                 <button hidden="YES" opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="p6v-EO-FdP">
                     <rect key="frame" x="100" y="248" width="121" height="44"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>

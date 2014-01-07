@@ -15,5 +15,13 @@
 @property (weak, nonatomic) IBOutlet UILabel *usernameLabel;
 - (IBAction)onLogoutPress:(id)sender;
 @property (weak, nonatomic) IBOutlet UILabel *houseLabel;
+@property (weak, nonatomic) IBOutlet UIImageView *houseMateImage1;
+@property (weak, nonatomic) IBOutlet UIImageView *houseMateImage2;
+@property (weak, nonatomic) IBOutlet UIImageView *houseMateImage3;
+@property (weak, nonatomic) IBOutlet UIImageView *houseMateImage4;
+@property (weak, nonatomic) IBOutlet UILabel *houseMateName1;
+@property (weak, nonatomic) IBOutlet UILabel *houseMateName2;
+@property (weak, nonatomic) IBOutlet UILabel *houseMateName3;
+@property (weak, nonatomic) IBOutlet UILabel *houseMateName4;
 
 @end

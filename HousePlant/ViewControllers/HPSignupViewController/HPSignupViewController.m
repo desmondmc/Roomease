@@ -72,6 +72,8 @@
 }
 
 - (IBAction)onSignupPress:(id)sender {
+    [_activityIndicator setHidden:false];
+    
     PFUser *user = [PFUser user];
     user.username = _usernameTextField.text;
     user.password = _passwordTextField.text;
@@ -96,6 +98,7 @@
                                              message:errorString];
             NSLog(@"Error signing up user: %@", errorString);
         }
+        [_activityIndicator setHidden:true];
     }];
 }
 - (IBAction)onUsernameClearButtonPress:(id)sender {
