@@ -137,7 +137,7 @@
 }
 
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info {
-    
+    [[UIApplication sharedApplication] setStatusBarHidden:NO];
     UIImage *chosenImage = info[UIImagePickerControllerEditedImage];
     
     avatar2.image = chosenImage;
