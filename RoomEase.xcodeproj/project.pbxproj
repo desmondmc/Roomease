@@ -98,22 +98,22 @@
 		F78D484D185AAB03000A79BC /* HPNetworkObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HPNetworkObject.m; path = NetworkObjects/HPNetworkObject.m; sourceTree = "<group>"; };
 		F78D4852185AC0E2000A79BC /* HPHouse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HPHouse.h; path = NetworkObjects/HPHouse.h; sourceTree = "<group>"; };
 		F78D4853185AC0E2000A79BC /* HPHouse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HPHouse.m; path = NetworkObjects/HPHouse.m; sourceTree = "<group>"; };
-		F7A1221618522A4100E51B06 /* HousePlant.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HousePlant.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		F7A1221618522A4100E51B06 /* RoomEase.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RoomEase.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F7A1221918522A4100E51B06 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		F7A1221B18522A4100E51B06 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		F7A1221D18522A4100E51B06 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		F7A1221F18522A4100E51B06 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
-		F7A1222318522A4100E51B06 /* HousePlant-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "HousePlant-Info.plist"; sourceTree = "<group>"; };
+		F7A1222318522A4100E51B06 /* RoomEase-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "RoomEase-Info.plist"; sourceTree = "<group>"; };
 		F7A1222518522A4100E51B06 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		F7A1222718522A4100E51B06 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		F7A1222918522A4100E51B06 /* HousePlant-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "HousePlant-Prefix.pch"; sourceTree = "<group>"; };
+		F7A1222918522A4100E51B06 /* RoomEase-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "RoomEase-Prefix.pch"; sourceTree = "<group>"; };
 		F7A1222A18522A4100E51B06 /* HPAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HPAppDelegate.h; sourceTree = "<group>"; };
 		F7A1222B18522A4100E51B06 /* HPAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HPAppDelegate.m; sourceTree = "<group>"; };
 		F7A1222E18522A4100E51B06 /* HousePlant.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = HousePlant.xcdatamodel; sourceTree = "<group>"; };
 		F7A1223018522A4100E51B06 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
-		F7A1223618522A4100E51B06 /* HousePlantTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = HousePlantTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		F7A1223618522A4100E51B06 /* RoomEaseTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RoomEaseTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		F7A1223718522A4100E51B06 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
-		F7A1224018522A4100E51B06 /* HousePlantTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "HousePlantTests-Info.plist"; sourceTree = "<group>"; };
+		F7A1224018522A4100E51B06 /* RoomEaseTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "RoomEaseTests-Info.plist"; sourceTree = "<group>"; };
 		F7A1224218522A4100E51B06 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		F7A1224418522A4100E51B06 /* HousePlantTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HousePlantTests.m; sourceTree = "<group>"; };
 		F7A1224E18522ABE00E51B06 /* HPStartingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HPStartingViewController.h; path = ViewControllers/HPStartingViewController/HPStartingViewController.h; sourceTree = "<group>"; };
@@ -318,8 +318,8 @@
 		F7A1221718522A4100E51B06 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				F7A1221618522A4100E51B06 /* HousePlant.app */,
-				F7A1223618522A4100E51B06 /* HousePlantTests.xctest */,
+				F7A1221618522A4100E51B06 /* RoomEase.app */,
+				F7A1223618522A4100E51B06 /* RoomEaseTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -367,10 +367,10 @@
 			isa = PBXGroup;
 			children = (
 				F711387F1877008600D9BA9E /* ottawa.gpx */,
-				F7A1222318522A4100E51B06 /* HousePlant-Info.plist */,
+				F7A1222318522A4100E51B06 /* RoomEase-Info.plist */,
 				F7A1222418522A4100E51B06 /* InfoPlist.strings */,
 				F7A1222718522A4100E51B06 /* main.m */,
-				F7A1222918522A4100E51B06 /* HousePlant-Prefix.pch */,
+				F7A1222918522A4100E51B06 /* RoomEase-Prefix.pch */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -387,7 +387,7 @@
 		F7A1223F18522A4100E51B06 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				F7A1224018522A4100E51B06 /* HousePlantTests-Info.plist */,
+				F7A1224018522A4100E51B06 /* RoomEaseTests-Info.plist */,
 				F7A1224118522A4100E51B06 /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
@@ -415,9 +415,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		F7A1221518522A4100E51B06 /* HousePlant */ = {
+		F7A1221518522A4100E51B06 /* RoomEase */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = F7A1224818522A4100E51B06 /* Build configuration list for PBXNativeTarget "HousePlant" */;
+			buildConfigurationList = F7A1224818522A4100E51B06 /* Build configuration list for PBXNativeTarget "RoomEase" */;
 			buildPhases = (
 				B4A27B650B7A44D89379E9A9 /* Check Pods Manifest.lock */,
 				F7A1221218522A4100E51B06 /* Sources */,
@@ -429,14 +429,14 @@
 			);
 			dependencies = (
 			);
-			name = HousePlant;
+			name = RoomEase;
 			productName = HousePlant;
-			productReference = F7A1221618522A4100E51B06 /* HousePlant.app */;
+			productReference = F7A1221618522A4100E51B06 /* RoomEase.app */;
 			productType = "com.apple.product-type.application";
 		};
-		F7A1223518522A4100E51B06 /* HousePlantTests */ = {
+		F7A1223518522A4100E51B06 /* RoomEaseTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = F7A1224B18522A4100E51B06 /* Build configuration list for PBXNativeTarget "HousePlantTests" */;
+			buildConfigurationList = F7A1224B18522A4100E51B06 /* Build configuration list for PBXNativeTarget "RoomEaseTests" */;
 			buildPhases = (
 				F7A1223218522A4100E51B06 /* Sources */,
 				F7A1223318522A4100E51B06 /* Frameworks */,
@@ -447,9 +447,9 @@
 			dependencies = (
 				F7A1223D18522A4100E51B06 /* PBXTargetDependency */,
 			);
-			name = HousePlantTests;
+			name = RoomEaseTests;
 			productName = HousePlantTests;
-			productReference = F7A1223618522A4100E51B06 /* HousePlantTests.xctest */;
+			productReference = F7A1223618522A4100E51B06 /* RoomEaseTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
@@ -463,14 +463,14 @@
 				ORGANIZATIONNAME = HousePlant;
 				TargetAttributes = {
 					F7A1221518522A4100E51B06 = {
-						DevelopmentTeam = 3Y77C9T9FT;
+						DevelopmentTeam = 8Y2GFS326V;
 					};
 					F7A1223518522A4100E51B06 = {
 						TestTargetID = F7A1221518522A4100E51B06;
 					};
 				};
 			};
-			buildConfigurationList = F7A1221118522A4100E51B06 /* Build configuration list for PBXProject "HousePlant" */;
+			buildConfigurationList = F7A1221118522A4100E51B06 /* Build configuration list for PBXProject "RoomEase" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -482,8 +482,8 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				F7A1221518522A4100E51B06 /* HousePlant */,
-				F7A1223518522A4100E51B06 /* HousePlantTests */,
+				F7A1221518522A4100E51B06 /* RoomEase */,
+				F7A1223518522A4100E51B06 /* RoomEaseTests */,
 			);
 		};
 /* End PBXProject section */
@@ -586,7 +586,7 @@
 /* Begin PBXTargetDependency section */
 		F7A1223D18522A4100E51B06 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = F7A1221518522A4100E51B06 /* HousePlant */;
+			target = F7A1221518522A4100E51B06 /* RoomEase */;
 			targetProxy = F7A1223C18522A4100E51B06 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -697,13 +697,13 @@
 					/Users/Desmond/Documents/workspace/HousePlant,
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "HousePlant/HousePlant-Prefix.pch";
-				INFOPLIST_FILE = "HousePlant/HousePlant-Info.plist";
+				GCC_PREFIX_HEADER = "HousePlant/RoomEase-Prefix.pch";
+				INFOPLIST_FILE = "HousePlant/RoomEase-Info.plist";
 				OTHER_LDFLAGS = (
 					"-framework",
 					SystemConfiguration,
 				);
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = RoomEase;
 				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = app;
 			};
@@ -723,13 +723,13 @@
 					/Users/Desmond/Documents/workspace/HousePlant,
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "HousePlant/HousePlant-Prefix.pch";
-				INFOPLIST_FILE = "HousePlant/HousePlant-Info.plist";
+				GCC_PREFIX_HEADER = "HousePlant/RoomEase-Prefix.pch";
+				INFOPLIST_FILE = "HousePlant/RoomEase-Info.plist";
 				OTHER_LDFLAGS = (
 					"-framework",
 					SystemConfiguration,
 				);
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = RoomEase;
 				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = app;
 			};
@@ -751,8 +751,8 @@
 					"DEBUG=1",
 					"$(inherited)",
 				);
-				INFOPLIST_FILE = "HousePlantTests/HousePlantTests-Info.plist";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				INFOPLIST_FILE = "HousePlantTests/RoomEaseTests-Info.plist";
+				PRODUCT_NAME = RoomEaseTests;
 				TEST_HOST = "$(BUNDLE_LOADER)";
 				WRAPPER_EXTENSION = xctest;
 			};
@@ -770,8 +770,8 @@
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "HousePlant/HousePlant-Prefix.pch";
-				INFOPLIST_FILE = "HousePlantTests/HousePlantTests-Info.plist";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				INFOPLIST_FILE = "HousePlantTests/RoomEaseTests-Info.plist";
+				PRODUCT_NAME = RoomEaseTests;
 				TEST_HOST = "$(BUNDLE_LOADER)";
 				WRAPPER_EXTENSION = xctest;
 			};
@@ -780,7 +780,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		F7A1221118522A4100E51B06 /* Build configuration list for PBXProject "HousePlant" */ = {
+		F7A1221118522A4100E51B06 /* Build configuration list for PBXProject "RoomEase" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				F7A1224618522A4100E51B06 /* Debug */,
@@ -789,7 +789,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		F7A1224818522A4100E51B06 /* Build configuration list for PBXNativeTarget "HousePlant" */ = {
+		F7A1224818522A4100E51B06 /* Build configuration list for PBXNativeTarget "RoomEase" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				F7A1224918522A4100E51B06 /* Debug */,
@@ -798,7 +798,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		F7A1224B18522A4100E51B06 /* Build configuration list for PBXNativeTarget "HousePlantTests" */ = {
+		F7A1224B18522A4100E51B06 /* Build configuration list for PBXNativeTarget "RoomEaseTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				F7A1224C18522A4100E51B06 /* Debug */,

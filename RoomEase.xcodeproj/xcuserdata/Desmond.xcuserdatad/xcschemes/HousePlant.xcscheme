@@ -15,9 +15,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "F7A1221518522A4100E51B06"
-               BuildableName = "HousePlant.app"
-               BlueprintName = "HousePlant"
-               ReferencedContainer = "container:HousePlant.xcodeproj">
+               BuildableName = "RoomEase.app"
+               BlueprintName = "RoomEase"
+               ReferencedContainer = "container:RoomEase.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -33,9 +33,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "F7A1223518522A4100E51B06"
-               BuildableName = "HousePlantTests.xctest"
-               BlueprintName = "HousePlantTests"
-               ReferencedContainer = "container:HousePlant.xcodeproj">
+               BuildableName = "RoomEaseTests.xctest"
+               BlueprintName = "RoomEaseTests"
+               ReferencedContainer = "container:RoomEase.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>
@@ -43,9 +43,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "F7A1221518522A4100E51B06"
-            BuildableName = "HousePlant.app"
-            BlueprintName = "HousePlant"
-            ReferencedContainer = "container:HousePlant.xcodeproj">
+            BuildableName = "RoomEase.app"
+            BlueprintName = "RoomEase"
+            ReferencedContainer = "container:RoomEase.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
    </TestAction>
@@ -62,9 +62,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "F7A1221518522A4100E51B06"
-            BuildableName = "HousePlant.app"
-            BlueprintName = "HousePlant"
-            ReferencedContainer = "container:HousePlant.xcodeproj">
+            BuildableName = "RoomEase.app"
+            BlueprintName = "RoomEase"
+            ReferencedContainer = "container:RoomEase.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
       <AdditionalOptions>
@@ -80,9 +80,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "F7A1221518522A4100E51B06"
-            BuildableName = "HousePlant.app"
-            BlueprintName = "HousePlant"
-            ReferencedContainer = "container:HousePlant.xcodeproj">
+            BuildableName = "RoomEase.app"
+            BlueprintName = "RoomEase"
+            ReferencedContainer = "container:RoomEase.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>

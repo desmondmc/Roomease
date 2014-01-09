@@ -8,6 +8,7 @@
 
 #import "HPMainViewController.h"
 #import "HPStartingViewController.h"
+#import "AMPAvatarView.h"
 
 @interface HPMainViewController ()
 
@@ -54,6 +55,7 @@
     for (int userIndex = 0; userIndex <tempUserCount; userIndex++) {
         PFUser *user = [users objectAtIndex:userIndex];
         [user fetch];
+        [self getProfilePicturesWithUser:user andIndex:userIndex];
         switch (userIndex) {
             case 0:
                 _houseMateName1.text = [user objectForKey:@"username"];
@@ -105,6 +107,24 @@ hide2:
 hide1:
     [_houseMateImage4 setHidden:true];
     [_houseMateName4 setHidden:true];
+}
+
+- (void) getProfilePicturesWithUser:(PFUser *)user andIndex:(int)index
+{
+    AMPAvatarView *avatar2;
+    avatar2 = [[AMPAvatarView alloc] initWithFrame:CGRectMake(8, 79, 58, 58)];
+    [self.view addSubview:avatar2];
+    [avatar2 setHidden:YES];
+    
+    
+    
+    [avatar2 setBorderWith:0.0];
+    [avatar2 setShadowRadius:0.0];
+    PFFile *profilePic = [user objectForKey:@"profilePic"];
+
+    avatar2.image = [UIImage imageWithData:[profilePic getData]];
+    
+    [avatar2 setHidden:NO];
 }
 
 - (void)didReceiveMemoryWarning
