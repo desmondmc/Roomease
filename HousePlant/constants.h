@@ -9,6 +9,6 @@
 #ifndef HousePlant_constants_h
 #define HousePlant_constants_h
 
-
+typedef void (^CentralDataResultBlock)(PFObject *object, NSError *error);
 
 #endif

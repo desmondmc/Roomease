@@ -17,6 +17,7 @@
 @implementation HPMainViewController
 {
     CLLocationManager *locationManager;
+    NSDictionary *imageForPFUser;
 }
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -116,13 +117,11 @@ hide1:
     [self.view addSubview:avatar2];
     [avatar2 setHidden:YES];
     
-    
-    
     [avatar2 setBorderWith:0.0];
     [avatar2 setShadowRadius:0.0];
     PFFile *profilePic = [user objectForKey:@"profilePic"];
-
-    avatar2.image = [UIImage imageWithData:[profilePic getData]];
+    UIImage *profileImage = [UIImage imageWithData:[profilePic getData]];
+    avatar2.image = profileImage;
     
     [avatar2 setHidden:NO];
 }
@@ -159,3 +158,4 @@ hide1:
     [self presentViewController:startingViewController animated:NO completion:nil];
 }
 @end
+
