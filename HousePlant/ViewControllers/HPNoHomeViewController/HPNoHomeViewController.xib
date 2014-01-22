@@ -14,10 +14,6 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="blue-back-arrow" id="DgA-ea-wze">
-                    <rect key="frame" x="11" y="29" width="16" height="21"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                </imageView>
                 <view contentMode="scaleToFill" id="wAY-k7-HRz">
                     <rect key="frame" x="0.0" y="61" width="320" height="93"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -93,15 +89,16 @@
                     <rect key="frame" x="52" y="32" width="217" height="16"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 </imageView>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="NNJ-za-h7N" userLabel="Button - Back">
-                    <rect key="frame" x="-11" y="24" width="60" height="31"/>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="Oo3-4t-sDj">
+                    <rect key="frame" x="-38" y="3" width="115" height="62"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <rect key="contentStretch" x="0.0" y="0.0" width="0.0" height="0.0"/>
                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                    <state key="normal">
+                    <state key="normal" image="blue-back-arrow">
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
                     <connections>
-                        <action selector="onBackPress:" destination="-1" eventType="touchUpInside" id="7Vc-Yg-oz4"/>
+                        <action selector="onBackPress:" destination="-1" eventType="touchUpInside" id="Uoa-aI-wYQ"/>
                     </connections>
                 </button>
             </subviews>
@@ -116,7 +113,7 @@
         <image name="MainDivider" width="320" height="1"/>
         <image name="TextFieldBarHighlight" width="319" height="46"/>
         <image name="arrow" width="50" height="50"/>
-        <image name="blue-back-arrow" width="32" height="42"/>
+        <image name="blue-back-arrow" width="27" height="34"/>
         <image name="create-house" width="50" height="50"/>
         <image name="create-join-house" width="435" height="32"/>
         <image name="join-house" width="50" height="50"/>
