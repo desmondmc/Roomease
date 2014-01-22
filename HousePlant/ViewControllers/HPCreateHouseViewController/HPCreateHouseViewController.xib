@@ -35,7 +35,7 @@
                         <action selector="onBackPress:" destination="-1" eventType="touchUpInside" id="84j-gW-R5d"/>
                     </connections>
                 </button>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="CreateHouseHeader" id="NNc-Od-Tof">
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="create-house-title" id="NNc-Od-Tof">
                     <rect key="frame" x="82" y="32" width="157" height="15"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 </imageView>
@@ -43,7 +43,7 @@
                     <rect key="frame" x="0.0" y="61" width="320" height="140"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <subviews>
-                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="TextFieldBar" id="fhC-x8-OtM" userLabel="Image View Text box backgrou">
+                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="3-text-field-bg" id="fhC-x8-OtM" userLabel="Image View Text box backgrou">
                             <rect key="frame" x="0.0" y="0.0" width="320" height="140"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         </imageView>
@@ -51,8 +51,8 @@
                             <rect key="frame" x="0.0" y="93" width="320" height="47"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         </imageView>
-                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ConfirmPasswordSymbol" id="rgd-Ju-GMD" userLabel="Image View - ConfirmIcon">
-                            <rect key="frame" x="47" y="106" width="20" height="22"/>
+                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="confirm-password" id="rgd-Ju-GMD" userLabel="Image View - ConfirmIcon">
+                            <rect key="frame" x="42" y="104" width="25" height="25"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         </imageView>
                         <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" usesAttributedText="YES" placeholder="Confirm Password" minimumFontSize="15" id="hNm-b2-frt" userLabel="Text Field - House Name">
@@ -68,14 +68,14 @@
                             <rect key="frame" x="281" y="106" width="19" height="19"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                            <state key="normal" image="XCircle">
+                            <state key="normal" image="close-btn">
                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                             </state>
                             <connections>
                                 <action selector="onConfirmPasswordClearPress:" destination="-1" eventType="touchUpInside" id="oWQ-vc-IDM"/>
                             </connections>
                         </button>
-                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="MainDivider" id="Brb-JL-Kbu" userLabel="Image View - MainDivider2">
+                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="main-divider-full" id="Brb-JL-Kbu" userLabel="Image View - MainDivider2">
                             <rect key="frame" x="0.0" y="93" width="320" height="1"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         </imageView>
@@ -83,7 +83,7 @@
                             <rect key="frame" x="0.0" y="0.0" width="320" height="93"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
-                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="TextFieldBar" id="SOt-0h-kSt">
+                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="2-text-field-bg" id="SOt-0h-kSt">
                                     <rect key="frame" x="0.0" y="0.0" width="320" height="93"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 </imageView>
@@ -95,15 +95,15 @@
                                     <rect key="frame" x="0.0" y="47" width="320" height="46"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 </imageView>
-                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="HouseIcon" id="dwp-Ig-c1i">
-                                    <rect key="frame" x="46" y="13" width="20" height="22"/>
+                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="create-house" id="dwp-Ig-c1i">
+                                    <rect key="frame" x="41" y="11" width="25" height="25"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 </imageView>
-                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="PasswordTextSymbol" id="ppp-Y9-ahb">
-                                    <rect key="frame" x="46" y="57" width="20" height="22"/>
+                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="password" id="ppp-Y9-ahb">
+                                    <rect key="frame" x="41" y="57" width="25" height="25"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 </imageView>
-                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="MainDivider" id="zBb-gO-pFY">
+                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="main-divider-full" id="zBb-gO-pFY">
                                     <rect key="frame" x="0.0" y="46" width="320" height="1"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 </imageView>
@@ -129,7 +129,7 @@
                                     <rect key="frame" x="281" y="14" width="19" height="19"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                    <state key="normal" image="XCircle">
+                                    <state key="normal" image="close-btn">
                                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                     </state>
                                     <connections>
@@ -140,7 +140,7 @@
                                     <rect key="frame" x="281" y="60" width="19" height="19"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                    <state key="normal" image="XCircle">
+                                    <state key="normal" image="close-btn">
                                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                     </state>
                                     <connections>
@@ -157,10 +157,10 @@
                     <rect key="frame" x="76" y="209" width="168" height="35"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                    <state key="normal" image="MoveInButtonNormal">
+                    <state key="normal" image="move-in-btn-normal">
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
-                    <state key="highlighted" image="MoveInButtonPressed"/>
+                    <state key="highlighted" image="move-in-btn-normal"/>
                     <connections>
                         <action selector="onMoveInPress:" destination="-1" eventType="touchUpInside" id="iDT-jx-pb5"/>
                     </connections>
@@ -170,22 +170,22 @@
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 </activityIndicatorView>
             </subviews>
-            <color key="backgroundColor" red="0.392156899" green="0.81568634510000004" blue="0.74117648599999997" alpha="1" colorSpace="deviceRGB"/>
+            <color key="backgroundColor" red="0.2941176593" green="0.7019608021" blue="0.98431378599999997" alpha="1" colorSpace="deviceRGB"/>
             <simulatedStatusBarMetrics key="simulatedStatusBarMetrics"/>
             <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
         </view>
     </objects>
     <resources>
+        <image name="2-text-field-bg" width="640" height="184"/>
+        <image name="3-text-field-bg" width="640" height="277"/>
         <image name="BackButton" width="13" height="17"/>
-        <image name="ConfirmPasswordSymbol" width="20" height="22"/>
-        <image name="CreateHouseHeader" width="157" height="15"/>
-        <image name="HouseIcon" width="20" height="22"/>
-        <image name="MainDivider" width="320" height="1"/>
-        <image name="MoveInButtonNormal" width="168" height="35"/>
-        <image name="MoveInButtonPressed" width="168" height="35"/>
-        <image name="PasswordTextSymbol" width="25" height="25"/>
-        <image name="TextFieldBar" width="320" height="93"/>
         <image name="TextFieldBarHighlight" width="319" height="46"/>
-        <image name="XCircle" width="19" height="19"/>
+        <image name="close-btn" width="47" height="46"/>
+        <image name="confirm-password" width="50" height="50"/>
+        <image name="create-house" width="50" height="50"/>
+        <image name="create-house-title" width="314" height="30"/>
+        <image name="main-divider-full" width="640" height="2"/>
+        <image name="move-in-btn-normal" width="362" height="77"/>
+        <image name="password" width="50" height="50"/>
     </resources>
 </document>

@@ -25,27 +25,27 @@
                     <rect key="frame" x="0.0" y="61" width="320" height="93"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <subviews>
-                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="TextFieldBar" translatesAutoresizingMaskIntoConstraints="NO" id="EDd-dc-dMl">
+                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="2blue-text-field-bg" translatesAutoresizingMaskIntoConstraints="NO" id="EDd-dc-dMl">
                             <rect key="frame" x="0.0" y="0.0" width="320" height="93"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         </imageView>
-                        <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="TextFieldBarHighlight" translatesAutoresizingMaskIntoConstraints="NO" id="iuV-PF-UV3" userLabel="Housename - TextFieldBarHighlight">
+                        <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="1-text-field-bg" translatesAutoresizingMaskIntoConstraints="NO" id="iuV-PF-UV3" userLabel="Housename - TextFieldBarHighlight">
                             <rect key="frame" x="0.0" y="0.0" width="320" height="47"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         </imageView>
-                        <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="TextFieldBarHighlight" translatesAutoresizingMaskIntoConstraints="NO" id="xfJ-6D-tko" userLabel="Password - TextFieldBarHighlight">
+                        <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="1-text-field-bg" translatesAutoresizingMaskIntoConstraints="NO" id="xfJ-6D-tko" userLabel="Password - TextFieldBarHighlight">
                             <rect key="frame" x="0.0" y="47" width="320" height="46"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         </imageView>
-                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="HouseIcon" translatesAutoresizingMaskIntoConstraints="NO" id="oFb-IW-z2S">
-                            <rect key="frame" x="46" y="13" width="20" height="22"/>
+                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="create-house" translatesAutoresizingMaskIntoConstraints="NO" id="oFb-IW-z2S">
+                            <rect key="frame" x="46" y="13" width="25" height="25"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         </imageView>
-                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="PasswordTextSymbol" translatesAutoresizingMaskIntoConstraints="NO" id="2vf-1k-zUH">
-                            <rect key="frame" x="46" y="59" width="20" height="22"/>
+                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="password" translatesAutoresizingMaskIntoConstraints="NO" id="2vf-1k-zUH">
+                            <rect key="frame" x="46" y="59" width="25" height="25"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         </imageView>
-                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="MainDivider" translatesAutoresizingMaskIntoConstraints="NO" id="phu-mo-DZ6">
+                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="main-divider-full" translatesAutoresizingMaskIntoConstraints="NO" id="phu-mo-DZ6">
                             <rect key="frame" x="0.0" y="46" width="320" height="1"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         </imageView>
@@ -92,7 +92,7 @@
                     </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                 </view>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="JoinHouseHeader" translatesAutoresizingMaskIntoConstraints="NO" id="zyQ-8c-1uJ">
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="join-house-title" translatesAutoresizingMaskIntoConstraints="NO" id="zyQ-8c-1uJ">
                     <rect key="frame" x="95" y="32" width="130" height="15"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 </imageView>
@@ -111,10 +111,10 @@
                     <rect key="frame" x="76" y="162" width="168" height="35"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                    <state key="normal" image="MoveInButtonNormal">
+                    <state key="normal" image="move-in-btn-normal">
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
-                    <state key="highlighted" image="MoveInButtonPressed"/>
+                    <state key="highlighted" image="move-in-btn-pressed"/>
                     <connections>
                         <action selector="onMoveInButtonPress:" destination="-1" eventType="touchUpInside" id="Tt1-Qx-h8T"/>
                     </connections>
@@ -124,21 +124,21 @@
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 </activityIndicatorView>
             </subviews>
-            <color key="backgroundColor" red="0.392156899" green="0.81568634510000004" blue="0.74117648599999997" alpha="1" colorSpace="deviceRGB"/>
+            <color key="backgroundColor" red="0.2941176593" green="0.7019608021" blue="0.98431378599999997" alpha="1" colorSpace="deviceRGB"/>
             <simulatedStatusBarMetrics key="simulatedStatusBarMetrics"/>
             <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
         </view>
     </objects>
     <resources>
+        <image name="1-text-field-bg" width="640" height="91"/>
+        <image name="2blue-text-field-bg" width="640" height="184"/>
         <image name="BackButton" width="13" height="17"/>
-        <image name="HouseIcon" width="20" height="22"/>
-        <image name="JoinHouseHeader" width="130" height="15"/>
-        <image name="MainDivider" width="320" height="1"/>
-        <image name="MoveInButtonNormal" width="168" height="35"/>
-        <image name="MoveInButtonPressed" width="168" height="35"/>
-        <image name="PasswordTextSymbol" width="25" height="25"/>
-        <image name="TextFieldBar" width="320" height="93"/>
-        <image name="TextFieldBarHighlight" width="319" height="46"/>
         <image name="XCircle" width="19" height="19"/>
+        <image name="create-house" width="50" height="50"/>
+        <image name="join-house-title" width="260" height="30"/>
+        <image name="main-divider-full" width="640" height="2"/>
+        <image name="move-in-btn-normal" width="362" height="77"/>
+        <image name="move-in-btn-pressed" width="362" height="77"/>
+        <image name="password" width="50" height="50"/>
     </resources>
 </document>

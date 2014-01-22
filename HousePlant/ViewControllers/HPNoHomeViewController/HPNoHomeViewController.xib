@@ -18,7 +18,7 @@
                     <rect key="frame" x="0.0" y="61" width="320" height="93"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <subviews>
-                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="TextFieldBar" id="mBZ-Hm-gRT">
+                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="2-text-field-bg" id="mBZ-Hm-gRT">
                             <rect key="frame" x="0.0" y="0.0" width="320" height="93"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         </imageView>
@@ -30,7 +30,7 @@
                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                             </state>
                             <state key="selected" image="TextFieldBarHighlight"/>
-                            <state key="highlighted" image="TextFieldBarHighlight"/>
+                            <state key="highlighted" image="1blue-text-field-bg"/>
                             <connections>
                                 <action selector="onCreateHousePress:" destination="-1" eventType="touchUpInside" id="lVB-Ne-Wbr"/>
                             </connections>
@@ -43,39 +43,39 @@
                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                             </state>
                             <state key="selected" image="TextFieldBarHighlight"/>
-                            <state key="highlighted" image="TextFieldBarHighlight"/>
+                            <state key="highlighted" image="1blue-text-field-bg"/>
                             <connections>
                                 <action selector="onJoinHousePress:" destination="-1" eventType="touchUpInside" id="0ii-ee-a4M"/>
                             </connections>
                         </button>
-                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ArrowIcon" id="81c-ot-gLF">
+                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="arrow" id="81c-ot-gLF">
                             <rect key="frame" x="275" y="11" width="25" height="25"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         </imageView>
-                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ArrowIcon" id="dpw-D2-xXu">
+                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="arrow" id="dpw-D2-xXu">
                             <rect key="frame" x="275" y="58" width="25" height="25"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         </imageView>
-                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="HouseIcon" id="83c-nN-frR">
-                            <rect key="frame" x="37" y="11" width="20" height="22"/>
+                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="create-house" id="83c-nN-frR">
+                            <rect key="frame" x="34" y="11" width="25" height="25"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         </imageView>
-                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="JoinHouseIcon" id="I1p-Hk-HJ9">
-                            <rect key="frame" x="39" y="58" width="20" height="22"/>
+                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="join-house" id="I1p-Hk-HJ9">
+                            <rect key="frame" x="34" y="58" width="25" height="25"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         </imageView>
                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Create House" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Bf7-rr-8OD">
                             <rect key="frame" x="74" y="13" width="93" height="21"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="15"/>
-                            <color key="textColor" red="0.1647058874" green="0.50196081400000003" blue="0.49803924560000001" alpha="1" colorSpace="deviceRGB"/>
+                            <color key="textColor" red="0.29411765933036804" green="0.70588237047195435" blue="0.98431378602981567" alpha="1" colorSpace="deviceRGB"/>
                             <color key="highlightedColor" red="0.1647058874" green="0.50196081400000003" blue="0.49803924560000001" alpha="1" colorSpace="deviceRGB"/>
                         </label>
                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Join House" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="4km-ob-lPF">
                             <rect key="frame" x="74" y="57" width="76" height="24"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="15"/>
-                            <color key="textColor" red="0.1647058874" green="0.50196081400000003" blue="0.49803924560000001" alpha="1" colorSpace="deviceRGB"/>
+                            <color key="textColor" red="0.26274511220000002" green="0.69019609689999994" blue="0.98823535439999999" alpha="1" colorSpace="deviceRGB"/>
                             <color key="highlightedColor" red="0.1647058874" green="0.50196081400000003" blue="0.49803924560000001" alpha="1" colorSpace="deviceRGB"/>
                         </label>
                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="MainDivider" id="ho8-0J-iC8">
@@ -85,7 +85,7 @@
                     </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                 </view>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="CreateJoinHouseHeader" id="lPl-C4-lXo">
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="create-join-house" id="lPl-C4-lXo">
                     <rect key="frame" x="52" y="32" width="217" height="16"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 </imageView>
@@ -101,19 +101,20 @@
                     </connections>
                 </button>
             </subviews>
-            <color key="backgroundColor" red="0.392156899" green="0.81568634510000004" blue="0.74117648599999997" alpha="1" colorSpace="deviceRGB"/>
+            <color key="backgroundColor" red="0.26274511220000002" green="0.69019609689999994" blue="0.98823535439999999" alpha="1" colorSpace="deviceRGB"/>
             <simulatedStatusBarMetrics key="simulatedStatusBarMetrics"/>
             <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
         </view>
     </objects>
     <resources>
-        <image name="ArrowIcon" width="25" height="25"/>
+        <image name="1blue-text-field-bg" width="640" height="91"/>
+        <image name="2-text-field-bg" width="640" height="184"/>
         <image name="BackButton" width="13" height="17"/>
-        <image name="CreateJoinHouseHeader" width="217" height="16"/>
-        <image name="HouseIcon" width="20" height="22"/>
-        <image name="JoinHouseIcon" width="20" height="22"/>
         <image name="MainDivider" width="320" height="1"/>
-        <image name="TextFieldBar" width="320" height="93"/>
         <image name="TextFieldBarHighlight" width="319" height="46"/>
+        <image name="arrow" width="50" height="50"/>
+        <image name="create-house" width="50" height="50"/>
+        <image name="create-join-house" width="435" height="32"/>
+        <image name="join-house" width="50" height="50"/>
     </resources>
 </document>

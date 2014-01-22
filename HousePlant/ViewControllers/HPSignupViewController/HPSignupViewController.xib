@@ -21,7 +21,7 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="SignupHeader" translatesAutoresizingMaskIntoConstraints="NO" id="2ch-F1-1KS">
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="signup-title" translatesAutoresizingMaskIntoConstraints="NO" id="2ch-F1-1KS">
                     <rect key="frame" x="118" y="32" width="84" height="15"/>
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                 </imageView>
@@ -29,27 +29,27 @@
                     <rect key="frame" x="76" y="162" width="168" height="35"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                    <state key="normal" image="SignupButtonNormal">
+                    <state key="normal" image="sign-up-btn-normal">
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
-                    <state key="highlighted" image="SignupButtonPressed"/>
+                    <state key="highlighted" image="sign-up-btn-pressed"/>
                     <connections>
                         <action selector="onSignupPress:" destination="-1" eventType="touchUpInside" id="kVe-fw-A70"/>
                     </connections>
                 </button>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="TextFieldBar" translatesAutoresizingMaskIntoConstraints="NO" id="xfi-IM-1Qz">
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="2blue-text-field-bg" translatesAutoresizingMaskIntoConstraints="NO" id="xfi-IM-1Qz">
                     <rect key="frame" x="0.0" y="61" width="320" height="93"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 </imageView>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="LoginTextSymbol" translatesAutoresizingMaskIntoConstraints="NO" id="W1s-mY-mc5">
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="username" translatesAutoresizingMaskIntoConstraints="NO" id="W1s-mY-mc5">
                     <rect key="frame" x="75" y="73" width="20" height="22"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 </imageView>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="PasswordTextSymbol" translatesAutoresizingMaskIntoConstraints="NO" id="APQ-44-al3">
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="password" translatesAutoresizingMaskIntoConstraints="NO" id="APQ-44-al3">
                     <rect key="frame" x="75" y="119" width="20" height="22"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 </imageView>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="MainDivider" translatesAutoresizingMaskIntoConstraints="NO" id="73D-VT-IYn">
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="main-divider-full" translatesAutoresizingMaskIntoConstraints="NO" id="73D-VT-IYn">
                     <rect key="frame" x="75" y="107" width="225" height="1"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 </imageView>
@@ -93,7 +93,7 @@
                         <action selector="onPasswordClearButtonPress:" destination="-1" eventType="touchUpInside" id="b7w-89-oAu"/>
                     </connections>
                 </button>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="EditProfilePicture" translatesAutoresizingMaskIntoConstraints="NO" id="LWi-HD-030" userLabel="Image View - Blank Profile Pic">
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="edit-profile-image" translatesAutoresizingMaskIntoConstraints="NO" id="LWi-HD-030" userLabel="Image View - Blank Profile Pic">
                     <rect key="frame" x="8" y="78" width="59" height="59"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 </imageView>
@@ -124,21 +124,21 @@
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 </activityIndicatorView>
             </subviews>
-            <color key="backgroundColor" red="0.392156899" green="0.81568634510000004" blue="0.74117648599999997" alpha="1" colorSpace="deviceRGB"/>
+            <color key="backgroundColor" red="0.26274511220000002" green="0.69019609689999994" blue="0.98823535439999999" alpha="1" colorSpace="deviceRGB"/>
             <simulatedStatusBarMetrics key="simulatedStatusBarMetrics"/>
             <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
         </view>
     </objects>
     <resources>
+        <image name="2blue-text-field-bg" width="640" height="184"/>
         <image name="BackButton" width="13" height="17"/>
-        <image name="EditProfilePicture" width="59" height="59"/>
-        <image name="LoginTextSymbol" width="25" height="25"/>
-        <image name="MainDivider" width="320" height="1"/>
-        <image name="PasswordTextSymbol" width="25" height="25"/>
-        <image name="SignupButtonNormal" width="168" height="35"/>
-        <image name="SignupButtonPressed" width="168" height="35"/>
-        <image name="SignupHeader" width="84" height="15"/>
-        <image name="TextFieldBar" width="320" height="93"/>
         <image name="XCircle" width="19" height="19"/>
+        <image name="edit-profile-image" width="119" height="119"/>
+        <image name="main-divider-full" width="640" height="2"/>
+        <image name="password" width="50" height="50"/>
+        <image name="sign-up-btn-normal" width="362" height="77"/>
+        <image name="sign-up-btn-pressed" width="362" height="77"/>
+        <image name="signup-title" width="169" height="30"/>
+        <image name="username" width="50" height="50"/>
     </resources>
 </document>

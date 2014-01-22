@@ -19,19 +19,15 @@
                     <rect key="frame" x="0.0" y="423" width="320" height="93"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <subviews>
-                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="TextFieldBar" id="C4j-HF-beZ">
-                            <rect key="frame" x="0.0" y="0.0" width="320" height="93"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        </imageView>
                         <button opaque="NO" contentMode="scaleToFill" placeholderIntrinsicWidth="320" placeholderIntrinsicHeight="46" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="O0L-PT-aD6" userLabel="ButtonLogin">
                             <rect key="frame" x="0.0" y="0.0" width="320" height="47"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                            <state key="normal">
+                            <state key="normal" image="1-text-field-bg">
                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                             </state>
                             <state key="selected" image="TextFieldBarHighlight"/>
-                            <state key="highlighted" image="TextFieldBarHighlight"/>
+                            <state key="highlighted" image="1blue-text-field-bg"/>
                             <connections>
                                 <action selector="onLoginPress:" destination="-1" eventType="touchUpInside" id="Iik-dD-guc"/>
                             </connections>
@@ -40,28 +36,28 @@
                             <rect key="frame" x="0.0" y="48" width="320" height="46"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                            <state key="normal">
+                            <state key="normal" image="1-text-field-bg">
                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                             </state>
                             <state key="selected" image="TextFieldBarHighlight"/>
-                            <state key="highlighted" image="TextFieldBarHighlight"/>
+                            <state key="highlighted" image="1blue-text-field-bg"/>
                             <connections>
                                 <action selector="onSignupPress:" destination="-1" eventType="touchUpInside" id="f23-bn-xIq"/>
                             </connections>
                         </button>
-                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ArrowIcon" id="nxK-pu-w3K">
+                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="arrow" id="nxK-pu-w3K">
                             <rect key="frame" x="275" y="11" width="25" height="25"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         </imageView>
-                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ArrowIcon" id="h5d-7m-BiH">
+                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="arrow" id="h5d-7m-BiH">
                             <rect key="frame" x="275" y="58" width="25" height="25"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         </imageView>
-                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="LoginTextSymbol" id="nDN-dt-CTE">
+                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="username" id="nDN-dt-CTE">
                             <rect key="frame" x="31" y="11" width="25" height="25"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         </imageView>
-                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="SignupTextSymbol" id="vwW-lI-1I3">
+                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="signup" id="vwW-lI-1I3">
                             <rect key="frame" x="31" y="58" width="25" height="25"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         </imageView>
@@ -69,40 +65,41 @@
                             <rect key="frame" x="74" y="13" width="48" height="21"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="15"/>
-                            <color key="textColor" red="0.1647058874" green="0.50196081400000003" blue="0.49803924560000001" alpha="1" colorSpace="deviceRGB"/>
+                            <color key="textColor" red="0.39607846736907959" green="0.74901962280273438" blue="0.98431378602981567" alpha="1" colorSpace="deviceRGB"/>
                             <color key="highlightedColor" red="0.16470588743686676" green="0.50196081399917603" blue="0.49803924560546875" alpha="1" colorSpace="deviceRGB"/>
                         </label>
                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sign up" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="4gw-uB-82T">
                             <rect key="frame" x="74" y="57" width="58" height="24"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="15"/>
-                            <color key="textColor" red="0.1647058874" green="0.50196081400000003" blue="0.49803924560000001" alpha="1" colorSpace="deviceRGB"/>
+                            <color key="textColor" red="0.29411765933036804" green="0.70196080207824707" blue="0.98431378602981567" alpha="1" colorSpace="deviceRGB"/>
                             <color key="highlightedColor" red="0.1647058874" green="0.50196081400000003" blue="0.49803924560000001" alpha="1" colorSpace="deviceRGB"/>
                         </label>
-                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="MainDivider" id="YKd-7i-r8p">
+                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="full-divider" id="YKd-7i-r8p">
                             <rect key="frame" x="0.0" y="47" width="320" height="1"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         </imageView>
                     </subviews>
-                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    <color key="backgroundColor" red="0.85882359740000003" green="0.94117653369999998" blue="0.99607849120000003" alpha="1" colorSpace="deviceRGB"/>
                 </view>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="HPLogoWhiteBig" id="MtY-P9-LCB">
-                    <rect key="frame" x="56" y="34" width="208" height="275"/>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo-full" id="MtY-P9-LCB">
+                    <rect key="frame" x="56" y="32" width="208" height="275"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 </imageView>
             </subviews>
-            <color key="backgroundColor" red="0.39215689897537231" green="0.81568634510040283" blue="0.74117648601531982" alpha="1" colorSpace="deviceRGB"/>
+            <color key="backgroundColor" red="0.26274511218070984" green="0.69019609689712524" blue="0.98823535442352295" alpha="1" colorSpace="deviceRGB"/>
             <simulatedStatusBarMetrics key="simulatedStatusBarMetrics"/>
             <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
         </view>
     </objects>
     <resources>
-        <image name="ArrowIcon" width="25" height="25"/>
-        <image name="HPLogoWhiteBig" width="208" height="275"/>
-        <image name="LoginTextSymbol" width="25" height="25"/>
-        <image name="MainDivider" width="320" height="1"/>
-        <image name="SignupTextSymbol" width="25" height="25"/>
-        <image name="TextFieldBar" width="320" height="93"/>
+        <image name="1-text-field-bg" width="640" height="91"/>
+        <image name="1blue-text-field-bg" width="640" height="91"/>
         <image name="TextFieldBarHighlight" width="319" height="46"/>
+        <image name="arrow" width="50" height="50"/>
+        <image name="full-divider" width="362" height="1"/>
+        <image name="logo-full" width="436" height="614"/>
+        <image name="signup" width="50" height="50"/>
+        <image name="username" width="50" height="50"/>
     </resources>
 </document>
