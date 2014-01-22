@@ -37,7 +37,7 @@
                         <action selector="onSignupPress:" destination="-1" eventType="touchUpInside" id="kVe-fw-A70"/>
                     </connections>
                 </button>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="2blue-text-field-bg" translatesAutoresizingMaskIntoConstraints="NO" id="xfi-IM-1Qz">
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="2-text-field-bg" translatesAutoresizingMaskIntoConstraints="NO" id="xfi-IM-1Qz">
                     <rect key="frame" x="0.0" y="61" width="320" height="93"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 </imageView>
@@ -134,7 +134,7 @@
         </view>
     </objects>
     <resources>
-        <image name="2blue-text-field-bg" width="640" height="184"/>
+        <image name="2-text-field-bg" width="640" height="184"/>
         <image name="blue-back-arrow" width="32" height="42"/>
         <image name="close-btn" width="47" height="46"/>
         <image name="edit-profile-image" width="119" height="119"/>
