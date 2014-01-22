@@ -35,6 +35,7 @@
     {
         /*Do iPhone 5 stuff here.*/
         [_buttonView setFrame:CGRectMake(0, 425, _buttonView.frame.size.width, _buttonView.frame.size.height)];
+        [_mainLogo setFrame:CGRectMake(56, 70, _mainLogo.frame.size.width, _mainLogo.frame.size.height)];
         
     } else {
         /*Do iPhone Classic stuff here.*/

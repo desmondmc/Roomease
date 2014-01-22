@@ -12,5 +12,6 @@
 - (IBAction)onLoginPress:(id)sender;
 - (IBAction)onSignupPress:(id)sender;
 @property (weak, nonatomic) IBOutlet UIView *buttonView;
+@property (weak, nonatomic) IBOutlet UIImageView *mainLogo;
 
 @end

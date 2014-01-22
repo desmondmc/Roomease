@@ -28,13 +28,17 @@
                     <rect key="frame" x="-11" y="24" width="60" height="31"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                    <state key="normal" image="BackButton">
+                    <state key="normal">
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
                     <connections>
                         <action selector="onBackPress:" destination="-1" eventType="touchUpInside" id="84j-gW-R5d"/>
                     </connections>
                 </button>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="blue-back-arrow" id="hhC-7C-6Hf">
+                    <rect key="frame" x="11" y="29" width="16" height="21"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                </imageView>
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="create-house-title" id="NNc-Od-Tof">
                     <rect key="frame" x="82" y="32" width="157" height="15"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -47,7 +51,7 @@
                             <rect key="frame" x="0.0" y="0.0" width="320" height="140"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         </imageView>
-                        <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="TextFieldBarHighlight" id="Eam-gX-mS5" userLabel="Username - TextFieldBarHighlight">
+                        <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="1blue-text-field-bg" id="Eam-gX-mS5" userLabel="Username - TextFieldBarHighlight">
                             <rect key="frame" x="0.0" y="93" width="320" height="47"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         </imageView>
@@ -87,11 +91,11 @@
                                     <rect key="frame" x="0.0" y="0.0" width="320" height="93"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 </imageView>
-                                <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="TextFieldBarHighlight" id="a3T-rp-LHZ" userLabel="Username - TextFieldBarHighlight">
+                                <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="1blue-text-field-bg" id="a3T-rp-LHZ" userLabel="Username - TextFieldBarHighlight">
                                     <rect key="frame" x="0.0" y="0.0" width="320" height="47"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 </imageView>
-                                <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="TextFieldBarHighlight" id="yvo-aq-pRS" userLabel="Password - TextFieldBarHighlight">
+                                <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="1blue-text-field-bg" id="yvo-aq-pRS" userLabel="Password - TextFieldBarHighlight">
                                     <rect key="frame" x="0.0" y="47" width="320" height="46"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 </imageView>
@@ -176,10 +180,10 @@
         </view>
     </objects>
     <resources>
+        <image name="1blue-text-field-bg" width="640" height="91"/>
         <image name="2-text-field-bg" width="640" height="184"/>
         <image name="3-text-field-bg" width="640" height="277"/>
-        <image name="BackButton" width="13" height="17"/>
-        <image name="TextFieldBarHighlight" width="319" height="46"/>
+        <image name="blue-back-arrow" width="32" height="42"/>
         <image name="close-btn" width="47" height="46"/>
         <image name="confirm-password" width="50" height="50"/>
         <image name="create-house" width="50" height="50"/>

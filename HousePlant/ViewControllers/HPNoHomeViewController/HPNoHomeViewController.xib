@@ -14,6 +14,10 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="blue-back-arrow" id="DgA-ea-wze">
+                    <rect key="frame" x="11" y="29" width="16" height="21"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                </imageView>
                 <view contentMode="scaleToFill" id="wAY-k7-HRz">
                     <rect key="frame" x="0.0" y="61" width="320" height="93"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -93,7 +97,7 @@
                     <rect key="frame" x="-11" y="24" width="60" height="31"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                    <state key="normal" image="BackButton">
+                    <state key="normal">
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
                     <connections>
@@ -109,10 +113,10 @@
     <resources>
         <image name="1blue-text-field-bg" width="640" height="91"/>
         <image name="2-text-field-bg" width="640" height="184"/>
-        <image name="BackButton" width="13" height="17"/>
         <image name="MainDivider" width="320" height="1"/>
         <image name="TextFieldBarHighlight" width="319" height="46"/>
         <image name="arrow" width="50" height="50"/>
+        <image name="blue-back-arrow" width="32" height="42"/>
         <image name="create-house" width="50" height="50"/>
         <image name="create-join-house" width="435" height="32"/>
         <image name="join-house" width="50" height="50"/>

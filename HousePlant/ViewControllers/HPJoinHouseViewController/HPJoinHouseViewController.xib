@@ -25,15 +25,15 @@
                     <rect key="frame" x="0.0" y="61" width="320" height="93"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <subviews>
-                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="2blue-text-field-bg" translatesAutoresizingMaskIntoConstraints="NO" id="EDd-dc-dMl">
+                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="2-text-field-bg" translatesAutoresizingMaskIntoConstraints="NO" id="EDd-dc-dMl">
                             <rect key="frame" x="0.0" y="0.0" width="320" height="93"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         </imageView>
-                        <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="1-text-field-bg" translatesAutoresizingMaskIntoConstraints="NO" id="iuV-PF-UV3" userLabel="Housename - TextFieldBarHighlight">
+                        <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="1blue-text-field-bg" translatesAutoresizingMaskIntoConstraints="NO" id="iuV-PF-UV3" userLabel="Housename - TextFieldBarHighlight">
                             <rect key="frame" x="0.0" y="0.0" width="320" height="47"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         </imageView>
-                        <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="1-text-field-bg" translatesAutoresizingMaskIntoConstraints="NO" id="xfJ-6D-tko" userLabel="Password - TextFieldBarHighlight">
+                        <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="1blue-text-field-bg" translatesAutoresizingMaskIntoConstraints="NO" id="xfJ-6D-tko" userLabel="Password - TextFieldBarHighlight">
                             <rect key="frame" x="0.0" y="47" width="320" height="46"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         </imageView>
@@ -71,7 +71,7 @@
                             <rect key="frame" x="281" y="14" width="19" height="19"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                            <state key="normal" image="XCircle">
+                            <state key="normal" image="close-btn">
                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                             </state>
                             <connections>
@@ -82,7 +82,7 @@
                             <rect key="frame" x="281" y="60" width="19" height="19"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                            <state key="normal" image="XCircle">
+                            <state key="normal" image="close-btn">
                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                             </state>
                             <connections>
@@ -100,13 +100,17 @@
                     <rect key="frame" x="-11" y="24" width="60" height="31"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                    <state key="normal" image="BackButton">
+                    <state key="normal">
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
                     <connections>
                         <action selector="onBackPress:" destination="-1" eventType="touchUpInside" id="EqW-LP-0ta"/>
                     </connections>
                 </button>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="blue-back-arrow" translatesAutoresizingMaskIntoConstraints="NO" id="Wbq-ra-5YO">
+                    <rect key="frame" x="11" y="29" width="16" height="21"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                </imageView>
                 <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tuJ-1l-gQe" userLabel="Button - Move In!">
                     <rect key="frame" x="76" y="162" width="168" height="35"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -124,16 +128,16 @@
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 </activityIndicatorView>
             </subviews>
-            <color key="backgroundColor" red="0.2941176593" green="0.7019608021" blue="0.98431378599999997" alpha="1" colorSpace="deviceRGB"/>
+            <color key="backgroundColor" red="0.29019609093666077" green="0.69411766529083252" blue="0.98823535442352295" alpha="1" colorSpace="deviceRGB"/>
             <simulatedStatusBarMetrics key="simulatedStatusBarMetrics"/>
             <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
         </view>
     </objects>
     <resources>
-        <image name="1-text-field-bg" width="640" height="91"/>
-        <image name="2blue-text-field-bg" width="640" height="184"/>
-        <image name="BackButton" width="13" height="17"/>
-        <image name="XCircle" width="19" height="19"/>
+        <image name="1blue-text-field-bg" width="640" height="91"/>
+        <image name="2-text-field-bg" width="640" height="184"/>
+        <image name="blue-back-arrow" width="32" height="42"/>
+        <image name="close-btn" width="47" height="46"/>
         <image name="create-house" width="50" height="50"/>
         <image name="join-house-title" width="260" height="30"/>
         <image name="main-divider-full" width="640" height="2"/>

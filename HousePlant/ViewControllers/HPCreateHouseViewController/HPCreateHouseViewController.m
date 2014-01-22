@@ -67,7 +67,7 @@
         
         [_houseNameHighlight setHidden:true];
         [_passwordHighlight setHidden:false];
-        [_confirmPasswordHighlight setHidden:false];
+        [_confirmPasswordHighlight setHidden:true];
     }
     else if (textField == _confirmPasswordField)
     {
