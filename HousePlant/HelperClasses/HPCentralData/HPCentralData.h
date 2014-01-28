@@ -11,8 +11,22 @@
 @interface HPCentralData : NSObject
 
 -(void) resyncAllData;
+-(void) resyncCurrentUser;
+-(void) resyncHouse;
+-(void) resyncRoommates;
+
+-(void) getCurrentUserInBackgroundWithBlock:(CentralDataRoommateResultBlock)block;
+-(HPRoommate *) getCurrentUser;
 
 -(void) getHouseInBackgroundWithBlock:(CentralDataHouseResultBlock)block;
--(void) getRoommatesInBackgroundWithBlock:(CentralDataUsersResultBlock)block;
+-(HPHouse *) getHouse;
+
+-(void) saveHouseInBackgroundWithHouse:(HPHouse *)house andBlock:(CentralDataSaveResultBlock)block;
+-(void) saveHouse:(HPHouse *)house;
+
+-(void) getRoommatesInBackgroundWithBlock:(CentralDataRoommatesResultBlock)block;
+-(NSArray *) getRoommates;
+
+
 
 @end

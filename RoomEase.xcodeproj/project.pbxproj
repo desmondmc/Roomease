@@ -42,6 +42,7 @@
 		F76535821867D1B20046263B /* HPSignupViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F76535801867D1B20046263B /* HPSignupViewController.xib */; };
 		F7653588186F67CA0046263B /* HPMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F7653586186F67CA0046263B /* HPMainViewController.m */; };
 		F7653589186F67CA0046263B /* HPMainViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F7653587186F67CA0046263B /* HPMainViewController.xib */; };
+		F76F513B189869B100A202A6 /* HPRoommate.m in Sources */ = {isa = PBXBuildFile; fileRef = F76F513A189869B100A202A6 /* HPRoommate.m */; };
 		F78D484E185AAB03000A79BC /* HPNetworkObject.m in Sources */ = {isa = PBXBuildFile; fileRef = F78D484D185AAB03000A79BC /* HPNetworkObject.m */; };
 		F78D4854185AC0E2000A79BC /* HPHouse.m in Sources */ = {isa = PBXBuildFile; fileRef = F78D4853185AC0E2000A79BC /* HPHouse.m */; };
 		F7A1221A18522A4100E51B06 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F7A1221918522A4100E51B06 /* Foundation.framework */; };
@@ -115,6 +116,8 @@
 		F7653586186F67CA0046263B /* HPMainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HPMainViewController.m; path = ViewControllers/HPMainViewController/HPMainViewController.m; sourceTree = "<group>"; };
 		F7653587186F67CA0046263B /* HPMainViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = HPMainViewController.xib; path = ViewControllers/HPMainViewController/HPMainViewController.xib; sourceTree = "<group>"; };
 		F76F5138189865F800A202A6 /* HPNetworkObjectResultBlocks.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HPNetworkObjectResultBlocks.h; sourceTree = "<group>"; };
+		F76F5139189869B100A202A6 /* HPRoommate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HPRoommate.h; path = NetworkObjects/HPRoommate.h; sourceTree = "<group>"; };
+		F76F513A189869B100A202A6 /* HPRoommate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HPRoommate.m; path = NetworkObjects/HPRoommate.m; sourceTree = "<group>"; };
 		F78D484C185AAB03000A79BC /* HPNetworkObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HPNetworkObject.h; path = NetworkObjects/HPNetworkObject.h; sourceTree = "<group>"; };
 		F78D484D185AAB03000A79BC /* HPNetworkObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HPNetworkObject.m; path = NetworkObjects/HPNetworkObject.m; sourceTree = "<group>"; };
 		F78D4852185AC0E2000A79BC /* HPHouse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HPHouse.h; path = NetworkObjects/HPHouse.h; sourceTree = "<group>"; };
@@ -331,6 +334,8 @@
 				F78D4852185AC0E2000A79BC /* HPHouse.h */,
 				F78D4853185AC0E2000A79BC /* HPHouse.m */,
 				F76F5138189865F800A202A6 /* HPNetworkObjectResultBlocks.h */,
+				F76F5139189869B100A202A6 /* HPRoommate.h */,
+				F76F513A189869B100A202A6 /* HPRoommate.m */,
 			);
 			name = NetworkObjects;
 			sourceTree = "<group>";
@@ -616,6 +621,7 @@
 				F7A1222F18522A4100E51B06 /* HousePlant.xcdatamodeld in Sources */,
 				F710E5FA187862B700BD9D54 /* HPLoginRouter.m in Sources */,
 				F710E60B187F77BC00BD9D54 /* HPCentralData.m in Sources */,
+				F76F513B189869B100A202A6 /* HPRoommate.m in Sources */,
 				F71138911877837D00D9BA9E /* HPJoinHouseViewController.m in Sources */,
 				F710E6041879213800BD9D54 /* main.js in Sources */,
 				F78D4854185AC0E2000A79BC /* HPHouse.m in Sources */,

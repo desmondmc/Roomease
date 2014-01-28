@@ -21,3 +21,6 @@
 #import "CSNotificationView.h"
 #import "constants.h"
 #import "HPNetworkObjectResultBlocks.h"
+
+#import "HPHouse.h"
+#import "HPRoommate.h"

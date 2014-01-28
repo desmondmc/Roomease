@@ -35,8 +35,6 @@
     
     // Create a new Person in the current thread context
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    defaults setObject:<#(id)#> forKey:<#(NSString *)#>
-    [defaults setObject:firstName forKey:@"firstName"];
     
     CLGeocoder *geocoder = [[CLGeocoder alloc] init];
     [geocoder geocodeAddressString:@"377 Gladstone Ave" inRegion:nil
