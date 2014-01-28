@@ -1,0 +1,14 @@
+//
+//  HPNetworkObjectResultBlocks.h
+//  RoomEase
+//
+//  Created by Desmond McNamee on 1/28/2014.
+//  Copyright (c) 2014 HousePlant. All rights reserved.
+//
+
+#ifndef RoomEase_HPNetworkObjectResultBlocks_h
+#define RoomEase_HPNetworkObjectResultBlocks_h
+
+typedef void (^CentralDataHouseResultBlock)(HPHouse *house, NSError *error);
+typedef void (^CentralDataRoommatesResultBlock)(NSArray *roommates, NSError *error);
+#endif

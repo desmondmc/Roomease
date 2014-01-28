@@ -51,7 +51,7 @@
                     </state>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6Bn-Tc-jkE">
-                    <rect key="frame" x="-38" y="3" width="115" height="62"/>
+                    <rect key="frame" x="-40" y="15" width="115" height="46"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <rect key="contentStretch" x="0.0" y="0.0" width="0.0" height="0.0"/>
                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
@@ -142,7 +142,7 @@
     <resources>
         <image name="1blue-text-field-bg" width="640" height="91"/>
         <image name="2-text-field-bg" width="640" height="184"/>
-        <image name="blue-back-arrow" width="27" height="34"/>
+        <image name="blue-back-arrow" width="13" height="17"/>
         <image name="close-btn" width="47" height="46"/>
         <image name="full-divider" width="362" height="1"/>
         <image name="login" width="130" height="30"/>

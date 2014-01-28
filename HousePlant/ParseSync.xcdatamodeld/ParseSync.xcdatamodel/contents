@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="3401" systemVersion="13B42" minimumToolsVersion="Xcode 4.3" macOSVersion="Automatic" iOSVersion="Automatic">
+    <entity name="FTASyncParent" representedClassName="FTASyncParent" isAbstract="YES" syncable="YES">
+        <attribute name="createdHere" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <attribute name="deleted" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <attribute name="objectId" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="syncStatus" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="updatedAt" optional="YES" attributeType="Date" syncable="YES"/>
+    </entity>
+    <entity name="House" representedClassName="House" parentEntity="FTASyncParent" syncable="YES">
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="password" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="relationship" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="User" inverseName="relationship" inverseEntity="User" syncable="YES"/>
+    </entity>
+    <entity name="User" representedClassName="User" parentEntity="FTASyncParent" syncable="YES">
+        <attribute name="atHome" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <attribute name="profilePic" optional="YES" attributeType="Binary" syncable="YES"/>
+        <attribute name="username" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="relationship" maxCount="1" deletionRule="Nullify" destinationEntity="House" inverseName="relationship" inverseEntity="House" syncable="YES"/>
+    </entity>
+    <elements>
+        <element name="FTASyncParent" positionX="160" positionY="192" width="128" height="118"/>
+        <element name="User" positionX="513" positionY="396" width="128" height="103"/>
+        <element name="House" positionX="162" positionY="425" width="128" height="88"/>
+    </elements>
+</model>

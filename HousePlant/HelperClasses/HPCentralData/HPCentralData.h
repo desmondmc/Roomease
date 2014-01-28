@@ -10,7 +10,9 @@
 
 @interface HPCentralData : NSObject
 
--(void) getUserWithUser:(PFUser *)user andBlock:(CentralDataResultBlock)block;
--(void) getHouseWithBlock:(CentralDataResultBlock)block;
+-(void) resyncAllData;
+
+-(void) getHouseInBackgroundWithBlock:(CentralDataHouseResultBlock)block;
+-(void) getRoommatesInBackgroundWithBlock:(CentralDataUsersResultBlock)block;
 
 @end
