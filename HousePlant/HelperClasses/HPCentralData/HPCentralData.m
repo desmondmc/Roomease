@@ -8,6 +8,8 @@
 
 #import "HPCentralData.h"
 
+#define persistantStore [NSUserDefaults standardUserDefaults]
+
 @implementation HPCentralData
 
 -(void) resyncAllData
@@ -38,13 +40,27 @@
 -(HPRoommate *) getCurrentUser;
 {
     //if the user isn't stored in NSUserDefaults pull him from parse. Otherwise return the user stored in NSUserDefaults.
-    return nil;
+    
+    HPRoommate *roommate = [persistantStore objectForKey:@"currentUser"];
+    if(roommate == nil)
+    {
+        roommate = [[HPRoommate alloc] init];
+        PFUser * currentUser = (PFUser *)[PFUser currentUser].fetchIfNeeded;
+        roommate.username = [currentUser username];
+        roommate.atHome = [currentUser[@"atHome"] boolValue];
+       
+        PFFile *userImageFile = [currentUser objectForKey:@"profilePic"];
+        roommate.profilePic = [UIImage imageWithData:[userImageFile getData]];
+    }
+    
+    return roommate;
 }
 
 -(void) getHouseInBackgroundWithBlock:(CentralDataHouseResultBlock)block
 {
 
 }
+
 -(HPHouse *) getHouse
 {
     return nil;
