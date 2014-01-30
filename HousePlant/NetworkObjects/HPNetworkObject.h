@@ -15,7 +15,7 @@
 
 typedef void (^HPNetworkObjectResultBlock)(BOOL succeeded, NSError *error);
 
-@interface HPNetworkObject : NSObject
+@interface HPNetworkObject : NSObject <NSCoding>
 
 - (BOOL) save;
 - (BOOL) saveInBackgroundWithBlock:(HPNetworkObjectResultBlock)block;

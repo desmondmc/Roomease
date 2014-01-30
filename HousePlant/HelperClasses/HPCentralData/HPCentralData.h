@@ -10,22 +10,22 @@
 
 @interface HPCentralData : NSObject
 
--(void) resyncAllData;
--(void) resyncCurrentUser;
--(void) resyncHouse;
--(void) resyncRoommates;
++(void) resyncAllData;
++(void) resyncCurrentUser;
++(void) resyncHouse;
++(void) resyncRoommates;
 
--(void) getCurrentUserInBackgroundWithBlock:(CentralDataRoommateResultBlock)block;
--(HPRoommate *) getCurrentUser;
++(void) getCurrentUserInBackgroundWithBlock:(CentralDataRoommateResultBlock)block;
++(HPRoommate *) getCurrentUser;
 
--(void) getHouseInBackgroundWithBlock:(CentralDataHouseResultBlock)block;
--(HPHouse *) getHouse;
++(void) getHouseInBackgroundWithBlock:(CentralDataHouseResultBlock)block;
++(HPHouse *) getHouse;
 
--(void) saveHouseInBackgroundWithHouse:(HPHouse *)house andBlock:(CentralDataSaveResultBlock)block;
--(void) saveHouse:(HPHouse *)house;
++(void) saveHouseInBackgroundWithHouse:(HPHouse *)house andBlock:(CentralDataSaveResultBlock)block;
++(void) saveHouse:(HPHouse *)house;
 
--(void) getRoommatesInBackgroundWithBlock:(CentralDataRoommatesResultBlock)block;
--(NSArray *) getRoommates;
++(void) getRoommatesInBackgroundWithBlock:(CentralDataRoommatesResultBlock)block;
++(NSArray *) getRoommates;
 
 
 

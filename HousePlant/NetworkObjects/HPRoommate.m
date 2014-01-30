@@ -10,4 +10,21 @@
 
 @implementation HPRoommate
 
+//NSCoding methods
+- (id)initWithCoder:(NSCoder *)aDecoder
+{
+    if (self = [super init])
+    {
+        _username = [aDecoder decodeObjectForKey:@"username"];
+        _profilePic = [aDecoder decodeObjectForKey:@"profilePic"];
+    }
+    return self;
+}
+
+- (void)encodeWithCoder:(NSCoder *)aCoder
+{
+    [aCoder encodeObject:_username forKey:@"username"];
+    [aCoder encodeObject:_profilePic forKey:@"profilePic"];
+}
+
 @end

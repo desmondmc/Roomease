@@ -15,11 +15,12 @@
 + (UIViewController *)getFirstViewToLoadForUser
 {
     PFUser *currentUser = [PFUser currentUser];
-    
     PFObject *house = [currentUser objectForKey:@"home"];
     
     if (house) {
         //return main view for the users house
+        [HPCentralData getCurrentUser];
+        //[HPCentralData getHouse];
         HPMainViewController *mainViewController = [[HPMainViewController alloc] init];
         mainViewController.modalTransitionStyle = UIModalTransitionStyleCoverVertical;
         return mainViewController;

@@ -10,4 +10,21 @@
 
 @implementation HPHouse
 
+//NSCoding methods
+- (id)initWithCoder:(NSCoder *)aDecoder
+{
+    if (self = [super init])
+    {
+        _houseName = [aDecoder decodeObjectForKey:@"housename"];
+        _location = [aDecoder decodeObjectForKey:@"location"];
+    }
+    return self;
+}
+
+- (void)encodeWithCoder:(NSCoder *)aCoder
+{
+    [aCoder encodeObject:_houseName forKey:@"housename"];
+    [aCoder encodeObject:_location forKey:@"location"];
+}
+
 @end

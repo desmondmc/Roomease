@@ -333,9 +333,9 @@
 				F78D484D185AAB03000A79BC /* HPNetworkObject.m */,
 				F78D4852185AC0E2000A79BC /* HPHouse.h */,
 				F78D4853185AC0E2000A79BC /* HPHouse.m */,
-				F76F5138189865F800A202A6 /* HPNetworkObjectResultBlocks.h */,
 				F76F5139189869B100A202A6 /* HPRoommate.h */,
 				F76F513A189869B100A202A6 /* HPRoommate.m */,
+				F76F5138189865F800A202A6 /* HPNetworkObjectResultBlocks.h */,
 			);
 			name = NetworkObjects;
 			sourceTree = "<group>";

@@ -12,36 +12,38 @@
 
 @implementation HPCentralData
 
--(void) resyncAllData
++(void) resyncAllData
 {
     //resync everything stored in NSUserDefault store with fresh parse data! Yum :)
 }
 
--(void) resyncCurrentUser
++(void) resyncCurrentUser
 {
     //resync all the current user info.
 }
 
--(void) resyncHouse
++(void) resyncHouse
 {
     //resync this users house.
 }
 
--(void) resyncRoommates
++(void) resyncRoommates
 {
     //resync the roommates in this house.
 }
 
--(void) getCurrentUserInBackgroundWithBlock:(CentralDataRoommateResultBlock)block
++(void) getCurrentUserInBackgroundWithBlock:(CentralDataRoommateResultBlock)block
 {
     //if the user isn't stored in NSUserDefaults pull him from parse. Otherwise return the user stored in NSUserDefaults. Do this on a background thread.
 }
 
--(HPRoommate *) getCurrentUser;
++(HPRoommate *) getCurrentUser;
 {
     //if the user isn't stored in NSUserDefaults pull him from parse. Otherwise return the user stored in NSUserDefaults.
     
-    HPRoommate *roommate = [persistantStore objectForKey:@"currentUser"];
+    NSData *roommateData = [persistantStore objectForKey:@"currentUser"];
+    HPRoommate *roommate =  [NSKeyedUnarchiver unarchiveObjectWithData:roommateData];
+    
     if(roommate == nil)
     {
         roommate = [[HPRoommate alloc] init];
@@ -51,35 +53,64 @@
        
         PFFile *userImageFile = [currentUser objectForKey:@"profilePic"];
         roommate.profilePic = [UIImage imageWithData:[userImageFile getData]];
+        
+        //convert roommate object into encoded data to store in NSUserdefault
+        roommateData = [NSKeyedArchiver archivedDataWithRootObject:roommate];
+        
+        [persistantStore setObject:roommateData forKey:@"currentUser"];
+        [persistantStore synchronize];
     }
     
     return roommate;
 }
 
--(void) getHouseInBackgroundWithBlock:(CentralDataHouseResultBlock)block
++(void) getHouseInBackgroundWithBlock:(CentralDataHouseResultBlock)block
 {
 
 }
 
--(HPHouse *) getHouse
++(HPHouse *) getHouse
 {
-    return nil;
+    NSData *homeData = [persistantStore objectForKey:@"home"];
+    HPHouse *home =  [NSKeyedUnarchiver unarchiveObjectWithData:homeData];
+    
+    if (home == nil) {
+        home = [[HPHouse alloc] init];
+        PFObject *parseHome = [[PFUser currentUser] objectForKey:@"home"];
+        if (parseHome == nil)
+        {
+            //No home exists for this user yet.
+            return nil;
+        }
+        parseHome = parseHome.fetchIfNeeded;
+        home.houseName = [parseHome objectForKey:@"name"];
+        home.location = [parseHome objectForKey:@"location"];
+        
+        
+        //convert roommate object into encoded data to store in NSUserdefault
+        homeData = [NSKeyedArchiver archivedDataWithRootObject:home];
+        [persistantStore setObject:homeData forKey:@"home"];
+        [persistantStore synchronize];
+    }
+    return home;
 }
 
--(void) saveHouseInBackgroundWithHouse:(HPHouse *)house andBlock:(CentralDataSaveResultBlock)block
-{
-
-}
--(void) saveHouse:(HPHouse *)house
++(void) saveHouseInBackgroundWithHouse:(HPHouse *)house andBlock:(CentralDataSaveResultBlock)block
 {
 
 }
 
--(void) getRoommatesInBackgroundWithBlock:(CentralDataRoommatesResultBlock)block
++(void) saveHouse:(HPHouse *)house
 {
 
 }
--(NSArray *) getRoommates
+
++(void) getRoommatesInBackgroundWithBlock:(CentralDataRoommatesResultBlock)block
+{
+
+}
+
++(NSArray *) getRoommates
 {
     return nil;
 }

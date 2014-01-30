@@ -9,6 +9,9 @@
 #ifndef RoomEase_HPNetworkObjectResultBlocks_h
 #define RoomEase_HPNetworkObjectResultBlocks_h
 
+#include "HPHouse.h"
+#include "HPRoommate.h"
+
 typedef void (^CentralDataHouseResultBlock)(HPHouse *house, NSError *error);
 typedef void (^CentralDataRoommatesResultBlock)(NSArray *roommates, NSError *error);
 typedef void (^CentralDataRoommateResultBlock)(HPRoommate *roommates, NSError *error);

@@ -149,6 +149,8 @@
         return;
     }
     
+    [HPCentralData getCurrentUser];
+    [HPCentralData getHouse];
     //load the main view.
     HPMainViewController *mainViewController = [[HPMainViewController alloc] init];
     mainViewController.modalTransitionStyle = UIModalTransitionStyleCoverVertical;
