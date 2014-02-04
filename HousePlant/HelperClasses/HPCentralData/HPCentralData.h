@@ -10,6 +10,8 @@
 
 @interface HPCentralData : NSObject
 
++(void) clearCentralData;
+
 +(void) resyncAllData;
 +(void) resyncCurrentUser;
 +(void) resyncHouse;

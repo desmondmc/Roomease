@@ -37,11 +37,22 @@
     //if the user isn't stored in NSUserDefaults pull him from parse. Otherwise return the user stored in NSUserDefaults. Do this on a background thread.
 }
 
++(void) clearCentralData
+{
+    NSUserDefaults * defs = [NSUserDefaults standardUserDefaults];
+    NSDictionary * dict = [defs dictionaryRepresentation];
+    for (id key in dict) {
+        NSLog(@"Key: %@", key);
+        [defs removeObjectForKey:key];
+    }
+    [defs synchronize];
+}
+
 +(HPRoommate *) getCurrentUser;
 {
     //if the user isn't stored in NSUserDefaults pull him from parse. Otherwise return the user stored in NSUserDefaults.
     
-    NSData *roommateData = [persistantStore objectForKey:@"currentUser"];
+    NSData *roommateData = [persistantStore objectForKey:@"hp_currentUser"];
     HPRoommate *roommate =  [NSKeyedUnarchiver unarchiveObjectWithData:roommateData];
     
     if(roommate == nil)
@@ -57,7 +68,7 @@
         //convert roommate object into encoded data to store in NSUserdefault
         roommateData = [NSKeyedArchiver archivedDataWithRootObject:roommate];
         
-        [persistantStore setObject:roommateData forKey:@"currentUser"];
+        [persistantStore setObject:roommateData forKey:@"hp_currentUser"];
         [persistantStore synchronize];
     }
     
@@ -71,11 +82,12 @@
 
 +(HPHouse *) getHouse
 {
-    NSData *homeData = [persistantStore objectForKey:@"home"];
+    NSData *homeData = [persistantStore objectForKey:@"hp_home"];
     HPHouse *home =  [NSKeyedUnarchiver unarchiveObjectWithData:homeData];
     
     if (home == nil) {
         home = [[HPHouse alloc] init];
+        [[PFUser currentUser] fetch];
         PFObject *parseHome = [[PFUser currentUser] objectForKey:@"home"];
         if (parseHome == nil)
         {
@@ -89,7 +101,7 @@
         
         //convert roommate object into encoded data to store in NSUserdefault
         homeData = [NSKeyedArchiver archivedDataWithRootObject:home];
-        [persistantStore setObject:homeData forKey:@"home"];
+        [persistantStore setObject:homeData forKey:@"hp_home"];
         [persistantStore synchronize];
     }
     return home;

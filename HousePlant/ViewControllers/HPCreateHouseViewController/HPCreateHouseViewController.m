@@ -150,6 +150,8 @@
     }
     
     [HPCentralData getCurrentUser];
+    
+    //[HPCentralData getHouse] will return null because the users house hasn't been set yet in parse.
     [HPCentralData getHouse];
     //load the main view.
     HPMainViewController *mainViewController = [[HPMainViewController alloc] init];
