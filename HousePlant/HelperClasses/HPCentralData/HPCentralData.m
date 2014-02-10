@@ -77,7 +77,45 @@
 
 +(void) getHouseInBackgroundWithBlock:(CentralDataHouseResultBlock)block
 {
+    __block NSData  *homeData = [persistantStore objectForKey:@"@hp_home"];
+    __block HPHouse *home = [NSKeyedUnarchiver unarchiveObjectWithData:homeData];
+    
+    if (home == nil)
+    {
+        dispatch_async( dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
 
+            home = [[HPHouse alloc] init];
+            [[PFUser currentUser] fetch];
+            PFObject *parseHome = [[PFUser currentUser] objectForKey:@"home"];
+            if (parseHome == nil)
+            {
+                //No home exists for this user yet.
+                return;
+            }
+            parseHome = parseHome.fetchIfNeeded;
+            home.houseName = [parseHome objectForKey:@"name"];
+            home.location = [parseHome objectForKey:@"location"];
+            
+            
+            //convert roommate object into encoded data to store in NSUserdefault
+            homeData = [NSKeyedArchiver archivedDataWithRootObject:home];
+            [persistantStore setObject:homeData forKey:@"hp_home"];
+            [persistantStore synchronize];
+
+            
+            dispatch_async(dispatch_get_main_queue(), ^{
+                // Notify all the video listeners of success
+                
+                if (block)
+                    block(nil, nil);
+            });
+        });
+    }
+    else if (block)
+    {
+        block(home, nil);
+    }
+        
 }
 
 +(HPHouse *) getHouse
