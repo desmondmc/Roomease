@@ -81,7 +81,7 @@
     
     if (home == nil)
     {
-        dispatch_async( dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
+        dispatch_async( dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
 
             home = [[HPHouse alloc] init];
             [[PFUser currentUser] fetch];
@@ -148,7 +148,12 @@
 
 +(void) saveHouseInBackgroundWithHouse:(HPHouse *)house andBlock:(CentralDataSaveResultBlock)block
 {
-
+    dispatch_async( dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            // Notify all the video listeners of success
+        });
+    });
 }
 
 +(bool) saveHouse:(HPHouse *)house
@@ -174,6 +179,7 @@
     if ([parseHome save] == false) {
         return false;
     }
+    
     //if it is successfully saved to parse, replace the hp_home in NSUserDefaults with the new house.
     //convert roommate object into encoded data to store in NSUserdefault
     NSData *homeData = [NSKeyedArchiver archivedDataWithRootObject:house];

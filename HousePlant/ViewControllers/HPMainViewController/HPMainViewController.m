@@ -10,6 +10,8 @@
 #import "HPStartingViewController.h"
 #import "AMPAvatarView.h"
 
+#import "RoommateImageSubview.h"
+
 @interface HPMainViewController ()
 
 @end
@@ -33,13 +35,23 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     
+    [[RoommateImageSubview alloc] initWithFrame:CGRectMake(8, 79, 58, 58)];
+    
     CLGeocoder *geocoder = [[CLGeocoder alloc] init];
     [geocoder geocodeAddressString:@"377 Gladstone Ave" inRegion:nil
                  completionHandler:^(NSArray *placemarks, NSError *error) {
         NSLog(@"placemarks: %@", placemarks);
     }];
+    
 }
 
+- (void) setUpProfilePictures
+{
+    
+    [HPCentralData getRoommatesInBackgroundWithBlock:^(NSArray *roommates, NSError *error) {
+        //
+    }];
+}
 
 - (void) getProfilePicturesWithUser:(PFUser *)user andIndex:(int)index
 {
