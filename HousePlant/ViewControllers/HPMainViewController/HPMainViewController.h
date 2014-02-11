@@ -23,5 +23,6 @@
 @property (weak, nonatomic) IBOutlet UILabel *houseMateName2;
 @property (weak, nonatomic) IBOutlet UILabel *houseMateName3;
 @property (weak, nonatomic) IBOutlet UILabel *houseMateName4;
+- (IBAction)onTestPress:(id)sender;
 
 @end

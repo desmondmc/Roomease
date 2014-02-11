@@ -30,9 +30,9 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     CGSize screenSize = [[UIScreen mainScreen] bounds].size;
-    [HPCentralData clearCentralData];
     
-    //Clear Central Data
+    //Clear central data
+    [HPCentralData clearCentralData];
     
     if (screenSize.height > 480.0f)
     {

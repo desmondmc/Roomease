@@ -33,9 +33,6 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     
-    // Create a new Person in the current thread context
-    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    
     CLGeocoder *geocoder = [[CLGeocoder alloc] init];
     [geocoder geocodeAddressString:@"377 Gladstone Ave" inRegion:nil
                  completionHandler:^(NSArray *placemarks, NSError *error) {
@@ -90,6 +87,26 @@
     [PFUser logOut];
     HPStartingViewController *startingViewController = [[HPStartingViewController alloc] init];
     [self presentViewController:startingViewController animated:NO completion:nil];
+}
+- (IBAction)onTestPress:(id)sender {
+    [HPCentralData clearCentralData];
+    HPHouse *house = [HPCentralData getHouse];
+    
+    NSLog(@"House Name: %@", [house houseName]);
+    
+    [house setHouseName:@"New Name"];
+    
+    [HPCentralData saveHouse:house];
+    
+    [HPCentralData clearCentralData];
+    
+    house = [HPCentralData getHouse];
+    
+    NSLog(@"House Name: %@", [house houseName]);
+    
+    house = [HPCentralData getHouse];
+    
+    NSLog(@"House Name: %@", [house houseName]);
 }
 @end
 

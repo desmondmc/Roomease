@@ -24,7 +24,7 @@
 +(HPHouse *) getHouse;
 
 +(void) saveHouseInBackgroundWithHouse:(HPHouse *)house andBlock:(CentralDataSaveResultBlock)block;
-+(void) saveHouse:(HPHouse *)house;
++(bool) saveHouse:(HPHouse *)house;
 
 +(void) getRoommatesInBackgroundWithBlock:(CentralDataRoommatesResultBlock)block;
 +(NSArray *) getRoommates;

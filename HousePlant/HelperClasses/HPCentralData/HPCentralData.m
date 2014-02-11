@@ -42,7 +42,6 @@
     NSUserDefaults * defs = [NSUserDefaults standardUserDefaults];
     NSDictionary * dict = [defs dictionaryRepresentation];
     for (id key in dict) {
-        NSLog(@"Key: %@", key);
         [defs removeObjectForKey:key];
     }
     [defs synchronize];
@@ -77,7 +76,7 @@
 
 +(void) getHouseInBackgroundWithBlock:(CentralDataHouseResultBlock)block
 {
-    __block NSData  *homeData = [persistantStore objectForKey:@"@hp_home"];
+    __block NSData  *homeData = [persistantStore objectForKey:@"hp_home"];
     __block HPHouse *home = [NSKeyedUnarchiver unarchiveObjectWithData:homeData];
     
     if (home == nil)
@@ -127,6 +126,8 @@
         home = [[HPHouse alloc] init];
         [[PFUser currentUser] fetch];
         PFObject *parseHome = [[PFUser currentUser] objectForKey:@"home"];
+        
+        [parseHome fetch];
         if (parseHome == nil)
         {
             //No home exists for this user yet.
@@ -150,9 +151,36 @@
 
 }
 
-+(void) saveHouse:(HPHouse *)house
++(bool) saveHouse:(HPHouse *)house
 {
-
+    //save the new house to parse.
+    PFObject *parseHome = [[PFUser currentUser] objectForKey:@"home"];
+    if (parseHome == nil)
+    {
+        //this should never happen
+        NSLog(@"User house is null on the server. This should never happen.");
+        return false;
+    }
+ 
+    //Set the new attributes as long as they are not null.
+    if ([house houseName] != nil) {
+        parseHome[@"name"] = [house houseName];
+    }
+    if ([house location] != nil) {
+        parseHome[@"location"] = [house location];
+    }
+    
+    
+    if ([parseHome save] == false) {
+        return false;
+    }
+    //if it is successfully saved to parse, replace the hp_home in NSUserDefaults with the new house.
+    //convert roommate object into encoded data to store in NSUserdefault
+    NSData *homeData = [NSKeyedArchiver archivedDataWithRootObject:house];
+    [persistantStore setObject:homeData forKey:@"hp_home"];
+    [persistantStore synchronize];
+    
+    return true;
 }
 
 +(void) getRoommatesInBackgroundWithBlock:(CentralDataRoommatesResultBlock)block
