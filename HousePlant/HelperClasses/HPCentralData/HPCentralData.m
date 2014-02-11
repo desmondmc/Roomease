@@ -89,6 +89,8 @@
             if (parseHome == nil)
             {
                 //No home exists for this user yet.
+                if (block)
+                    block(nil, nil);
                 return;
             }
             parseHome = parseHome.fetchIfNeeded;
@@ -103,10 +105,8 @@
 
             
             dispatch_async(dispatch_get_main_queue(), ^{
-                // Notify all the video listeners of success
-                
                 if (block)
-                    block(nil, nil);
+                    block(home, nil);
             });
         });
     }
