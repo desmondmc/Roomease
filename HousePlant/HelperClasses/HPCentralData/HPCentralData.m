@@ -32,10 +32,6 @@
     //resync the roommates in this house.
 }
 
-+(void) getCurrentUserInBackgroundWithBlock:(CentralDataRoommateResultBlock)block
-{
-    //if the user isn't stored in NSUserDefaults pull him from parse. Otherwise return the user stored in NSUserDefaults. Do this on a background thread.
-}
 
 +(void) clearCentralData
 {
@@ -47,6 +43,42 @@
     [defs synchronize];
 }
 
++(void) getCurrentUserInBackgroundWithBlock:(CentralDataRoommateResultBlock)block
+{
+
+    __block NSData *roommateData = [persistantStore objectForKey:@"hp_currentUser"];
+    __block HPRoommate *roommate =  [NSKeyedUnarchiver unarchiveObjectWithData:roommateData];
+    
+    if(roommate == nil)
+    {
+        dispatch_async( dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
+            roommate = [[HPRoommate alloc] init];
+            [[PFUser currentUser] fetch];
+            roommate.username = [[PFUser currentUser] username];
+            roommate.atHome = [[PFUser currentUser][@"atHome"] boolValue];
+        
+            PFFile *userImageFile = [[PFUser currentUser] objectForKey:@"profilePic"];
+            roommate.profilePic = [UIImage imageWithData:[userImageFile getData]];
+        
+            //convert roommate object into encoded data to store in NSUserdefault
+            roommateData = [NSKeyedArchiver archivedDataWithRootObject:roommate];
+        
+            [persistantStore setObject:roommateData forKey:@"hp_currentUser"];
+            [persistantStore synchronize];
+            
+            dispatch_async(dispatch_get_main_queue(), ^{
+                if (block)
+                    block(roommate, nil);
+            });
+        });
+    }
+
+    if (block)
+        block(roommate, nil);
+    
+}
+
+
 +(HPRoommate *) getCurrentUser;
 {
     //if the user isn't stored in NSUserDefaults pull him from parse. Otherwise return the user stored in NSUserDefaults.
@@ -57,11 +89,11 @@
     if(roommate == nil)
     {
         roommate = [[HPRoommate alloc] init];
-        PFUser * currentUser = (PFUser *)[PFUser currentUser].fetchIfNeeded;
-        roommate.username = [currentUser username];
-        roommate.atHome = [currentUser[@"atHome"] boolValue];
+        [[PFUser currentUser] fetch];
+        roommate.username = [[PFUser currentUser] username];
+        roommate.atHome = [[PFUser currentUser][@"atHome"] boolValue];
        
-        PFFile *userImageFile = [currentUser objectForKey:@"profilePic"];
+        PFFile *userImageFile = [[PFUser currentUser] objectForKey:@"profilePic"];
         roommate.profilePic = [UIImage imageWithData:[userImageFile getData]];
         
         //convert roommate object into encoded data to store in NSUserdefault
@@ -85,7 +117,7 @@
 
             home = [[HPHouse alloc] init];
             [[PFUser currentUser] fetch];
-            PFObject *parseHome = [[PFUser currentUser] objectForKey:@"home"];
+            __block PFObject *parseHome = [[PFUser currentUser] objectForKey:@"home"];
             if (parseHome == nil)
             {
                 //No home exists for this user yet.
@@ -93,10 +125,9 @@
                     block(nil, nil);
                 return;
             }
-            parseHome = parseHome.fetchIfNeeded;
+            parseHome = [parseHome fetchIfNeeded];
             home.houseName = [parseHome objectForKey:@"name"];
             home.location = [parseHome objectForKey:@"location"];
-            
             
             //convert roommate object into encoded data to store in NSUserdefault
             homeData = [NSKeyedArchiver archivedDataWithRootObject:home];
@@ -125,7 +156,7 @@
     if (home == nil) {
         home = [[HPHouse alloc] init];
         [[PFUser currentUser] fetch];
-        PFObject *parseHome = [[PFUser currentUser] objectForKey:@"home"];
+        __block PFObject *parseHome = [[PFUser currentUser] objectForKey:@"home"];
         
         [parseHome fetch];
         if (parseHome == nil)
@@ -133,10 +164,8 @@
             //No home exists for this user yet.
             return nil;
         }
-        parseHome = parseHome.fetchIfNeeded;
         home.houseName = [parseHome objectForKey:@"name"];
         home.location = [parseHome objectForKey:@"location"];
-        
         
         //convert roommate object into encoded data to store in NSUserdefault
         homeData = [NSKeyedArchiver archivedDataWithRootObject:home];
@@ -149,9 +178,49 @@
 +(void) saveHouseInBackgroundWithHouse:(HPHouse *)house andBlock:(CentralDataSaveResultBlock)block
 {
     dispatch_async( dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
+        __block NSError *error = nil;
+        
+        //save the new house to parse.
+        PFObject *parseHome = [[PFUser currentUser] objectForKey:@"home"];
+        if (parseHome == nil)
+        {
+            //this should never happen
+            NSLog(@"User house is null on the server. This should never happen.");
+            if (block)
+            {
+                NSMutableDictionary* details = [NSMutableDictionary dictionary];
+                [details setValue:@"save failed" forKey:NSLocalizedDescriptionKey];
+                error = [NSError errorWithDomain:@"house" code:100 userInfo:details];
+                block(error);
+            }
+            return;
+        }
+        
+        //Set the new attributes as long as they are not null.
+        if ([house houseName] != nil) {
+            parseHome[@"name"] = [house houseName];
+        }
+        
+        if ([house location] != nil) {
+            parseHome[@"location"] = [house location];
+        }
+        
+        if ([parseHome save] == false) {
+            NSMutableDictionary* details = [NSMutableDictionary dictionary];
+            [details setValue:@"save failed" forKey:NSLocalizedDescriptionKey];
+            error = [NSError errorWithDomain:@"house" code:200 userInfo:details];
+        }
+        
+        //if it is successfully saved to parse, replace the hp_home in NSUserDefaults with the new house.
+        //convert roommate object into encoded data to store in NSUserdefault
+        NSData *homeData = [NSKeyedArchiver archivedDataWithRootObject:house];
+        [persistantStore setObject:homeData forKey:@"hp_home"];
+        [persistantStore synchronize];
         
         dispatch_async(dispatch_get_main_queue(), ^{
-            // Notify all the video listeners of success
+            if (block)
+                block(error);
+                
         });
     });
 }
@@ -191,12 +260,56 @@
 
 +(void) getRoommatesInBackgroundWithBlock:(CentralDataRoommatesResultBlock)block
 {
-
+  
 }
 
 +(NSArray *) getRoommates
 {
-    return nil;
+    NSMutableArray *roommatesData = [persistantStore objectForKey:@"hp_roommates"];
+    NSMutableArray *roommates = [[NSMutableArray alloc] init];
+    
+    for (NSData *roommateData in roommatesData) {
+        HPRoommate *roommate = [NSKeyedUnarchiver unarchiveObjectWithData:roommateData];
+        [roommates addObject:roommate];
+    }
+    
+    if ([roommates count] == 0)
+    {
+        roommatesData = [[NSMutableArray alloc] init];
+        
+        //pulling from parse
+        [[PFUser currentUser] fetch];
+        __block PFObject *parseHome = [[PFUser currentUser] objectForKey:@"home"];
+        
+        [parseHome fetch];
+        if (parseHome == nil)
+        {
+            //No home exists for this user yet.
+            return nil;
+        }
+
+        NSArray *pfRoommates = [parseHome objectForKey:@"users"];
+        for (PFObject *pfRoommate in pfRoommates) {
+            [pfRoommate fetch];
+            HPRoommate * roommate = [[HPRoommate alloc] init];
+            roommate.username = pfRoommate[@"username"];
+            roommate.atHome = [pfRoommate[@"atHome"] boolValue];
+            
+            PFFile *userImageFile = [pfRoommate objectForKey:@"profilePic"];
+            roommate.profilePic = [UIImage imageWithData:[userImageFile getData]];
+            
+            [roommates addObject:roommate];
+            
+            NSData *roommateData = [NSKeyedArchiver archivedDataWithRootObject:roommate];
+            [roommatesData addObject:roommateData];
+        }
+        
+        [persistantStore setObject:roommatesData forKey:@"hp_roommates"];
+        [persistantStore synchronize];
+        
+    }
+    
+    return roommates;
 }
 
 @end
