@@ -13,9 +13,6 @@
 @end
 
 @implementation HPSettingsViewController
-{
-    CLLocationManager *locationManager;
-}
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -40,16 +37,9 @@
 
 - (IBAction)onSetLocationPress:(id)sender {
     HPHouse *house = [[HPHouse alloc] init];
+
+    kApplicationDelegate.locationManager = [[HPLocationManager alloc] initWithDelegate:kApplicationDelegate.mainViewController];
     
-    locationManager = [[CLLocationManager alloc] init];
-    
-    locationManager.delegate = self;
-    locationManager.desiredAccuracy = kCLLocationAccuracyBest;
-    
-    // Set a movement threshold for new events.
-    locationManager.distanceFilter = 500; // meters
-    
-    [locationManager startUpdatingLocation];
     
     CLGeocoder *geocoder = [[CLGeocoder alloc] init];
     
@@ -59,8 +49,15 @@
                      NSLog(@"placemarks: %@", placemarks);
                      if ([placemarks count] > 0)
                      {
-                         [house setLocation:((CLPlacemark *)[placemarks objectAtIndex:0]).location];
+                         CLPlacemark *placeMark = ((CLPlacemark *)[placemarks objectAtIndex:0]);
+                         
+                         //placeMark.location.coordinate.latitude
+                         [kApplicationDelegate.locationManager setRegionToMonitorWithIdentifier:kHomeLocationIdentifier latitude:placeMark.location.coordinate.latitude longitude:placeMark.location.coordinate.longitude radius:kDefaultHouseRadius];
+                         
+                         [house setLocation:placeMark.location];
+                         
                          [HPCentralData saveHouseInBackgroundWithHouse:house andBlock:^(NSError *error) {
+                             
                              [CSNotificationView showInViewController:self
                                                                 style:CSNotificationViewStyleSuccess
                                                               message:@"Saved Address!"];

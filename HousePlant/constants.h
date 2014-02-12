@@ -9,4 +9,8 @@
 #ifndef HousePlant_constants_h
 #define HousePlant_constants_h
 
+#define kApplicationDelegate    ((HPAppDelegate *)[[UIApplication sharedApplication] delegate])
+
+#define kHomeLocationIdentifier @"HOME_IDENTIFIER"
+#define kDefaultHouseRadius     20
 #endif

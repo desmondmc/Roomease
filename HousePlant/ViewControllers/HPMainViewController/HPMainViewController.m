@@ -34,8 +34,10 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    // Do any additional setup after loading the view from its nib.
-
+    
+    // Store a reference to the mainViewController in appdel
+    kApplicationDelegate.mainViewController = self;
+    
     RoommateImageSubview *roommateView = [RoommateImageSubview roommateImageSubview];
     [[self roommateImageSubviewContainer] addSubview:roommateView];
     
@@ -130,5 +132,35 @@
     // initialize the navigation controller and present it
     [self presentViewController:settingsViewController animated:YES completion:nil];
 }
+
+#pragma mark - CLLocationManagerDelegate
+- (void)locationManager:(CLLocationManager *)manager
+         didEnterRegion:(CLRegion *)region
+{
+    //update the current users location on parse and the local database.
+    NSLog(@"Calling did enter region...");
+}
+
+- (void)locationManager:(CLLocationManager *)manager
+      didDetermineState:(CLRegionState)state forRegion:(CLRegion *)region
+{
+    if ([region.identifier isEqualToString:kHomeLocationIdentifier]) {
+        if (state == CLRegionStateInside) {
+            //User is inside house location
+             NSLog(@"User is inside fence...");
+        }
+        else
+        {
+            //User is outside location or inside
+            NSLog(@"User is outside fence...");
+        }
+    }
+    else
+    {
+        NSLog(@"Unknown region request...");
+    }
+
+}
+
 @end
 

@@ -36,6 +36,7 @@
 		F711388C1877832000D9BA9E /* HPCreateHouseViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F711388A1877832000D9BA9E /* HPCreateHouseViewController.xib */; };
 		F71138911877837D00D9BA9E /* HPJoinHouseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F711388F1877837D00D9BA9E /* HPJoinHouseViewController.m */; };
 		F71138921877837D00D9BA9E /* HPJoinHouseViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F71138901877837D00D9BA9E /* HPJoinHouseViewController.xib */; };
+		F714B82018ABD54C00B598E7 /* HPLocationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = F714B81F18ABD54C00B598E7 /* HPLocationManager.m */; };
 		F737161E18A9BC1600A5AA4B /* RoommateImageSubview.m in Sources */ = {isa = PBXBuildFile; fileRef = F737161C18A9BC1600A5AA4B /* RoommateImageSubview.m */; };
 		F737161F18A9BC1600A5AA4B /* RoommateImageSubview.xib in Resources */ = {isa = PBXBuildFile; fileRef = F737161D18A9BC1600A5AA4B /* RoommateImageSubview.xib */; };
 		F73A01B418AAFD00000F25B6 /* HPSettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F73A01B218AAFD00000F25B6 /* HPSettingsViewController.m */; };
@@ -109,6 +110,8 @@
 		F711388E1877837D00D9BA9E /* HPJoinHouseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HPJoinHouseViewController.h; path = ViewControllers/HPJoinHouseViewController/HPJoinHouseViewController.h; sourceTree = "<group>"; };
 		F711388F1877837D00D9BA9E /* HPJoinHouseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HPJoinHouseViewController.m; path = ViewControllers/HPJoinHouseViewController/HPJoinHouseViewController.m; sourceTree = "<group>"; };
 		F71138901877837D00D9BA9E /* HPJoinHouseViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = HPJoinHouseViewController.xib; path = ViewControllers/HPJoinHouseViewController/HPJoinHouseViewController.xib; sourceTree = "<group>"; };
+		F714B81E18ABD54C00B598E7 /* HPLocationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HPLocationManager.h; path = HelperClasses/HPLocationManager/HPLocationManager.h; sourceTree = "<group>"; };
+		F714B81F18ABD54C00B598E7 /* HPLocationManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HPLocationManager.m; path = HelperClasses/HPLocationManager/HPLocationManager.m; sourceTree = "<group>"; };
 		F737161B18A9BC1600A5AA4B /* RoommateImageSubview.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RoommateImageSubview.h; sourceTree = "<group>"; };
 		F737161C18A9BC1600A5AA4B /* RoommateImageSubview.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RoommateImageSubview.m; sourceTree = "<group>"; };
 		F737161D18A9BC1600A5AA4B /* RoommateImageSubview.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RoommateImageSubview.xib; sourceTree = "<group>"; };
@@ -205,6 +208,7 @@
 		F710E5FB187862BE00BD9D54 /* HelperClasses */ = {
 			isa = PBXGroup;
 			children = (
+				F714B82118ABD55100B598E7 /* HPLocationManager */,
 				F710E608187F775900BD9D54 /* HPCentralData */,
 				F710E5FC187862DE00BD9D54 /* HPLoginRouter */,
 			);
@@ -304,6 +308,15 @@
 				F71138901877837D00D9BA9E /* HPJoinHouseViewController.xib */,
 			);
 			name = HPJoinHouseViewController;
+			sourceTree = "<group>";
+		};
+		F714B82118ABD55100B598E7 /* HPLocationManager */ = {
+			isa = PBXGroup;
+			children = (
+				F714B81E18ABD54C00B598E7 /* HPLocationManager.h */,
+				F714B81F18ABD54C00B598E7 /* HPLocationManager.m */,
+			);
+			name = HPLocationManager;
 			sourceTree = "<group>";
 		};
 		F737161818A9BAB500A5AA4B /* RoommateImageSubview */ = {
@@ -645,6 +658,7 @@
 			files = (
 				F7A1225118522ABE00E51B06 /* HPStartingViewController.m in Sources */,
 				F7A1222C18522A4100E51B06 /* HPAppDelegate.m in Sources */,
+				F714B82018ABD54C00B598E7 /* HPLocationManager.m in Sources */,
 				F765357B1867C3840046263B /* HPSigninViewController.m in Sources */,
 				F76535811867D1B20046263B /* HPSignupViewController.m in Sources */,
 				F73A01B418AAFD00000F25B6 /* HPSettingsViewController.m in Sources */,
