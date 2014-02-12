@@ -40,7 +40,7 @@
     
     
     CLGeocoder *geocoder = [[CLGeocoder alloc] init];
-    [geocoder geocodeAddressString:@"377 Gladstone Ave" inRegion:nil
+    [geocoder geocodeAddressString:@"377 Gladstone Ave Ottawa" inRegion:nil
                  completionHandler:^(NSArray *placemarks, NSError *error) {
         NSLog(@"placemarks: %@", placemarks);
     }];

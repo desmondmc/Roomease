@@ -11,7 +11,7 @@
 @interface HPRoommate : NSObject
 
 @property (strong, nonatomic) NSString *username;
-@property (strong, nonatomic) APAvatarImageView *profilePic;
+@property (strong, nonatomic) UIImage *profilePic;
 @property BOOL atHome;
 
 @end
