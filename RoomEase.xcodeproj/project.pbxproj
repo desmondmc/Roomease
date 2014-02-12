@@ -38,6 +38,8 @@
 		F71138921877837D00D9BA9E /* HPJoinHouseViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F71138901877837D00D9BA9E /* HPJoinHouseViewController.xib */; };
 		F737161E18A9BC1600A5AA4B /* RoommateImageSubview.m in Sources */ = {isa = PBXBuildFile; fileRef = F737161C18A9BC1600A5AA4B /* RoommateImageSubview.m */; };
 		F737161F18A9BC1600A5AA4B /* RoommateImageSubview.xib in Resources */ = {isa = PBXBuildFile; fileRef = F737161D18A9BC1600A5AA4B /* RoommateImageSubview.xib */; };
+		F73A01B418AAFD00000F25B6 /* HPSettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F73A01B218AAFD00000F25B6 /* HPSettingsViewController.m */; };
+		F73A01B518AAFD00000F25B6 /* HPSettingsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F73A01B318AAFD00000F25B6 /* HPSettingsViewController.xib */; };
 		F765357B1867C3840046263B /* HPSigninViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F76535791867C3840046263B /* HPSigninViewController.m */; };
 		F765357C1867C3840046263B /* HPSigninViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F765357A1867C3840046263B /* HPSigninViewController.xib */; };
 		F76535811867D1B20046263B /* HPSignupViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F765357F1867D1B20046263B /* HPSignupViewController.m */; };
@@ -110,6 +112,9 @@
 		F737161B18A9BC1600A5AA4B /* RoommateImageSubview.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RoommateImageSubview.h; sourceTree = "<group>"; };
 		F737161C18A9BC1600A5AA4B /* RoommateImageSubview.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RoommateImageSubview.m; sourceTree = "<group>"; };
 		F737161D18A9BC1600A5AA4B /* RoommateImageSubview.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RoommateImageSubview.xib; sourceTree = "<group>"; };
+		F73A01B118AAFD00000F25B6 /* HPSettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HPSettingsViewController.h; path = ViewControllers/HPSettingsViewController/HPSettingsViewController.h; sourceTree = "<group>"; };
+		F73A01B218AAFD00000F25B6 /* HPSettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HPSettingsViewController.m; path = ViewControllers/HPSettingsViewController/HPSettingsViewController.m; sourceTree = "<group>"; };
+		F73A01B318AAFD00000F25B6 /* HPSettingsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = HPSettingsViewController.xib; path = ViewControllers/HPSettingsViewController/HPSettingsViewController.xib; sourceTree = "<group>"; };
 		F76535781867C3840046263B /* HPSigninViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HPSigninViewController.h; path = ViewControllers/HPSigninViewController/HPSigninViewController.h; sourceTree = "<group>"; };
 		F76535791867C3840046263B /* HPSigninViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HPSigninViewController.m; path = ViewControllers/HPSigninViewController/HPSigninViewController.m; sourceTree = "<group>"; };
 		F765357A1867C3840046263B /* HPSigninViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = HPSigninViewController.xib; path = ViewControllers/HPSigninViewController/HPSigninViewController.xib; sourceTree = "<group>"; };
@@ -311,6 +316,16 @@
 			name = RoommateImageSubview;
 			sourceTree = "<group>";
 		};
+		F73A01B018AAFCB5000F25B6 /* HPSettingsViewController */ = {
+			isa = PBXGroup;
+			children = (
+				F73A01B118AAFD00000F25B6 /* HPSettingsViewController.h */,
+				F73A01B218AAFD00000F25B6 /* HPSettingsViewController.m */,
+				F73A01B318AAFD00000F25B6 /* HPSettingsViewController.xib */,
+			);
+			name = HPSettingsViewController;
+			sourceTree = "<group>";
+		};
 		F76535771867BF630046263B /* HPSigninViewController */ = {
 			isa = PBXGroup;
 			children = (
@@ -452,6 +467,7 @@
 			isa = PBXGroup;
 			children = (
 				F710E607187B0C0600BD9D54 /* HPLogin+Onboarding */,
+				F73A01B018AAFCB5000F25B6 /* HPSettingsViewController */,
 				F7653584186F67110046263B /* HPMainViewController */,
 			);
 			name = ViewControllers;
@@ -562,6 +578,7 @@
 				F710E6061879213800BD9D54 /* index.html in Resources */,
 				F7A1225218522ABE00E51B06 /* HPStartingViewController.xib in Resources */,
 				F71138801877008600D9BA9E /* ottawa.gpx in Resources */,
+				F73A01B518AAFD00000F25B6 /* HPSettingsViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -630,6 +647,7 @@
 				F7A1222C18522A4100E51B06 /* HPAppDelegate.m in Sources */,
 				F765357B1867C3840046263B /* HPSigninViewController.m in Sources */,
 				F76535811867D1B20046263B /* HPSignupViewController.m in Sources */,
+				F73A01B418AAFD00000F25B6 /* HPSettingsViewController.m in Sources */,
 				F711388518777B8800D9BA9E /* HPNoHomeViewController.m in Sources */,
 				F78D484E185AAB03000A79BC /* HPNetworkObject.m in Sources */,
 				F710E60E1890A97A00BD9D54 /* ParseSync.xcdatamodeld in Sources */,

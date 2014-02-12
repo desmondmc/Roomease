@@ -202,7 +202,7 @@
         }
         
         if ([house location] != nil) {
-            parseHome[@"location"] = [house location];
+            parseHome[@"location"] = [PFGeoPoint geoPointWithLocation:[house location]];
         }
         
         if ([parseHome save] == false) {

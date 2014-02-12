@@ -73,6 +73,9 @@
                     <state key="normal" image="settings-cog-icon">
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
+                    <connections>
+                        <action selector="onSettingsPress:" destination="-1" eventType="touchUpInside" id="DyN-NZ-tJO"/>
+                    </connections>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rzE-at-Rxb">
                     <rect key="frame" x="16" y="34" width="28" height="31"/>

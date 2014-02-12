@@ -11,6 +11,7 @@
 #import "AMPAvatarView.h"
 
 #import "RoommateImageSubview.h"
+#import "HPSettingsViewController.h"
 
 @interface HPMainViewController ()
 
@@ -121,6 +122,13 @@
     house = [HPCentralData getHouse];
     
     NSLog(@"House Name: %@", [house houseName]);
+}
+- (IBAction)onSettingsPress:(id)sender {
+    HPSettingsViewController *settingsViewController = [[HPSettingsViewController alloc] init];
+    settingsViewController.modalTransitionStyle = UIModalTransitionStyleCoverVertical;
+    
+    // initialize the navigation controller and present it
+    [self presentViewController:settingsViewController animated:YES completion:nil];
 }
 @end
 
