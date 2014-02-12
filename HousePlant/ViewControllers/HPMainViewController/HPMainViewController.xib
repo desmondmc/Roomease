@@ -8,14 +8,7 @@
             <connections>
                 <outlet property="addressField" destination="JgQ-qz-Edv" id="DP3-Aa-foJ"/>
                 <outlet property="houseLabel" destination="yIB-Sk-umR" id="Oa0-SG-mmF"/>
-                <outlet property="houseMateImage1" destination="JcW-YE-7WO" id="RcZ-8J-yPa"/>
-                <outlet property="houseMateImage2" destination="IVq-JR-gHO" id="aZp-fb-qnL"/>
-                <outlet property="houseMateImage3" destination="fUx-hq-a7E" id="weF-pJ-bcb"/>
-                <outlet property="houseMateImage4" destination="NDg-Fe-X4J" id="Thm-G0-bcl"/>
-                <outlet property="houseMateName1" destination="SXl-XW-pFU" id="4Rb-Ao-Wvx"/>
-                <outlet property="houseMateName2" destination="0sr-9x-utS" id="xVk-3w-37T"/>
-                <outlet property="houseMateName3" destination="djr-hv-djy" id="mck-ap-MHQ"/>
-                <outlet property="houseMateName4" destination="WL7-Kj-eY4" id="9Js-30-Vfx"/>
+                <outlet property="roommateImageSubviewContainer" destination="erO-rm-eCD" id="nF9-dW-hbe"/>
                 <outlet property="usernameLabel" destination="rLc-bI-hGX" id="7hx-dD-XXl"/>
                 <outlet property="view" destination="1" id="3"/>
             </connections>
@@ -75,50 +68,6 @@
                     <fontDescription key="fontDescription" style="UICTFontTextStyleFootnote"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="profile-image-example" translatesAutoresizingMaskIntoConstraints="NO" id="JcW-YE-7WO" userLabel="Image View - HouseMate1">
-                    <rect key="frame" x="10" y="82" width="59" height="59"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                </imageView>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="profile-image-example" translatesAutoresizingMaskIntoConstraints="NO" id="IVq-JR-gHO" userLabel="Image View - HouseMate2">
-                    <rect key="frame" x="88" y="82" width="59" height="59"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                </imageView>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="profile-image-example" translatesAutoresizingMaskIntoConstraints="NO" id="fUx-hq-a7E" userLabel="Image View - HouseMate3">
-                    <rect key="frame" x="168" y="82" width="59" height="59"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                </imageView>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="profile-image-example" translatesAutoresizingMaskIntoConstraints="NO" id="NDg-Fe-X4J" userLabel="Image View - HouseMate4">
-                    <rect key="frame" x="246" y="82" width="59" height="59"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                </imageView>
-                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SXl-XW-pFU" userLabel="Label - HouseMateLabel1">
-                    <rect key="frame" x="20" y="137" width="42" height="21"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="10"/>
-                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                    <nil key="highlightedColor"/>
-                </label>
-                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0sr-9x-utS" userLabel="Label - HouseMateLabel2">
-                    <rect key="frame" x="96" y="137" width="42" height="21"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="10"/>
-                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                    <nil key="highlightedColor"/>
-                </label>
-                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="djr-hv-djy" userLabel="Label - HouseMateLabel3">
-                    <rect key="frame" x="176" y="137" width="42" height="21"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="10"/>
-                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                    <nil key="highlightedColor"/>
-                </label>
-                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WL7-Kj-eY4" userLabel="Label - HouseMateLabel4">
-                    <rect key="frame" x="259" y="137" width="42" height="21"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="10"/>
-                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                    <nil key="highlightedColor"/>
-                </label>
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="top-bar-logo-wordmark" translatesAutoresizingMaskIntoConstraints="NO" id="nnO-3e-udP">
                     <rect key="frame" x="93" y="31" width="134" height="31"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -149,6 +98,11 @@
                         <action selector="onTestPress:" destination="-1" eventType="touchUpInside" id="kJn-fl-mAa"/>
                     </connections>
                 </button>
+                <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="erO-rm-eCD" userLabel="RoommateImageSubviewContainer">
+                    <rect key="frame" x="0.0" y="83" width="320" height="71"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                </view>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <simulatedStatusBarMetrics key="simulatedStatusBarMetrics"/>
@@ -157,7 +111,6 @@
     </objects>
     <resources>
         <image name="new-post-icon" width="28" height="31"/>
-        <image name="profile-image-example" width="118" height="118"/>
         <image name="settings-cog-icon" width="30" height="30"/>
         <image name="top-bar-bg" width="640" height="143"/>
         <image name="top-bar-logo-wordmark" width="268" height="62"/>
