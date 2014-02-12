@@ -34,11 +34,13 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
+
+    RoommateImageSubview *roommateView = [RoommateImageSubview roommateImageSubview];
+    [[self roommateImageSubviewContainer] addSubview:roommateView];
     
-    [[RoommateImageSubview alloc] initWithFrame:CGRectMake(8, 79, 58, 58)];
     
     CLGeocoder *geocoder = [[CLGeocoder alloc] init];
-    [geocoder geocodeAddressString:@"377 Gladstone Ave" inRegion:nil
+    [geocoder geocodeAddressString:@"377 Gladstone Ave Ottawa" inRegion:nil
                  completionHandler:^(NSArray *placemarks, NSError *error) {
         NSLog(@"placemarks: %@", placemarks);
     }];

@@ -1,15 +1,18 @@
 PODS:
   - AMPAvatarView (1.0.3)
+  - APAvatarImageView (1.1.0)
   - CSNotificationView (0.3.3)
   - NPReachability (0.1.0)
 
 DEPENDENCIES:
   - AMPAvatarView (~> 1.0.3)
+  - APAvatarImageView (~> 1.1.0)
   - CSNotificationView (~> 0.3.3)
   - NPReachability (~> 0.1.0)
 
 SPEC CHECKSUMS:
   AMPAvatarView: 473eae59b5d71dfdeed18803917bfc2a9e0a0a42
+  APAvatarImageView: 954065daf4949a2cc816e3d79ef6c8b0f3d6dda4
   CSNotificationView: f14352657afe7255be9fb2446eb99d5914b97b5d
   NPReachability: 20281bf45f6124421a43668d2c7a61d1ecba8cf2
 
