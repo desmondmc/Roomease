@@ -41,7 +41,7 @@
     [[self roommateImageSubviewContainer] addSubview:roommateView];
     
     if (kApplicationDelegate.locationManager == nil) {
-        kApplicationDelegate.locationManager = [[HPLocationManager alloc] initWithDelegate:kApplicationDelegate.mainViewController];
+        kApplicationDelegate.locationManager = [[HPLocationManager alloc] initWithDelegate:self];
     }
 }
 
@@ -56,13 +56,12 @@
             if ([house region] == nil) {
                 [kApplicationDelegate.locationManager setRegionToMonitorWithIdentifier:kHomeLocationIdentifier latitude:house.location.coordinate.latitude longitude:house.location.coordinate.longitude radius:kDefaultHouseRadius];
             }
-            
-            //Force request for initial state.
-            
-            NSSet * monitoredRegions = kApplicationDelegate.locationManager.locationManager.monitoredRegions;
-            
-            [kApplicationDelegate.locationManager.locationManager requestStateForRegion:kApplicationDelegate.locationManager.region];
-            
+            else
+            {
+                NSLog(@"House region: %@, class:%@", [house region], [[house region]class]);
+                // Force request for location
+                [kApplicationDelegate.locationManager.locationManager requestStateForRegion:[house region]];
+            }
         }
     }];
 }

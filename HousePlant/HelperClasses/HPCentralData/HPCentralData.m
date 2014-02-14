@@ -8,8 +8,6 @@
 
 #import "HPCentralData.h"
 
-#define persistantStore [NSUserDefaults standardUserDefaults]
-
 @implementation HPCentralData
 
 +(void) resyncAllData
@@ -173,7 +171,12 @@
             return nil;
         }
         home.houseName = [parseHome objectForKey:@"name"];
-        home.location = [parseHome objectForKey:@"location"];
+        
+        //Get the parse GeoPoint and convert it into a location to be stored locally
+        PFGeoPoint *parseGeoPoint = [parseHome objectForKey:@"location"];
+        CLLocation *newLocation = [[CLLocation alloc] initWithLatitude:parseGeoPoint.latitude longitude:parseGeoPoint.longitude];
+        home.location = newLocation;
+        
         home.addressText = [parseHome objectForKey:@"addressText"];
         
         //convert roommate object into encoded data to store in NSUserdefault
@@ -234,7 +237,7 @@
 }
 
 + (bool) saveHouse:(HPHouse *)house
-{
+{    
     //save the new house to parse.
     PFObject *parseHome = [[PFUser currentUser] objectForKey:@"home"];
     HPHouse *oldHouse = [HPCentralData getHouse];

@@ -10,6 +10,7 @@
 #define HousePlant_constants_h
 
 #define kApplicationDelegate    ((HPAppDelegate *)[[UIApplication sharedApplication] delegate])
+#define persistantStore [NSUserDefaults standardUserDefaults]
 
 #define kHomeLocationIdentifier @"HOME_IDENTIFIER"
 #define kDefaultHouseRadius     20

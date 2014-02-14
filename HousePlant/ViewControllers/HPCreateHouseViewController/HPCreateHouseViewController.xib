@@ -161,7 +161,7 @@
                     <state key="normal" image="move-in-btn-normal">
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
-                    <state key="highlighted" image="move-in-btn-normal"/>
+                    <state key="highlighted" image="move-in-btn-pressed"/>
                     <connections>
                         <action selector="onMoveInPress:" destination="-1" eventType="touchUpInside" id="iDT-jx-pb5"/>
                     </connections>
@@ -169,6 +169,7 @@
                 <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" animating="YES" style="white" id="wfx-ac-0rd">
                     <rect key="frame" x="252" y="217" width="20" height="20"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <color key="color" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                 </activityIndicatorView>
             </subviews>
             <color key="backgroundColor" red="0.2941176593" green="0.7019608021" blue="0.98431378599999997" alpha="1" colorSpace="deviceRGB"/>
@@ -187,6 +188,7 @@
         <image name="create-house-title" width="314" height="30"/>
         <image name="main-divider-full" width="640" height="2"/>
         <image name="move-in-btn-normal" width="362" height="77"/>
+        <image name="move-in-btn-pressed" width="362" height="77"/>
         <image name="password" width="50" height="50"/>
     </resources>
 </document>

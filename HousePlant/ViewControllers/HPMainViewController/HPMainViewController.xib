@@ -28,9 +28,6 @@
                     <state key="normal" title="Enable Location Services">
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
-                    <connections>
-                        <action selector="onEnableLocationServicesPress:" destination="-1" eventType="touchUpInside" id="TaE-4V-vgR"/>
-                    </connections>
                 </button>
                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="JgQ-qz-Edv">
                     <rect key="frame" x="45" y="301" width="230" height="30"/>

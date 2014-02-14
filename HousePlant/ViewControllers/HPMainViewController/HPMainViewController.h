@@ -10,7 +10,6 @@
 #import <CoreLocation/CoreLocation.h>
 
 @interface HPMainViewController : UIViewController <CLLocationManagerDelegate>
-- (IBAction)onEnableLocationServicesPress:(id)sender;
 @property (weak, nonatomic) IBOutlet UITextField *addressField;
 @property (weak, nonatomic) IBOutlet UILabel *usernameLabel;
 - (IBAction)onLogoutPress:(id)sender;

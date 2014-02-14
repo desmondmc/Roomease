@@ -10,6 +10,7 @@
 
 @implementation HPLocationManager
 
+//Simply asks the user to allow the app access to their location.
 - (id)initWithDelegate:(id)delegate {
     if (self = [super init]) {
         _locationManager = [[CLLocationManager alloc] init];
@@ -47,6 +48,8 @@
     
     [kApplicationDelegate.locationManager.locationManager startMonitoringForRegion:region];
     
+    
+    [[[HPHouse alloc] init] setLocalStorageRegion:region];
     _region = region;
     
     return true;
