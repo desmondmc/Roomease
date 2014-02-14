@@ -118,6 +118,7 @@
     
     PFQuery *query = [PFQuery queryWithClassName:@"House"];
     [query whereKey:@"name" equalTo:_houseNameTextField.text];
+    
     NSArray *houseArray = [query findObjects];
     
     if (houseArray.count == 0) {

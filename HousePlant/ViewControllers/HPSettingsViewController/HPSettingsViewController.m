@@ -42,7 +42,10 @@
 - (IBAction)onSetLocationPress:(id)sender {
     HPHouse *house = [[HPHouse alloc] init];
 
-    kApplicationDelegate.locationManager = [[HPLocationManager alloc] initWithDelegate:kApplicationDelegate.mainViewController];
+    if (kApplicationDelegate.locationManager == nil) {
+        kApplicationDelegate.locationManager = [[HPLocationManager alloc] initWithDelegate:kApplicationDelegate.mainViewController];
+    }
+    
     
     
     CLGeocoder *geocoder = [[CLGeocoder alloc] init];

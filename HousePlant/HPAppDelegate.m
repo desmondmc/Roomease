@@ -24,14 +24,13 @@
 {
     [Parse setApplicationId:kParseAppId
                   clientKey:kParseClientKey];
-    [PFACL setDefaultACL:[PFACL ACL] withAccessForCurrentUser:YES];
+    
     [PFAnalytics trackAppOpenedWithLaunchOptions:launchOptions];
     
     // Store the deviceToken in the current installation and save it to Parse.
     PFInstallation *currentInstallation = [PFInstallation currentInstallation];
     [currentInstallation saveInBackground];
     
-    [PFACL setDefaultACL:[PFACL ACL] withAccessForCurrentUser:YES];
     //[Crashlytics startWithAPIKey:kCrashlyticsKey];
     
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];

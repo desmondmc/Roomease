@@ -106,6 +106,7 @@
     return roommate;
 }
 
+//Checks if the home exists in local storage and if it doesn't it pulls it from parse and stores it in local storage.
 +(void) getHouseInBackgroundWithBlock:(CentralDataHouseResultBlock)block
 {
     __block NSData  *homeData = [persistantStore objectForKey:@"hp_home"];
@@ -127,7 +128,12 @@
             }
             parseHome = [parseHome fetchIfNeeded];
             home.houseName = [parseHome objectForKey:@"name"];
-            home.location = [parseHome objectForKey:@"location"];
+            
+            //Get the parse GeoPoint and convert it into a location to be stored locally
+            PFGeoPoint *parseGeoPoint = [parseHome objectForKey:@"location"];
+            CLLocation *newLocation = [[CLLocation alloc] initWithLatitude:parseGeoPoint.latitude longitude:parseGeoPoint.longitude];
+            home.location = newLocation;
+            
             home.addressText = [parseHome objectForKey:@"addressText"];
             
             //convert roommate object into encoded data to store in NSUserdefault

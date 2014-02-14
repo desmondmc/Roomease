@@ -19,7 +19,6 @@
 
 @implementation HPMainViewController
 {
-    CLLocationManager *locationManager;
     NSDictionary *imageForPFUser;
 }
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -41,12 +40,9 @@
     RoommateImageSubview *roommateView = [RoommateImageSubview roommateImageSubview];
     [[self roommateImageSubviewContainer] addSubview:roommateView];
     
-    CLGeocoder *geocoder = [[CLGeocoder alloc] init];
-    [geocoder geocodeAddressString:@"377 Gladstone Ave Ottawa" inRegion:nil
-                 completionHandler:^(NSArray *placemarks, NSError *error) {
-        NSLog(@"placemarks: %@", placemarks);
-    }];
-    
+    if (kApplicationDelegate.locationManager == nil) {
+        kApplicationDelegate.locationManager = [[HPLocationManager alloc] initWithDelegate:kApplicationDelegate.mainViewController];
+    }
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -62,6 +58,9 @@
             }
             
             //Force request for initial state.
+            
+            NSSet * monitoredRegions = kApplicationDelegate.locationManager.locationManager.monitoredRegions;
+            
             [kApplicationDelegate.locationManager.locationManager requestStateForRegion:kApplicationDelegate.locationManager.region];
             
         }
@@ -98,26 +97,6 @@
     // Dispose of any resources that can be recreated.
 }
 
-- (IBAction)onEnableLocationServicesPress:(id)sender {
-    // Create the location manager if this object does not
-    // already have one.
-    if (nil == locationManager)
-        locationManager = [[CLLocationManager alloc] init];
-    
-    locationManager.delegate = self;
-    locationManager.desiredAccuracy = kCLLocationAccuracyBest;
-    
-    // Set a movement threshold for new events.
-    locationManager.distanceFilter = 500; // meters
-    
-    [locationManager startUpdatingLocation];
-    
-    CLGeocoder *geocoder = [[CLGeocoder alloc] init];
-    [geocoder geocodeAddressString:_addressField.text inRegion:nil
-                 completionHandler:^(NSArray *placemarks, NSError *error) {
-                     NSLog(@"placemarks: %@", placemarks);
-                 }];
-}
 - (IBAction)onLogoutPress:(id)sender {
     [PFUser logOut];
     HPStartingViewController *startingViewController = [[HPStartingViewController alloc] init];
