@@ -7,6 +7,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="HPSettingsViewController">
             <connections>
                 <outlet property="cityField" destination="h6T-ZG-hJd" id="XEQ-qV-JfK"/>
+                <outlet property="homeLocationLabel" destination="Z13-H5-ZKG" id="u00-1G-Uji"/>
                 <outlet property="houseNumberField" destination="EyZ-hR-zEc" id="Vqy-BT-QxK"/>
                 <outlet property="streetField" destination="GSo-wc-lTm" id="xGB-mU-gmf"/>
                 <outlet property="view" destination="1" id="3"/>
@@ -17,8 +18,8 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Home Location" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mfF-Aq-T2n">
-                    <rect key="frame" x="26" y="40" width="118" height="21"/>
+                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Home Location:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mfF-Aq-T2n">
+                    <rect key="frame" x="26" y="40" width="122" height="21"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -43,7 +44,7 @@
                     <textInputTraits key="textInputTraits"/>
                 </textField>
                 <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="adP-Z1-RLa">
-                    <rect key="frame" x="107" y="183" width="87" height="30"/>
+                    <rect key="frame" x="64" y="183" width="87" height="30"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <state key="normal" title="Set Location">
                         <color key="titleColor" red="0.1400408061" green="0.91665338009999997" blue="0.29529888929999998" alpha="1" colorSpace="calibratedRGB"/>
@@ -51,6 +52,17 @@
                     </state>
                     <connections>
                         <action selector="onSetLocationPress:" destination="-1" eventType="touchUpInside" id="dCw-wa-eNh"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oEd-9J-cZm">
+                    <rect key="frame" x="170" y="183" width="92" height="30"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <state key="normal" title="Test Location">
+                        <color key="titleColor" red="0.1400408061" green="0.91665338009999997" blue="0.29529888929999998" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="titleShadowColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </state>
+                    <connections>
+                        <action selector="onTestLocationPress:" destination="-1" eventType="touchUpInside" id="hKB-Ix-Jyb"/>
                     </connections>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="h48-aS-zS5">
@@ -65,6 +77,13 @@
                         <action selector="onBackPress:" destination="-1" eventType="touchUpInside" id="xQe-oQ-pj2"/>
                     </connections>
                 </button>
+                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Z13-H5-ZKG">
+                    <rect key="frame" x="161" y="40" width="139" height="21"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
             </subviews>
             <color key="backgroundColor" red="0.29019609089999998" green="0.69411766529999996" blue="0.98823535439999999" alpha="1" colorSpace="deviceRGB"/>
             <simulatedStatusBarMetrics key="simulatedStatusBarMetrics"/>

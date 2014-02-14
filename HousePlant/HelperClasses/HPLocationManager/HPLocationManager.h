@@ -11,6 +11,7 @@
 @interface HPLocationManager : NSObject
 
 @property (strong, atomic) CLLocationManager *locationManager;
+@property (strong, atomic) CLRegion *region;
 
 - (id)initWithDelegate:(id)delegate;
 

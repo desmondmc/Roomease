@@ -47,8 +47,7 @@
     
     [kApplicationDelegate.locationManager.locationManager startMonitoringForRegion:region];
     
-    //Force request for initial state.
-    [kApplicationDelegate.locationManager.locationManager requestStateForRegion:region];
+    _region = region;
     
     return true;
 }

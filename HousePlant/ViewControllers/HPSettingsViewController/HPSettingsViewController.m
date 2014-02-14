@@ -26,6 +26,10 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    [HPCentralData getHouseInBackgroundWithBlock:^(HPHouse *house, NSError *error) {
+        _homeLocationLabel.text = [house addressText];
+    }];
     // Do any additional setup after loading the view from its nib.
 }
 
@@ -55,12 +59,15 @@
                          [kApplicationDelegate.locationManager setRegionToMonitorWithIdentifier:kHomeLocationIdentifier latitude:placeMark.location.coordinate.latitude longitude:placeMark.location.coordinate.longitude radius:kDefaultHouseRadius];
                          
                          [house setLocation:placeMark.location];
+                         [house setAddressText:addressText];
                          
                          [HPCentralData saveHouseInBackgroundWithHouse:house andBlock:^(NSError *error) {
-                             
-                             [CSNotificationView showInViewController:self
-                                                                style:CSNotificationViewStyleSuccess
-                                                              message:@"Saved Address!"];
+                             if (!error) {
+                                 [CSNotificationView showInViewController:self
+                                                                    style:CSNotificationViewStyleSuccess
+                                                                  message:@"Saved Address!"];
+                             }
+
                          }];
                      }
                      else
@@ -79,5 +86,9 @@
 
 - (IBAction)onBackPress:(id)sender {
         [self dismissViewControllerAnimated:YES completion:nil];
+}
+- (IBAction)onTestLocationPress:(id)sender {
+    //Force request for initial state.
+    [kApplicationDelegate.locationManager.locationManager requestStateForRegion:kApplicationDelegate.locationManager.region];
 }
 @end

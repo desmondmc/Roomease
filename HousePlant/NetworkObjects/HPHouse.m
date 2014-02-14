@@ -17,6 +17,8 @@
     {
         _houseName = [aDecoder decodeObjectForKey:@"housename"];
         _location = [aDecoder decodeObjectForKey:@"location"];
+        _addressText = [aDecoder decodeObjectForKey:@"addresstext"];
+        _region = [aDecoder decodeObjectForKey:@"addresstext"];
     }
     return self;
 }
@@ -25,6 +27,8 @@
 {
     [aCoder encodeObject:_houseName forKey:@"housename"];
     [aCoder encodeObject:_location forKey:@"location"];
+    [aCoder encodeObject:_addressText forKey:@"addresstext"];
+    [aCoder encodeObject:_region forKey:@"region"];
 }
 
 @end

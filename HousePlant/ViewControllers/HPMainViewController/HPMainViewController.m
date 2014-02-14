@@ -41,13 +41,31 @@
     RoommateImageSubview *roommateView = [RoommateImageSubview roommateImageSubview];
     [[self roommateImageSubviewContainer] addSubview:roommateView];
     
-    
     CLGeocoder *geocoder = [[CLGeocoder alloc] init];
     [geocoder geocodeAddressString:@"377 Gladstone Ave Ottawa" inRegion:nil
                  completionHandler:^(NSArray *placemarks, NSError *error) {
         NSLog(@"placemarks: %@", placemarks);
     }];
     
+}
+
+- (void)viewDidAppear:(BOOL)animated
+{
+    //Get house from central data and check if the region attribute is set.
+    [HPCentralData getHouseInBackgroundWithBlock:^(HPHouse *house, NSError *error) {
+        //
+        if ([house addressText] != nil)
+        {
+            //There is an address. Has region been calculated and stored?
+            if ([house region] == nil) {
+                [kApplicationDelegate.locationManager setRegionToMonitorWithIdentifier:kHomeLocationIdentifier latitude:house.location.coordinate.latitude longitude:house.location.coordinate.longitude radius:kDefaultHouseRadius];
+            }
+            
+            //Force request for initial state.
+            [kApplicationDelegate.locationManager.locationManager requestStateForRegion:kApplicationDelegate.locationManager.region];
+            
+        }
+    }];
 }
 
 - (void) setUpProfilePictures

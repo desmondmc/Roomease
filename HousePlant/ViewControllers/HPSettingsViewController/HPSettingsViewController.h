@@ -12,7 +12,12 @@
 @property (weak, nonatomic) IBOutlet UITextField *houseNumberField;
 @property (weak, nonatomic) IBOutlet UITextField *streetField;
 @property (weak, nonatomic) IBOutlet UITextField *cityField;
+@property (weak, nonatomic) IBOutlet UILabel *homeLocationLabel;
+
 - (IBAction)onSetLocationPress:(id)sender;
+- (IBAction)onTestLocationPress:(id)sender;
 - (IBAction)onBackPress:(id)sender;
+
+
 
 @end

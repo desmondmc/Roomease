@@ -128,6 +128,7 @@
             parseHome = [parseHome fetchIfNeeded];
             home.houseName = [parseHome objectForKey:@"name"];
             home.location = [parseHome objectForKey:@"location"];
+            home.addressText = [parseHome objectForKey:@"addressText"];
             
             //convert roommate object into encoded data to store in NSUserdefault
             homeData = [NSKeyedArchiver archivedDataWithRootObject:home];
@@ -154,6 +155,7 @@
     HPHouse *home =  [NSKeyedUnarchiver unarchiveObjectWithData:homeData];
     
     if (home == nil) {
+        //No local copy yet. Better grab it from parse.
         home = [[HPHouse alloc] init];
         [[PFUser currentUser] fetch];
         __block PFObject *parseHome = [[PFUser currentUser] objectForKey:@"home"];
@@ -166,6 +168,7 @@
         }
         home.houseName = [parseHome objectForKey:@"name"];
         home.location = [parseHome objectForKey:@"location"];
+        home.addressText = [parseHome objectForKey:@"addressText"];
         
         //convert roommate object into encoded data to store in NSUserdefault
         homeData = [NSKeyedArchiver archivedDataWithRootObject:home];
@@ -175,12 +178,15 @@
     return home;
 }
 
-+(void) saveHouseInBackgroundWithHouse:(HPHouse *)house andBlock:(CentralDataSaveResultBlock)block
++ (void) saveHouseInBackgroundWithHouse:(HPHouse *)house andBlock:(CentralDataSaveResultBlock)block
 {
     dispatch_async( dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
+        HPHouse *oldHouse = [HPCentralData getHouse];
+        HPHouse *newHouse = house;
         __block NSError *error = nil;
         
         //save the new house to parse.
+        [[PFUser currentUser] fetch];
         PFObject *parseHome = [[PFUser currentUser] objectForKey:@"home"];
         if (parseHome == nil)
         {
@@ -196,24 +202,20 @@
             return;
         }
         
-        //Set the new attributes as long as they are not null.
-        if ([house houseName] != nil) {
-            parseHome[@"name"] = [house houseName];
-        }
+        //Set the new attributes as long as they are not null. If they are null we assume keep the old NSUserDefault values.
+        bool parseSave = [HPCentralData transferAttributesFromHouse:house toPFObject:parseHome];
         
-        if ([house location] != nil) {
-            parseHome[@"location"] = [PFGeoPoint geoPointWithLocation:[house location]];
-        }
-        
-        if ([parseHome save] == false) {
+        if (parseSave == false) {
             NSMutableDictionary* details = [NSMutableDictionary dictionary];
             [details setValue:@"save failed" forKey:NSLocalizedDescriptionKey];
             error = [NSError errorWithDomain:@"house" code:200 userInfo:details];
         }
         
+        newHouse = [HPCentralData transferOldhouse:oldHouse toNewHouse:newHouse];
+        
         //if it is successfully saved to parse, replace the hp_home in NSUserDefaults with the new house.
         //convert roommate object into encoded data to store in NSUserdefault
-        NSData *homeData = [NSKeyedArchiver archivedDataWithRootObject:house];
+        NSData *homeData = [NSKeyedArchiver archivedDataWithRootObject:newHouse];
         [persistantStore setObject:homeData forKey:@"hp_home"];
         [persistantStore synchronize];
         
@@ -225,10 +227,12 @@
     });
 }
 
-+(bool) saveHouse:(HPHouse *)house
++ (bool) saveHouse:(HPHouse *)house
 {
     //save the new house to parse.
     PFObject *parseHome = [[PFUser currentUser] objectForKey:@"home"];
+    HPHouse *oldHouse = [HPCentralData getHouse];
+    
     if (parseHome == nil)
     {
         //this should never happen
@@ -236,18 +240,9 @@
         return false;
     }
  
-    //Set the new attributes as long as they are not null.
-    if ([house houseName] != nil) {
-        parseHome[@"name"] = [house houseName];
-    }
-    if ([house location] != nil) {
-        parseHome[@"location"] = [house location];
-    }
-    
-    
-    if ([parseHome save] == false) {
-        return false;
-    }
+    //Set the new attributes as long as they are not null. If they are null we assume keep the old NSUserDefault values.
+    [HPCentralData transferAttributesFromHouse:house toPFObject:parseHome];
+    house = [HPCentralData transferOldhouse:oldHouse toNewHouse:house];
     
     //if it is successfully saved to parse, replace the hp_home in NSUserDefaults with the new house.
     //convert roommate object into encoded data to store in NSUserdefault
@@ -310,6 +305,53 @@
     }
     
     return roommates;
+}
+
+#pragma mark - Helper Methods
+
++ (bool)transferAttributesFromHouse:(HPHouse *)house toPFObject:(PFObject *)parseHome
+{
+    //Set the new attributes as long as they are not null. If they are null we assume keep the old NSUserDefault values.
+    if ([house houseName] != nil) {
+        parseHome[@"name"] = [house houseName];
+    }
+    
+    if ([house location] != nil) {
+        parseHome[@"location"] =  [PFGeoPoint geoPointWithLocation:[house location]];
+    }
+    
+    if ([house addressText] != nil) {
+        parseHome[@"addressText"] = [house addressText];
+    }
+    
+    if ([parseHome save] == false) {
+        return false;
+    }
+    
+    return true;
+}
+
+//This function fills in any blankspaces in the new house with the old houses attributes. This prevents blanks being stored in local storage.
++ (HPHouse *) transferOldhouse:(HPHouse *)oldHouse toNewHouse:(HPHouse *)newHouse
+{
+    //Set the new attributes as long as they are not null. If they are null we assume keep the old NSUserDefault values.
+    if ([newHouse houseName] == nil) {
+        newHouse.houseName = oldHouse.houseName;
+    }
+    
+    if ([newHouse location] == nil) {
+        newHouse.location = oldHouse.location;
+    }
+    
+    if ([newHouse addressText] == nil) {
+        newHouse.addressText = oldHouse.addressText;
+    }
+    
+    if ([newHouse region] == nil) {
+        newHouse.region = oldHouse.region;
+    }
+    
+    return newHouse;
 }
 
 @end

@@ -13,5 +13,9 @@
 
 @property (strong, nonatomic) NSString *houseName;
 @property (strong, nonatomic) CLLocation *location;
+@property (strong, nonatomic) NSString *addressText;
+
+//The region property is not stored on the server. It is only ever stored locally.
+@property (strong, nonatomic) CLRegion *region;
 
 @end
