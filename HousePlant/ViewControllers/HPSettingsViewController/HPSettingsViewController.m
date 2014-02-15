@@ -42,8 +42,8 @@
 - (IBAction)onSetLocationPress:(id)sender {
     HPHouse *house = [[HPHouse alloc] init];
 
-    if (kApplicationDelegate.locationManager == nil) {
-        kApplicationDelegate.locationManager = [[HPLocationManager alloc] initWithDelegate:kApplicationDelegate.mainViewController];
+    if (kApplicationDelegate.hpLocationManager == nil) {
+        [HPLocationManager initHPLocationManagerWithDelegate:kApplicationDelegate.mainViewController];
     }
     
     
@@ -59,7 +59,7 @@
                          CLPlacemark *placeMark = ((CLPlacemark *)[placemarks objectAtIndex:0]);
                          
                          //placeMark.location.coordinate.latitude
-                         [kApplicationDelegate.locationManager setRegionToMonitorWithIdentifier:kHomeLocationIdentifier latitude:placeMark.location.coordinate.latitude longitude:placeMark.location.coordinate.longitude radius:kDefaultHouseRadius];
+                         [HPLocationManager setRegionToMonitorWithIdentifier:kHomeLocationIdentifier latitude:placeMark.location.coordinate.latitude longitude:placeMark.location.coordinate.longitude radius:kDefaultHouseRadius];
                          
                          [house setLocation:placeMark.location];
                          [house setAddressText:addressText];
@@ -81,10 +81,6 @@
                      }
                  }];
     
-
-    
-    
-    
 }
 
 - (IBAction)onBackPress:(id)sender {
@@ -92,12 +88,15 @@
 }
 - (IBAction)onTestLocationPress:(id)sender {
     //Force request for initial state.
-    [HPCentralData getHouseInBackgroundWithBlock:^(HPHouse *house, NSError *error) {
-        //
-        if ([house region] != nil) {
-            [kApplicationDelegate.locationManager.locationManager requestStateForRegion:[house region]];
-        }
-    }];
-
+    NSString *locationErrorString = [HPLocationManager checkLocationServicePermissions];
+    if (locationErrorString != nil) {
+        [CSNotificationView showInViewController:self
+                                           style:CSNotificationViewStyleError
+                                         message:locationErrorString];
+    }
+    else
+    {
+        [HPLocationManager requestStateForCurrentHouseLocation];
+    }
 }
 @end

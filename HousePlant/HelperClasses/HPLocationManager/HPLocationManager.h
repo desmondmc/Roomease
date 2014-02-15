@@ -12,8 +12,13 @@
 
 @property (strong, atomic) CLLocationManager *locationManager;
 
-- (id)initWithDelegate:(id)delegate;
++ (void)initHPLocationManagerWithDelegate:(id)delegate;
 
-- (bool)setRegionToMonitorWithIdentifier:(NSString *)identifier latitude:(CLLocationDegrees)latitude longitude:(CLLocationDegrees)longitude radius:(CLLocationDistance)radius;
++ (bool)setRegionToMonitorWithIdentifier:(NSString *)identifier latitude:(CLLocationDegrees)latitude longitude:(CLLocationDegrees)longitude radius:(CLLocationDistance)radius;
+
++ (void) requestStateForCurrentHouseLocation;
+
+// Checks what permissions the app has for location and returns a error string to display if there are restrictions.
++ (NSString *) checkLocationServicePermissions;
 
 @end

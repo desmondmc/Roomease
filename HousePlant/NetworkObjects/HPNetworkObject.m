@@ -10,5 +10,14 @@
 
 @implementation HPNetworkObject
 
+- (id)initWithCoder:(NSCoder *)aDecoder
+{
+    return self;
+}
+
+- (void)encodeWithCoder:(NSCoder *)aCoder
+{
+
+}
 
 @end

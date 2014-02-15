@@ -40,31 +40,14 @@
     RoommateImageSubview *roommateView = [RoommateImageSubview roommateImageSubview];
     [[self roommateImageSubviewContainer] addSubview:roommateView];
     
-    if (kApplicationDelegate.locationManager == nil) {
-        kApplicationDelegate.locationManager = [[HPLocationManager alloc] initWithDelegate:self];
+    if (kApplicationDelegate.hpLocationManager == nil) {
+        [HPLocationManager initHPLocationManagerWithDelegate:self];
     }
 }
 
 - (void)viewDidAppear:(BOOL)animated
 {
-    //Get house from central data and check if the region attribute is set.
-    [HPCentralData getHouseInBackgroundWithBlock:^(HPHouse *house, NSError *error) {
-        //
-        if ([house location] != nil)
-        {
-            //There is an address. Has region been calculated and stored?
-            if ([house region] == nil) {
-                [kApplicationDelegate.locationManager setRegionToMonitorWithIdentifier:kHomeLocationIdentifier latitude:house.location.coordinate.latitude longitude:house.location.coordinate.longitude radius:kDefaultHouseRadius];
-            }
-            
-            CLRegion *houseRegion = [house getLocalStorageRegion];
-            if (houseRegion != nil)
-            {
-                // Force request for location
-                [kApplicationDelegate.locationManager.locationManager requestStateForRegion:houseRegion];
-            }
-        }
-    }];
+    [HPLocationManager requestStateForCurrentHouseLocation];
 }
 
 - (void) setUpProfilePictures
