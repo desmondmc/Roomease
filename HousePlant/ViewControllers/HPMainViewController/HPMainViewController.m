@@ -85,6 +85,8 @@
     HPStartingViewController *startingViewController = [[HPStartingViewController alloc] init];
     [self presentViewController:startingViewController animated:NO completion:nil];
 }
+
+//THIS METHOD IS USED FOR DEBUGGING SHIT
 - (IBAction)onTestPress:(id)sender {
     [HPCentralData clearCentralData];
     HPHouse *house = [HPCentralData getHouse];
@@ -105,6 +107,8 @@
     
     NSLog(@"House Name: %@", [house houseName]);
 }
+
+
 - (IBAction)onSettingsPress:(id)sender {
     HPSettingsViewController *settingsViewController = [[HPSettingsViewController alloc] init];
     settingsViewController.modalTransitionStyle = UIModalTransitionStyleCoverVertical;
@@ -128,6 +132,7 @@
         if (state == CLRegionStateInside) {
             //User is inside house location
              NSLog(@"User is inside fence...");
+            
         }
         else
         {

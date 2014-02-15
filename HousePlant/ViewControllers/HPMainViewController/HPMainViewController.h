@@ -10,11 +10,9 @@
 #import <CoreLocation/CoreLocation.h>
 
 @interface HPMainViewController : UIViewController <CLLocationManagerDelegate>
-@property (weak, nonatomic) IBOutlet UITextField *addressField;
 @property (weak, nonatomic) IBOutlet UILabel *usernameLabel;
 - (IBAction)onLogoutPress:(id)sender;
 @property (weak, nonatomic) IBOutlet UILabel *houseLabel;
-- (IBAction)onTestPress:(id)sender;
 @property (weak, nonatomic) IBOutlet UIView *roommateImageSubviewContainer;
 - (IBAction)onSettingsPress:(id)sender;
 

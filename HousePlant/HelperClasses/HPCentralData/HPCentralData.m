@@ -104,6 +104,20 @@
     return roommate;
 }
 
++(void) saveCurrentUserInBackgroundWithRoommate:(HPRoommate*)roommate andBlock:(CentralDataRoommateResultBlock)block
+{
+
+}
+
++(bool) saveCurrentUser:(HPRoommate *)roommate
+{
+    //save the new house to parse.
+    PFUser *currentUser = [PFUser currentUser];
+    HPRoommate *oldUser = [HPCentralData getCurrentUser];
+    
+    return true;
+}
+
 //Checks if the home exists in local storage and if it doesn't it pulls it from parse and stores it in local storage.
 +(void) getHouseInBackgroundWithBlock:(CentralDataHouseResultBlock)block
 {
