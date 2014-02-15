@@ -37,6 +37,7 @@
 		F71138911877837D00D9BA9E /* HPJoinHouseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F711388F1877837D00D9BA9E /* HPJoinHouseViewController.m */; };
 		F71138921877837D00D9BA9E /* HPJoinHouseViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F71138901877837D00D9BA9E /* HPJoinHouseViewController.xib */; };
 		F714B82018ABD54C00B598E7 /* HPLocationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = F714B81F18ABD54C00B598E7 /* HPLocationManager.m */; };
+		F714B82A18AFEC9F00B598E7 /* HPUserLocationInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = F714B82918AFEC9F00B598E7 /* HPUserLocationInfo.m */; };
 		F737161E18A9BC1600A5AA4B /* RoommateImageSubview.m in Sources */ = {isa = PBXBuildFile; fileRef = F737161C18A9BC1600A5AA4B /* RoommateImageSubview.m */; };
 		F737161F18A9BC1600A5AA4B /* RoommateImageSubview.xib in Resources */ = {isa = PBXBuildFile; fileRef = F737161D18A9BC1600A5AA4B /* RoommateImageSubview.xib */; };
 		F73A01B418AAFD00000F25B6 /* HPSettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F73A01B218AAFD00000F25B6 /* HPSettingsViewController.m */; };
@@ -112,6 +113,8 @@
 		F71138901877837D00D9BA9E /* HPJoinHouseViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = HPJoinHouseViewController.xib; path = ViewControllers/HPJoinHouseViewController/HPJoinHouseViewController.xib; sourceTree = "<group>"; };
 		F714B81E18ABD54C00B598E7 /* HPLocationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HPLocationManager.h; path = HelperClasses/HPLocationManager/HPLocationManager.h; sourceTree = "<group>"; };
 		F714B81F18ABD54C00B598E7 /* HPLocationManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HPLocationManager.m; path = HelperClasses/HPLocationManager/HPLocationManager.m; sourceTree = "<group>"; };
+		F714B82818AFEC9F00B598E7 /* HPUserLocationInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HPUserLocationInfo.h; path = HelperClasses/HPUserLocationInfo/HPUserLocationInfo.h; sourceTree = "<group>"; };
+		F714B82918AFEC9F00B598E7 /* HPUserLocationInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HPUserLocationInfo.m; path = HelperClasses/HPUserLocationInfo/HPUserLocationInfo.m; sourceTree = "<group>"; };
 		F737161B18A9BC1600A5AA4B /* RoommateImageSubview.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RoommateImageSubview.h; sourceTree = "<group>"; };
 		F737161C18A9BC1600A5AA4B /* RoommateImageSubview.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RoommateImageSubview.m; sourceTree = "<group>"; };
 		F737161D18A9BC1600A5AA4B /* RoommateImageSubview.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RoommateImageSubview.xib; sourceTree = "<group>"; };
@@ -208,6 +211,7 @@
 		F710E5FB187862BE00BD9D54 /* HelperClasses */ = {
 			isa = PBXGroup;
 			children = (
+				F714B82718AFEC5E00B598E7 /* HPUserLocationInfo */,
 				F714B82118ABD55100B598E7 /* HPLocationManager */,
 				F710E608187F775900BD9D54 /* HPCentralData */,
 				F710E5FC187862DE00BD9D54 /* HPLoginRouter */,
@@ -317,6 +321,15 @@
 				F714B81F18ABD54C00B598E7 /* HPLocationManager.m */,
 			);
 			name = HPLocationManager;
+			sourceTree = "<group>";
+		};
+		F714B82718AFEC5E00B598E7 /* HPUserLocationInfo */ = {
+			isa = PBXGroup;
+			children = (
+				F714B82818AFEC9F00B598E7 /* HPUserLocationInfo.h */,
+				F714B82918AFEC9F00B598E7 /* HPUserLocationInfo.m */,
+			);
+			name = HPUserLocationInfo;
 			sourceTree = "<group>";
 		};
 		F737161818A9BAB500A5AA4B /* RoommateImageSubview */ = {
@@ -674,6 +687,7 @@
 				F76F513B189869B100A202A6 /* HPRoommate.m in Sources */,
 				F71138911877837D00D9BA9E /* HPJoinHouseViewController.m in Sources */,
 				F710E6041879213800BD9D54 /* main.js in Sources */,
+				F714B82A18AFEC9F00B598E7 /* HPUserLocationInfo.m in Sources */,
 				F78D4854185AC0E2000A79BC /* HPHouse.m in Sources */,
 				F7A1222818522A4100E51B06 /* main.m in Sources */,
 			);

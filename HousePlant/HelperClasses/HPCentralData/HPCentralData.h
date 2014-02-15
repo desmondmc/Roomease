@@ -19,7 +19,7 @@
 
 +(void) getCurrentUserInBackgroundWithBlock:(CentralDataRoommateResultBlock)block;
 +(HPRoommate *) getCurrentUser;
-+(void) saveCurrentUserInBackgroundWithRoommate:(HPRoommate*)roommate andBlock:(CentralDataRoommateResultBlock)block;
++(void) saveCurrentUserInBackgroundWithRoommate:(HPRoommate*)roommate andBlock:(CentralDataSaveResultBlock)block;
 +(bool) saveCurrentUser:(HPRoommate *)roommate;
 
 +(void) getHouseInBackgroundWithBlock:(CentralDataHouseResultBlock)block;

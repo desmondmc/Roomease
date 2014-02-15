@@ -26,3 +26,4 @@
 #import "HPCentralData.h"
 #import "HPLocationManager.h"
 #import "HPAppDelegate.h"
+#import "HPUserLocationInfo.h"

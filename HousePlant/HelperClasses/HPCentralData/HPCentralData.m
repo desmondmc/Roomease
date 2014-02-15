@@ -53,7 +53,7 @@
             roommate = [[HPRoommate alloc] init];
             [[PFUser currentUser] fetch];
             roommate.username = [[PFUser currentUser] username];
-            roommate.atHome = [[PFUser currentUser][@"atHome"] boolValue];
+            [roommate locationInfo].atHome = [[PFUser currentUser][@"atHome"] boolValue];
         
             PFFile *userImageFile = [[PFUser currentUser] objectForKey:@"profilePic"];
             roommate.profilePic = [UIImage imageWithData:[userImageFile getData]];
@@ -89,7 +89,7 @@
         roommate = [[HPRoommate alloc] init];
         [[PFUser currentUser] fetch];
         roommate.username = [[PFUser currentUser] username];
-        roommate.atHome = [[PFUser currentUser][@"atHome"] boolValue];
+        [roommate locationInfo].atHome = [[PFUser currentUser][@"atHome"] boolValue];
        
         PFFile *userImageFile = [[PFUser currentUser] objectForKey:@"profilePic"];
         roommate.profilePic = [UIImage imageWithData:[userImageFile getData]];
@@ -104,16 +104,36 @@
     return roommate;
 }
 
-+(void) saveCurrentUserInBackgroundWithRoommate:(HPRoommate*)roommate andBlock:(CentralDataRoommateResultBlock)block
++(void) saveCurrentUserInBackgroundWithRoommate:(HPRoommate*)roommate andBlock:(CentralDataSaveResultBlock)block
 {
-
+    dispatch_async( dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
+        NSError *error;
+        if (![HPCentralData saveCurrentUser:roommate])
+        {
+            NSMutableDictionary* details = [NSMutableDictionary dictionary];
+            [details setValue:@"save failed" forKey:NSLocalizedDescriptionKey];
+            error = [NSError errorWithDomain:@"house" code:100 userInfo:details];
+        }
+        dispatch_async(dispatch_get_main_queue(), ^{
+            if (block)
+                block(error);
+        });
+    });
 }
 
 +(bool) saveCurrentUser:(HPRoommate *)roommate
 {
-    //save the new house to parse.
+    //save the new user to parse.
     PFUser *currentUser = [PFUser currentUser];
     HPRoommate *oldUser = [HPCentralData getCurrentUser];
+    
+    [HPCentralData transferAttributesFromUser:roommate toPFObject:currentUser];
+    
+    roommate = [HPCentralData transferOldRoommate:oldUser toNewHouse:roommate];
+    
+    NSData *userData = [NSKeyedArchiver archivedDataWithRootObject:roommate];
+    [persistantStore setObject:userData forKey:@"hp_currentUser"];
+    [persistantStore synchronize];
     
     return true;
 }
@@ -311,7 +331,7 @@
             [pfRoommate fetch];
             HPRoommate * roommate = [[HPRoommate alloc] init];
             roommate.username = pfRoommate[@"username"];
-            roommate.atHome = [pfRoommate[@"atHome"] boolValue];
+            [roommate locationInfo].atHome = [pfRoommate[@"atHome"] boolValue];
             
             PFFile *userImageFile = [pfRoommate objectForKey:@"profilePic"];
             roommate.profilePic = [UIImage imageWithData:[userImageFile getData]];
@@ -330,7 +350,7 @@
     return roommates;
 }
 
-#pragma mark - Helper Methods
+#pragma mark - House Helper Methods
 
 + (bool)transferAttributesFromHouse:(HPHouse *)house toPFObject:(PFObject *)parseHome
 {
@@ -375,6 +395,59 @@
     }
     
     return newHouse;
+}
+
+#pragma mark - CurrentUser Helper Methods
+
++ (bool)transferAttributesFromUser:(HPRoommate *)roommate toPFObject:(PFObject *)parseUser
+{
+    //Set the new attributes as long as they are not null. If they are null we assume keep the old NSUserDefault values.
+    if ([roommate username] != nil) {
+       parseUser[@"username"] = roommate.username;
+    }
+    
+    if ([roommate profilePic] != nil) {
+        NSData *imageData = UIImagePNGRepresentation(roommate.profilePic);
+        PFFile *imageFile = [PFFile fileWithName:@"profile_pic.jpg" data:imageData];
+        parseUser[@"profilePic"] = imageFile;
+    }
+    
+    if ([roommate locationInfo] != nil) {
+        if ([[roommate locationInfo] atHome]) {
+            parseUser[@"atHome"] = @YES;
+        }
+        else {
+            parseUser[@"atHome"] = @NO;
+        }
+        
+    }
+    
+    if ([parseUser save] == false) {
+        return false;
+    }
+    
+
+    
+    return true;
+}
+
+//This function fills in any blankspaces in the new house with the old houses attributes. This prevents blanks being stored in local storage.
++ (HPRoommate *) transferOldRoommate:(HPRoommate *)oldRoommate toNewHouse:(HPRoommate *)newRoommate
+{
+    //Set the new attributes as long as they are not null. If they are null we assume keep the old NSUserDefault values.
+    if ([newRoommate username] == nil) {
+        newRoommate.username = oldRoommate.username;
+    }
+    
+    if ([newRoommate profilePic] == nil) {
+        newRoommate.profilePic = oldRoommate.profilePic;
+    }
+    
+    if ([newRoommate locationInfo] == nil) {
+        newRoommate.locationInfo = oldRoommate.locationInfo;
+    }
+
+    return newRoommate;
 }
 
 @end

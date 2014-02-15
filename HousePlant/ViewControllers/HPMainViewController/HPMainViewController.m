@@ -131,13 +131,18 @@
     if ([region.identifier isEqualToString:kHomeLocationIdentifier]) {
         if (state == CLRegionStateInside) {
             //User is inside house location
-             NSLog(@"User is inside fence...");
-            
+            NSLog(@"User is inside fence...");
+            HPRoommate *roommate = [[HPRoommate alloc] init];
+            [roommate setLocationInfo:[[HPUserLocationInfo alloc] initWithAtHome:true]];
+            [HPCentralData saveCurrentUserInBackgroundWithRoommate:roommate andBlock:nil];
         }
         else
         {
             //User is outside location or inside
             NSLog(@"User is outside fence...");
+            HPRoommate *roommate = [[HPRoommate alloc] init];
+            [roommate setLocationInfo:[[HPUserLocationInfo alloc] initWithAtHome:false]];
+            [HPCentralData saveCurrentUserInBackgroundWithRoommate:roommate andBlock:nil];
         }
     }
     else
