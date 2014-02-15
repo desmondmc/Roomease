@@ -47,4 +47,11 @@
     [persistantStore synchronize];
 }
 
+-(CLRegion *) getLocalStorageRegion
+{
+    NSData *homeData = [persistantStore objectForKey:@"hp_home"];
+    HPHouse *home =  [NSKeyedUnarchiver unarchiveObjectWithData:homeData];
+    return [home region];
+}
+
 @end

@@ -92,6 +92,12 @@
 }
 - (IBAction)onTestLocationPress:(id)sender {
     //Force request for initial state.
-    [kApplicationDelegate.locationManager.locationManager requestStateForRegion:kApplicationDelegate.locationManager.region];
+    [HPCentralData getHouseInBackgroundWithBlock:^(HPHouse *house, NSError *error) {
+        //
+        if ([house region] != nil) {
+            [kApplicationDelegate.locationManager.locationManager requestStateForRegion:[house region]];
+        }
+    }];
+
 }
 @end

@@ -50,9 +50,10 @@
     
     
     [[[HPHouse alloc] init] setLocalStorageRegion:region];
-    _region = region;
     
     return true;
 }
+
+
 
 @end
