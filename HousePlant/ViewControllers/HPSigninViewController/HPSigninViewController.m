@@ -83,7 +83,6 @@
 - (IBAction)onSigninPress:(id)sender {
     [_activityIndicator setHidden:false];
     [self loginUser];
-    [_activityIndicator setHidden:true];
 }
 
 - (void) loginUser
@@ -102,6 +101,7 @@
     }
     [PFUser logInWithUsernameInBackground:_usernameTextField.text password:_passwordTextField.text
                                     block:^(PFUser *user, NSError *error) {
+                                        [_activityIndicator setHidden:true];
                                         if (user) {
                                             // Do stuff after successful login.
                                             UIViewController *viewController = [HPLoginRouter getFirstViewToLoadForUser];
