@@ -21,10 +21,16 @@
                     <color key="textColor" red="0.2941176593" green="0.7019608021" blue="0.98431378599999997" alpha="1" colorSpace="deviceRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
+                <view hidden="YES" alpha="0.74999999999999978" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="qnC-mu-ybU" userLabel="AtHomeTint">
+                    <rect key="frame" x="11" y="1" width="59" height="59"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                </view>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <connections>
+                <outlet property="atHomeTint" destination="qnC-mu-ybU" id="9jZ-fO-tAk"/>
                 <outlet property="nameLabel" destination="7hW-Bm-ypJ" id="g8s-XT-GA7"/>
                 <outlet property="profilePic" destination="EEN-w6-NrI" id="W61-5F-mgn"/>
             </connections>

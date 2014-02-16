@@ -17,7 +17,12 @@
     
     //subView.profilePic = roommate.profilePic;
     subView.nameLabel.text = roommate.username;
-    
+    if ([roommate locationInfo]) {
+        if (![[roommate locationInfo] atHome]) {
+            [subView.atHomeTint setHidden:false];
+        }
+    }
+
     // make sure RoommateImageSubview is not nil or the wrong class!
     
     if ([subView isKindOfClass:[SingleRoommateSubview class]])

@@ -331,7 +331,7 @@
             [pfRoommate fetch];
             HPRoommate * roommate = [[HPRoommate alloc] init];
             roommate.username = pfRoommate[@"username"];
-            [roommate locationInfo].atHome = [pfRoommate[@"atHome"] boolValue];
+            [roommate setLocationInfo:[[HPUserLocationInfo alloc]initWithAtHome:[pfRoommate[@"atHome"] boolValue]]];
             
             PFFile *userImageFile = [pfRoommate objectForKey:@"profilePic"];
             roommate.profilePic = [UIImage imageWithData:[userImageFile getData]];

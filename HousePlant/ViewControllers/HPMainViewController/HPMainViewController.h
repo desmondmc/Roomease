@@ -15,5 +15,6 @@
 @property (weak, nonatomic) IBOutlet UILabel *houseLabel;
 @property (weak, nonatomic) IBOutlet UIView *roommateImageSubviewContainer;
 - (IBAction)onSettingsPress:(id)sender;
+- (IBAction)onRefreshRmPress:(id)sender;
 
 @end

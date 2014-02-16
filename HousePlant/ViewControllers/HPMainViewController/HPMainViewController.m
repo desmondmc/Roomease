@@ -19,7 +19,7 @@
 
 @implementation HPMainViewController
 {
-    NSDictionary *imageForPFUser;
+    RoommateImageSubview *roommateView;
 }
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -37,7 +37,7 @@
     // Store a reference to the mainViewController in appdel
     kApplicationDelegate.mainViewController = self;
     
-    RoommateImageSubview *roommateView = [RoommateImageSubview roommateImageSubview];
+    roommateView = [RoommateImageSubview roommateImageSubview];
     [[self roommateImageSubviewContainer] addSubview:roommateView];
     
     if (kApplicationDelegate.hpLocationManager == nil) {
@@ -115,6 +115,15 @@
     
     // initialize the navigation controller and present it
     [self presentViewController:settingsViewController animated:YES completion:nil];
+}
+
+- (IBAction)onRefreshRmPress:(id)sender {
+    [HPCentralData clearCentralData];
+    for (UIView *view in [[self roommateImageSubviewContainer]subviews]) {
+        [view removeFromSuperview];
+    }
+    roommateView = [RoommateImageSubview roommateImageSubview];
+    [[self roommateImageSubviewContainer] addSubview:roommateView];
 }
 
 #pragma mark - CLLocationManagerDelegate
