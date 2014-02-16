@@ -89,23 +89,23 @@
 //THIS METHOD IS USED FOR DEBUGGING SHIT
 - (IBAction)onTestPress:(id)sender {
     [HPCentralData clearCentralData];
-    HPHouse *house = [HPCentralData getHouse];
-    
-    NSLog(@"House Name: %@", [house houseName]);
-    
-    [house setHouseName:@"New Name"];
-    
-    [HPCentralData saveHouse:house];
-    
-    [HPCentralData clearCentralData];
-    
-    house = [HPCentralData getHouse];
-    
-    NSLog(@"House Name: %@", [house houseName]);
-    
-    house = [HPCentralData getHouse];
-    
-    NSLog(@"House Name: %@", [house houseName]);
+//    HPHouse *house = [HPCentralData getHouse];
+//    
+//    NSLog(@"House Name: %@", [house houseName]);
+//    
+//    [house setHouseName:@"New Name"];
+//    
+//    [HPCentralData saveHouse:house];
+//    
+//    [HPCentralData clearCentralData];
+//    
+//    house = [HPCentralData getHouse];
+//    
+//    NSLog(@"House Name: %@", [house houseName]);
+//    
+//    house = [HPCentralData getHouse];
+//    
+//    NSLog(@"House Name: %@", [house houseName]);
 }
 
 
@@ -149,7 +149,6 @@
     {
         NSLog(@"Unknown region request...");
     }
-
 }
 
 @end
