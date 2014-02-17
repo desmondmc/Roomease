@@ -8,8 +8,9 @@
 
 #import <UIKit/UIKit.h>
 #import "AMPAvatarView.h"
+#import "MBProgressHUD.h"
 
-@interface HPSignupViewController : UIViewController <UITextFieldDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate>
+@interface HPSignupViewController : UIViewController <UITextFieldDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, MBProgressHUDDelegate>
 @property (weak, nonatomic) IBOutlet UITextField *usernameTextField;
 @property (weak, nonatomic) IBOutlet UITextField *passwordTextField;
 

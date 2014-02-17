@@ -9,6 +9,7 @@
 #import "HPSignupViewController.h"
 #import "HPLoginRouter.h"
 
+
 @interface HPSignupViewController ()
 
 @end
@@ -17,6 +18,7 @@
 {
     NSData *imageData;
     AMPAvatarView *avatar2;
+    MBProgressHUD *hud;
 }
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -145,20 +147,32 @@
 }
 
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info {
-    [[UIApplication sharedApplication] setStatusBarHidden:NO];
-    UIImage *chosenImage = info[UIImagePickerControllerEditedImage];
+
+    hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    hud.delegate = self;
+    hud.labelText = @"Loading\nPlease Wait";
+    dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, 0.05 * NSEC_PER_SEC);
+    dispatch_after(popTime, dispatch_get_main_queue(), ^(void)
+                   {
+                       [[UIApplication sharedApplication] setStatusBarHidden:NO];
+                       UIImage *chosenImage = info[UIImagePickerControllerEditedImage];
+                       
+                       avatar2.image = chosenImage;
+                       
+                       [avatar2 setBorderWith:1.0];
+                       [avatar2 setShadowRadius:0.0];
+                       [avatar2 setBorderColor:kLightBlueColour];
+                       _setProfilePicImage.image = chosenImage;
+                       
+                       imageData = UIImageJPEGRepresentation(chosenImage, 1.0f);
+                       
+                       [avatar2 setHidden:NO];
+                       [MBProgressHUD hideHUDForView:self.view animated:YES];
+                   });
     
-    avatar2.image = chosenImage;
-    
-    [avatar2 setBorderWith:1.0];
-    [avatar2 setShadowRadius:0.0];
-    [avatar2 setBorderColor:kLightBlueColour];
-    _setProfilePicImage.image = chosenImage;
-    
-    imageData = UIImageJPEGRepresentation(chosenImage, 1.0f);
-    
-    [avatar2 setHidden:NO];
     [picker dismissViewControllerAnimated:YES completion:NULL];
+    
+
     
 }
 
