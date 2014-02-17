@@ -157,6 +157,11 @@ typedef void (^BackgroundTaskResultBlock)(NSString *errorString);
         return @"Password does not match this house.";
     }
     
+#warning this should be fixed.
+    if ([[house objectForKey:@"users"] count] >= 4) {
+        return @"Sorry this house is full. Only 4 people per house.";
+    }
+    
     [house addObject:[PFUser currentUser] forKey:@"users"];
     
     if(![house save])

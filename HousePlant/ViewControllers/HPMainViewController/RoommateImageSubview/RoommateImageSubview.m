@@ -38,36 +38,61 @@
     int roommatesCount = [roommates count];
     SingleRoommateSubview *singleRoommateView;
     
-    if (roommatesCount >= 1)
+    if (roommatesCount == 1)
+    {
+        //do stuff
+        singleRoommateView = [SingleRoommateSubview initSingleRoommateSubviewWithRoommate:[roommates objectAtIndex:0]];
+        singleRoommateView.frame = CGRectMake(120, 0, singleRoommateView.frame.size.width, singleRoommateView.frame.size.height);
+        [subView addSubview:singleRoommateView];
+    }
+    else if (roommatesCount == 2)
+    {
+        //do stuff
+        singleRoommateView = [SingleRoommateSubview initSingleRoommateSubviewWithRoommate:[roommates objectAtIndex:0]];
+        singleRoommateView.frame = CGRectMake(67, 0, singleRoommateView.frame.size.width, singleRoommateView.frame.size.height);
+        [subView addSubview:singleRoommateView];
+        
+        singleRoommateView = [SingleRoommateSubview initSingleRoommateSubviewWithRoommate:[roommates objectAtIndex:1]];
+        singleRoommateView.frame = CGRectMake(174, 0, singleRoommateView.frame.size.width, singleRoommateView.frame.size.height);
+        [subView addSubview:singleRoommateView];
+        
+    }
+    else if (roommatesCount == 3)
+    {
+        //do stuff
+        singleRoommateView = [SingleRoommateSubview initSingleRoommateSubviewWithRoommate:[roommates objectAtIndex:0]];
+        singleRoommateView.frame = CGRectMake(40, 0, singleRoommateView.frame.size.width, singleRoommateView.frame.size.height);
+        [subView addSubview:singleRoommateView];
+        
+        singleRoommateView = [SingleRoommateSubview initSingleRoommateSubviewWithRoommate:[roommates objectAtIndex:1]];
+        singleRoommateView.frame = CGRectMake(120, 0, singleRoommateView.frame.size.width, singleRoommateView.frame.size.height);
+        [subView addSubview:singleRoommateView];
+        
+        singleRoommateView = [SingleRoommateSubview initSingleRoommateSubviewWithRoommate:[roommates objectAtIndex:2]];
+        singleRoommateView.frame = CGRectMake(200, 0, singleRoommateView.frame.size.width, singleRoommateView.frame.size.height);
+        [subView addSubview:singleRoommateView];
+    }
+    else if (roommatesCount == 4)
     {
         //do stuff
         singleRoommateView = [SingleRoommateSubview initSingleRoommateSubviewWithRoommate:[roommates objectAtIndex:0]];
         singleRoommateView.frame = CGRectMake(0, 0, singleRoommateView.frame.size.width, singleRoommateView.frame.size.height);
         [subView addSubview:singleRoommateView];
-    }
-    
-    if (roommatesCount >= 2)
-    {
+        
         singleRoommateView = [SingleRoommateSubview initSingleRoommateSubviewWithRoommate:[roommates objectAtIndex:1]];
         singleRoommateView.frame = CGRectMake(80, 0, singleRoommateView.frame.size.width, singleRoommateView.frame.size.height);
         [subView addSubview:singleRoommateView];
-    }
-    
-    if (roommatesCount >= 3)
-    {
+        
         singleRoommateView = [SingleRoommateSubview initSingleRoommateSubviewWithRoommate:[roommates objectAtIndex:2]];
         singleRoommateView.frame = CGRectMake(160, 0, singleRoommateView.frame.size.width, singleRoommateView.frame.size.height);
         [subView addSubview:singleRoommateView];
-    }
-    
-    if (roommatesCount >= 4)
-    {
+        
         singleRoommateView = [SingleRoommateSubview initSingleRoommateSubviewWithRoommate:[roommates objectAtIndex:3]];
         singleRoommateView.frame = CGRectMake(240, 0, singleRoommateView.frame.size.width, singleRoommateView.frame.size.height);
         [subView addSubview:singleRoommateView];
     }
     
-    if (roommatesCount > 4) {
+    else {
         NSLog(@"House has more than 4 roommates. This is currently not supported.");
     }
 }
