@@ -56,7 +56,10 @@
 }
 
 - (IBAction)onBackPress:(id)sender {
-    [PFUser logOut];
+    [[PFUser currentUser] deleteInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+        [PFUser logOut];
+    }];
+    
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 @end
