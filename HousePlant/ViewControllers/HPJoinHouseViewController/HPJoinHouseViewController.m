@@ -8,6 +8,9 @@
 
 #import "HPJoinHouseViewController.h"
 #import "HPMainViewController.h"
+#import "HPNewHouseSetup.h"
+
+typedef void (^BackgroundTaskResultBlock)(NSString *errorString);
 
 @interface HPJoinHouseViewController ()
 
@@ -28,6 +31,11 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
+}
+
+- (void) viewDidAppear:(BOOL)animated
+{
+    [_houseNameTextField becomeFirstResponder];
 }
 
 - (void)didReceiveMemoryWarning
@@ -83,27 +91,42 @@
 
 - (IBAction)onMoveInButtonPress:(id)sender {
     [_activityIndicator setHidden:false];
-    [self joinUserToHouse];
-    [_activityIndicator setHidden:true];
+    [self joinUserToHouseInBackgroundWithBlock:^(NSString *errorString) {
+        //
+        [_activityIndicator setHidden:true];
+        if (errorString) {
+            [CSNotificationView showInViewController:self
+                                               style:CSNotificationViewStyleError
+                                             message:errorString];
+            return;
+        }
+        HPMainViewController *mainViewController = [[HPMainViewController alloc] init];
+        mainViewController.modalTransitionStyle = UIModalTransitionStyleCoverVertical;
+        
+        // initialize the navigation controller and present it
+        [self presentViewController:mainViewController animated:YES completion:nil];
+    }];
+    
 }
 
-- (void) joinUserToHouse
+- (void) joinUserToHouseInBackgroundWithBlock:(BackgroundTaskResultBlock)block
 {
-    NSString *errorString = [self validateUserInputs];
+    dispatch_async( dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
+        NSString *errorString = [self validateUserInputs];
+        
+        if (!errorString) {
+            [HPNewHouseSetup setup];
+        }
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            if (block)
+                block(errorString);
+            
+        });
     
-    if (errorString) {
-        [CSNotificationView showInViewController:self
-                                           style:CSNotificationViewStyleError
-                                         message:errorString];
-        return;
-    }
-    
-    //load the main view.
-    HPMainViewController *mainViewController = [[HPMainViewController alloc] init];
-    mainViewController.modalTransitionStyle = UIModalTransitionStyleCoverVertical;
-    
-    // initialize the navigation controller and present it
-    [self presentViewController:mainViewController animated:YES completion:nil];
+    });
+
+
 }
 
 - (NSString *) validateUserInputs

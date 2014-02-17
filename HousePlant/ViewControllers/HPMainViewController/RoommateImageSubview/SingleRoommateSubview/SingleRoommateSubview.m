@@ -8,6 +8,8 @@
 
 #import "SingleRoommateSubview.h"
 
+#import <AMPAvatarView/AMPAvatarView.h>
+
 @implementation SingleRoommateSubview
 
 + (id)initSingleRoommateSubviewWithRoommate:(HPRoommate *)roommate
@@ -15,11 +17,31 @@
     SingleRoommateSubview *subView = [[[NSBundle mainBundle] loadNibNamed:@"SingleRoommateSubview" owner:nil options:nil] lastObject];
     
     
-    //subView.profilePic = roommate.profilePic;
+    if (roommate.profilePic) {
+        AMPAvatarView *avatar2 = [[AMPAvatarView alloc] initWithFrame:CGRectMake(11, 1, 59, 59)];
+        [subView addSubview:avatar2];
+        avatar2.image = roommate.profilePic;
+        
+        [avatar2 setBorderWith:1.0];
+        [avatar2 setShadowRadius:0.0];
+        [avatar2 setBorderColor:kLightBlueColour];
+        
+        [subView.profilePic setHidden:YES];
+    }
+    else
+    {
+        [subView.profilePic setHidden:NO];
+    }
+    
+    
     subView.nameLabel.text = roommate.username;
     if ([roommate locationInfo]) {
         if (![[roommate locationInfo] atHome]) {
             [subView.atHomeTint setHidden:false];
+        }
+        else
+        {
+            [subView.atHomeTint setHidden:true];
         }
     }
 

@@ -8,6 +8,9 @@
 
 #import "HPCreateHouseViewController.h"
 #import "HPMainViewController.h"
+#import "HPNewHouseSetup.h"
+
+typedef void (^BackgroundTaskResultBlock)(NSString *errorString);
 
 @interface HPCreateHouseViewController ()
 
@@ -28,6 +31,11 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
+}
+
+- (void) viewDidAppear:(BOOL)animated
+{
+    [_houseNameField becomeFirstResponder];
 }
 
 - (void)didReceiveMemoryWarning
@@ -113,52 +121,69 @@
 
 - (IBAction)onMoveInPress:(id)sender {
     [_activityIndicator setHidden:false];
-    [self createHouseAndMoveInUser];
-    [_activityIndicator setHidden:true];
+    [self createHouseAndMoveInUserInBackgroundWithBlock:^(NSString *errorString) {
+        //
+        [_activityIndicator setHidden:true];
+        if (errorString)
+        {
+            [CSNotificationView showInViewController:self
+                                               style:CSNotificationViewStyleError
+                                             message:errorString];
+            return;
+        }
+        
+        //load the main view.
+        HPMainViewController *mainViewController = [[HPMainViewController alloc] init];
+        mainViewController.modalTransitionStyle = UIModalTransitionStyleCoverVertical;
+        
+        // initialize the navigation controller and present it
+        [self presentViewController:mainViewController animated:YES completion:nil];
+    }];
+
 }
 
-- (void) createHouseAndMoveInUser
+- (void) createHouseAndMoveInUserInBackgroundWithBlock:(BackgroundTaskResultBlock)block
 {
-    //Check if House and password are valid
-    NSString *validateString = [self validateUsernameAndPasswordSubmission];
-    
-    if (validateString) {
-        [CSNotificationView showInViewController:self
-                                           style:CSNotificationViewStyleError
-                                         message:validateString];
-        return;
-    }
-    
-    //Create house parse object
-    PFObject *newHouse = [PFObject objectWithClassName:@"House"];
-    
-    //Add password and houseName to house.
-    newHouse[@"name"] = _houseNameField.text;
-    newHouse[@"password"] = _passwordField.text;
-    
-    //Add current user to the house.
-    [newHouse addUniqueObjectsFromArray:@[[PFUser currentUser]] forKey:@"users"];
-    
-    //[PFCloud callFunction:@"saveNewHouse" withParameters:@{@"user": [PFUser currentUser], @"house": newHouse}];
-    
-    if(![newHouse save])
-    {
-        [CSNotificationView showInViewController:self
-                                           style:CSNotificationViewStyleError
-                                         message:@"There was an error building you house. Please try again."];
-        return;
-    }
-    
-    [HPCentralData getCurrentUser];
-    
-    //[HPCentralData getHouse] will return null because the users house hasn't been set yet in parse.
-    [HPCentralData getHouse];
-    //load the main view.
-    HPMainViewController *mainViewController = [[HPMainViewController alloc] init];
-    mainViewController.modalTransitionStyle = UIModalTransitionStyleCoverVertical;
-    
-    // initialize the navigation controller and present it
-    [self presentViewController:mainViewController animated:YES completion:nil];
+    dispatch_async( dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
+        //Check if House and password are valid
+        NSString *errorString = [self validateUsernameAndPasswordSubmission];
+        
+        if (!errorString)
+        {
+            //Create house parse object
+            PFObject *newHouse = [PFObject objectWithClassName:@"House"];
+            
+            //Add password and houseName to house.
+            newHouse[@"name"] = _houseNameField.text;
+            newHouse[@"password"] = _passwordField.text;
+            
+            //Add current user to the house.
+            [newHouse addUniqueObjectsFromArray:@[[PFUser currentUser]] forKey:@"users"];
+            
+            //[PFCloud callFunction:@"saveNewHouse" withParameters:@{@"user": [PFUser currentUser], @"house": newHouse}];
+            if(![newHouse save])
+            {
+                errorString = @"There was an error building you house. Please try again.";
+            }
+            
+            if(!errorString)
+            {
+                [HPCentralData getCurrentUser];
+                
+                //[HPCentralData getHouse] will return null because the users house hasn't been set yet in parse.
+                [HPCentralData getHouse];
+                
+                [HPNewHouseSetup setup];
+            }
+        }
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            if (block)
+                block(errorString);
+            
+        });
+    });
+
 }
 
 - (NSString *) validateUsernameAndPasswordSubmission

@@ -60,7 +60,7 @@
     //Get house from central data and check if the region attribute is set.
     [HPCentralData getHouseInBackgroundWithBlock:^(HPHouse *house, NSError *error) {
         //
-        if ([house location] != nil)
+        if ([house addressText] != nil)
         {
             //There is an address. Has region been calculated and stored?
             if ([house region] == nil) {

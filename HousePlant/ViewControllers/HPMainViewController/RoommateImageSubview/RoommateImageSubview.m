@@ -15,16 +15,6 @@
 {
     RoommateImageSubview *subView = [[[NSBundle mainBundle] loadNibNamed:@"RoommateImageSubview" owner:nil options:nil] lastObject];
     
-
-
-    [[subView rm1Label] setHidden:true];
-    [[subView rm1Image] setHidden:true];
-    [[subView rm2Label] setHidden:true];
-    [[subView rm2Image] setHidden:true];
-    [[subView rm3Label] setHidden:true];
-    [[subView rm3Image] setHidden:true];
-    [[subView rm4Label] setHidden:true];
-    [[subView rm4Image] setHidden:true];
     [[subView loadingRoommatesSpinner] setHidden:false];
     
 #warning This should be done in the background.
@@ -80,18 +70,6 @@
     if (roommatesCount > 4) {
         NSLog(@"House has more than 4 roommates. This is currently not supported.");
     }
-}
-
-+(int)getFrameOffsetWithNumberOfUsers:(int)numberOfUsers
-{
-    if (numberOfUsers > 4)
-    {
-#warning we don't support more than 4 users yet.
-        return 0;
-    }
-    CGFloat width = [UIScreen mainScreen].bounds.size.width;
-    
-    return width/(numberOfUsers + 1);
 }
 
 @end

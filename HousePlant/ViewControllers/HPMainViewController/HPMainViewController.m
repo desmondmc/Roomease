@@ -34,6 +34,9 @@
 {
     [super viewDidLoad];
     
+#warning this is only done for debugging purposes. Should be removed.
+    [HPCentralData clearCentralData];
+    
     // Store a reference to the mainViewController in appdel
     kApplicationDelegate.mainViewController = self;
     

@@ -331,7 +331,11 @@
             [pfRoommate fetch];
             HPRoommate * roommate = [[HPRoommate alloc] init];
             roommate.username = pfRoommate[@"username"];
-            [roommate setLocationInfo:[[HPUserLocationInfo alloc]initWithAtHome:[pfRoommate[@"atHome"] boolValue]]];
+            
+            //need to check is "atHome" is nil because the boolValue is false on nil objects.
+            if (pfRoommate[@"atHome"] != nil) {
+                [roommate setLocationInfo:[[HPUserLocationInfo alloc]initWithAtHome:[pfRoommate[@"atHome"] boolValue]]];
+            }
             
             PFFile *userImageFile = [pfRoommate objectForKey:@"profilePic"];
             roommate.profilePic = [UIImage imageWithData:[userImageFile getData]];

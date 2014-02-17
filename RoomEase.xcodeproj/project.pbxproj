@@ -42,6 +42,7 @@
 		F714B83318B1387800B598E7 /* RoommateImageSubview.xib in Resources */ = {isa = PBXBuildFile; fileRef = F714B83118B1387800B598E7 /* RoommateImageSubview.xib */; };
 		F714B83C18B13BC200B598E7 /* SingleRoommateSubview.m in Sources */ = {isa = PBXBuildFile; fileRef = F714B83A18B13BC200B598E7 /* SingleRoommateSubview.m */; };
 		F714B83D18B13BC200B598E7 /* SingleRoommateSubview.xib in Resources */ = {isa = PBXBuildFile; fileRef = F714B83B18B13BC200B598E7 /* SingleRoommateSubview.xib */; };
+		F714B84118B167B700B598E7 /* HPNewHouseSetup.m in Sources */ = {isa = PBXBuildFile; fileRef = F714B84018B167B700B598E7 /* HPNewHouseSetup.m */; };
 		F73A01B418AAFD00000F25B6 /* HPSettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F73A01B218AAFD00000F25B6 /* HPSettingsViewController.m */; };
 		F73A01B518AAFD00000F25B6 /* HPSettingsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F73A01B318AAFD00000F25B6 /* HPSettingsViewController.xib */; };
 		F765357B1867C3840046263B /* HPSigninViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F76535791867C3840046263B /* HPSigninViewController.m */; };
@@ -123,6 +124,8 @@
 		F714B83918B13BC200B598E7 /* SingleRoommateSubview.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SingleRoommateSubview.h; path = ViewControllers/HPMainViewController/RoommateImageSubview/SingleRoommateSubview/SingleRoommateSubview.h; sourceTree = "<group>"; };
 		F714B83A18B13BC200B598E7 /* SingleRoommateSubview.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SingleRoommateSubview.m; path = ViewControllers/HPMainViewController/RoommateImageSubview/SingleRoommateSubview/SingleRoommateSubview.m; sourceTree = "<group>"; };
 		F714B83B18B13BC200B598E7 /* SingleRoommateSubview.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = SingleRoommateSubview.xib; path = ViewControllers/HPMainViewController/RoommateImageSubview/SingleRoommateSubview/SingleRoommateSubview.xib; sourceTree = "<group>"; };
+		F714B83F18B167B700B598E7 /* HPNewHouseSetup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HPNewHouseSetup.h; path = HelperClasses/HPNewHouseSetup/HPNewHouseSetup.h; sourceTree = "<group>"; };
+		F714B84018B167B700B598E7 /* HPNewHouseSetup.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HPNewHouseSetup.m; path = HelperClasses/HPNewHouseSetup/HPNewHouseSetup.m; sourceTree = "<group>"; };
 		F73A01B118AAFD00000F25B6 /* HPSettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HPSettingsViewController.h; path = ViewControllers/HPSettingsViewController/HPSettingsViewController.h; sourceTree = "<group>"; };
 		F73A01B218AAFD00000F25B6 /* HPSettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HPSettingsViewController.m; path = ViewControllers/HPSettingsViewController/HPSettingsViewController.m; sourceTree = "<group>"; };
 		F73A01B318AAFD00000F25B6 /* HPSettingsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = HPSettingsViewController.xib; path = ViewControllers/HPSettingsViewController/HPSettingsViewController.xib; sourceTree = "<group>"; };
@@ -216,6 +219,7 @@
 		F710E5FB187862BE00BD9D54 /* HelperClasses */ = {
 			isa = PBXGroup;
 			children = (
+				F714B83E18B1677E00B598E7 /* HPNewHouseSetup */,
 				F714B82718AFEC5E00B598E7 /* HPUserLocationInfo */,
 				F714B82118ABD55100B598E7 /* HPLocationManager */,
 				F710E608187F775900BD9D54 /* HPCentralData */,
@@ -345,6 +349,15 @@
 				F714B83B18B13BC200B598E7 /* SingleRoommateSubview.xib */,
 			);
 			name = SingleRoommateSubview;
+			sourceTree = "<group>";
+		};
+		F714B83E18B1677E00B598E7 /* HPNewHouseSetup */ = {
+			isa = PBXGroup;
+			children = (
+				F714B83F18B167B700B598E7 /* HPNewHouseSetup.h */,
+				F714B84018B167B700B598E7 /* HPNewHouseSetup.m */,
+			);
+			name = HPNewHouseSetup;
 			sourceTree = "<group>";
 		};
 		F737161818A9BAB500A5AA4B /* RoommateImageSubview */ = {
@@ -697,6 +710,7 @@
 				F78D484E185AAB03000A79BC /* HPNetworkObject.m in Sources */,
 				F710E60E1890A97A00BD9D54 /* ParseSync.xcdatamodeld in Sources */,
 				F711388B1877832000D9BA9E /* HPCreateHouseViewController.m in Sources */,
+				F714B84118B167B700B598E7 /* HPNewHouseSetup.m in Sources */,
 				F7653588186F67CA0046263B /* HPMainViewController.m in Sources */,
 				F7A1222F18522A4100E51B06 /* HousePlant.xcdatamodeld in Sources */,
 				F710E5FA187862B700BD9D54 /* HPLoginRouter.m in Sources */,

@@ -79,7 +79,7 @@
                     </connections>
                 </button>
                 <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="erO-rm-eCD" userLabel="RoommateImageSubviewContainer">
-                    <rect key="frame" x="0.0" y="83" width="320" height="71"/>
+                    <rect key="frame" x="0.0" y="77" width="320" height="80"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                 </view>

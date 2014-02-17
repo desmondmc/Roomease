@@ -38,6 +38,11 @@
     // Do any additional setup after loading the view from its nib.
 }
 
+-(void)viewDidAppear:(BOOL)animated
+{
+    [_usernameTextField becomeFirstResponder];
+}
+
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
@@ -145,8 +150,9 @@
     
     avatar2.image = chosenImage;
     
-    [avatar2 setBorderWith:0.0];
+    [avatar2 setBorderWith:1.0];
     [avatar2 setShadowRadius:0.0];
+    [avatar2 setBorderColor:kLightBlueColour];
     _setProfilePicImage.image = chosenImage;
     
     imageData = UIImageJPEGRepresentation(chosenImage, 1.0f);
@@ -182,5 +188,16 @@
         
         [PFUser currentUser][@"profilePic"] = imageFile;
     }
+}
+
+- (UIImage *)imageWithImage:(UIImage *)image scaledToSize:(CGSize)newSize {
+    //UIGraphicsBeginImageContext(newSize);
+    // In next line, pass 0.0 to use the current device's pixel scaling factor (and thus account for Retina resolution).
+    // Pass 1.0 to force exact pixel size.
+    UIGraphicsBeginImageContextWithOptions(newSize, NO, 0.0);
+    [image drawInRect:CGRectMake(0, 0, newSize.width, newSize.height)];
+    UIImage *newImage = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    return newImage;
 }
 @end

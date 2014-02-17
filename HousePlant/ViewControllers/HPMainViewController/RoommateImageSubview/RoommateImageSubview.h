@@ -11,17 +11,7 @@
 @interface RoommateImageSubview : UIView
 
 + (id)roommateImageSubview;
-@property (weak, nonatomic) IBOutlet UIImageView *rm1Image;
-@property (weak, nonatomic) IBOutlet UILabel *rm1Label;
 
-@property (weak, nonatomic) IBOutlet UIImageView *rm2Image;
-@property (weak, nonatomic) IBOutlet UILabel *rm2Label;
-
-@property (weak, nonatomic) IBOutlet UIImageView *rm3Image;
-@property (weak, nonatomic) IBOutlet UILabel *rm3Label;
-
-@property (weak, nonatomic) IBOutlet UIImageView *rm4Image;
-@property (weak, nonatomic) IBOutlet UILabel *rm4Label;
 @property (weak, nonatomic) IBOutlet UIActivityIndicatorView *loadingRoommatesSpinner;
 
 @end

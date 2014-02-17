@@ -34,7 +34,7 @@
 
 - (void)viewDidAppear:(BOOL)animated
 {
-    //[_usernameTextField select:nil];
+    [_usernameTextField becomeFirstResponder];
 }
 
 - (void)didReceiveMemoryWarning
