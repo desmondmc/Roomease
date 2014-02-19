@@ -137,6 +137,9 @@
     [persistantStore setObject:userData forKey:@"hp_currentUser"];
     [persistantStore synchronize];
     
+    //This function saves the the new current user to the local roommate array.
+    [HPCentralData saveRoommatesWithSingleRoommate:roommate];
+    
     return true;
 }
 
@@ -455,6 +458,35 @@
     }
 
     return newRoommate;
+}
+
+//You need to pass a username here bacause it is possible that a roommate object will have a null username
++ (bool)saveRoommatesWithSingleRoommate:(HPRoommate *)roommate
+{
+    NSMutableArray *roommatesData = [[NSMutableArray alloc] init];
+    //Find the user in the local storage roommate array.
+    if (!roommate.username || !roommate.atHome) {
+        [NSException raise:@"Invalid roommate sent to saveRoommatesWithSingleRoommate" format:@"roommate of %@ is invalid", roommate];
+    }
+    NSMutableArray *roommates = [NSMutableArray arrayWithArray:[HPCentralData getRoommates]];
+    
+    for (int roommateCount = 0; roommateCount < [roommates count]; roommateCount++) {
+        HPRoommate *roommateToFind = [roommates objectAtIndex:roommateCount];
+        if ([roommateToFind.username isEqualToString:roommate.username]) {
+            [roommates replaceObjectAtIndex:roommateCount withObject:roommate];
+        }
+    }
+    
+    //Loop through and convert all the roommates into data
+    for (HPRoommate* roomateToConvertToData in roommates) {
+        NSData *roommateData = [NSKeyedArchiver archivedDataWithRootObject:roomateToConvertToData];
+        [roommatesData addObject:roommateData];
+    }
+    
+    [persistantStore setObject:roommatesData forKey:@"hp_roommates"];
+    [persistantStore synchronize];
+    
+    return true;
 }
 
 @end
