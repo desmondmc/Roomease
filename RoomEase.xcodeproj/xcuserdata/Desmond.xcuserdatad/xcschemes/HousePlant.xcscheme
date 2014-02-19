@@ -16,7 +16,7 @@
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "F7A1221518522A4100E51B06"
                BuildableName = "RoomEase.app"
-               BlueprintName = "RoomEase"
+               BlueprintName = "Roomease"
                ReferencedContainer = "container:RoomEase.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -44,7 +44,7 @@
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "F7A1221518522A4100E51B06"
             BuildableName = "RoomEase.app"
-            BlueprintName = "RoomEase"
+            BlueprintName = "Roomease"
             ReferencedContainer = "container:RoomEase.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
@@ -63,7 +63,7 @@
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "F7A1221518522A4100E51B06"
             BuildableName = "RoomEase.app"
-            BlueprintName = "RoomEase"
+            BlueprintName = "Roomease"
             ReferencedContainer = "container:RoomEase.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
@@ -81,7 +81,7 @@
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "F7A1221518522A4100E51B06"
             BuildableName = "RoomEase.app"
-            BlueprintName = "RoomEase"
+            BlueprintName = "Roomease"
             ReferencedContainer = "container:RoomEase.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>

@@ -22,7 +22,9 @@
         [subView addSubview:avatar2];
         avatar2.image = roommate.profilePic;
         
-        [avatar2 setBorderWith:1.0];
+        [subView sendSubviewToBack:avatar2];
+        
+        [avatar2 setBorderWith:0.0];
         [avatar2 setShadowRadius:0.0];
         [avatar2 setBorderColor:kLightBlueColour];
         
@@ -35,8 +37,8 @@
     
     
     subView.nameLabel.text = roommate.username;
-    if ([roommate locationInfo]) {
-        if (![[roommate locationInfo] atHome]) {
+    if ([roommate atHome]) {
+        if (![[roommate atHome] boolValue]) {
             [subView.atHomeTint setHidden:false];
         }
         else

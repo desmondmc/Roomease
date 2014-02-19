@@ -34,6 +34,13 @@
     //Clear central data
     [HPCentralData clearCentralData];
     
+    //Stop monitoring for any regions.
+    NSSet * monitoredRegions = kApplicationDelegate.hpLocationManager.locationManager.monitoredRegions;
+    for (CLRegion *region in monitoredRegions)
+    {
+        [kApplicationDelegate.hpLocationManager.locationManager stopMonitoringForRegion:region];
+    }
+    
     if (screenSize.height > 480.0f)
     {
         /*Do iPhone 5 stuff here.*/

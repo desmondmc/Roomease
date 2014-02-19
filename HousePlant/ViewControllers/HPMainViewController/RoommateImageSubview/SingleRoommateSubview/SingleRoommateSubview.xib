@@ -21,22 +21,27 @@
                     <color key="textColor" red="0.2941176593" green="0.7019608021" blue="0.98431378599999997" alpha="1" colorSpace="deviceRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <view hidden="YES" alpha="0.74999999999999978" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="qnC-mu-ybU" userLabel="AtHomeTint">
+                <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="circle-65white" translatesAutoresizingMaskIntoConstraints="NO" id="ANX-JN-t1k">
                     <rect key="frame" x="11" y="1" width="59" height="59"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                </view>
+                </imageView>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="circle-transparent" translatesAutoresizingMaskIntoConstraints="NO" id="gl0-Bw-BHz">
+                    <rect key="frame" x="11" y="1" width="59" height="59"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                </imageView>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <connections>
-                <outlet property="atHomeTint" destination="qnC-mu-ybU" id="9jZ-fO-tAk"/>
+                <outlet property="atHomeTint" destination="ANX-JN-t1k" id="OyD-vh-VuN"/>
                 <outlet property="nameLabel" destination="7hW-Bm-ypJ" id="g8s-XT-GA7"/>
                 <outlet property="profilePic" destination="EEN-w6-NrI" id="W61-5F-mgn"/>
             </connections>
         </view>
     </objects>
     <resources>
+        <image name="circle-65white" width="65" height="65"/>
+        <image name="circle-transparent" width="65" height="65"/>
         <image name="profile-image-example" width="118" height="118"/>
     </resources>
 </document>

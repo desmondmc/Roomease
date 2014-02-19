@@ -37,7 +37,6 @@
 		F71138911877837D00D9BA9E /* HPJoinHouseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F711388F1877837D00D9BA9E /* HPJoinHouseViewController.m */; };
 		F71138921877837D00D9BA9E /* HPJoinHouseViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F71138901877837D00D9BA9E /* HPJoinHouseViewController.xib */; };
 		F714B82018ABD54C00B598E7 /* HPLocationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = F714B81F18ABD54C00B598E7 /* HPLocationManager.m */; };
-		F714B82A18AFEC9F00B598E7 /* HPUserLocationInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = F714B82918AFEC9F00B598E7 /* HPUserLocationInfo.m */; };
 		F714B83218B1387800B598E7 /* RoommateImageSubview.m in Sources */ = {isa = PBXBuildFile; fileRef = F714B83018B1387800B598E7 /* RoommateImageSubview.m */; };
 		F714B83318B1387800B598E7 /* RoommateImageSubview.xib in Resources */ = {isa = PBXBuildFile; fileRef = F714B83118B1387800B598E7 /* RoommateImageSubview.xib */; };
 		F714B83C18B13BC200B598E7 /* SingleRoommateSubview.m in Sources */ = {isa = PBXBuildFile; fileRef = F714B83A18B13BC200B598E7 /* SingleRoommateSubview.m */; };
@@ -120,8 +119,6 @@
 		F71138901877837D00D9BA9E /* HPJoinHouseViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = HPJoinHouseViewController.xib; path = ViewControllers/HPJoinHouseViewController/HPJoinHouseViewController.xib; sourceTree = "<group>"; };
 		F714B81E18ABD54C00B598E7 /* HPLocationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HPLocationManager.h; path = HelperClasses/HPLocationManager/HPLocationManager.h; sourceTree = "<group>"; };
 		F714B81F18ABD54C00B598E7 /* HPLocationManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HPLocationManager.m; path = HelperClasses/HPLocationManager/HPLocationManager.m; sourceTree = "<group>"; };
-		F714B82818AFEC9F00B598E7 /* HPUserLocationInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HPUserLocationInfo.h; path = HelperClasses/HPUserLocationInfo/HPUserLocationInfo.h; sourceTree = "<group>"; };
-		F714B82918AFEC9F00B598E7 /* HPUserLocationInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HPUserLocationInfo.m; path = HelperClasses/HPUserLocationInfo/HPUserLocationInfo.m; sourceTree = "<group>"; };
 		F714B82F18B1387800B598E7 /* RoommateImageSubview.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RoommateImageSubview.h; path = ViewControllers/HPMainViewController/RoommateImageSubview/RoommateImageSubview.h; sourceTree = "<group>"; };
 		F714B83018B1387800B598E7 /* RoommateImageSubview.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RoommateImageSubview.m; path = ViewControllers/HPMainViewController/RoommateImageSubview/RoommateImageSubview.m; sourceTree = "<group>"; };
 		F714B83118B1387800B598E7 /* RoommateImageSubview.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = RoommateImageSubview.xib; path = ViewControllers/HPMainViewController/RoommateImageSubview/RoommateImageSubview.xib; sourceTree = "<group>"; };
@@ -233,7 +230,6 @@
 			isa = PBXGroup;
 			children = (
 				F714B83E18B1677E00B598E7 /* HPNewHouseSetup */,
-				F714B82718AFEC5E00B598E7 /* HPUserLocationInfo */,
 				F714B82118ABD55100B598E7 /* HPLocationManager */,
 				F710E608187F775900BD9D54 /* HPCentralData */,
 				F710E5FC187862DE00BD9D54 /* HPLoginRouter */,
@@ -343,15 +339,6 @@
 				F714B81F18ABD54C00B598E7 /* HPLocationManager.m */,
 			);
 			name = HPLocationManager;
-			sourceTree = "<group>";
-		};
-		F714B82718AFEC5E00B598E7 /* HPUserLocationInfo */ = {
-			isa = PBXGroup;
-			children = (
-				F714B82818AFEC9F00B598E7 /* HPUserLocationInfo.h */,
-				F714B82918AFEC9F00B598E7 /* HPUserLocationInfo.m */,
-			);
-			name = HPUserLocationInfo;
 			sourceTree = "<group>";
 		};
 		F714B82B18B1378B00B598E7 /* SingleRoommateSubview */ = {
@@ -577,9 +564,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		F7A1221518522A4100E51B06 /* RoomEase */ = {
+		F7A1221518522A4100E51B06 /* Roomease */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = F7A1224818522A4100E51B06 /* Build configuration list for PBXNativeTarget "RoomEase" */;
+			buildConfigurationList = F7A1224818522A4100E51B06 /* Build configuration list for PBXNativeTarget "Roomease" */;
 			buildPhases = (
 				B4A27B650B7A44D89379E9A9 /* Check Pods Manifest.lock */,
 				F7A1221218522A4100E51B06 /* Sources */,
@@ -591,7 +578,7 @@
 			);
 			dependencies = (
 			);
-			name = RoomEase;
+			name = Roomease;
 			productName = HousePlant;
 			productReference = F7A1221618522A4100E51B06 /* RoomEase.app */;
 			productType = "com.apple.product-type.application";
@@ -644,7 +631,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				F7A1221518522A4100E51B06 /* RoomEase */,
+				F7A1221518522A4100E51B06 /* Roomease */,
 				F7A1223518522A4100E51B06 /* RoomEaseTests */,
 				F710E60F1890BD4400BD9D54 /* Mogenerator */,
 			);
@@ -757,7 +744,6 @@
 				F71138911877837D00D9BA9E /* HPJoinHouseViewController.m in Sources */,
 				F714B83C18B13BC200B598E7 /* SingleRoommateSubview.m in Sources */,
 				F710E6041879213800BD9D54 /* main.js in Sources */,
-				F714B82A18AFEC9F00B598E7 /* HPUserLocationInfo.m in Sources */,
 				F78D4854185AC0E2000A79BC /* HPHouse.m in Sources */,
 				F7A1222818522A4100E51B06 /* main.m in Sources */,
 			);
@@ -776,7 +762,7 @@
 /* Begin PBXTargetDependency section */
 		F7A1223D18522A4100E51B06 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = F7A1221518522A4100E51B06 /* RoomEase */;
+			target = F7A1221518522A4100E51B06 /* Roomease */;
 			targetProxy = F7A1223C18522A4100E51B06 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -1010,7 +996,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		F7A1224818522A4100E51B06 /* Build configuration list for PBXNativeTarget "RoomEase" */ = {
+		F7A1224818522A4100E51B06 /* Build configuration list for PBXNativeTarget "Roomease" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				F7A1224918522A4100E51B06 /* Debug */,

@@ -101,7 +101,7 @@
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <rect key="contentStretch" x="0.0" y="0.0" width="0.0" height="0.0"/>
                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                    <state key="normal" image="blue-back-arrow">
+                    <state key="normal" image="white-back-arrow">
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
                     <connections>
@@ -134,7 +134,6 @@
     <resources>
         <image name="1blue-text-field-bg" width="640" height="91"/>
         <image name="2-text-field-bg" width="640" height="184"/>
-        <image name="blue-back-arrow" width="13" height="17"/>
         <image name="close-btn" width="47" height="46"/>
         <image name="create-house" width="50" height="50"/>
         <image name="join-house-title" width="260" height="30"/>
@@ -142,5 +141,6 @@
         <image name="move-in-btn-normal" width="362" height="77"/>
         <image name="move-in-btn-pressed" width="362" height="77"/>
         <image name="password" width="50" height="50"/>
+        <image name="white-back-arrow" width="22" height="28"/>
     </resources>
 </document>

@@ -53,7 +53,7 @@
             roommate = [[HPRoommate alloc] init];
             [[PFUser currentUser] fetch];
             roommate.username = [[PFUser currentUser] username];
-            [roommate locationInfo].atHome = [[PFUser currentUser][@"atHome"] boolValue];
+            [roommate setAtHome:[NSNumber numberWithBool:[[PFUser currentUser][@"atHome"] boolValue]]];
         
             PFFile *userImageFile = [[PFUser currentUser] objectForKey:@"profilePic"];
             roommate.profilePic = [UIImage imageWithData:[userImageFile getData]];
@@ -88,11 +88,13 @@
     {
         roommate = [[HPRoommate alloc] init];
         [[PFUser currentUser] fetch];
+        PFUser *currentUser = [PFUser currentUser];
         roommate.username = [[PFUser currentUser] username];
-        [roommate locationInfo].atHome = [[PFUser currentUser][@"atHome"] boolValue];
        
         PFFile *userImageFile = [[PFUser currentUser] objectForKey:@"profilePic"];
         roommate.profilePic = [UIImage imageWithData:[userImageFile getData]];
+        
+        [roommate setAtHome:[NSNumber numberWithBool:[currentUser[@"atHome"] boolValue]]];
         
         //convert roommate object into encoded data to store in NSUserdefault
         roommateData = [NSKeyedArchiver archivedDataWithRootObject:roommate];
@@ -326,6 +328,7 @@
             return nil;
         }
 
+#warning There is a bug here. On the first pull
         NSArray *pfRoommates = [parseHome objectForKey:@"users"];
         for (PFObject *pfRoommate in pfRoommates) {
             [pfRoommate fetch];
@@ -334,7 +337,7 @@
             
             //need to check is "atHome" is nil because the boolValue is false on nil objects.
             if (pfRoommate[@"atHome"] != nil) {
-                [roommate setLocationInfo:[[HPUserLocationInfo alloc]initWithAtHome:[pfRoommate[@"atHome"] boolValue]]];
+                [roommate setAtHome:[NSNumber numberWithBool:[pfRoommate[@"atHome"] boolValue]]];
             }
             
             PFFile *userImageFile = [pfRoommate objectForKey:@"profilePic"];
@@ -416,8 +419,8 @@
         parseUser[@"profilePic"] = imageFile;
     }
     
-    if ([roommate locationInfo] != nil) {
-        if ([[roommate locationInfo] atHome]) {
+    if ([roommate atHome] != nil) {
+        if ([[roommate atHome] boolValue]) {
             parseUser[@"atHome"] = @YES;
         }
         else {
@@ -447,8 +450,8 @@
         newRoommate.profilePic = oldRoommate.profilePic;
     }
     
-    if ([newRoommate locationInfo] == nil) {
-        newRoommate.locationInfo = oldRoommate.locationInfo;
+    if ([newRoommate atHome] == nil) {
+        newRoommate.atHome = oldRoommate.atHome;
     }
 
     return newRoommate;

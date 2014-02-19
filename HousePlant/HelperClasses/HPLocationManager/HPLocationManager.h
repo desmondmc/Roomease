@@ -16,6 +16,7 @@
 
 + (bool)setRegionToMonitorWithIdentifier:(NSString *)identifier latitude:(CLLocationDegrees)latitude longitude:(CLLocationDegrees)longitude radius:(CLLocationDistance)radius;
 
+// Forces the app to check the current location of the user.
 + (void) requestStateForCurrentHouseLocation;
 
 // Checks what permissions the app has for location and returns a error string to display if there are restrictions.

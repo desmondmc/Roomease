@@ -7,12 +7,11 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "HPUserLocationInfo.h"
 
 @interface HPRoommate : NSObject
 
 @property (strong, nonatomic) NSString *username;
 @property (strong, nonatomic) UIImage *profilePic;
-@property (strong, nonatomic) HPUserLocationInfo *locationInfo;
+@property (strong, nonatomic) NSNumber *atHome;
 
 @end

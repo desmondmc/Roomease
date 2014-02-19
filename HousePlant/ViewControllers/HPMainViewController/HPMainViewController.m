@@ -35,7 +35,7 @@
     [super viewDidLoad];
     
 #warning this is only done for debugging purposes. Should be removed.
-    [HPCentralData clearCentralData];
+    //[HPCentralData clearCentralData];
     
     // Store a reference to the mainViewController in appdel
     kApplicationDelegate.mainViewController = self;
@@ -92,6 +92,7 @@
 //THIS METHOD IS USED FOR DEBUGGING SHIT
 - (IBAction)onTestPress:(id)sender {
     [HPCentralData clearCentralData];
+    
 //    HPHouse *house = [HPCentralData getHouse];
 //    
 //    NSLog(@"House Name: %@", [house houseName]);
@@ -121,7 +122,7 @@
 }
 
 - (IBAction)onRefreshRmPress:(id)sender {
-    [HPCentralData clearCentralData];
+    //[HPCentralData clearCentralData];
     for (UIView *view in [[self roommateImageSubviewContainer]subviews]) {
         [view removeFromSuperview];
     }
@@ -135,7 +136,45 @@
 {
     //update the current users location on parse and the local database.
     NSLog(@"Calling did enter region...");
+    if ([region.identifier isEqualToString:kHomeLocationIdentifier]) {
+        //User is inside house location
+        NSLog(@"User is inside fence...");
+        HPRoommate *roommate = [[HPRoommate alloc] init];
+        [roommate setAtHome:[NSNumber numberWithBool:true]];
+        [HPCentralData saveCurrentUserInBackgroundWithRoommate:roommate andBlock:nil];
+    }
+    UIAlertView *myAlertView = [[UIAlertView alloc] initWithTitle:@"Hey!"
+                                                          message:@"You just arrived at your home!"
+                                                         delegate:nil
+                                                cancelButtonTitle:@"OK"
+                                                otherButtonTitles: nil];
+    
+    [myAlertView show];
 }
+
+- (void)locationManager:(CLLocationManager *)manager
+          didExitRegion:(CLRegion *)region
+{
+    //update the current users location on parse and the local database.
+    NSLog(@"Calling did exit region...");
+    if ([region.identifier isEqualToString:kHomeLocationIdentifier]) {
+        //User is inside house location
+        NSLog(@"User is outside fence...");
+        HPRoommate *roommate = [[HPRoommate alloc] init];
+        [roommate setAtHome:[NSNumber numberWithBool:false]];
+        [HPCentralData saveCurrentUserInBackgroundWithRoommate:roommate andBlock:nil];
+        
+        UIAlertView *myAlertView = [[UIAlertView alloc] initWithTitle:@"Hey!"
+                                                              message:@"You just left your home!"
+                                                             delegate:nil
+                                                    cancelButtonTitle:@"OK"
+                                                    otherButtonTitles: nil];
+        
+        [myAlertView show];
+        return;
+    }
+}
+
 
 - (void)locationManager:(CLLocationManager *)manager
       didDetermineState:(CLRegionState)state forRegion:(CLRegion *)region
@@ -145,7 +184,7 @@
             //User is inside house location
             NSLog(@"User is inside fence...");
             HPRoommate *roommate = [[HPRoommate alloc] init];
-            [roommate setLocationInfo:[[HPUserLocationInfo alloc] initWithAtHome:true]];
+            [roommate setAtHome:[NSNumber numberWithBool:true]];
             [HPCentralData saveCurrentUserInBackgroundWithRoommate:roommate andBlock:nil];
         }
         else
@@ -153,7 +192,7 @@
             //User is outside location or inside
             NSLog(@"User is outside fence...");
             HPRoommate *roommate = [[HPRoommate alloc] init];
-            [roommate setLocationInfo:[[HPUserLocationInfo alloc] initWithAtHome:false]];
+            [roommate setAtHome:[NSNumber numberWithBool:false]];
             [HPCentralData saveCurrentUserInBackgroundWithRoommate:roommate andBlock:nil];
         }
     }
