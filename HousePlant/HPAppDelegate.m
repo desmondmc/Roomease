@@ -91,6 +91,8 @@
 - (void)applicationDidBecomeActive:(UIApplication *)application
 {
     // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
+    [HPCentralData clearCentralData];
+    [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICATION_APP_BECAME_ACTIVE object:self];
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application
@@ -122,7 +124,10 @@
 
 - (void)application:(UIApplication *)application
 didReceiveRemoteNotification:(NSDictionary *)userInfo {
-    [PFPush handlePush:userInfo];
+    //[PFPush handlePush:userInfo];
+#warning we should add code here to properly handle push notifications from within the app.
+#warning there are silent push notifications being sent
+    NSLog(@"Recieved Push: %@", userInfo);
 }
 
 #pragma mark - Application's Documents directory

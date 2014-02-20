@@ -18,6 +18,8 @@
 /*********  COLOURS  *********/
 #define kLightBlueColour [UIColor colorWithRed:75/255.0f green:179/255.0f blue:251/255.0f alpha:1.0f]
 
+/*********  NOTIFICATION  *********/
 
+#define NOTIFICATION_APP_BECAME_ACTIVE @"NOTIFICATION_APP_BECAME_ACTIVE"
 
 #endif

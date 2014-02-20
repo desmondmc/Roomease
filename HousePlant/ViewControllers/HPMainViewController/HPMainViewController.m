@@ -34,8 +34,11 @@
 {
     [super viewDidLoad];
     
-#warning this is only done for debugging purposes. Should be removed.
-    //[HPCentralData clearCentralData];
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(receiveNotificationAppActive:)
+                                                 name:NOTIFICATION_APP_BECAME_ACTIVE
+                                               object:nil];
+
     
     // Store a reference to the mainViewController in appdel
     kApplicationDelegate.mainViewController = self;
@@ -130,6 +133,11 @@
     [[self roommateImageSubviewContainer] addSubview:roommateView];
 }
 
+- (IBAction)onPullRoommateFromServerPress:(id)sender {
+    [HPCentralData clearCentralData];
+    [self onRefreshRmPress:nil];
+}
+
 #pragma mark - CLLocationManagerDelegate
 - (void)locationManager:(CLLocationManager *)manager
          didEnterRegion:(CLRegion *)region
@@ -143,13 +151,13 @@
         [roommate setAtHome:[NSNumber numberWithBool:true]];
         [HPCentralData saveCurrentUserInBackgroundWithRoommate:roommate andBlock:nil];
     }
-    UIAlertView *myAlertView = [[UIAlertView alloc] initWithTitle:@"Hey!"
-                                                          message:@"You just arrived at your home!"
-                                                         delegate:nil
-                                                cancelButtonTitle:@"OK"
-                                                otherButtonTitles: nil];
-    
-    [myAlertView show];
+//    UIAlertView *myAlertView = [[UIAlertView alloc] initWithTitle:@"Hey!"
+//                                                          message:@"You just arrived at your home!"
+//                                                         delegate:nil
+//                                                cancelButtonTitle:@"OK"
+//                                                otherButtonTitles: nil];
+//    
+//    [myAlertView show];
 }
 
 - (void)locationManager:(CLLocationManager *)manager
@@ -164,13 +172,13 @@
         [roommate setAtHome:[NSNumber numberWithBool:false]];
         [HPCentralData saveCurrentUserInBackgroundWithRoommate:roommate andBlock:nil];
         
-        UIAlertView *myAlertView = [[UIAlertView alloc] initWithTitle:@"Hey!"
-                                                              message:@"You just left your home!"
-                                                             delegate:nil
-                                                    cancelButtonTitle:@"OK"
-                                                    otherButtonTitles: nil];
-        
-        [myAlertView show];
+//        UIAlertView *myAlertView = [[UIAlertView alloc] initWithTitle:@"Hey!"
+//                                                              message:@"You just left your home!"
+//                                                             delegate:nil
+//                                                    cancelButtonTitle:@"OK"
+//                                                    otherButtonTitles: nil];
+//        
+//        [myAlertView show];
         return;
     }
 }
@@ -179,6 +187,7 @@
 - (void)locationManager:(CLLocationManager *)manager
       didDetermineState:(CLRegionState)state forRegion:(CLRegion *)region
 {
+#warning The user is saved everytime this gets called. The user should only be saved if atHome status changes.
     if ([region.identifier isEqualToString:kHomeLocationIdentifier]) {
         if (state == CLRegionStateInside) {
             //User is inside house location
@@ -200,6 +209,13 @@
     {
         NSLog(@"Unknown region request...");
     }
+}
+
+#pragma mark - Notification Handlers
+
+- (void) receiveNotificationAppActive:(NSNotification *) notification
+{
+    [self onRefreshRmPress:nil];
 }
 
 @end
