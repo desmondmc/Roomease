@@ -54,7 +54,7 @@
     [geocoder geocodeAddressString:addressText inRegion:nil
                  completionHandler:^(NSArray *placemarks, NSError *error) {
                      NSLog(@"placemarks: %@", placemarks);
-                     if ([placemarks count] > 0)
+                     if (placemarks)
                      {
                          CLPlacemark *placeMark = ((CLPlacemark *)[placemarks objectAtIndex:0]);
                          
