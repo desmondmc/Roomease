@@ -17,15 +17,11 @@
     
     [[subView loadingRoommatesSpinner] setHidden:false];
     
-#warning This should be done in the background.
-//    [HPCentralData getRoommatesInBackgroundWithBlock:^(NSArray *roommates, NSError *error) {
-//        [[subView loadingRoommatesSpinner] setHidden:true];
-//        [self setupImagesWithRoomate:roommates andSubview:subView];
-//    }];
-    
-    NSArray *roommates = [HPCentralData getRoommates];
-    [[subView loadingRoommatesSpinner] setHidden:true];
-    [self setupImagesWithRoomate:roommates andSubview:subView];
+    [HPCentralData getRoommatesInBackgroundWithBlock:^(NSArray *roommates, NSError *error) {
+        [[subView loadingRoommatesSpinner] setHidden:true];
+        [self setupImagesWithRoomate:roommates andSubview:subView];
+    }];
+
     // make sure RoommateImageSubview is not nil or the wrong class!
     if ([subView isKindOfClass:[RoommateImageSubview class]])
         return subView;
@@ -35,7 +31,7 @@
 
 + (void) setupImagesWithRoomate:(NSArray *)roommates andSubview:(RoommateImageSubview *)subView
 {
-    int roommatesCount = [roommates count];
+    NSInteger roommatesCount = [roommates count];
     SingleRoommateSubview *singleRoommateView;
     
     if (roommatesCount == 1)

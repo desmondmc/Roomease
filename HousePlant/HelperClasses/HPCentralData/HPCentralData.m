@@ -303,7 +303,20 @@
 
 +(void) getRoommatesInBackgroundWithBlock:(CentralDataRoommatesResultBlock)block
 {
-  
+    dispatch_async( dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
+        NSArray *roommates = [HPCentralData getRoommates];
+        NSError *error;
+        if (!roommates)
+        {
+            NSMutableDictionary* details = [NSMutableDictionary dictionary];
+            [details setValue:@"saving roommates failed" forKey:NSLocalizedDescriptionKey];
+            error = [NSError errorWithDomain:@"roommates" code:100 userInfo:details];
+        }
+        dispatch_async(dispatch_get_main_queue(), ^{
+            if (block)
+                block(roommates, error);
+        });
+    });
 }
 
 +(NSArray *) getRoommates

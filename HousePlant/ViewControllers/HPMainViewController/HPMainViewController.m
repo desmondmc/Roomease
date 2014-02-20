@@ -125,17 +125,13 @@
 }
 
 - (IBAction)onRefreshRmPress:(id)sender {
-    //[HPCentralData clearCentralData];
+#warning this should be smarter. Instead of clearingCentralData HPCentralData should pull from parse if a network connection is available.
+    [HPCentralData clearCentralData];
     for (UIView *view in [[self roommateImageSubviewContainer]subviews]) {
         [view removeFromSuperview];
     }
     roommateView = [RoommateImageSubview roommateImageSubview];
     [[self roommateImageSubviewContainer] addSubview:roommateView];
-}
-
-- (IBAction)onPullRoommateFromServerPress:(id)sender {
-    [HPCentralData clearCentralData];
-    [self onRefreshRmPress:nil];
 }
 
 #pragma mark - CLLocationManagerDelegate
