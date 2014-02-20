@@ -8,6 +8,7 @@
 
 #import "HPSignupViewController.h"
 #import "HPLoginRouter.h"
+#import "HPCameraManager.h"
 
 
 @interface HPSignupViewController ()
@@ -120,29 +121,9 @@
 }
 
 - (IBAction)onEditProfilePicturePress:(id)sender {
-
+    UIImagePickerController *picker = [HPCameraManager setupCameraWithDelegate:self];
     
-    //Todo save profile picture to Parse.
-	
-    //[self.setProfilePicImage setImage:[UIImage imageNamed:@"testProfilePic"]];
-    if (![UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
-        
-        UIAlertView *myAlertView = [[UIAlertView alloc] initWithTitle:@"Error"
-                                                              message:@"Device has no camera"
-                                                             delegate:nil
-                                                    cancelButtonTitle:@"OK"
-                                                    otherButtonTitles: nil];
-        
-        [myAlertView show];
-        return;
-    }
-    UIImagePickerController *picker = [[UIImagePickerController alloc] init];
-    picker.delegate = self;
-    picker.allowsEditing = YES;
-    picker.sourceType = UIImagePickerControllerSourceTypeCamera;
-    picker.cameraDevice = UIImagePickerControllerCameraDeviceFront;
     [[UIApplication sharedApplication] setStatusBarHidden:YES];
-    
     [self presentViewController:picker animated:YES completion:NULL];
 }
 
@@ -171,8 +152,6 @@
                    });
     
     [picker dismissViewControllerAnimated:YES completion:NULL];
-    
-
     
 }
 

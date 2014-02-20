@@ -46,6 +46,7 @@
 		F714B84B18B1CBED00B598E7 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = F714B84518B1CBED00B598E7 /* README.md */; };
 		F714B84C18B1CBED00B598E7 /* release_notes.md in Resources */ = {isa = PBXBuildFile; fileRef = F714B84618B1CBED00B598E7 /* release_notes.md */; };
 		F714B84E18B1CC5800B598E7 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = F714B84D18B1CC5800B598E7 /* libz.dylib */; };
+		F714B89518B5B96E00B598E7 /* HPCameraManager.m in Sources */ = {isa = PBXBuildFile; fileRef = F714B89418B5B96E00B598E7 /* HPCameraManager.m */; };
 		F73A01B418AAFD00000F25B6 /* HPSettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F73A01B218AAFD00000F25B6 /* HPSettingsViewController.m */; };
 		F73A01B518AAFD00000F25B6 /* HPSettingsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F73A01B318AAFD00000F25B6 /* HPSettingsViewController.xib */; };
 		F765357B1867C3840046263B /* HPSigninViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F76535791867C3840046263B /* HPSigninViewController.m */; };
@@ -134,6 +135,8 @@
 		F714B84818B1CBED00B598E7 /* TestFlight+ManualSessions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "TestFlight+ManualSessions.h"; sourceTree = "<group>"; };
 		F714B84918B1CBED00B598E7 /* TestFlight.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestFlight.h; sourceTree = "<group>"; };
 		F714B84D18B1CC5800B598E7 /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
+		F714B89318B5B96E00B598E7 /* HPCameraManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HPCameraManager.h; path = HelperClasses/HPCameraManager/HPCameraManager.h; sourceTree = "<group>"; };
+		F714B89418B5B96E00B598E7 /* HPCameraManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HPCameraManager.m; path = HelperClasses/HPCameraManager/HPCameraManager.m; sourceTree = "<group>"; };
 		F73A01B118AAFD00000F25B6 /* HPSettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HPSettingsViewController.h; path = ViewControllers/HPSettingsViewController/HPSettingsViewController.h; sourceTree = "<group>"; };
 		F73A01B218AAFD00000F25B6 /* HPSettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HPSettingsViewController.m; path = ViewControllers/HPSettingsViewController/HPSettingsViewController.m; sourceTree = "<group>"; };
 		F73A01B318AAFD00000F25B6 /* HPSettingsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = HPSettingsViewController.xib; path = ViewControllers/HPSettingsViewController/HPSettingsViewController.xib; sourceTree = "<group>"; };
@@ -229,6 +232,7 @@
 		F710E5FB187862BE00BD9D54 /* HelperClasses */ = {
 			isa = PBXGroup;
 			children = (
+				F714B89618B5B97B00B598E7 /* HPCameraManager */,
 				F714B83E18B1677E00B598E7 /* HPNewHouseSetup */,
 				F714B82118ABD55100B598E7 /* HPLocationManager */,
 				F710E608187F775900BD9D54 /* HPCentralData */,
@@ -379,6 +383,15 @@
 				F714B84918B1CBED00B598E7 /* TestFlight.h */,
 			);
 			path = TestFlightSDK2.2.1;
+			sourceTree = "<group>";
+		};
+		F714B89618B5B97B00B598E7 /* HPCameraManager */ = {
+			isa = PBXGroup;
+			children = (
+				F714B89318B5B96E00B598E7 /* HPCameraManager.h */,
+				F714B89418B5B96E00B598E7 /* HPCameraManager.m */,
+			);
+			name = HPCameraManager;
 			sourceTree = "<group>";
 		};
 		F737161818A9BAB500A5AA4B /* RoommateImageSubview */ = {
@@ -733,6 +746,7 @@
 				F73A01B418AAFD00000F25B6 /* HPSettingsViewController.m in Sources */,
 				F711388518777B8800D9BA9E /* HPNoHomeViewController.m in Sources */,
 				F78D484E185AAB03000A79BC /* HPNetworkObject.m in Sources */,
+				F714B89518B5B96E00B598E7 /* HPCameraManager.m in Sources */,
 				F710E60E1890A97A00BD9D54 /* ParseSync.xcdatamodeld in Sources */,
 				F711388B1877832000D9BA9E /* HPCreateHouseViewController.m in Sources */,
 				F714B84118B167B700B598E7 /* HPNewHouseSetup.m in Sources */,
