@@ -30,22 +30,23 @@ Parse.Cloud.afterSave(Parse.User, function(request, response) {
                                         var houseName = house.get("name");
                                         console.log("Sending push to House: " + houseName);
                                   
-//                                  Parse.Push.send({
-//                                                  channels: [ houseName ],
-//                                                  data: {
-//                                                    alert: "",
-//                                                    "content-available": "1"
-//                                                  }
-//                                                  }, {
-//                                                  success: function() {
-//                                                  // Push was successful
-//                                                  console.log("Sent push!");
-//                                                  },
-//                                                  error: function(error) {
-//                                                  // Handle error
-//                                                  console.log("Error sending push! Error: " + error);
-//                                                  }
-//                                                  });
+                                  Parse.Push.send({
+                                                  channels: [ houseName ],
+                                                  data: {
+                                                    alert: "asdasd",
+                                                    "content-available": "1",
+                                                    "acme1" : "bar"
+                                                  }
+                                                  }, {
+                                                  success: function() {
+                                                  // Push was successful
+                                                  console.log("Sent push!");
+                                                  },
+                                                  error: function(error) {
+                                                  // Handle error
+                                                  console.log("Error sending push! Error: " + error);
+                                                  }
+                                                  });
                                      },
                                      error: function(myObject, error) {
                                      // The object was not refreshed successfully.

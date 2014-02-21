@@ -15,6 +15,7 @@
     // Subscribe to channel of house name.
     [HPCentralData getHouseInBackgroundWithBlock:^(HPHouse *house, NSError *error) {
         //
+#warning there should be a nil check here on the house.
         PFInstallation *currentInstallation = [PFInstallation currentInstallation];
         [currentInstallation addUniqueObject:house.houseName forKey:@"channels"];
         [currentInstallation saveInBackground];

@@ -86,6 +86,16 @@
     user.username = _usernameTextField.text;
     user.password = _passwordTextField.text;
     
+    NSString *validateErrorString = [self validateUsername:_usernameTextField.text];
+    if (validateErrorString)
+    {
+        [CSNotificationView showInViewController:self
+                                           style:CSNotificationViewStyleError
+                                         message:validateErrorString];
+        [_activityIndicator setHidden:true];
+        return;
+    }
+    
     [user signUpInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
         if (!error) {
             // Hooray! Let them use the app now.
@@ -192,5 +202,15 @@
     UIImage *newImage = UIGraphicsGetImageFromCurrentImageContext();
     UIGraphicsEndImageContext();
     return newImage;
+}
+
+- (NSString *) validateUsername:(NSString *)username
+{
+    NSRange whiteSpaceRange = [username rangeOfCharacterFromSet:[NSCharacterSet whitespaceCharacterSet]];
+    if (whiteSpaceRange.location != NSNotFound) {
+        return @"Please remove the spaces in your username :)";
+    }
+    
+    return nil;
 }
 @end
