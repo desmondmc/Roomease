@@ -49,6 +49,7 @@
 		F714B89518B5B96E00B598E7 /* HPCameraManager.m in Sources */ = {isa = PBXBuildFile; fileRef = F714B89418B5B96E00B598E7 /* HPCameraManager.m */; };
 		F73A01B418AAFD00000F25B6 /* HPSettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F73A01B218AAFD00000F25B6 /* HPSettingsViewController.m */; };
 		F73A01B518AAFD00000F25B6 /* HPSettingsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F73A01B318AAFD00000F25B6 /* HPSettingsViewController.xib */; };
+		F73F9EAC18BE9674009D6097 /* HPUINotifier.m in Sources */ = {isa = PBXBuildFile; fileRef = F73F9EAB18BE9674009D6097 /* HPUINotifier.m */; };
 		F765357B1867C3840046263B /* HPSigninViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F76535791867C3840046263B /* HPSigninViewController.m */; };
 		F765357C1867C3840046263B /* HPSigninViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F765357A1867C3840046263B /* HPSigninViewController.xib */; };
 		F76535811867D1B20046263B /* HPSignupViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F765357F1867D1B20046263B /* HPSignupViewController.m */; };
@@ -140,6 +141,9 @@
 		F73A01B118AAFD00000F25B6 /* HPSettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HPSettingsViewController.h; path = ViewControllers/HPSettingsViewController/HPSettingsViewController.h; sourceTree = "<group>"; };
 		F73A01B218AAFD00000F25B6 /* HPSettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HPSettingsViewController.m; path = ViewControllers/HPSettingsViewController/HPSettingsViewController.m; sourceTree = "<group>"; };
 		F73A01B318AAFD00000F25B6 /* HPSettingsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = HPSettingsViewController.xib; path = ViewControllers/HPSettingsViewController/HPSettingsViewController.xib; sourceTree = "<group>"; };
+		F73F9EA918BE9475009D6097 /* HPUINotifierDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = HPUINotifierDelegate.h; path = Protocols/HPUINotifierDelegate.h; sourceTree = "<group>"; };
+		F73F9EAA18BE9674009D6097 /* HPUINotifier.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HPUINotifier.h; path = HelperClasses/HPUINotifier/HPUINotifier.h; sourceTree = "<group>"; };
+		F73F9EAB18BE9674009D6097 /* HPUINotifier.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HPUINotifier.m; path = HelperClasses/HPUINotifier/HPUINotifier.m; sourceTree = "<group>"; };
 		F76535781867C3840046263B /* HPSigninViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HPSigninViewController.h; path = ViewControllers/HPSigninViewController/HPSigninViewController.h; sourceTree = "<group>"; };
 		F76535791867C3840046263B /* HPSigninViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HPSigninViewController.m; path = ViewControllers/HPSigninViewController/HPSigninViewController.m; sourceTree = "<group>"; };
 		F765357A1867C3840046263B /* HPSigninViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = HPSigninViewController.xib; path = ViewControllers/HPSigninViewController/HPSigninViewController.xib; sourceTree = "<group>"; };
@@ -232,6 +236,7 @@
 		F710E5FB187862BE00BD9D54 /* HelperClasses */ = {
 			isa = PBXGroup;
 			children = (
+				F73F9EAD18BE967A009D6097 /* HPUINotifier */,
 				F714B89618B5B97B00B598E7 /* HPCameraManager */,
 				F714B83E18B1677E00B598E7 /* HPNewHouseSetup */,
 				F714B82118ABD55100B598E7 /* HPLocationManager */,
@@ -415,6 +420,23 @@
 			name = HPSettingsViewController;
 			sourceTree = "<group>";
 		};
+		F73F9EA818BE940D009D6097 /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				F73F9EA918BE9475009D6097 /* HPUINotifierDelegate.h */,
+			);
+			name = Protocols;
+			sourceTree = "<group>";
+		};
+		F73F9EAD18BE967A009D6097 /* HPUINotifier */ = {
+			isa = PBXGroup;
+			children = (
+				F73F9EAA18BE9674009D6097 /* HPUINotifier.h */,
+				F73F9EAB18BE9674009D6097 /* HPUINotifier.m */,
+			);
+			name = HPUINotifier;
+			sourceTree = "<group>";
+		};
 		F76535771867BF630046263B /* HPSigninViewController */ = {
 			isa = PBXGroup;
 			children = (
@@ -508,6 +530,7 @@
 		F7A1222118522A4100E51B06 /* HousePlant */ = {
 			isa = PBXGroup;
 			children = (
+				F73F9EA818BE940D009D6097 /* Protocols */,
 				F710E5FB187862BE00BD9D54 /* HelperClasses */,
 				F78D484B185AA9DA000A79BC /* NetworkObjects */,
 				F7A1225318522AD000E51B06 /* ViewControllers */,
@@ -744,6 +767,7 @@
 				F714B83218B1387800B598E7 /* RoommateImageSubview.m in Sources */,
 				F76535811867D1B20046263B /* HPSignupViewController.m in Sources */,
 				F73A01B418AAFD00000F25B6 /* HPSettingsViewController.m in Sources */,
+				F73F9EAC18BE9674009D6097 /* HPUINotifier.m in Sources */,
 				F711388518777B8800D9BA9E /* HPNoHomeViewController.m in Sources */,
 				F78D484E185AAB03000A79BC /* HPNetworkObject.m in Sources */,
 				F714B89518B5B96E00B598E7 /* HPCameraManager.m in Sources */,
