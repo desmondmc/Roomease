@@ -8,8 +8,9 @@
 
 #import <UIKit/UIKit.h>
 #import <CoreLocation/CoreLocation.h>
+#import "HPUINotifierDelegate.h"
 
-@interface HPMainViewController : UIViewController <CLLocationManagerDelegate>
+@interface HPMainViewController : UIViewController <CLLocationManagerDelegate, HPUINotifierDelegate>
 @property (weak, nonatomic) IBOutlet UILabel *usernameLabel;
 - (IBAction)onLogoutPress:(id)sender;
 @property (weak, nonatomic) IBOutlet UILabel *houseLabel;

@@ -7,6 +7,7 @@
 //
 
 #import "HPUINotifier.h"
+#import "HPUINotifierDelegate.h"
 
 @implementation HPUINotifier
 {
@@ -34,8 +35,8 @@
 
 -(void) notifyDelegatesWithChange:(NSDictionary *)uiChanges
 {
-    for (HPUINotifier *delegate in _delegates) {
-        [delegate notifyDelegatesWithChange:uiChanges];
+    for (id <HPUINotifierDelegate> delegate in _delegates) {
+        [delegate resyncUIWithDictionary:uiChanges];
     }
 }
 

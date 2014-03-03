@@ -214,5 +214,15 @@
     [self onRefreshRmPress:nil];
 }
 
+#pragma mark - HPUINotifierDelegate
+
+-(void) resyncUIWithDictionary:(NSDictionary *)uiChanges
+{
+    if ([[uiChanges objectForKey:kRefreshRoommateKey] boolValue] == YES)
+    {
+        [self onRefreshRmPress:nil];
+    }
+}
+
 @end
 

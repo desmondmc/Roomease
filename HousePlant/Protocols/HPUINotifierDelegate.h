@@ -8,6 +8,11 @@
 
 #import <Foundation/Foundation.h>
 
+/********DEFINES**********/
+
+#define kRefreshRoommateKey @"refreshRoommateKey"
+
+
 @protocol HPUINotifierDelegate <NSObject>
 
 @required
