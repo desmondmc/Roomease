@@ -44,30 +44,36 @@
      UIRemoteNotificationTypeSound];
     
     
-    [[PFUser currentUser] fetch];
     PFUser *currentUser = [PFUser currentUser];
-    if (currentUser) {
-        
-
-        
-        
-        PFObject *house = [currentUser objectForKey:@"home"];
-        if (house) {
-            self.window.rootViewController = [[HPMainViewController alloc] init];
-        }
-        else
-        {
-            self.window.rootViewController = [[HPStartingViewController alloc] init];
-        }
+    
+    if (currentUser)
+    {
+        [[PFUser currentUser] fetchIfNeededInBackgroundWithBlock:^(PFObject *object, NSError *error) {
+            
+            if (currentUser) {
+                
+                PFObject *house = [currentUser objectForKey:@"home"];
+                if (house) {
+                    self.window.rootViewController = [[HPMainViewController alloc] init];
+                }
+                else
+                {
+                    self.window.rootViewController = [[HPStartingViewController alloc] init];
+                }
+            }
+            else
+            {
+                self.window.rootViewController = [[HPStartingViewController alloc] init];
+            }
+            [self.window makeKeyAndVisible];
+        }];
     }
     else
     {
         self.window.rootViewController = [[HPStartingViewController alloc] init];
+        [self.window makeKeyAndVisible];
     }
-    
-    
-    [self.window makeKeyAndVisible];
-    
+
     return YES;
 }
 

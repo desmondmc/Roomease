@@ -3,17 +3,20 @@ PODS:
   - CSNotificationView (0.3.3)
   - MBProgressHUD (0.8)
   - NPReachability (0.1.0)
+  - Reachability (3.1.1)
 
 DEPENDENCIES:
   - AMPAvatarView (~> 1.0.3)
   - CSNotificationView (~> 0.3.3)
   - MBProgressHUD (~> 0.8)
   - NPReachability (~> 0.1.0)
+  - Reachability (~> 3.1.1)
 
 SPEC CHECKSUMS:
   AMPAvatarView: 473eae59b5d71dfdeed18803917bfc2a9e0a0a42
   CSNotificationView: f14352657afe7255be9fb2446eb99d5914b97b5d
   MBProgressHUD: 2bbc6f470111daf7f3eaa4eb12b8cbf01c4c0622
   NPReachability: 20281bf45f6124421a43668d2c7a61d1ecba8cf2
+  Reachability: be4883bb93f31e38266ae3365e5600a317aae735
 
-COCOAPODS: 0.28.0
+COCOAPODS: 0.29.0
