@@ -96,16 +96,12 @@
 
 //THIS METHOD IS USED FOR DEBUGGING SHIT
 - (IBAction)onTestPress:(id)sender {
-    PFObject *home = [[PFUser currentUser] objectForKey:@"home"];
-    
-    [home setObject:@"poop" forKey:@"name"];
-    
-    [home save];
-    NSDictionary *dict = [[NSDictionary alloc] initWithObjectsAndKeys:@"value1", @"key1", nil];
-    PFPush *message = [[PFPush alloc] init];
-    [message setChannel:[[NSString alloc] initWithFormat:@"bobalice"]];
-    [message setData:dict];
-    [message sendPushInBackground];
+    [HPCentralData getHouseInBackgroundWithBlock:^(HPHouse *house, NSError *error) {
+        //
+        NSDictionary *dict = [[NSDictionary alloc] initWithObjectsAndKeys:[NSNumber numberWithInt:roommatesSyncRequest], @"syncRequestKey", [PFUser currentUser].objectId, @"src_usr", nil];
+        
+        [HPPushHelper sendNotificationWithData:dict toChannel:house.houseName andAlert:[NSString stringWithFormat:@"%@ just got home!!", [[PFUser currentUser] username]]];
+    }];
 }
 
 

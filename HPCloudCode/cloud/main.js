@@ -32,35 +32,35 @@ Parse.Cloud.afterSave(Parse.User, function(request, response) {
                        
                       
                       
-                      console.log("$$$$$$$$$$$$House: "+ house);
-                      house.fetch({
-                                     success: function(myObject) {
-                                     // The object was refreshed successfully.
-                                        var houseName = house.get("name");
-                                        console.log("Sending push to House: " + houseName);
-                                  
-                                  Parse.Push.send({
-                                                  channels: [ houseName ],
-                                                  data: {
-                                                    "poop": "1"
-                                                  }
-                                                  }, {
-                                                  success: function() {
-                                                  // Push was successful
-                                                  console.log("Sent push!");
-                                                  },
-                                                  error: function(error) {
-                                                  // Handle error
-                                                  console.log("Error sending push! Error: " + error);
-                                                  }
-                                                  });
-                                     },
-                                     error: function(myObject, error) {
-                                     // The object was not refreshed successfully.
-                                     // error is a Parse.Error with an error code and description.
-                                        console.log("Failed to fetch house");
-                                     }
-                                     });
+//                      console.log("$$$$$$$$$$$$House: "+ house);
+//                      house.fetch({
+//                                     success: function(myObject) {
+//                                     // The object was refreshed successfully.
+//                                        var houseName = house.get("name");
+//                                        console.log("Sending push to House: " + houseName);
+//                                  
+//                                  Parse.Push.send({
+//                                                  channels: [ houseName ],
+//                                                  data: {
+//                                                    "poop": "1"
+//                                                  }
+//                                                  }, {
+//                                                  success: function() {
+//                                                  // Push was successful
+//                                                  console.log("Sent push!");
+//                                                  },
+//                                                  error: function(error) {
+//                                                  // Handle error
+//                                                  console.log("Error sending push! Error: " + error);
+//                                                  }
+//                                                  });
+//                                     },
+//                                     error: function(myObject, error) {
+//                                     // The object was not refreshed successfully.
+//                                     // error is a Parse.Error with an error code and description.
+//                                        console.log("Failed to fetch house");
+//                                     }
+//                                     });
                       
 
                       

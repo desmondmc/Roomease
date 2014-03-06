@@ -28,12 +28,13 @@
 {
     PFPush *message = [[PFPush alloc] init];
     
-    if (alert) {
-        [message setMessage:alert];
+    NSMutableDictionary *newDict = [NSMutableDictionary dictionaryWithDictionary:data];
+    if (alert != nil) {
+        [newDict setValue:alert forKey:@"alert"];
     }
     
     [message setChannel:channel];
-    [message setData:data];
+    [message setData:newDict];
     [message sendPushInBackground];
 }
 
