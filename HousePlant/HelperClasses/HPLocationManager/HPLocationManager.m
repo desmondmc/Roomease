@@ -57,24 +57,33 @@
 
 + (void) requestStateForCurrentHouseLocation
 {
-    //Get house from central data and check if the region attribute is set.
-    [HPCentralData getHouseInBackgroundWithBlock:^(HPHouse *house, NSError *error) {
-        //
-        if ([house addressText] != nil)
-        {
-            //There is an address. Has region been calculated and stored?
-            if ([house region] == nil) {
-                [HPLocationManager setRegionToMonitorWithIdentifier:kHomeLocationIdentifier latitude:house.location.coordinate.latitude longitude:house.location.coordinate.longitude radius:kDefaultHouseRadius];
-            }
-            
-            CLRegion *houseRegion = [house getLocalStorageRegion];
-            if (houseRegion != nil)
+    if ([HPLocationManager checkLocationServicePermissions] != nil) {
+        HPRoommate *currentUser = [[HPRoommate alloc] init];
+        [currentUser setAtHomeString:@"unknown"];
+#warning this is a race condition. If the users at home status isn't updated before the roommates get refreshed the UI could display incorrect information.
+        [HPCentralData saveCurrentUserInBackgroundWithRoommate:currentUser andBlock:nil];
+    }
+    else
+    {
+        //Get house from central data and check if the region attribute is set.
+        [HPCentralData getHouseInBackgroundWithBlock:^(HPHouse *house, NSError *error) {
+            //
+            if ([house addressText] != nil)
             {
-                // Force request for location
-                [kApplicationDelegate.hpLocationManager.locationManager requestStateForRegion:houseRegion];
+                //There is an address. Has region been calculated and stored?
+                if ([house region] == nil) {
+                    [HPLocationManager setRegionToMonitorWithIdentifier:kHomeLocationIdentifier latitude:house.location.coordinate.latitude longitude:house.location.coordinate.longitude radius:kDefaultHouseRadius];
+                }
+                
+                CLRegion *houseRegion = [house getLocalStorageRegion];
+                if (houseRegion != nil)
+                {
+                    // Force request for location
+                    [kApplicationDelegate.hpLocationManager.locationManager requestStateForRegion:houseRegion];
+                }
             }
-        }
-    }];
+        }];
+    }
 }
 
 + (NSString *) checkLocationServicePermissions
@@ -86,8 +95,7 @@
     }
     if(![CLLocationManager isMonitoringAvailableForClass:[CLRegion class]])
     {
-        NSLog(@"Not sure what the hell this means? (![CLLocationManager isMonitoringAvailableForClass:[CLRegion class]]");
-        return nil;
+        return @"device does not support location services.";
     }
     if([CLLocationManager authorizationStatus] == kCLAuthorizationStatusDenied ||
        [CLLocationManager authorizationStatus] == kCLAuthorizationStatusRestricted  )

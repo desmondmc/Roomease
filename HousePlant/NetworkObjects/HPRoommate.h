@@ -10,8 +10,10 @@
 
 @interface HPRoommate : NSObject
 
++(NSNumber *) boolWithString:(NSString *)string;
+
 @property (strong, nonatomic) NSString *username;
 @property (strong, nonatomic) UIImage *profilePic;
-@property (strong, nonatomic) NSNumber *atHome;
+@property (strong, nonatomic) NSString *atHomeString;
 
 @end

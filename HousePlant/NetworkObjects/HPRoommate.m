@@ -19,8 +19,7 @@
     {
         _username = [aDecoder decodeObjectForKey:@"username"];
         _profilePic = [aDecoder decodeObjectForKey:@"profilePic"];
-        bool atHomeHolder = [aDecoder decodeIntegerForKey:@"atHome"];
-        _atHome = [[NSNumber alloc] initWithBool:atHomeHolder];
+        _atHomeString = [aDecoder decodeObjectForKey:@"atHome"];
     }
     return self;
 }
@@ -30,7 +29,35 @@
 {
     [aCoder encodeObject:_username forKey:@"username"];
     [aCoder encodeObject:_profilePic forKey:@"profilePic"];
-    [aCoder encodeInteger:_atHome.boolValue forKey:@"atHome"];
+    [aCoder encodeObject:_atHomeString forKey:@"atHome"];
+}
+
++(NSNumber *) boolWithString:(NSString *)string
+{
+    if (string)
+    {
+        if ([string isEqualToString:@"true"])
+        {
+            return [NSNumber numberWithBool:true];
+        }
+        else if ([string isEqualToString:@"false"])
+        {
+            return [NSNumber numberWithBool:false];
+        }
+        else if ([string isEqualToString:@"unknown"])
+        {
+            return nil;
+        }
+        else
+        {
+            [NSException raise:@"Invalid value for at string" format:@"string of %@ is invalid. Should be true, false, or nil", string];
+            return nil;
+        }
+    }
+    else
+    {
+        return nil;
+    }
 }
 
 @end

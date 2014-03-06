@@ -116,6 +116,7 @@
 - (IBAction)onRefreshRmPress:(id)sender {
 #warning this should be smarter. Instead of clearingCentralData HPCentralData should pull from parse if a network connection is available.
     [HPCentralData clearCentralData];
+    [HPLocationManager requestStateForCurrentHouseLocation];
     for (UIView *view in [[self roommateImageSubviewContainer]subviews]) {
         [view removeFromSuperview];
     }
@@ -133,7 +134,7 @@
         //User is inside house location
         NSLog(@"User is inside fence...");
         HPRoommate *roommate = [[HPRoommate alloc] init];
-        [roommate setAtHome:[NSNumber numberWithBool:true]];
+        [roommate setAtHomeString:@"true"];
         [HPCentralData saveCurrentUserInBackgroundWithRoommate:roommate andBlock:nil];
     }
 //    UIAlertView *myAlertView = [[UIAlertView alloc] initWithTitle:@"Hey!"
@@ -162,7 +163,7 @@
         //User is inside house location
         NSLog(@"User is outside fence...");
         HPRoommate *roommate = [[HPRoommate alloc] init];
-        [roommate setAtHome:[NSNumber numberWithBool:false]];
+        [roommate setAtHomeString:@"false"];
         
         
         [HPCentralData saveCurrentUserInBackgroundWithRoommate:roommate andBlock:nil];
@@ -195,7 +196,7 @@
             //User is inside house location
             NSLog(@"User is inside fence...");
             HPRoommate *roommate = [[HPRoommate alloc] init];
-            [roommate setAtHome:[NSNumber numberWithBool:true]];
+            [roommate setAtHomeString:@"true"];
             [HPCentralData saveCurrentUserInBackgroundWithRoommate:roommate andBlock:nil];
         }
         else
@@ -203,7 +204,7 @@
             //User is outside location or inside
             NSLog(@"User is outside fence...");
             HPRoommate *roommate = [[HPRoommate alloc] init];
-            [roommate setAtHome:[NSNumber numberWithBool:false]];
+            [roommate setAtHomeString:@"false"];
             [HPCentralData saveCurrentUserInBackgroundWithRoommate:roommate andBlock:nil];
         }
     }
@@ -213,12 +214,17 @@
     }
 }
 
+- (void)locationManager:(CLLocationManager *)manager didChangeAuthorizationStatus:(CLAuthorizationStatus)status
+{
+    //if it is turned off the user will be set to unknowen.
+#warning we need a place that gets notified when location services is turned off.
+}
+
 #pragma mark - Notification Handlers
 
 - (void) receiveNotificationAppActive:(NSNotification *) notification
 {
     [self onRefreshRmPress:nil];
-    [HPLocationManager requestStateForCurrentHouseLocation];
 }
 
 #pragma mark - HPUINotifierDelegate

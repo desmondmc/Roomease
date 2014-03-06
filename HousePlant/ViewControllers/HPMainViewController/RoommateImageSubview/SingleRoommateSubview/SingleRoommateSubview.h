@@ -15,5 +15,6 @@
 @property (weak, nonatomic) IBOutlet UIImageView *profilePic;
 @property (weak, nonatomic) IBOutlet UILabel *nameLabel;
 @property (weak, nonatomic) IBOutlet UIView *atHomeTint;
+@property (weak, nonatomic) IBOutlet UIImageView *unknownLocationImage;
 
 @end

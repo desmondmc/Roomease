@@ -51,10 +51,8 @@
             HPRoommate * roommate = [[HPRoommate alloc] init];
             roommate.username = pfRoommate[@"username"];
             
-            //need to check is "atHome" is nil because the boolValue is false on nil objects.
-            if (pfRoommate[@"atHome"] != nil) {
-                [roommate setAtHome:[NSNumber numberWithBool:[pfRoommate[@"atHome"] boolValue]]];
-            }
+            [roommate setAtHomeString:pfRoommate[@"atHome"]];
+            
             
             PFFile *userImageFile = [pfRoommate objectForKey:@"profilePic"];
             roommate.profilePic = [UIImage imageWithData:[userImageFile getData]];
@@ -98,7 +96,7 @@
             roommate = [[HPRoommate alloc] init];
             [[PFUser currentUser] fetch];
             roommate.username = [[PFUser currentUser] username];
-            [roommate setAtHome:[NSNumber numberWithBool:[[PFUser currentUser][@"atHome"] boolValue]]];
+            [roommate setAtHomeString:[PFUser currentUser][@"atHome"]];
         
             PFFile *userImageFile = [[PFUser currentUser] objectForKey:@"profilePic"];
             roommate.profilePic = [UIImage imageWithData:[userImageFile getData]];
@@ -139,7 +137,7 @@
         PFFile *userImageFile = [[PFUser currentUser] objectForKey:@"profilePic"];
         roommate.profilePic = [UIImage imageWithData:[userImageFile getData]];
         
-        [roommate setAtHome:[NSNumber numberWithBool:[currentUser[@"atHome"] boolValue]]];
+        [roommate setAtHomeString:currentUser[@"atHome"]];
         
         //convert roommate object into encoded data to store in NSUserdefault
         roommateData = [NSKeyedArchiver archivedDataWithRootObject:roommate];
@@ -176,7 +174,7 @@
     
     [HPCentralData transferAttributesFromUser:roommate toPFObject:currentUser];
     
-    roommate = [HPCentralData transferOldRoommate:oldUser toNewHouse:roommate];
+    roommate = [HPCentralData transferOldRoommate:oldUser toNewRoomate:roommate];
     
     NSData *userData = [NSKeyedArchiver archivedDataWithRootObject:roommate];
     [persistantStore setObject:userData forKey:@"hp_currentUser"];
@@ -397,10 +395,8 @@
             HPRoommate * roommate = [[HPRoommate alloc] init];
             roommate.username = pfRoommate[@"username"];
             
-            //need to check is "atHome" is nil because the boolValue is false on nil objects.
-            if (pfRoommate[@"atHome"] != nil) {
-                [roommate setAtHome:[NSNumber numberWithBool:[pfRoommate[@"atHome"] boolValue]]];
-            }
+            [roommate setAtHomeString:pfRoommate[@"atHome"]];
+            
             
             PFFile *userImageFile = [pfRoommate objectForKey:@"profilePic"];
             roommate.profilePic = [UIImage imageWithData:[userImageFile getData]];
@@ -481,14 +477,12 @@
         parseUser[@"profilePic"] = imageFile;
     }
     
-    if ([roommate atHome] != nil) {
-        if ([[roommate atHome] boolValue]) {
-            parseUser[@"atHome"] = @YES;
-        }
-        else {
-            parseUser[@"atHome"] = @NO;
-        }
-        
+    if ([roommate atHomeString] != nil) {
+        parseUser[@"atHome"] = [roommate atHomeString];
+    }
+    else
+    {
+        parseUser[@"atHome"] = @"unknown";
     }
     
     if ([parseUser save] == false) {
@@ -500,8 +494,8 @@
     return true;
 }
 
-//This function fills in any blankspaces in the new house with the old houses attributes. This prevents blanks being stored in local storage.
-+ (HPRoommate *) transferOldRoommate:(HPRoommate *)oldRoommate toNewHouse:(HPRoommate *)newRoommate
+//This function fills in any blankspaces in the new roommate with the old roommates attributes. This prevents blanks being stored in local storage.
++ (HPRoommate *) transferOldRoommate:(HPRoommate *)oldRoommate toNewRoomate:(HPRoommate *)newRoommate
 {
     //Set the new attributes as long as they are not null. If they are null we assume keep the old NSUserDefault values.
     if ([newRoommate username] == nil) {
@@ -512,8 +506,8 @@
         newRoommate.profilePic = oldRoommate.profilePic;
     }
     
-    if ([newRoommate atHome] == nil) {
-        newRoommate.atHome = oldRoommate.atHome;
+    if ([newRoommate atHomeString] == nil) {
+        newRoommate.atHomeString = oldRoommate.atHomeString;
     }
 
     return newRoommate;
@@ -524,8 +518,8 @@
 {
     NSMutableArray *roommatesData = [[NSMutableArray alloc] init];
     //Find the user in the local storage roommate array.
-    if (!roommate.username || !roommate.atHome) {
-        [NSException raise:@"Invalid roommate sent to saveRoommatesWithSingleRoommate" format:@"roommate of %@ is invalid", roommate];
+    if (!roommate.username) {
+        [NSException raise:@"HP Exception: Invalid roommate sent to saveRoommatesWithSingleRoommate" format:@"roommate of %@ is invalid", roommate];
     }
     NSMutableArray *roommates = [NSMutableArray arrayWithArray:[HPCentralData getRoommates]];
     

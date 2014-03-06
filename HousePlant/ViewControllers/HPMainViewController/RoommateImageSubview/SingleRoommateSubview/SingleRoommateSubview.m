@@ -37,14 +37,28 @@
     
     
     subView.nameLabel.text = roommate.username;
-    if ([roommate atHome]) {
-        if (![[roommate atHome] boolValue]) {
-            [subView.atHomeTint setHidden:false];
-        }
-        else
+    if ([roommate atHomeString]) {
+        if ([[roommate atHomeString] isEqualToString:@"true"])
         {
             [subView.atHomeTint setHidden:true];
+            [subView.unknownLocationImage setHidden: true];
         }
+        
+        else if ([[roommate atHomeString] isEqualToString:@"false"])
+        {
+            [subView.atHomeTint setHidden:false];
+            [subView.unknownLocationImage setHidden: true];
+        }
+        
+        else if ([[roommate atHomeString] isEqualToString:@"unknown"])
+        {
+            [subView.atHomeTint setHidden:true];
+            [subView.unknownLocationImage setHidden: false];
+        }
+    }
+    else //location is undefined
+    {
+        [subView.unknownLocationImage setHidden: false];
     }
 
     // make sure RoommateImageSubview is not nil or the wrong class!
