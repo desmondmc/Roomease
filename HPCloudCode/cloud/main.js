@@ -21,9 +21,18 @@ Parse.Cloud.afterSave("House", function(request, response) {
 Parse.Cloud.afterSave(Parse.User, function(request, response) {
                       console.log("Running after save on user!");
                       var House = Parse.Object.extend("House");
-                      var house = new House;
-                      house = Parse.User.current().get("home");
+                      var house = new House();
                       
+//                      var User = Parse.Object.extend("_User");
+//                      var user = Parse.User.current();
+                      house = request.user.get("home");
+                      
+                      
+                
+                       
+                      
+                      
+                      console.log("$$$$$$$$$$$$House: "+ house);
                       house.fetch({
                                      success: function(myObject) {
                                      // The object was refreshed successfully.
@@ -33,9 +42,7 @@ Parse.Cloud.afterSave(Parse.User, function(request, response) {
                                   Parse.Push.send({
                                                   channels: [ houseName ],
                                                   data: {
-                                                    alert: "asdasd",
-                                                    "content-available": "1",
-                                                    "acme1" : "bar"
+                                                    "poop": "1"
                                                   }
                                                   }, {
                                                   success: function() {

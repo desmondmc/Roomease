@@ -165,6 +165,11 @@ typedef void (^BackgroundTaskResultBlock)(NSString *errorString);
             {
                 errorString = @"There was an error building you house. Please try again.";
             }
+//            else
+//            {
+//                [[PFUser currentUser] setObject:newHouse forKey:@"home"];
+//                [[PFUser currentUser] save];
+//            }
             
             if(!errorString)
             {

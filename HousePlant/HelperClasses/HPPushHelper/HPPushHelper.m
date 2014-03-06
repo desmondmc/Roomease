@@ -24,9 +24,14 @@
      }];
 }
 
-+ (void)sendNotificationWithData:(NSDictionary *)data toChannel:(NSString*)channel
++ (void)sendNotificationWithData:(NSDictionary *)data toChannel:(NSString*)channel andAlert:(NSString *)alert
 {
     PFPush *message = [[PFPush alloc] init];
+    
+    if (alert) {
+        [message setMessage:alert];
+    }
+    
     [message setChannel:channel];
     [message setData:data];
     [message sendPushInBackground];

@@ -134,6 +134,15 @@ didReceiveRemoteNotification:(NSDictionary *)userInfo {
 #warning we should add code here to properly handle push notifications from within the app.
 #warning there are silent push notifications being sent
     NSLog(@"Recieved Push: %@", userInfo);
+    if (![[userInfo objectForKey:@"src_usr"] isEqualToString:[PFUser currentUser].objectId] ) {
+        [HPSyncWorker handleSyncRequest:userInfo];
+    }
+    else
+    {
+        NSLog(@"Recieved Notification from myself: %@", userInfo);
+    }
+    
+    
 }
 
 #pragma mark - Application's Documents directory

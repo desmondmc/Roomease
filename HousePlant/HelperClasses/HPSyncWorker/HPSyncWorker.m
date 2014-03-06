@@ -6,7 +6,6 @@
 //  Copyright (c) 2014 HousePlant. All rights reserved.
 //
 
-#import "HPSyncWorker.h"
 #import "HPCentralData.h"
 #import "HPUINotifier.h"
 
@@ -27,8 +26,7 @@
                }
                else
                {
-                   NSDictionary *notifierDictionary = [[NSDictionary alloc] init];
-                   [notifierDictionary setValue:[NSNumber numberWithBool:TRUE] forKey:kRefreshRoommatesKey];
+                   NSDictionary *notifierDictionary = [[NSDictionary alloc] initWithObjectsAndKeys:[NSNumber numberWithBool:TRUE], kRefreshRoommatesKey, nil];
                    [[HPUINotifier sharedUINotifier] notifyDelegatesWithChange: notifierDictionary];
                }
             }];

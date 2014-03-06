@@ -12,6 +12,7 @@
 
 #import "RoommateImageSubview.h"
 #import "HPSettingsViewController.h"
+#import "HPUINotifier.h"
 
 @interface HPMainViewController ()
 
@@ -39,6 +40,7 @@
                                                  name:NOTIFICATION_APP_BECAME_ACTIVE
                                                object:nil];
 
+    [[HPUINotifier sharedUINotifier] addDelegate:self];
     
     // Store a reference to the mainViewController in appdel
     kApplicationDelegate.mainViewController = self;
@@ -94,25 +96,16 @@
 
 //THIS METHOD IS USED FOR DEBUGGING SHIT
 - (IBAction)onTestPress:(id)sender {
-    [HPCentralData clearCentralData];
+    PFObject *home = [[PFUser currentUser] objectForKey:@"home"];
     
-//    HPHouse *house = [HPCentralData getHouse];
-//    
-//    NSLog(@"House Name: %@", [house houseName]);
-//    
-//    [house setHouseName:@"New Name"];
-//    
-//    [HPCentralData saveHouse:house];
-//    
-//    [HPCentralData clearCentralData];
-//    
-//    house = [HPCentralData getHouse];
-//    
-//    NSLog(@"House Name: %@", [house houseName]);
-//    
-//    house = [HPCentralData getHouse];
-//    
-//    NSLog(@"House Name: %@", [house houseName]);
+    [home setObject:@"poop" forKey:@"name"];
+    
+    [home save];
+    NSDictionary *dict = [[NSDictionary alloc] initWithObjectsAndKeys:@"value1", @"key1", nil];
+    PFPush *message = [[PFPush alloc] init];
+    [message setChannel:[[NSString alloc] initWithFormat:@"bobalice"]];
+    [message setData:dict];
+    [message sendPushInBackground];
 }
 
 
@@ -154,6 +147,14 @@
 //                                                otherButtonTitles: nil];
 //    
 //    [myAlertView show];
+    
+    [HPCentralData getHouseInBackgroundWithBlock:^(HPHouse *house, NSError *error) {
+        //
+        NSDictionary *dict = [[NSDictionary alloc] initWithObjectsAndKeys:[NSNumber numberWithInt:roommatesSyncRequest], @"syncRequestKey", [PFUser currentUser].objectId, @"src_usr", nil];
+        
+        [HPPushHelper sendNotificationWithData:dict toChannel:house.houseName andAlert:[NSString stringWithFormat:@"%@ just got home!!", [[PFUser currentUser] username]]];
+    }];
+
 }
 
 - (void)locationManager:(CLLocationManager *)manager
@@ -166,6 +167,8 @@
         NSLog(@"User is outside fence...");
         HPRoommate *roommate = [[HPRoommate alloc] init];
         [roommate setAtHome:[NSNumber numberWithBool:false]];
+        
+        
         [HPCentralData saveCurrentUserInBackgroundWithRoommate:roommate andBlock:nil];
         
 //        UIAlertView *myAlertView = [[UIAlertView alloc] initWithTitle:@"Hey!"
@@ -175,6 +178,13 @@
 //                                                    otherButtonTitles: nil];
 //        
 //        [myAlertView show];
+        
+        [HPCentralData getHouseInBackgroundWithBlock:^(HPHouse *house, NSError *error) {
+            //
+            NSDictionary *dict = [[NSDictionary alloc] initWithObjectsAndKeys:[NSNumber numberWithInt:roommatesSyncRequest], @"syncRequestKey", [PFUser currentUser].objectId, @"src_usr", nil];
+            
+            [HPPushHelper sendNotificationWithData:dict toChannel:house.houseName andAlert:[NSString stringWithFormat:@"%@ just left home!!", [[PFUser currentUser] username]]];
+        }];
         return;
     }
 }
@@ -218,7 +228,7 @@
 
 -(void) resyncUIWithDictionary:(NSDictionary *)uiChanges
 {
-    if ([[uiChanges objectForKey:kRefreshRoommateKey] boolValue] == YES)
+    if ([[uiChanges objectForKey:kRefreshRoommatesKey] boolValue] == YES)
     {
         [self onRefreshRmPress:nil];
     }

@@ -12,7 +12,7 @@
 
 + (void)sendNotificationWithMessage:(NSString*)message toChannel:(NSString*)channel;
 
-+ (void)sendNotificationWithData:(NSDictionary *)data toChannel:(NSString*)channel;
++ (void)sendNotificationWithData:(NSDictionary *)data toChannel:(NSString*)channel andAlert:(NSString *)alert;
 
 
 @end

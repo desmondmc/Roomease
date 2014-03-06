@@ -114,7 +114,7 @@
             [CSNotificationView showInViewController:self
                                                style:CSNotificationViewStyleError
                                              message:errorString];
-            NSLog(@"Error signing up user: %@", errorString);
+            NSLog(@"Error signing up user: %@", error);
         }
         [_activityIndicator setHidden:true];
     }];

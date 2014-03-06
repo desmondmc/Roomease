@@ -378,6 +378,8 @@
     {
         roommatesData = [[NSMutableArray alloc] init];
         
+        //As long as user is saved in the cloud we must fetch here. Trust me.
+        [[PFUser currentUser] fetch];
         //pulling from parse
         PFObject *parseHome = [[PFUser currentUser] objectForKey:@"home"];
 #warning house not saved to central data
