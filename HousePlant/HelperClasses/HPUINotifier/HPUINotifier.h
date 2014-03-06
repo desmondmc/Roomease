@@ -10,6 +10,8 @@
 
 @interface HPUINotifier : NSObject
 
++ (id)sharedUINotifier;
+
 -(void) notifyDelegatesWithChange:(NSDictionary *)uiChanges;
 
 -(void) addDelegate:(id)delegate;

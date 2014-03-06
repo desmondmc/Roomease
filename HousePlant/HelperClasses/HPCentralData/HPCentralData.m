@@ -25,9 +25,54 @@
     //resync this users house.
 }
 
-+(void) resyncRoommates
++(void) resyncRoommates:(CentralDataSaveResultBlock)block
 {
     //resync the roommates in this house.
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
+        
+        NSMutableArray *roommatesData = [[NSMutableArray alloc] init];
+        
+        //pulling from parse
+        PFObject *parseHome = [[PFUser currentUser] objectForKey:@"home"];
+#warning house not saved to central data
+        [parseHome fetch];
+        if (parseHome == nil)
+        {
+            //No home exists for this user yet.
+            if (block)
+            {
+                block(nil);
+            }
+        }
+        
+        NSArray *pfRoommates = [parseHome objectForKey:@"users"];
+        for (PFObject *pfRoommate in pfRoommates) {
+            [pfRoommate fetch];
+            HPRoommate * roommate = [[HPRoommate alloc] init];
+            roommate.username = pfRoommate[@"username"];
+            
+            //need to check is "atHome" is nil because the boolValue is false on nil objects.
+            if (pfRoommate[@"atHome"] != nil) {
+                [roommate setAtHome:[NSNumber numberWithBool:[pfRoommate[@"atHome"] boolValue]]];
+            }
+            
+            PFFile *userImageFile = [pfRoommate objectForKey:@"profilePic"];
+            roommate.profilePic = [UIImage imageWithData:[userImageFile getData]];
+            
+            NSData *roommateData = [NSKeyedArchiver archivedDataWithRootObject:roommate];
+            [roommatesData addObject:roommateData];
+        }
+        
+        [persistantStore setObject:roommatesData forKey:@"hp_roommates"];
+        [persistantStore synchronize];
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            if (block)
+                block(nil);
+        });
+        
+        
+    });
 }
 
 
@@ -334,9 +379,8 @@
         roommatesData = [[NSMutableArray alloc] init];
         
         //pulling from parse
-        [[PFUser currentUser] fetch];
-        __block PFObject *parseHome = [[PFUser currentUser] objectForKey:@"home"];
-        
+        PFObject *parseHome = [[PFUser currentUser] objectForKey:@"home"];
+#warning house not saved to central data
         [parseHome fetch];
         if (parseHome == nil)
         {

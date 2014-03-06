@@ -15,7 +15,7 @@
 +(void) resyncAllData;
 +(void) resyncCurrentUser;
 +(void) resyncHouse;
-+(void) resyncRoommates;
++(void) resyncRoommates:(CentralDataSaveResultBlock)block;
 
 +(void) getCurrentUserInBackgroundWithBlock:(CentralDataRoommateResultBlock)block;
 +(HPRoommate *) getCurrentUser;

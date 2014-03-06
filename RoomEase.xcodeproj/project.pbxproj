@@ -22,6 +22,7 @@
 
 /* Begin PBXBuildFile section */
 		641AF380FE954A6D996B029D /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F2ADBFAE68984DBDA17CC3D1 /* libPods.a */; };
+		F36CEC1B18C6880B0013D094 /* HPSyncWorker.m in Sources */ = {isa = PBXBuildFile; fileRef = F36CEC1A18C6880B0013D094 /* HPSyncWorker.m */; };
 		F710E5FA187862B700BD9D54 /* HPLoginRouter.m in Sources */ = {isa = PBXBuildFile; fileRef = F710E5F9187862B700BD9D54 /* HPLoginRouter.m */; };
 		F710E6041879213800BD9D54 /* main.js in Sources */ = {isa = PBXBuildFile; fileRef = F710E5FF1879213800BD9D54 /* main.js */; };
 		F710E6051879213800BD9D54 /* global.json in Resources */ = {isa = PBXBuildFile; fileRef = F710E6011879213800BD9D54 /* global.json */; };
@@ -100,6 +101,8 @@
 /* Begin PBXFileReference section */
 		CABE67E5142742FBABED9A90 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
 		F2ADBFAE68984DBDA17CC3D1 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		F36CEC1918C6880B0013D094 /* HPSyncWorker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HPSyncWorker.h; path = HelperClasses/HPSyncWorker/HPSyncWorker.h; sourceTree = "<group>"; };
+		F36CEC1A18C6880B0013D094 /* HPSyncWorker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HPSyncWorker.m; path = HelperClasses/HPSyncWorker/HPSyncWorker.m; sourceTree = "<group>"; };
 		F710E5F8187862B700BD9D54 /* HPLoginRouter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HPLoginRouter.h; path = HelperClasses/HPLoginRouter.h; sourceTree = "<group>"; };
 		F710E5F9187862B700BD9D54 /* HPLoginRouter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HPLoginRouter.m; path = HelperClasses/HPLoginRouter.m; sourceTree = "<group>"; };
 		F710E5FF1879213800BD9D54 /* main.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = main.js; sourceTree = "<group>"; };
@@ -233,6 +236,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		F36CEC1C18C6881F0013D094 /* HPSyncWorker */ = {
+			isa = PBXGroup;
+			children = (
+				F36CEC1918C6880B0013D094 /* HPSyncWorker.h */,
+				F36CEC1A18C6880B0013D094 /* HPSyncWorker.m */,
+			);
+			name = HPSyncWorker;
+			sourceTree = "<group>";
+		};
 		F710E5FB187862BE00BD9D54 /* HelperClasses */ = {
 			isa = PBXGroup;
 			children = (
@@ -242,6 +254,7 @@
 				F714B82118ABD55100B598E7 /* HPLocationManager */,
 				F710E608187F775900BD9D54 /* HPCentralData */,
 				F710E5FC187862DE00BD9D54 /* HPLoginRouter */,
+				F36CEC1C18C6881F0013D094 /* HPSyncWorker */,
 			);
 			name = HelperClasses;
 			sourceTree = "<group>";
@@ -766,6 +779,7 @@
 				F765357B1867C3840046263B /* HPSigninViewController.m in Sources */,
 				F714B83218B1387800B598E7 /* RoommateImageSubview.m in Sources */,
 				F76535811867D1B20046263B /* HPSignupViewController.m in Sources */,
+				F36CEC1B18C6880B0013D094 /* HPSyncWorker.m in Sources */,
 				F73A01B418AAFD00000F25B6 /* HPSettingsViewController.m in Sources */,
 				F73F9EAC18BE9674009D6097 /* HPUINotifier.m in Sources */,
 				F711388518777B8800D9BA9E /* HPNoHomeViewController.m in Sources */,
