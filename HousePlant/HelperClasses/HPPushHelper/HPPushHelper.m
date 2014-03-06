@@ -18,7 +18,7 @@
      {
          if(error)
          {
-#warning something
+             NSLog(@"Error sending push with message.");
          }
          
      }];
@@ -36,6 +36,30 @@
     [message setChannel:channel];
     [message setData:newDict];
     [message sendPushInBackground];
+}
+
++ (void)sendNotificationWithDataToEveryoneInHouseButMe:(NSDictionary *)data andAlert:(NSString *)alert
+{
+    [HPCentralData getHouseInBackgroundWithBlock:^(HPHouse *house, NSError *error) {
+        //
+        [[PFUser currentUser] fetchIfNeededInBackgroundWithBlock:^(PFObject *object, NSError *error) {
+            //
+            PFQuery *query = [PFInstallation query];
+            [query whereKey:@"channels" equalTo:house.houseName];
+            [query whereKey:@"channels" notEqualTo:[PFUser currentUser].username];
+            
+            PFPush *message = [[PFPush alloc] init];
+            
+            NSMutableDictionary *newDict = [NSMutableDictionary dictionaryWithDictionary:data];
+            if (alert != nil) {
+                [newDict setValue:alert forKey:@"alert"];
+            }
+            
+            [message setQuery:query];
+            [message setData:newDict];
+            [message sendPushInBackground];
+        }];
+    }];
 }
 
 @end

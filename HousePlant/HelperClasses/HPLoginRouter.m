@@ -19,7 +19,6 @@
     
     if (house) {
         //return main view for the users house
-        [HPCentralData getCurrentUser];
         //[HPCentralData getHouse];
         HPMainViewController *mainViewController = [[HPMainViewController alloc] init];
         mainViewController.modalTransitionStyle = UIModalTransitionStyleCoverVertical;

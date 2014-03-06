@@ -388,7 +388,6 @@
             return nil;
         }
 
-#warning There is a bug here. On the first pull
         NSArray *pfRoommates = [parseHome objectForKey:@"users"];
         for (PFObject *pfRoommate in pfRoommates) {
             [pfRoommate fetch];

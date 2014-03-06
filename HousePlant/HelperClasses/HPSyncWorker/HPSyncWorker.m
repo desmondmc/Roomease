@@ -22,7 +22,7 @@
             [HPCentralData resyncRoommates:^(NSError *error) {
                if (error)
                {
-#warning do something
+                   NSLog(@"Error resyncing roommates!!");
                }
                else
                {

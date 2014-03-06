@@ -17,6 +17,5 @@
 @property (weak, nonatomic) IBOutlet UIView *roommateImageSubviewContainer;
 - (IBAction)onSettingsPress:(id)sender;
 - (IBAction)onRefreshRmPress:(id)sender;
-- (IBAction)onPullRoommateFromServerPress:(id)sender;
 
 @end

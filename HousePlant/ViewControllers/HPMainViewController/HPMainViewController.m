@@ -96,12 +96,11 @@
 
 //THIS METHOD IS USED FOR DEBUGGING SHIT
 - (IBAction)onTestPress:(id)sender {
-    [HPCentralData getHouseInBackgroundWithBlock:^(HPHouse *house, NSError *error) {
-        //
-        NSDictionary *dict = [[NSDictionary alloc] initWithObjectsAndKeys:[NSNumber numberWithInt:roommatesSyncRequest], @"syncRequestKey", [PFUser currentUser].objectId, @"src_usr", nil];
-        
-        [HPPushHelper sendNotificationWithData:dict toChannel:house.houseName andAlert:[NSString stringWithFormat:@"%@ just got home!!", [[PFUser currentUser] username]]];
-    }];
+    
+    NSDictionary *dict = [[NSDictionary alloc] initWithObjectsAndKeys:[NSNumber numberWithInt:roommatesSyncRequest], @"syncRequestKey", [PFUser currentUser].objectId, @"src_usr", nil];
+    [HPPushHelper sendNotificationWithDataToEveryoneInHouseButMe:dict andAlert:[NSString stringWithFormat:@"%@ just left home!!", [[PFUser currentUser] username]]];
+    
+
 }
 
 
@@ -145,13 +144,8 @@
 //    
 //    [myAlertView show];
     
-    [HPCentralData getHouseInBackgroundWithBlock:^(HPHouse *house, NSError *error) {
-        //
-        NSDictionary *dict = [[NSDictionary alloc] initWithObjectsAndKeys:[NSNumber numberWithInt:roommatesSyncRequest], @"syncRequestKey", [PFUser currentUser].objectId, @"src_usr", nil];
-        
-        [HPPushHelper sendNotificationWithData:dict toChannel:house.houseName andAlert:[NSString stringWithFormat:@"%@ just got home!!", [[PFUser currentUser] username]]];
-    }];
-
+    NSDictionary *dict = [[NSDictionary alloc] initWithObjectsAndKeys:[NSNumber numberWithInt:roommatesSyncRequest], @"syncRequestKey", [PFUser currentUser].objectId, @"src_usr", nil];
+    [HPPushHelper sendNotificationWithDataToEveryoneInHouseButMe:dict andAlert:[NSString stringWithFormat:@"%@ just got home!!", [[PFUser currentUser] username]]];
 }
 
 - (void)locationManager:(CLLocationManager *)manager
@@ -176,12 +170,10 @@
 //        
 //        [myAlertView show];
         
-        [HPCentralData getHouseInBackgroundWithBlock:^(HPHouse *house, NSError *error) {
-            //
-            NSDictionary *dict = [[NSDictionary alloc] initWithObjectsAndKeys:[NSNumber numberWithInt:roommatesSyncRequest], @"syncRequestKey", [PFUser currentUser].objectId, @"src_usr", nil];
-            
-            [HPPushHelper sendNotificationWithData:dict toChannel:house.houseName andAlert:[NSString stringWithFormat:@"%@ just left home!!", [[PFUser currentUser] username]]];
-        }];
+        
+        NSDictionary *dict = [[NSDictionary alloc] initWithObjectsAndKeys:[NSNumber numberWithInt:roommatesSyncRequest], @"syncRequestKey", [PFUser currentUser].objectId, @"src_usr", nil];
+        [HPPushHelper sendNotificationWithDataToEveryoneInHouseButMe:dict andAlert:[NSString stringWithFormat:@"%@ just left home!!", [[PFUser currentUser] username]]];
+    
         return;
     }
 }
@@ -190,22 +182,32 @@
 - (void)locationManager:(CLLocationManager *)manager
       didDetermineState:(CLRegionState)state forRegion:(CLRegion *)region
 {
-#warning The user is saved everytime this gets called. The user should only be saved if atHome status changes.
     if ([region.identifier isEqualToString:kHomeLocationIdentifier]) {
         if (state == CLRegionStateInside) {
             //User is inside house location
             NSLog(@"User is inside fence...");
-            HPRoommate *roommate = [[HPRoommate alloc] init];
-            [roommate setAtHomeString:@"true"];
-            [HPCentralData saveCurrentUserInBackgroundWithRoommate:roommate andBlock:nil];
+            [HPCentralData getCurrentUserInBackgroundWithBlock:^(HPRoommate *roommate, NSError *error) {
+                //
+                if (![[roommate atHomeString] isEqualToString:@"true"]) {
+                    HPRoommate *roommate = [[HPRoommate alloc] init];
+                    [roommate setAtHomeString:@"true"];
+                    [HPCentralData saveCurrentUserInBackgroundWithRoommate:roommate andBlock:nil];
+                }
+            }];
+
         }
         else
         {
             //User is outside location or inside
             NSLog(@"User is outside fence...");
-            HPRoommate *roommate = [[HPRoommate alloc] init];
-            [roommate setAtHomeString:@"false"];
-            [HPCentralData saveCurrentUserInBackgroundWithRoommate:roommate andBlock:nil];
+            [HPCentralData getCurrentUserInBackgroundWithBlock:^(HPRoommate *roommate, NSError *error) {
+                //
+                if (![[roommate atHomeString] isEqualToString:@"false"]) {
+                    HPRoommate *roommate = [[HPRoommate alloc] init];
+                    [roommate setAtHomeString:@"false"];
+                    [HPCentralData saveCurrentUserInBackgroundWithRoommate:roommate andBlock:nil];
+                }
+            }];
         }
     }
     else
@@ -217,7 +219,7 @@
 - (void)locationManager:(CLLocationManager *)manager didChangeAuthorizationStatus:(CLAuthorizationStatus)status
 {
     //if it is turned off the user will be set to unknowen.
-#warning we need a place that gets notified when location services is turned off.
+#warning we need a place that gets notified when location services is turned off. Not even sure if this is possible.
 }
 
 #pragma mark - Notification Handlers

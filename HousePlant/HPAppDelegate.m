@@ -130,9 +130,11 @@
 
 - (void)application:(UIApplication *)application
 didReceiveRemoteNotification:(NSDictionary *)userInfo {
-    //[PFPush handlePush:userInfo];
-#warning we should add code here to properly handle push notifications from within the app.
-#warning there are silent push notifications being sent
+    if ([userInfo objectForKey:@"alert"] != nil)
+    {
+        [PFPush handlePush:userInfo];
+    }
+    
     NSLog(@"Recieved Push: %@", userInfo);
     if (![[userInfo objectForKey:@"src_usr"] isEqualToString:[PFUser currentUser].objectId] ) {
         [HPSyncWorker handleSyncRequest:userInfo];

@@ -16,12 +16,12 @@
     // Subscribe to channel of house name.
     [HPCentralData getHouseInBackgroundWithBlock:^(HPHouse *house, NSError *error) {
         //
-#warning there should be a nil check here on the house.
+#warning there should be a nil check here on the house. Cloud code could potentially fail.
         NSDictionary *dict = [[NSDictionary alloc] initWithObjectsAndKeys:[NSNumber numberWithInt:roommatesSyncRequest], @"syncRequestKey", [PFUser currentUser].objectId, @"src_usr",  nil];
-        [HPPushHelper sendNotificationWithData:dict toChannel:house.houseName andAlert:nil];
+        [HPPushHelper sendNotificationWithDataToEveryoneInHouseButMe:dict andAlert:nil];
         
         PFInstallation *currentInstallation = [PFInstallation currentInstallation];
-        [currentInstallation addUniqueObject:house.houseName forKey:@"channels"];
+        [currentInstallation addUniqueObjectsFromArray:@[house.houseName, [PFUser currentUser].username] forKey:@"channels"];
         [currentInstallation saveInBackground];
         
     }];
