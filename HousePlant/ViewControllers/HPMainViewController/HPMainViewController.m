@@ -218,6 +218,7 @@
 - (void) receiveNotificationAppActive:(NSNotification *) notification
 {
     [self onRefreshRmPress:nil];
+    [HPLocationManager requestStateForCurrentHouseLocation];
 }
 
 #pragma mark - HPUINotifierDelegate
