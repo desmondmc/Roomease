@@ -45,7 +45,7 @@
                     </connections>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rzE-at-Rxb">
-                    <rect key="frame" x="16" y="34" width="28" height="31"/>
+                    <rect key="frame" x="16" y="34" width="31" height="31"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
                     <state key="normal" image="new-post-icon">
@@ -84,7 +84,7 @@
         </view>
     </objects>
     <resources>
-        <image name="new-post-icon" width="28" height="31"/>
+        <image name="new-post-icon" width="31" height="31"/>
         <image name="settings-cog-icon" width="30" height="30"/>
         <image name="top-bar-bg" width="640" height="143"/>
         <image name="top-bar-logo-wordmark" width="268" height="62"/>

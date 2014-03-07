@@ -41,12 +41,6 @@
 
 - (IBAction)onSetLocationPress:(id)sender {
     HPHouse *house = [[HPHouse alloc] init];
-
-    if (kApplicationDelegate.hpLocationManager == nil) {
-        [HPLocationManager initHPLocationManagerWithDelegate:kApplicationDelegate.mainViewController];
-    }
-    
-    
     
     CLGeocoder *geocoder = [[CLGeocoder alloc] init];
     
@@ -86,17 +80,5 @@
 - (IBAction)onBackPress:(id)sender {
         [self dismissViewControllerAnimated:YES completion:nil];
 }
-- (IBAction)onTestLocationPress:(id)sender {
-    //Force request for initial state.
-    NSString *locationErrorString = [HPLocationManager checkLocationServicePermissions];
-    if (locationErrorString != nil) {
-        [CSNotificationView showInViewController:self
-                                           style:CSNotificationViewStyleError
-                                         message:locationErrorString];
-    }
-    else
-    {
-        [HPLocationManager requestStateForCurrentHouseLocation];
-    }
-}
+
 @end

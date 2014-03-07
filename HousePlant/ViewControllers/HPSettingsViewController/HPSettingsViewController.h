@@ -15,7 +15,6 @@
 @property (weak, nonatomic) IBOutlet UILabel *homeLocationLabel;
 
 - (IBAction)onSetLocationPress:(id)sender;
-- (IBAction)onTestLocationPress:(id)sender;
 - (IBAction)onBackPress:(id)sender;
 
 
