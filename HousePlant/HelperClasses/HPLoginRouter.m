@@ -20,6 +20,14 @@
     if (house) {
         //return main view for the users house
         //[HPCentralData getHouse];
+        PFInstallation *currentInstallation = [PFInstallation currentInstallation];
+        
+        [HPCentralData getHouseInBackgroundWithBlock:^(HPHouse *house, NSError *error) {
+            [currentInstallation addUniqueObjectsFromArray:@[house.houseName, [PFUser currentUser].username] forKey:@"channels"];
+            [currentInstallation saveInBackground];
+        }];
+
+        
         HPMainViewController *mainViewController = [[HPMainViewController alloc] init];
         mainViewController.modalTransitionStyle = UIModalTransitionStyleCoverVertical;
         return mainViewController;

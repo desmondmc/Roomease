@@ -89,6 +89,8 @@
 }
 
 - (IBAction)onLogoutPress:(id)sender {
+    [[[PFInstallation currentInstallation] objectForKey:@"channels"] removeAllObjects];
+    [[PFInstallation currentInstallation] saveInBackground];
     [PFUser logOut];
     HPStartingViewController *startingViewController = [[HPStartingViewController alloc] init];
     [self presentViewController:startingViewController animated:NO completion:nil];
