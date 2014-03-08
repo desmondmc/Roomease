@@ -12,12 +12,13 @@ typedef enum
 {
     roommatesSyncRequest = 0,
     houseSyncRequest,    
-}syncRequest;
+} syncRequest_t;
 
 
 
 @interface HPSyncWorker : NSObject
 
-+(BOOL) handleSyncRequest:(NSDictionary *)syncData;
++(BOOL) handleSyncRequestWithDictionary:(NSDictionary *)syncData;
++(BOOL) handleSyncRequestWithType:(syncRequest_t)type;
 
 @end

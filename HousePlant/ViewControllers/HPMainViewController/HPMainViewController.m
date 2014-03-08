@@ -117,14 +117,8 @@
 }
 
 - (IBAction)onRefreshRmPress:(id)sender {
-#warning this should be smarter. Instead of clearingCentralData HPCentralData should pull from parse if a network connection is available.
-    [HPCentralData clearCentralData];
-    [HPLocationManager requestStateForCurrentHouseLocation];
-    for (UIView *view in [[self roommateImageSubviewContainer]subviews]) {
-        [view removeFromSuperview];
-    }
-    roommateView = [RoommateImageSubview roommateImageSubview];
-    [[self roommateImageSubviewContainer] addSubview:roommateView];
+    //Starts a sync request. Will be called back on resyncUIWithDictionary.
+    [HPSyncWorker handleSyncRequestWithType:roommatesSyncRequest];
 }
 
 #pragma mark - CLLocationManagerDelegate
@@ -230,7 +224,7 @@
 
 - (void) receiveNotificationAppActive:(NSNotification *) notification
 {
-    [self onRefreshRmPress:nil];
+    [HPSyncWorker handleSyncRequestWithType:roommatesSyncRequest];
 }
 
 #pragma mark - HPUINotifierDelegate
@@ -239,7 +233,11 @@
 {
     if ([[uiChanges objectForKey:kRefreshRoommatesKey] boolValue] == YES)
     {
-        [self onRefreshRmPress:nil];
+        for (UIView *view in [[self roommateImageSubviewContainer]subviews]) {
+            [view removeFromSuperview];
+        }
+        roommateView = [RoommateImageSubview roommateImageSubview];
+        [[self roommateImageSubviewContainer] addSubview:roommateView];
     }
 }
 

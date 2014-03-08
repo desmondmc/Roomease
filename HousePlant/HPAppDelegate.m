@@ -139,7 +139,7 @@ didReceiveRemoteNotification:(NSDictionary *)userInfo {
     
     NSLog(@"Recieved Push: %@", userInfo);
     if (![[userInfo objectForKey:@"src_usr"] isEqualToString:[PFUser currentUser].objectId] ) {
-        [HPSyncWorker handleSyncRequest:userInfo];
+        [HPSyncWorker handleSyncRequestWithDictionary:userInfo];
     }
     else
     {

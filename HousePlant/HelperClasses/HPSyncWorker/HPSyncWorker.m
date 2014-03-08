@@ -11,24 +11,22 @@
 
 @implementation HPSyncWorker
 
-+(BOOL) handleSyncRequest:(NSDictionary *)syncData
++(BOOL) handleSyncRequestWithType:(syncRequest_t)type
 {
-    syncRequest request = [[syncData objectForKey:@"syncRequestKey"] intValue];
-    
-    switch (request)
+    switch (type)
     {
         case roommatesSyncRequest:
         {
             [HPCentralData resyncRoommates:^(NSError *error) {
-               if (error)
-               {
-                   NSLog(@"Error resyncing roommates!!");
-               }
-               else
-               {
-                   NSDictionary *notifierDictionary = [[NSDictionary alloc] initWithObjectsAndKeys:[NSNumber numberWithBool:TRUE], kRefreshRoommatesKey, nil];
-                   [[HPUINotifier sharedUINotifier] notifyDelegatesWithChange: notifierDictionary];
-               }
+                if (error)
+                {
+                    NSLog(@"Error resyncing roommates!!");
+                }
+                else
+                {
+                    NSDictionary *notifierDictionary = [[NSDictionary alloc] initWithObjectsAndKeys:[NSNumber numberWithBool:TRUE], kRefreshRoommatesKey, nil];
+                    [[HPUINotifier sharedUINotifier] notifyDelegatesWithChange: notifierDictionary];
+                }
             }];
             break;
         }
@@ -42,7 +40,14 @@
         }
     }
     
-    return TRUE;
+    return true;
+}
+
++(BOOL) handleSyncRequestWithDictionary:(NSDictionary *)syncData
+{
+    syncRequest_t request = [[syncData objectForKey:@"syncRequestKey"] intValue];
+    
+    return [self handleSyncRequestWithType:request];
 }
 
 @end
