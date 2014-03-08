@@ -79,6 +79,9 @@
                 if (houseRegion != nil)
                 {
                     // Force request for location
+                    NSLog(@"Requesting state for region: %@", houseRegion);
+                    NSLog(@"Monitoring these regions: %@",[kApplicationDelegate.hpLocationManager.locationManager monitoredRegions]);
+                     NSLog(@"Delegate: %@" ,[kApplicationDelegate.hpLocationManager.locationManager delegate]);
                     [kApplicationDelegate.hpLocationManager.locationManager requestStateForRegion:houseRegion];
                 }
             }

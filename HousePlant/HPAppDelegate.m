@@ -32,6 +32,8 @@
     
     //[Crashlytics startWithAPIKey:kCrashlyticsKey];
     
+    [[UIApplication sharedApplication] setMinimumBackgroundFetchInterval:UIApplicationBackgroundFetchIntervalMinimum];
+    
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     
     // Override point for customization after application launch.
@@ -145,6 +147,68 @@ didReceiveRemoteNotification:(NSDictionary *)userInfo {
     }
     
     
+}
+
+-(void)application:(UIApplication *)application performFetchWithCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler {
+#warning this keepalive stuff should only happen if the version of the app is 7.0.*. There is no need to do this on 7.1.
+    NSDateFormatter *formatter;
+    NSString        *dateString;
+    
+    formatter = [[NSDateFormatter alloc] init];
+    [formatter setDateFormat:@"dd-MM-yyyy HH:mm"];
+    
+    dateString = [formatter stringFromDate:[NSDate date]];
+    [[PFUser currentUser] setObject:dateString forKey:@"keepalive"];
+    
+    NSTimeInterval distanceBetweenDates = [[NSDate date] timeIntervalSinceDate:[PFUser currentUser].updatedAt];
+    double secondsInAnHour = 3600;
+    
+#warning this is all debug code.
+    if (distanceBetweenDates < (secondsInAnHour * 24))
+    {
+        [[PFUser currentUser] incrementKey:@"refreshWithin24HourCount"];
+    }
+    if (distanceBetweenDates < (secondsInAnHour * 16))
+    {
+        [[PFUser currentUser] incrementKey:@"refreshWithin16HourCount"];
+    }
+    if (distanceBetweenDates < (secondsInAnHour * 8))
+    {
+        [[PFUser currentUser] incrementKey:@"refreshWithin8HourCount"];
+    }
+    if (distanceBetweenDates < (secondsInAnHour * 4))
+    {
+        [[PFUser currentUser] incrementKey:@"refreshWithin4HourCount"];
+    }
+    if (distanceBetweenDates < (secondsInAnHour * 2))
+    {
+        [[PFUser currentUser] incrementKey:@"refreshWithin2HourCount"];
+    }
+    if (distanceBetweenDates < secondsInAnHour)
+    {
+        [[PFUser currentUser] incrementKey:@"refreshWithinHourCount"];
+    }
+    if (distanceBetweenDates < (secondsInAnHour/2))
+    {
+        [[PFUser currentUser] incrementKey:@"refreshWithin30MinCount"];
+    }
+    if (distanceBetweenDates < (secondsInAnHour/4))
+    {
+        [[PFUser currentUser] incrementKey:@"refreshWithin15MinCount"];
+    }
+    if (distanceBetweenDates < (secondsInAnHour/6))
+    {
+        [[PFUser currentUser] incrementKey:@"refreshWithin10MinCount"];
+    }
+    if (distanceBetweenDates < (secondsInAnHour/12))
+    {
+        [[PFUser currentUser] incrementKey:@"refreshWithin5MinCount"];
+    }
+    
+    [[PFUser currentUser] incrementKey:@"totalRefreshCount"];
+    
+    [[PFUser currentUser] save];
+    completionHandler(UIBackgroundFetchResultNewData);
 }
 
 #pragma mark - Application's Documents directory

@@ -193,6 +193,13 @@ typedef void (^BackgroundTaskResultBlock)(NSString *errorString);
 
 - (NSString *) validateUsernameAndPasswordSubmission
 {
+    NSString *nameRegex = @"[A-Za-z]+";
+    NSPredicate *nameTest = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", nameRegex];
+    
+    if(![nameTest evaluateWithObject:_houseNameField.text]){
+        return @"House names can only contain letters A-Z and a-z";
+    }
+    
     if (_houseNameField.text.length < 1) {
         return @"Please enter a house name :)";
     }

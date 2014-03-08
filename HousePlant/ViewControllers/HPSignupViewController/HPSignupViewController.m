@@ -210,6 +210,12 @@
     if (whiteSpaceRange.location != NSNotFound) {
         return @"Please remove the spaces in your username :)";
     }
+    NSString *nameRegex = @"[A-Za-z]+";
+    NSPredicate *nameTest = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", nameRegex];
+    
+    if(![nameTest evaluateWithObject:username]){
+        return @"Usernames can only contain letters A-Z and a-z";
+    }
     
     return nil;
 }

@@ -39,6 +39,11 @@
                                              selector:@selector(receiveNotificationAppActive:)
                                                  name:NOTIFICATION_APP_BECAME_ACTIVE
                                                object:nil];
+    
+    NSString *systemVersion = [[UIDevice currentDevice] systemVersion];
+    
+    //Save the current iOS version that this user is running.
+    [[PFUser currentUser] setObject:systemVersion forKey:@"iosVersion"];
 
     [[HPUINotifier sharedUINotifier] addDelegate:self];
     
@@ -98,11 +103,15 @@
 
 //THIS METHOD IS USED FOR DEBUGGING SHIT
 - (IBAction)onTestPress:(id)sender {
+    NSDateFormatter *formatter;
+    NSString        *dateString;
     
-    NSDictionary *dict = [[NSDictionary alloc] initWithObjectsAndKeys:[NSNumber numberWithInt:roommatesSyncRequest], @"syncRequestKey", [PFUser currentUser].objectId, @"src_usr", nil];
-    [HPPushHelper sendNotificationWithDataToEveryoneInHouseButMe:dict andAlert:[NSString stringWithFormat:@"%@ just left home!!", [[PFUser currentUser] username]]];
+    formatter = [[NSDateFormatter alloc] init];
+    [formatter setDateFormat:@"dd-MM-yyyy HH:mm"];
     
-
+    dateString = [formatter stringFromDate:[NSDate date]];
+    [[PFUser currentUser] setObject:dateString forKey:@"keepalive"];
+    [[PFUser currentUser] save];
 }
 
 
