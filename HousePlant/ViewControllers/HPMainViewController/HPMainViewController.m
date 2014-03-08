@@ -103,15 +103,8 @@
 
 //THIS METHOD IS USED FOR DEBUGGING SHIT
 - (IBAction)onTestPress:(id)sender {
-    NSDateFormatter *formatter;
-    NSString        *dateString;
-    
-    formatter = [[NSDateFormatter alloc] init];
-    [formatter setDateFormat:@"dd-MM-yyyy HH:mm"];
-    
-    dateString = [formatter stringFromDate:[NSDate date]];
-    [[PFUser currentUser] setObject:dateString forKey:@"keepalive"];
-    [[PFUser currentUser] save];
+    NSDictionary *dict = [[NSDictionary alloc] initWithObjectsAndKeys:[NSNumber numberWithInt:roommatesSyncRequest], @"syncRequestKey", [PFUser currentUser].objectId, @"src_usr", nil];
+    [HPPushHelper sendNotificationWithDataToEveryoneInHouseButMe:dict andAlert:[NSString stringWithFormat:@"%@ Sorry testing notifications.", [[PFUser currentUser] username]]];
 }
 
 
