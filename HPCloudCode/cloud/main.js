@@ -18,14 +18,14 @@ Parse.Cloud.afterSave("House", function(request, response) {
                        Parse.User.current().save();
 });
 
-Parse.Cloud.afterSave(Parse.User, function(request, response) {
-                      console.log("Running after save on user!");
-                      var House = Parse.Object.extend("House");
-                      var house = new House();
+//Parse.Cloud.afterSave(Parse.User, function(request, response) {
+//                      console.log("Running after save on user!");
+//                      var House = Parse.Object.extend("House");
+//                      var house = new House();
                       
 //                      var User = Parse.Object.extend("_User");
 //                      var user = Parse.User.current();
-                      house = request.user.get("home");
+//                      house = request.user.get("home");
                       
                       
                 
@@ -64,4 +64,82 @@ Parse.Cloud.afterSave(Parse.User, function(request, response) {
                       
 
                       
+//});
+
+
+/************ Jobs *************/
+
+
+//This function is retardedly complicated. Basicily it checks to see which user objects running ios 7.0.* have not been updated in the last hour and if they haven't it marks them as not home.
+Parse.Cloud.job("checkForLost70Users", function(request, status) {
+                // Set up to modify user data
+                Parse.Cloud.useMasterKey();
+                var User = Parse.Object.extend("User");
+                var query = new Parse.Query(User);
+                query.equalTo("iosVersion", "7.0");
+                query.find({
+                    success: function(results) {
+                        console.log("Successfully found " + results.length + " ios 7.0.* user.");
+                           // Do something with the returned Parse.Object values
+                        for (var i = 0; i < results.length; i++) {
+                           var User = Parse.Object.extend("User");
+                           var object = new User();
+                           object = results[i];
+                           
+                           
+                           var now = new Date();
+                           object.fetch();
+                           var updated_at = new Date(object.updatedAt);
+                           
+                           var now_seconds = now.getTime() / 1000;
+                           var updated_at_seconds = updated_at.getTime() / 1000;
+                           console.log("updated_at value in seconds: " + Math.round(updated_at_seconds));
+                           
+                           console.log("now value in seconds: " + Math.round(now_seconds));
+                           
+                           var dif_seconds = now_seconds - updated_at_seconds;
+                           
+                           console.log("Difference in time: " + dif_seconds);
+                           
+                           var secondsIn2Hours = 60*60*2;
+                           if (dif_seconds > secondsIn2Hours)
+                           {
+                                object.set("atHome", "unknown");
+                                console.log("Saving user object:" + object);
+                           
+                                object.save(null, {
+                                       success: function(object) {
+                                            console.log("Successfully saved user.");
+                                       
+                                       //Check if this is the last user.
+                                            if (i == results.length)
+                                            {
+                                                status.success("Successful checkForLost70Users job.");
+                                            }
+                                       },
+                                       
+                                       error: function(object, error) {
+                                            console.log("Error saving user: " + error.message);
+                                            if (i == results.length)
+                                            {
+                                                status.error("Error running checkForLost70Users job.");
+                                            }
+                                       }
+                                });
+                           }
+                           else
+                           {
+                            console.log("We are still tracking this user do not mark him as not home.");
+                           }
+
+                           
+                           
+                        }
+                        
+                    },
+                    error: function(error) {
+                           console.log("Error: " + error.code + " " + error.message);
+                           status.error("Error running checkForLost70Users job.");
+                    }
+                });
 });

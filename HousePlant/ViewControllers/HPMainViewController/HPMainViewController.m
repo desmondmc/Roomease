@@ -42,6 +42,10 @@
     
     NSString *systemVersion = [[UIDevice currentDevice] systemVersion];
     
+    if (SYSTEM_VERSION_LESS_THAN(@"7.1")) {
+        systemVersion = @"7.0";
+    }
+    
     //Save the current iOS version that this user is running.
     [[PFUser currentUser] setObject:systemVersion forKey:@"iosVersion"];
 
@@ -61,14 +65,6 @@
 - (void)viewDidAppear:(BOOL)animated
 {
     [HPLocationManager requestStateForCurrentHouseLocation];
-}
-
-- (void) setUpProfilePictures
-{
-    
-    [HPCentralData getRoommatesInBackgroundWithBlock:^(NSArray *roommates, NSError *error) {
-        //
-    }];
 }
 
 - (void) getProfilePicturesWithUser:(PFUser *)user andIndex:(int)index
