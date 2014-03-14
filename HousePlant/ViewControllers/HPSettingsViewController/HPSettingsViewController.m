@@ -7,6 +7,7 @@
 //
 
 #import "HPSettingsViewController.h"
+#import "HPCameraManager.h"
 
 @interface HPSettingsViewController ()
 
@@ -31,6 +32,11 @@
         _homeLocationLabel.text = [house addressText];
     }];
     // Do any additional setup after loading the view from its nib.
+}
+
+- (void)viewDidAppear:(BOOL)animated
+{
+    [[UIApplication sharedApplication] setStatusBarHidden:NO];
 }
 
 - (void)didReceiveMemoryWarning
@@ -79,6 +85,36 @@
 
 - (IBAction)onBackPress:(id)sender {
         [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+- (IBAction)onSetProfilePicPress:(id)sender {
+    UIImagePickerController *picker = [HPCameraManager setupCameraWithDelegate:self];
+    
+    [[UIApplication sharedApplication] setStatusBarHidden:YES];
+    [self presentViewController:picker animated:YES completion:NULL];
+}
+
+- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info {
+    
+    UIImage *chosenImage = info[UIImagePickerControllerEditedImage];
+    
+    [HPCentralData getCurrentUserInBackgroundWithBlock:^(HPRoommate *roommate, NSError *error) {
+        //
+        HPRoommate *roommateWithNewProfilePicture = [[HPRoommate alloc] init];
+        [roommateWithNewProfilePicture setProfilePic:chosenImage];
+        [roommateWithNewProfilePicture setAtHomeString:[roommate atHomeString]];
+        [HPCentralData saveCurrentUserInBackgroundWithRoommate:roommateWithNewProfilePicture andBlock:nil];
+        
+    }];
+    
+    
+    [picker dismissViewControllerAnimated:YES completion:NULL];
+    
+}
+
+- (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker
+{
+    [picker dismissViewControllerAnimated:YES completion:NULL];
 }
 
 @end

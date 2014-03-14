@@ -75,12 +75,20 @@ Parse.Cloud.job("checkForLost70Users", function(request, status) {
                 // Set up to modify user data
                 Parse.Cloud.useMasterKey();
                 var User = Parse.Object.extend("User");
+                
                 var query = new Parse.Query(User);
                 query.equalTo("iosVersion", "7.0");
+                query.notEqualTo("atHome", "unknown");
+                
                 query.find({
                     success: function(results) {
-                        console.log("Successfully found " + results.length + " ios 7.0.* user.");
+                        console.log("Successfully found " + results.length + " ios 7.0.* user(s).");
                            // Do something with the returned Parse.Object values
+                           
+                        if(results.length == 0)
+                        {
+                           status.success("Successful checkForLost70Users job. No users to check.");
+                        }
                         for (var i = 0; i < results.length; i++) {
                            var User = Parse.Object.extend("User");
                            var object = new User();
@@ -112,17 +120,19 @@ Parse.Cloud.job("checkForLost70Users", function(request, status) {
                                             console.log("Successfully saved user.");
                                        
                                        //Check if this is the last user.
-                                            if (i == results.length)
+                                            if (i == (results.length - 1))
                                             {
-                                                status.success("Successful checkForLost70Users job.");
+                                                status.success("Successful checkForLost70Users job. Updated at least one user");
+                                                return;
                                             }
                                        },
                                        
                                        error: function(object, error) {
                                             console.log("Error saving user: " + error.message);
-                                            if (i == results.length)
+                                            if (i == (results.length - 1))
                                             {
                                                 status.error("Error running checkForLost70Users job.");
+                                                return;
                                             }
                                        }
                                 });
@@ -130,6 +140,10 @@ Parse.Cloud.job("checkForLost70Users", function(request, status) {
                            else
                            {
                             console.log("We are still tracking this user do not mark him as not home.");
+                            if (i == (results.length - 1))
+                            {
+                                status.success("Successful checkForLost70Users job. Checked at least one user.");
+                            }
                            }
 
                            
@@ -139,7 +153,7 @@ Parse.Cloud.job("checkForLost70Users", function(request, status) {
                     },
                     error: function(error) {
                            console.log("Error: " + error.code + " " + error.message);
-                           status.error("Error running checkForLost70Users job.");
+                           status.error("Error running checkForLost70Users job. Error on find.");
                     }
                 });
 });

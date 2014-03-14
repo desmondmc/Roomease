@@ -172,6 +172,7 @@
     PFUser *currentUser = [PFUser currentUser];
     HPRoommate *oldUser = [HPCentralData getCurrentUser];
     
+#warning does it makes sence to switch the order of the following two lines of code? That way roommate's nil fields will be filled with local storage values before sending the new roommate to parse.
     [HPCentralData transferAttributesFromUser:roommate toPFObject:currentUser];
     
     roommate = [HPCentralData transferOldRoommate:oldUser toNewRoomate:roommate];
@@ -475,7 +476,8 @@
         PFFile *imageFile = [PFFile fileWithName:@"profile_pic.jpg" data:imageData];
         parseUser[@"profilePic"] = imageFile;
     }
-    
+
+#warning This logic requires that the UI always pass an atHomeString when modifying the user. Otherwise it will be set to null. Can this be better thought out?
     if ([roommate atHomeString] != nil) {
         parseUser[@"atHome"] = [roommate atHomeString];
     }
@@ -484,11 +486,17 @@
         parseUser[@"atHome"] = @"unknown";
     }
     
-    if ([parseUser save] == false) {
-        return false;
+    //Make sure the user is logged in.
+    if ([PFUser currentUser] != nil)
+    {
+        if ([parseUser save] == false) {
+            return false;
+        }
     }
-    
-
+    else
+    {
+        NSLog(@"Tried to save a logged out user.");
+    }
     
     return true;
 }

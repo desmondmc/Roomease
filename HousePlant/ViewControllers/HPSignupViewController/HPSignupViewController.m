@@ -44,6 +44,9 @@
 -(void)viewDidAppear:(BOOL)animated
 {
     [_usernameTextField becomeFirstResponder];
+
+    //For when the camera view disappears, we need to display the status bar again.
+    [[UIApplication sharedApplication] setStatusBarHidden:NO];
 }
 
 - (void)didReceiveMemoryWarning
@@ -145,7 +148,6 @@
     dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, 0.05 * NSEC_PER_SEC);
     dispatch_after(popTime, dispatch_get_main_queue(), ^(void)
                    {
-                       [[UIApplication sharedApplication] setStatusBarHidden:NO];
                        UIImage *chosenImage = info[UIImagePickerControllerEditedImage];
                        
                        avatar2.image = chosenImage;
@@ -167,7 +169,6 @@
 
 - (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker
 {
-    [[UIApplication sharedApplication] setStatusBarHidden:NO];
     [picker dismissViewControllerAnimated:YES completion:NULL];
 }
 

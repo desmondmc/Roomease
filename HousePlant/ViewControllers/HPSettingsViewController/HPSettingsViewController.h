@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface HPSettingsViewController : UIViewController <CLLocationManagerDelegate>
+@interface HPSettingsViewController : UIViewController <CLLocationManagerDelegate, UIImagePickerControllerDelegate>
 @property (weak, nonatomic) IBOutlet UITextField *houseNumberField;
 @property (weak, nonatomic) IBOutlet UITextField *streetField;
 @property (weak, nonatomic) IBOutlet UITextField *cityField;
@@ -16,6 +16,7 @@
 
 - (IBAction)onSetLocationPress:(id)sender;
 - (IBAction)onBackPress:(id)sender;
+- (IBAction)onSetProfilePicPress:(id)sender;
 
 
 
