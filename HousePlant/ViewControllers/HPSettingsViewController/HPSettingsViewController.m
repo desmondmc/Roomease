@@ -31,6 +31,8 @@
     [HPCentralData getHouseInBackgroundWithBlock:^(HPHouse *house, NSError *error) {
         _homeLocationLabel.text = [house addressText];
     }];
+    
+    [_uploadingPhotoIndicator setHidden:true];
     // Do any additional setup after loading the view from its nib.
 }
 
@@ -83,7 +85,11 @@
         HPRoommate *roommateWithNewProfilePicture = [[HPRoommate alloc] init];
         [roommateWithNewProfilePicture setProfilePic:chosenImage];
         [roommateWithNewProfilePicture setAtHomeString:[roommate atHomeString]];
-        [HPCentralData saveCurrentUserInBackgroundWithRoommate:roommateWithNewProfilePicture andBlock:nil];
+        [_uploadingPhotoIndicator setHidden:false];
+        [HPCentralData saveCurrentUserInBackgroundWithRoommate:roommateWithNewProfilePicture andBlock:^(NSError *error) {
+            [_uploadingPhotoIndicator setHidden:true];
+            [HPSyncWorker handleSyncRequestWithType:roommatesSyncRequest];
+        }];
         
     }];
     

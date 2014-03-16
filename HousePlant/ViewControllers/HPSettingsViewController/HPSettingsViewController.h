@@ -13,6 +13,7 @@
 @property (weak, nonatomic) IBOutlet UITextField *streetField;
 @property (weak, nonatomic) IBOutlet UITextField *cityField;
 @property (weak, nonatomic) IBOutlet UILabel *homeLocationLabel;
+@property (weak, nonatomic) IBOutlet UIView *uploadingPhotoIndicator;
 
 - (IBAction)onSetLocationPress:(id)sender;
 - (IBAction)onBackPress:(id)sender;

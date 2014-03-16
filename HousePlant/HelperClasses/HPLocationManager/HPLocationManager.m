@@ -139,12 +139,11 @@
 }
 
 //if string is not nil there is an error.
-- (NSString *) requestStateForRegion:(CLRegion *)region
+- (void) requestStateForRegion:(CLRegion *)region
 {
     NSLog(@"Requesting state for region: %@", region);
     NSLog(@"Monitoring these regions: %@",[self.locationManager monitoredRegions]);
     [self.locationManager requestStateForRegion:region];
-    return nil;
 }
 
 #pragma mark - CLLocationManagerDelegate

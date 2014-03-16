@@ -960,6 +960,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "HousePlant/RoomEase-Prefix.pch";
 				INFOPLIST_FILE = "HousePlant/RoomEase-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)/HousePlant/TestFlightSDK2.2.1",
@@ -990,6 +991,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "HousePlant/RoomEase-Prefix.pch";
 				INFOPLIST_FILE = "HousePlant/RoomEase-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)/HousePlant/TestFlightSDK2.2.1",
