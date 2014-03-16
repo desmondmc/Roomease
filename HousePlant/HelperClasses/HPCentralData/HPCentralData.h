@@ -8,9 +8,14 @@
 
 #import <Foundation/Foundation.h>
 
+#define kPersistantStoreHome @"hp_home"
+#define kPersistantStoreCurrentUser @"hp_currentUser"
+#define kPersistantStoreRoommates @"hp_roommates"
+
 @interface HPCentralData : NSObject
 
 +(void) clearCentralData;
++(void) clearLocalHouseData;
 
 +(void) resyncAllData;
 +(void) resyncCurrentUser;

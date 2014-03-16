@@ -35,11 +35,14 @@
     [HPCentralData clearCentralData];
     
     //Stop monitoring for any regions.
-    NSSet * monitoredRegions = kApplicationDelegate.hpLocationManager.locationManager.monitoredRegions;
-    for (CLRegion *region in monitoredRegions)
-    {
-        [kApplicationDelegate.hpLocationManager.locationManager stopMonitoringForRegion:region];
+    if (kApplicationDelegate.appLocationManager != nil) {
+        NSSet * monitoredRegions = kApplicationDelegate.appLocationManager.monitoredRegions;
+        for (CLRegion *region in monitoredRegions)
+        {
+            [kApplicationDelegate.appLocationManager stopMonitoringForRegion:region];
+        }
     }
+ 
     
     if (screenSize.height > 480.0f)
     {

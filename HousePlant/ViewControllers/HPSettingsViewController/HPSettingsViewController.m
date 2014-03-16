@@ -46,41 +46,21 @@
 }
 
 - (IBAction)onSetLocationPress:(id)sender {
-    HPHouse *house = [[HPHouse alloc] init];
-    
-    CLGeocoder *geocoder = [[CLGeocoder alloc] init];
-    
     NSString *addressText = [NSString stringWithFormat:@"%@ %@ %@",_houseNumberField.text,_streetField.text,_cityField.text];
-    [geocoder geocodeAddressString:addressText inRegion:nil
-                 completionHandler:^(NSArray *placemarks, NSError *error) {
-                     NSLog(@"placemarks: %@", placemarks);
-                     if (placemarks)
-                     {
-                         CLPlacemark *placeMark = ((CLPlacemark *)[placemarks objectAtIndex:0]);
-                         
-                         //placeMark.location.coordinate.latitude
-                         [HPLocationManager setRegionToMonitorWithIdentifier:kHomeLocationIdentifier latitude:placeMark.location.coordinate.latitude longitude:placeMark.location.coordinate.longitude radius:kDefaultHouseRadius];
-                         
-                         [house setLocation:placeMark.location];
-                         [house setAddressText:addressText];
-                         
-                         [HPCentralData saveHouseInBackgroundWithHouse:house andBlock:^(NSError *error) {
-                             if (!error) {
-                                 [CSNotificationView showInViewController:self
-                                                                    style:CSNotificationViewStyleSuccess
-                                                                  message:@"Saved Address!"];
-                             }
-
-                         }];
-                     }
-                     else
-                     {
-                         [CSNotificationView showInViewController:self
-                                                            style:CSNotificationViewStyleError
-                                                          message:@"Could not find address."];
-                     }
-                 }];
     
+    [[HPLocationManager sharedLocationManager] saveNewHouseLocationInBackgroundWithAddressString:addressText andBlock:^(NSString *errorString) {
+        if (errorString) {
+            [CSNotificationView showInViewController:self
+                                               style:CSNotificationViewStyleError
+                                             message:errorString];
+        }
+        else
+        {
+            [CSNotificationView showInViewController:self
+                                               style:CSNotificationViewStyleSuccess
+                                             message:@"Saved Address!"];
+        }
+    }];
 }
 
 - (IBAction)onBackPress:(id)sender {

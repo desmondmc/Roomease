@@ -56,15 +56,11 @@
     
     roommateView = [RoommateImageSubview roommateImageSubview];
     [[self roommateImageSubviewContainer] addSubview:roommateView];
-    
-    if (kApplicationDelegate.hpLocationManager == nil) {
-        [HPLocationManager initHPLocationManagerWithDelegate:self];
-    }
 }
 
 - (void)viewDidAppear:(BOOL)animated
 {
-    [HPLocationManager requestStateForCurrentHouseLocation];
+    [[HPLocationManager sharedLocationManager] updateAtHomeStatus];
 }
 
 - (void) getProfilePicturesWithUser:(PFUser *)user andIndex:(int)index
@@ -114,7 +110,7 @@
 
 - (IBAction)onRefreshRmPress:(id)sender {
     //Starts a sync request. Will be called back on resyncUIWithDictionary.
-    [HPSyncWorker handleSyncRequestWithType:roommatesSyncRequest];
+    [[HPLocationManager sharedLocationManager] updateAtHomeStatus];
 }
 
 #pragma mark - CLLocationManagerDelegate
@@ -220,7 +216,13 @@
 
 - (void) receiveNotificationAppActive:(NSNotification *) notification
 {
-    [HPSyncWorker handleSyncRequestWithType:roommatesSyncRequest];
+    double delayInSeconds = 10.0;
+    dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, delayInSeconds * NSEC_PER_SEC);
+    dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
+        //code to be executed on the main queue after delay
+        [[HPLocationManager sharedLocationManager] updateAtHomeStatus];
+    });
+    
 }
 
 #pragma mark - HPUINotifierDelegate

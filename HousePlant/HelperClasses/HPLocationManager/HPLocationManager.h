@@ -8,18 +8,19 @@
 
 #import <Foundation/Foundation.h>
 
-@interface HPLocationManager : NSObject
+typedef void (^LocationManagerSaveResultBlock)(NSString *error);
+
+@interface HPLocationManager : NSObject <CLLocationManagerDelegate>
 
 @property (strong, atomic) CLLocationManager *locationManager;
 
-+ (void)initHPLocationManagerWithDelegate:(id)delegate;
+/************New functions***********/
++ (id)sharedLocationManager;
 
-+ (bool)setRegionToMonitorWithIdentifier:(NSString *)identifier latitude:(CLLocationDegrees)latitude longitude:(CLLocationDegrees)longitude radius:(CLLocationDistance)radius;
 
-// Forces the app to check the current location of the user.
-+ (void) requestStateForCurrentHouseLocation;
+- (void) saveNewHouseLocationInBackgroundWithAddressString:(NSString *)addressString andBlock:(LocationManagerSaveResultBlock)block;
 
-// Checks what permissions the app has for location and returns a error string to display if there are restrictions.
-+ (NSString *) checkLocationServicePermissions;
+//This will trigger a UI update.
+- (void) updateAtHomeStatus;
 
 @end

@@ -16,8 +16,8 @@
 @property (readonly, strong, nonatomic) NSManagedObjectContext *managedObjectContext;
 @property (readonly, strong, nonatomic) NSManagedObjectModel *managedObjectModel;
 @property (readonly, strong, nonatomic) NSPersistentStoreCoordinator *persistentStoreCoordinator;
-@property (strong, atomic)              HPLocationManager *hpLocationManager;
 @property (strong, atomic)              HPMainViewController *mainViewController;
+@property (strong, atomic)              CLLocationManager *appLocationManager;
 
 - (void)saveContext;
 - (NSURL *)applicationDocumentsDirectory;

@@ -34,7 +34,7 @@
 //This function should be used to set just the region value. It was created because region is something that is only stored locally. It doesn't make sense to have to go through central data to set a simple value
 -(void) setLocalStorageRegion:(CLRegion *)region
 {
-    NSData *homeData = [persistantStore objectForKey:@"hp_home"];
+    NSData *homeData = [persistantStore objectForKey:kPersistantStoreHome];
     HPHouse *oldHome =  [NSKeyedUnarchiver unarchiveObjectWithData:homeData];
     self.houseName = oldHome.houseName;
     self.location = oldHome.location;
@@ -43,13 +43,13 @@
     self.region = region;
     
     homeData = [NSKeyedArchiver archivedDataWithRootObject:self];
-    [persistantStore setObject:homeData forKey:@"hp_home"];
+    [persistantStore setObject:homeData forKey:kPersistantStoreHome];
     [persistantStore synchronize];
 }
 
 -(CLRegion *) getLocalStorageRegion
 {
-    NSData *homeData = [persistantStore objectForKey:@"hp_home"];
+    NSData *homeData = [persistantStore objectForKey:kPersistantStoreHome];
     HPHouse *home =  [NSKeyedUnarchiver unarchiveObjectWithData:homeData];
     return [home region];
 }

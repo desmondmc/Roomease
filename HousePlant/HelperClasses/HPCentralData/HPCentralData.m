@@ -61,7 +61,7 @@
             [roommatesData addObject:roommateData];
         }
         
-        [persistantStore setObject:roommatesData forKey:@"hp_roommates"];
+        [persistantStore setObject:roommatesData forKey:kPersistantStoreRoommates];
         [persistantStore synchronize];
         
         dispatch_async(dispatch_get_main_queue(), ^{
@@ -76,7 +76,7 @@
 
 +(void) clearCentralData
 {
-    NSUserDefaults * defs = [NSUserDefaults standardUserDefaults];
+    NSUserDefaults * defs = persistantStore;
     NSDictionary * dict = [defs dictionaryRepresentation];
     for (id key in dict) {
         [defs removeObjectForKey:key];
@@ -84,10 +84,16 @@
     [defs synchronize];
 }
 
++(void) clearLocalHouseData
+{
+    [persistantStore removeObjectForKey:kPersistantStoreHome];
+    [persistantStore synchronize];
+}
+
 +(void) getCurrentUserInBackgroundWithBlock:(CentralDataRoommateResultBlock)block
 {
 
-    __block NSData *roommateData = [persistantStore objectForKey:@"hp_currentUser"];
+    __block NSData *roommateData = [persistantStore objectForKey:kPersistantStoreCurrentUser];
     __block HPRoommate *roommate =  [NSKeyedUnarchiver unarchiveObjectWithData:roommateData];
     
     if(roommate == nil)
@@ -104,7 +110,7 @@
             //convert roommate object into encoded data to store in NSUserdefault
             roommateData = [NSKeyedArchiver archivedDataWithRootObject:roommate];
         
-            [persistantStore setObject:roommateData forKey:@"hp_currentUser"];
+            [persistantStore setObject:roommateData forKey:kPersistantStoreCurrentUser];
             [persistantStore synchronize];
             
             dispatch_async(dispatch_get_main_queue(), ^{
@@ -124,7 +130,7 @@
 {
     //if the user isn't stored in NSUserDefaults pull him from parse. Otherwise return the user stored in NSUserDefaults.
     
-    NSData *roommateData = [persistantStore objectForKey:@"hp_currentUser"];
+    NSData *roommateData = [persistantStore objectForKey:kPersistantStoreCurrentUser];
     HPRoommate *roommate =  [NSKeyedUnarchiver unarchiveObjectWithData:roommateData];
     
     if(roommate == nil)
@@ -142,7 +148,7 @@
         //convert roommate object into encoded data to store in NSUserdefault
         roommateData = [NSKeyedArchiver archivedDataWithRootObject:roommate];
         
-        [persistantStore setObject:roommateData forKey:@"hp_currentUser"];
+        [persistantStore setObject:roommateData forKey:kPersistantStoreCurrentUser];
         [persistantStore synchronize];
     }
     
@@ -178,7 +184,7 @@
     roommate = [HPCentralData transferOldRoommate:oldUser toNewRoomate:roommate];
     
     NSData *userData = [NSKeyedArchiver archivedDataWithRootObject:roommate];
-    [persistantStore setObject:userData forKey:@"hp_currentUser"];
+    [persistantStore setObject:userData forKey:kPersistantStoreCurrentUser];
     [persistantStore synchronize];
     
     //This function saves the the new current user to the local roommate array.
@@ -190,7 +196,7 @@
 //Checks if the home exists in local storage and if it doesn't it pulls it from parse and stores it in local storage.
 +(void) getHouseInBackgroundWithBlock:(CentralDataHouseResultBlock)block
 {
-    __block NSData  *homeData = [persistantStore objectForKey:@"hp_home"];
+    __block NSData  *homeData = [persistantStore objectForKey:kPersistantStoreHome];
     __block HPHouse *home = [NSKeyedUnarchiver unarchiveObjectWithData:homeData];
     
     if (home == nil)
@@ -207,19 +213,22 @@
                     block(nil, nil);
                 return;
             }
-            parseHome = [parseHome fetchIfNeeded];
+            
+            [parseHome fetch];
             home.houseName = [parseHome objectForKey:@"name"];
             
             //Get the parse GeoPoint and convert it into a location to be stored locally
             PFGeoPoint *parseGeoPoint = [parseHome objectForKey:@"location"];
-            CLLocation *newLocation = [[CLLocation alloc] initWithLatitude:parseGeoPoint.latitude longitude:parseGeoPoint.longitude];
-            home.location = newLocation;
+            if (parseGeoPoint != nil) {
+                CLLocation *newLocation = [[CLLocation alloc] initWithLatitude:parseGeoPoint.latitude longitude:parseGeoPoint.longitude];
+                home.location = newLocation;
+            }
             
             home.addressText = [parseHome objectForKey:@"addressText"];
             
             //convert roommate object into encoded data to store in NSUserdefault
             homeData = [NSKeyedArchiver archivedDataWithRootObject:home];
-            [persistantStore setObject:homeData forKey:@"hp_home"];
+            [persistantStore setObject:homeData forKey:kPersistantStoreHome];
             [persistantStore synchronize];
 
             
@@ -238,7 +247,7 @@
 
 +(HPHouse *) getHouse
 {
-    NSData *homeData = [persistantStore objectForKey:@"hp_home"];
+    NSData *homeData = [persistantStore objectForKey:kPersistantStoreHome];
     HPHouse *home =  [NSKeyedUnarchiver unarchiveObjectWithData:homeData];
     
     if (home == nil) {
@@ -264,7 +273,7 @@
         
         //convert roommate object into encoded data to store in NSUserdefault
         homeData = [NSKeyedArchiver archivedDataWithRootObject:home];
-        [persistantStore setObject:homeData forKey:@"hp_home"];
+        [persistantStore setObject:homeData forKey:kPersistantStoreHome];
         [persistantStore synchronize];
     }
     return home;
@@ -308,7 +317,7 @@
         //if it is successfully saved to parse, replace the hp_home in NSUserDefaults with the new house.
         //convert roommate object into encoded data to store in NSUserdefault
         NSData *homeData = [NSKeyedArchiver archivedDataWithRootObject:newHouse];
-        [persistantStore setObject:homeData forKey:@"hp_home"];
+        [persistantStore setObject:homeData forKey:kPersistantStoreHome];
         [persistantStore synchronize];
         
         dispatch_async(dispatch_get_main_queue(), ^{
@@ -339,7 +348,7 @@
     //if it is successfully saved to parse, replace the hp_home in NSUserDefaults with the new house.
     //convert roommate object into encoded data to store in NSUserdefault
     NSData *homeData = [NSKeyedArchiver archivedDataWithRootObject:house];
-    [persistantStore setObject:homeData forKey:@"hp_home"];
+    [persistantStore setObject:homeData forKey:kPersistantStoreHome];
     [persistantStore synchronize];
     
     return true;
@@ -365,7 +374,7 @@
 
 +(NSArray *) getRoommates
 {
-    NSMutableArray *roommatesData = [persistantStore objectForKey:@"hp_roommates"];
+    NSMutableArray *roommatesData = [persistantStore objectForKey:kPersistantStoreRoommates];
     NSMutableArray *roommates = [[NSMutableArray alloc] init];
     
     for (NSData *roommateData in roommatesData) {
@@ -407,7 +416,7 @@
             [roommatesData addObject:roommateData];
         }
         
-        [persistantStore setObject:roommatesData forKey:@"hp_roommates"];
+        [persistantStore setObject:roommatesData forKey:kPersistantStoreRoommates];
         [persistantStore synchronize];
         
     }
@@ -543,7 +552,7 @@
         [roommatesData addObject:roommateData];
     }
     
-    [persistantStore setObject:roommatesData forKey:@"hp_roommates"];
+    [persistantStore setObject:roommatesData forKey:kPersistantStoreRoommates];
     [persistantStore synchronize];
     
     return true;

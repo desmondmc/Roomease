@@ -10,24 +10,95 @@
 
 @implementation HPLocationManager
 
-//Simply asks the user to allow the app access to their location.
-+ (void)initHPLocationManagerWithDelegate:(id)delegate {
-    kApplicationDelegate.hpLocationManager = [[HPLocationManager alloc] initWithDelegate:delegate];
+/************New functions***********/
+
++ (id)sharedLocationManager
+{
+    static HPLocationManager *sharedLocationManager = nil;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        sharedLocationManager = [[self alloc] init];
+    });
+    return sharedLocationManager;
 }
 
-- (id)initWithDelegate:(id)delegate {
+- (id)init {
     if (self = [super init]) {
-       _locationManager = [[CLLocationManager alloc] init];
-       _locationManager.delegate = delegate;
-       _locationManager.desiredAccuracy = kCLLocationAccuracyBest;
-       // Set a movement threshold for new events.
-       _locationManager.distanceFilter = 500; // meters
-       [_locationManager startUpdatingLocation];
+        _locationManager = [[CLLocationManager alloc] init];
+        _locationManager.delegate = self;
+        
+#warning kCLLocationAccuracyBest might be hard on the battery life.
+        _locationManager.desiredAccuracy = kCLLocationAccuracyBest;
+        // Set a movement threshold for new events.
+        _locationManager.distanceFilter = 500; // meters
+        [_locationManager startUpdatingLocation];
+        kApplicationDelegate.appLocationManager = _locationManager;
     }
     return self;
 }
 
-+ (bool)setRegionToMonitorWithIdentifier:(NSString *)identifier latitude:(CLLocationDegrees)latitude longitude:(CLLocationDegrees)longitude radius:(CLLocationDistance)radius
+- (void) saveNewHouseLocationInBackgroundWithAddressString:(NSString *)addressString andBlock:(LocationManagerSaveResultBlock)block
+{
+    CLGeocoder *geocoder = [[CLGeocoder alloc] init];
+    [geocoder geocodeAddressString:addressString inRegion:nil
+                 completionHandler:^(NSArray *placemarks, NSError *error) {
+                     NSLog(@"placemarks: %@", placemarks);
+                     if (placemarks)
+                     {
+                         CLPlacemark *placeMark = ((CLPlacemark *)[placemarks objectAtIndex:0]);
+                         
+                         HPHouse *house = [[HPHouse alloc] init];
+                         
+                         [house setLocation:placeMark.location];
+                         [house setAddressText:addressString];
+                         
+                         [HPCentralData saveHouseInBackgroundWithHouse:house andBlock:^(NSError *error) {
+                             if (!error) {
+                                 if (block) {
+                                     block(nil);
+                                 }
+                             }
+                             else
+                             {
+                                 if (block) {
+                                     block(@"Error saving house.");
+                                 }
+                             }
+                             
+                         }];
+                     }
+                     else
+                     {
+                         if (block) {
+                             block(@"Could not find address.");
+                         }
+                     }
+                 }];
+}
+
+- (void) updateAtHomeStatus
+{
+    //Pull latest home address from server.
+    [_locationManager setDelegate:self];
+    
+    [HPCentralData clearLocalHouseData];
+    [HPCentralData getHouseInBackgroundWithBlock:^(HPHouse *house, NSError *error) {
+        
+        //Start monitoring it.
+        if (house.location != nil) {
+            NSLog(@"house.addressText: %@", house.addressText);
+            NSLog(@"house.location: %@", house.location);
+            CLRegion *currentRegion = [self setRegionToMonitorWithIdentifier:kHomeLocationIdentifier latitude:house.location.coordinate.latitude longitude:house.location.coordinate.longitude radius:kDefaultHouseRadius];
+            
+            
+            //Check our current at home status by calling requestStateForRegion
+            //This will trigger a [locationManager didDetermineState] call.
+            [self requestStateForRegion:currentRegion];
+        }
+    }];
+}
+
+- (CLRegion *)setRegionToMonitorWithIdentifier:(NSString *)identifier latitude:(CLLocationDegrees)latitude longitude:(CLLocationDegrees)longitude radius:(CLLocationDistance)radius
 {
     NSString *regionIdentifier = identifier;
     CLLocationDegrees regionLatitude = latitude;
@@ -36,59 +107,140 @@
     CLLocationDistance regionRadius = radius;
     
     
-    if(regionRadius > kApplicationDelegate.hpLocationManager.locationManager.maximumRegionMonitoringDistance)
+    if(regionRadius > self.locationManager.maximumRegionMonitoringDistance)
     {
-        regionRadius = kApplicationDelegate.hpLocationManager.locationManager.maximumRegionMonitoringDistance;
+        regionRadius = self.locationManager.maximumRegionMonitoringDistance;
     }
     
-    CLRegion * region =nil;
+    CLCircularRegion * region =nil;
     
     region =  [[CLCircularRegion alloc] initWithCenter:centerCoordinate
-                                                    radius:regionRadius
-                                                identifier:regionIdentifier];
+                                                radius:regionRadius
+                                            identifier:regionIdentifier];
     
-    [kApplicationDelegate.hpLocationManager.locationManager startMonitoringForRegion:region];
+    
+    //remove currently monitoring regions.
+    NSSet * monitoredRegions = self.locationManager.monitoredRegions;
+    for (CLCircularRegion *oldRegion in monitoredRegions)
+    {
+        if (oldRegion.center.latitude != region.center.latitude || oldRegion.center.longitude != region.center.longitude)
+        {
+            [kApplicationDelegate.appLocationManager stopMonitoringForRegion:oldRegion];
+        }
+        
+    }
+    
+    [self.locationManager startMonitoringForRegion:region];
     
     
     [[[HPHouse alloc] init] setLocalStorageRegion:region];
     
-    return true;
+    return region;
 }
 
-+ (void) requestStateForCurrentHouseLocation
+//if string is not nil there is an error.
+- (NSString *) requestStateForRegion:(CLRegion *)region
 {
-    if ([HPLocationManager checkLocationServicePermissions] != nil) {
-        HPRoommate *currentUser = [[HPRoommate alloc] init];
-        [currentUser setAtHomeString:@"unknown"];
-#warning this is a race condition. If the users at home status isn't updated before the roommates get refreshed the UI could display incorrect information.
-        [HPCentralData saveCurrentUserInBackgroundWithRoommate:currentUser andBlock:nil];
+    NSLog(@"Requesting state for region: %@", region);
+    NSLog(@"Monitoring these regions: %@",[self.locationManager monitoredRegions]);
+    [self.locationManager requestStateForRegion:region];
+    return nil;
+}
+
+#pragma mark - CLLocationManagerDelegate
+
+- (void)locationManager:(CLLocationManager *)manager
+         didEnterRegion:(CLRegion *)region
+{
+    //update the current users location on parse and the local database.
+    NSLog(@"Calling did enter region...");
+    if ([region.identifier isEqualToString:kHomeLocationIdentifier]) {
+        //User is inside house location
+        NSLog(@"User is inside fence...");
+        HPRoommate *roommate = [[HPRoommate alloc] init];
+        [roommate setAtHomeString:@"true"];
+        [HPCentralData saveCurrentUserInBackgroundWithRoommate:roommate andBlock:^(NSError *error) {
+            
+            [HPSyncWorker handleSyncRequestWithType:roommatesSyncRequest];
+            
+            NSDictionary *dict = [[NSDictionary alloc] initWithObjectsAndKeys:[NSNumber numberWithInt:roommatesSyncRequest], @"syncRequestKey", [PFUser currentUser].objectId, @"src_usr", nil];
+            [HPPushHelper sendNotificationWithDataToEveryoneInHouseButMe:dict andAlert:[NSString stringWithFormat:@"%@ just got home!!", [[PFUser currentUser] username]]];
+            
+        }];
+    }
+
+}
+
+- (void)locationManager:(CLLocationManager *)manager
+          didExitRegion:(CLRegion *)region
+{
+    //update the current users location on parse and the local database.
+    NSLog(@"Calling did exit region...");
+    if ([region.identifier isEqualToString:kHomeLocationIdentifier]) {
+        //User is inside house location
+        NSLog(@"User is outside fence...");
+        HPRoommate *roommate = [[HPRoommate alloc] init];
+        [roommate setAtHomeString:@"false"];
+        
+        
+        [HPCentralData saveCurrentUserInBackgroundWithRoommate:roommate andBlock:^(NSError *error) {
+            
+            [HPSyncWorker handleSyncRequestWithType:roommatesSyncRequest];
+            
+            NSDictionary *dict = [[NSDictionary alloc] initWithObjectsAndKeys:[NSNumber numberWithInt:roommatesSyncRequest], @"syncRequestKey", [PFUser currentUser].objectId, @"src_usr", nil];
+            [HPPushHelper sendNotificationWithDataToEveryoneInHouseButMe:dict andAlert:[NSString stringWithFormat:@"%@ just left home!!", [[PFUser currentUser] username]]];
+            
+        }];
+        return;
+    }
+}
+
+//Called after requestStateForRegion
+- (void)locationManager:(CLLocationManager *)manager
+      didDetermineState:(CLRegionState)state forRegion:(CLRegion *)region
+{
+    //If location status has changed save the currentUser
+    NSLog(@"\n\n$$$$$$$Location manager did determine state...\n\n");
+    if ([region.identifier isEqualToString:kHomeLocationIdentifier]) {
+        if (state == CLRegionStateInside) {
+            //User is inside house location
+            NSLog(@"User is inside fence...");
+            [HPCentralData getCurrentUserInBackgroundWithBlock:^(HPRoommate *roommate, NSError *error) {
+                if (![[roommate atHomeString] isEqualToString:@"true"]) {
+                    HPRoommate *roommate = [[HPRoommate alloc] init];
+                    [roommate setAtHomeString:@"true"];
+                    [HPCentralData saveCurrentUserInBackgroundWithRoommate:roommate andBlock:^(NSError *error) {
+                        //Initiate Roommate sync.
+                        [HPSyncWorker handleSyncRequestWithType:roommatesSyncRequest];
+                    }];
+                }
+            }];
+            
+        }
+        else
+        {
+            //User is outside location or inside
+            NSLog(@"User is outside fence...");
+            [HPCentralData getCurrentUserInBackgroundWithBlock:^(HPRoommate *roommate, NSError *error) {
+                //
+                if (![[roommate atHomeString] isEqualToString:@"false"]) {
+                    HPRoommate *roommate = [[HPRoommate alloc] init];
+                    [roommate setAtHomeString:@"false"];
+                    [HPCentralData saveCurrentUserInBackgroundWithRoommate:roommate andBlock:^(NSError *error) {
+                        //Initiate Roommate sync.
+                        [HPSyncWorker handleSyncRequestWithType:roommatesSyncRequest];
+                    }];
+                }
+            }];
+        }
     }
     else
     {
-        //Get house from central data and check if the region attribute is set.
-        [HPCentralData getHouseInBackgroundWithBlock:^(HPHouse *house, NSError *error) {
-            //
-            if ([house addressText] != nil)
-            {
-                //There is an address. Has region been calculated and stored?
-                if ([house region] == nil) {
-                    [HPLocationManager setRegionToMonitorWithIdentifier:kHomeLocationIdentifier latitude:house.location.coordinate.latitude longitude:house.location.coordinate.longitude radius:kDefaultHouseRadius];
-                }
-                
-                CLRegion *houseRegion = [house getLocalStorageRegion];
-                if (houseRegion != nil)
-                {
-                    // Force request for location
-                    NSLog(@"Requesting state for region: %@", houseRegion);
-                    NSLog(@"Monitoring these regions: %@",[kApplicationDelegate.hpLocationManager.locationManager monitoredRegions]);
-                     NSLog(@"Delegate: %@" ,[kApplicationDelegate.hpLocationManager.locationManager delegate]);
-                    [kApplicationDelegate.hpLocationManager.locationManager requestStateForRegion:houseRegion];
-                }
-            }
-        }];
+        NSLog(@"Unknown region request...");
     }
 }
 
+// Checks what permissions the app has for location and returns a error string to display if there are restrictions.
 + (NSString *) checkLocationServicePermissions
 {
     if(![CLLocationManager locationServicesEnabled])
@@ -108,6 +260,9 @@
     return nil;
 }
 
-#pragma mark - Helper Methods
+-(void)dealloc
+{
+    NSLog(@"Just dealloced HPLocationManager");
+}
 
 @end
