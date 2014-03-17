@@ -16,6 +16,7 @@
 
 +(void) clearCentralData;
 +(void) clearLocalHouseData;
++(void) clearLocalRoommatesData;
 
 +(void) resyncAllData;
 +(void) resyncCurrentUser;

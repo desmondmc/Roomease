@@ -82,6 +82,7 @@
     [_locationManager setDelegate:self];
     
     [HPCentralData clearLocalHouseData];
+    [HPCentralData clearLocalRoommatesData];
     [HPCentralData getHouseInBackgroundWithBlock:^(HPHouse *house, NSError *error) {
         
         //Start monitoring it.
@@ -118,16 +119,25 @@
     
     //remove currently monitoring regions.
     NSSet * monitoredRegions = self.locationManager.monitoredRegions;
-    for (CLCircularRegion *oldRegion in monitoredRegions)
+    if (monitoredRegions.count == 0)
     {
-        if (oldRegion.center.latitude != region.center.latitude || oldRegion.center.longitude != region.center.longitude)
+        [self.locationManager startMonitoringForRegion:region];
+        [[[HPHouse alloc] init] setLocalStorageRegion:region];
+    }
+    else
+    {
+        for (CLCircularRegion *oldRegion in monitoredRegions)
         {
-            [kApplicationDelegate.appLocationManager stopMonitoringForRegion:oldRegion];
-            [self.locationManager startMonitoringForRegion:region];
-            [[[HPHouse alloc] init] setLocalStorageRegion:region];
+            if (oldRegion.center.latitude != region.center.latitude || oldRegion.center.longitude != region.center.longitude)
+            {
+                [kApplicationDelegate.appLocationManager stopMonitoringForRegion:oldRegion];
+                [self.locationManager startMonitoringForRegion:region];
+                [[[HPHouse alloc] init] setLocalStorageRegion:region];
+            }
+            
         }
-        
-    }    
+    }
+   
     
     return region;
 }
@@ -198,32 +208,28 @@
         if (state == CLRegionStateInside) {
             //User is inside house location
             NSLog(@"User is inside fence...");
-            [HPCentralData getCurrentUserInBackgroundWithBlock:^(HPRoommate *roommate, NSError *error) {
-                if (![[roommate atHomeString] isEqualToString:@"true"]) {
-                    HPRoommate *roommate = [[HPRoommate alloc] init];
-                    [roommate setAtHomeString:@"true"];
-                    [HPCentralData saveCurrentUserInBackgroundWithRoommate:roommate andBlock:^(NSError *error) {
-                        //Initiate Roommate sync.
-                        [HPSyncWorker handleSyncRequestWithType:roommatesSyncRequest];
-                    }];
-                }
+            
+            //Always save user then send sync request, even if their location didn't change. Otherwise we don't update updates from other roommates' location/profile pic.
+            HPRoommate *roommate = [[HPRoommate alloc] init];
+            [roommate setAtHomeString:@"true"];
+            [HPCentralData saveCurrentUserInBackgroundWithRoommate:roommate andBlock:^(NSError *error) {
+                //Initiate Roommate sync.
+                [HPSyncWorker handleSyncRequestWithType:roommatesSyncRequest];
             }];
+
             
         }
         else
         {
             //User is outside location or inside
             NSLog(@"User is outside fence...");
-            [HPCentralData getCurrentUserInBackgroundWithBlock:^(HPRoommate *roommate, NSError *error) {
-                //
-                if (![[roommate atHomeString] isEqualToString:@"false"]) {
-                    HPRoommate *roommate = [[HPRoommate alloc] init];
-                    [roommate setAtHomeString:@"false"];
-                    [HPCentralData saveCurrentUserInBackgroundWithRoommate:roommate andBlock:^(NSError *error) {
-                        //Initiate Roommate sync.
-                        [HPSyncWorker handleSyncRequestWithType:roommatesSyncRequest];
-                    }];
-                }
+            
+            //Always save user then send sync request, even if their location didn't change. Otherwise we don't update updates from other roommates' location/profile pic.
+            HPRoommate *roommate = [[HPRoommate alloc] init];
+            [roommate setAtHomeString:@"false"];
+            [HPCentralData saveCurrentUserInBackgroundWithRoommate:roommate andBlock:^(NSError *error) {
+                //Initiate Roommate sync.
+                [HPSyncWorker handleSyncRequestWithType:roommatesSyncRequest];
             }];
         }
     }

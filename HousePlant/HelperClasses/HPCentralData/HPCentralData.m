@@ -90,6 +90,12 @@
     [persistantStore synchronize];
 }
 
++(void) clearLocalRoommatesData
+{
+    [persistantStore removeObjectForKey:kPersistantStoreRoommates];
+    [persistantStore synchronize];
+}
+
 +(void) getCurrentUserInBackgroundWithBlock:(CentralDataRoommateResultBlock)block
 {
 

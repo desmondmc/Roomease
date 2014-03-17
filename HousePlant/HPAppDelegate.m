@@ -100,7 +100,7 @@
 {
     // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
 #warning Should not be clearing Central Data everytime the app comes into view.
-    [HPCentralData clearCentralData];
+    //[HPCentralData clearCentralData];
     [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICATION_APP_BECAME_ACTIVE object:self];
 }
 
@@ -158,8 +158,18 @@ didReceiveRemoteNotification:(NSDictionary *)userInfo {
         dateString = [formatter stringFromDate:[NSDate date]];
         [[PFUser currentUser] setObject:dateString forKey:@"keepalive"];
         
+        [[PFUser currentUser] incrementKey:@"totalRefreshCount"];
+        
         [[PFUser currentUser] save];
-        completionHandler(UIBackgroundFetchResultNewData);
+        
+        [[HPLocationManager sharedLocationManager] updateAtHomeStatus];
+        
+        double delayInSeconds = 7.0;
+        dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, delayInSeconds * NSEC_PER_SEC);
+        dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
+            //code to be executed on the main queue after delay
+            completionHandler(UIBackgroundFetchResultNewData);
+        });
     }
 }
 
