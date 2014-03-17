@@ -239,6 +239,12 @@
     }
 }
 
+- (void)locationManager:(CLLocationManager *)manager didChangeAuthorizationStatus:(CLAuthorizationStatus)status
+{
+    //if it is turned off the user will be set to unknowen.
+#warning we need a place that gets notified when location services is turned off. Not even sure if this is possible.
+}
+
 // Checks what permissions the app has for location and returns a error string to display if there are restrictions.
 + (NSString *) checkLocationServicePermissions
 {

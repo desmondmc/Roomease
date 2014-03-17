@@ -11,7 +11,7 @@
 typedef enum
 {
     roommatesSyncRequest = 0,
-    houseSyncRequest,    
+    houseSyncRequest = 1,
 } syncRequest_t;
 
 

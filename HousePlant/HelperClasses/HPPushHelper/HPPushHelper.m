@@ -47,7 +47,6 @@
                 if (![[roommate username] isEqualToString:[PFUser currentUser].username]) {
                     PFQuery *query = [PFInstallation query];
                     [query whereKey:@"channels" equalTo:roommate.username];
-                    //[query whereKey:@"channels" notEqualTo:[PFUser currentUser].username];
                     
                     PFPush *message = [[PFPush alloc] init];
                     
