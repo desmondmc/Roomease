@@ -138,16 +138,10 @@ didReceiveRemoteNotification:(NSDictionary *)userInfo {
         [PFPush handlePush:userInfo];
     }
     
-    NSLog(@"Recieved Push: %@", userInfo);
+    NSLog(@"Recieved Push");
     if (![[userInfo objectForKey:@"src_usr"] isEqualToString:[PFUser currentUser].objectId] ) {
         [HPSyncWorker handleSyncRequestWithDictionary:userInfo];
     }
-    else
-    {
-        NSLog(@"Recieved Notification from myself: %@", userInfo);
-    }
-    
-    
 }
 
 -(void)application:(UIApplication *)application performFetchWithCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler {

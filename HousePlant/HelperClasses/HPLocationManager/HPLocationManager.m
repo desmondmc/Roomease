@@ -88,12 +88,9 @@
         if (house.location != nil) {
             NSLog(@"house.addressText: %@", house.addressText);
             NSLog(@"house.location: %@", house.location);
-            CLRegion *currentRegion = [self setRegionToMonitorWithIdentifier:kHomeLocationIdentifier latitude:house.location.coordinate.latitude longitude:house.location.coordinate.longitude radius:kDefaultHouseRadius];
+            CLRegion *region = [self setRegionToMonitorWithIdentifier:kHomeLocationIdentifier latitude:house.location.coordinate.latitude longitude:house.location.coordinate.longitude radius:kDefaultHouseRadius];
             
-            
-            //Check our current at home status by calling requestStateForRegion
-            //This will trigger a [locationManager didDetermineState] call.
-            [self requestStateForRegion:currentRegion];
+            [self requestStateForRegion:region];
         }
     }];
 }
@@ -126,14 +123,11 @@
         if (oldRegion.center.latitude != region.center.latitude || oldRegion.center.longitude != region.center.longitude)
         {
             [kApplicationDelegate.appLocationManager stopMonitoringForRegion:oldRegion];
+            [self.locationManager startMonitoringForRegion:region];
+            [[[HPHouse alloc] init] setLocalStorageRegion:region];
         }
         
-    }
-    
-    [self.locationManager startMonitoringForRegion:region];
-    
-    
-    [[[HPHouse alloc] init] setLocalStorageRegion:region];
+    }    
     
     return region;
 }
