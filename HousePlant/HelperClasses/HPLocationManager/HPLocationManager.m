@@ -78,7 +78,6 @@
 
 - (void) updateAtHomeStatus
 {
-    fnksdfbksdjfkdbfk;
     //Pull latest home address from server.
     [_locationManager setDelegate:self];
     
