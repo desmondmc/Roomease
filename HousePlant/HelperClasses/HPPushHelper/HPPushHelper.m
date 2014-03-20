@@ -40,28 +40,39 @@
 
 + (void)sendNotificationWithDataToEveryoneInHouseButMe:(NSDictionary *)data andAlert:(NSString *)alert
 {
-    [[PFUser currentUser] fetchIfNeededInBackgroundWithBlock:^(PFObject *object, NSError *error) {
-        [HPCentralData getRoommatesInBackgroundWithBlock:^(NSArray *roommates, NSError *error) {
-            //
-            for (HPRoommate *roommate in roommates) {
-                if (![[roommate username] isEqualToString:[PFUser currentUser].username]) {
-                    PFQuery *query = [PFInstallation query];
-                    [query whereKey:@"channels" equalTo:roommate.username];
-                    
-                    PFPush *message = [[PFPush alloc] init];
-                    
-                    NSMutableDictionary *newDict = [NSMutableDictionary dictionaryWithDictionary:data];
-                    if (alert != nil) {
-                        [newDict setValue:alert forKey:@"alert"];
-                    }
-                    
-                    [message setQuery:query];
-                    [message setData:newDict];
-                    [message sendPushInBackground];
-                }
-            }
-        }];
-    }];
+    NSMutableDictionary *newDict = [NSMutableDictionary dictionaryWithDictionary:data];
+    if (alert != nil) {
+        [newDict setValue:alert forKey:@"alert"];
+    }
+    
+    [PFCloud callFunctionInBackground:@"sendPushToMates"
+                       withParameters:@{@"data": newDict}
+                                block:^(NSString *channelName, NSError *error) {
+                                   
+                                }];
+
+//    [[PFUser currentUser] fetchIfNeededInBackgroundWithBlock:^(PFObject *object, NSError *error) {
+//        [HPCentralData getRoommatesInBackgroundWithBlock:^(NSArray *roommates, NSError *error) {
+//            //
+//            for (HPRoommate *roommate in roommates) {
+//                if (![[roommate username] isEqualToString:[PFUser currentUser].username]) {
+//                    PFQuery *query = [PFInstallation query];
+//                    [query whereKey:@"channels" equalTo:roommate.username];
+//                    
+//                    PFPush *message = [[PFPush alloc] init];
+//                    
+//                    NSMutableDictionary *newDict = [NSMutableDictionary dictionaryWithDictionary:data];
+//                    if (alert != nil) {
+//                        [newDict setValue:alert forKey:@"alert"];
+//                    }
+//                    
+//                    [message setQuery:query];
+//                    [message setData:newDict];
+//                    [message sendPushInBackground];
+//                }
+//            }
+//        }];
+//    }];
 }
 
 @end
