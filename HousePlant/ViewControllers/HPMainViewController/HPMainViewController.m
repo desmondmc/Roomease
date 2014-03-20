@@ -117,7 +117,7 @@
 #pragma mark - UITableViewDelegate
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 2;
+    return 4;
 }
 
 // Row display. Implementers should *always* try to reuse cells by setting each cell's reuseIdentifier and querying for available reusable cells with dequeueReusableCellWithIdentifier:
@@ -132,6 +132,23 @@
         NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"HPListTableViewCell" owner:self options:nil];
         cell = [nib objectAtIndex:0];
     }
+    
+    if (indexPath.row == 1) {
+        cell.entryTitle.text = @"Take out garbage before Jeremiah farts in all of our mouths.";
+        cell.entryDate.text = @"March 13, 2014 at";
+        cell.entryTime.text = @"10:45AM";
+    }
+    else if(indexPath.row == 2) {
+        cell.entryTitle.text = @"Buy red-solo cups for the party this weekend.";
+        cell.entryDate.text = @"March 17, 2014 at";
+        cell.entryTime.text = @"5:23AM";
+    }
+    else if(indexPath.row == 3) {
+        cell.entryTitle.text = @"Pay Rogers Cable bill $120.";
+        cell.entryDate.text = @"March 15, 2014 at";
+        cell.entryTime.text = @"2:45PM";
+    }
+
     
     return cell;
 }
