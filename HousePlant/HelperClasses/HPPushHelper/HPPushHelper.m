@@ -42,7 +42,10 @@
 {
     [[PFUser currentUser] fetchIfNeededInBackgroundWithBlock:^(PFObject *object, NSError *error) {
         [HPCentralData getRoommatesInBackgroundWithBlock:^(NSArray *roommates, NSError *error) {
-            //
+            if(alert == nil && data == nil)
+            {
+                return; //nothing to send.
+            }
             for (HPRoommate *roommate in roommates) {
                 if (![[roommate username] isEqualToString:[PFUser currentUser].username]) {
                     PFQuery *query = [PFInstallation query];
@@ -50,7 +53,16 @@
                     
                     PFPush *message = [[PFPush alloc] init];
                     
-                    NSMutableDictionary *newDict = [NSMutableDictionary dictionaryWithDictionary:data];
+                    NSMutableDictionary *newDict;
+                    if (data != nil)
+                    {
+                        newDict = [NSMutableDictionary dictionaryWithDictionary:data];
+                    }
+                    else
+                    {
+                        newDict = [[NSMutableDictionary alloc] init];
+                    }
+                    
                     if (alert != nil) {
                         [newDict setValue:alert forKey:@"alert"];
                     }

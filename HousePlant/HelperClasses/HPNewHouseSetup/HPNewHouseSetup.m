@@ -18,6 +18,9 @@
     [HPCentralData getHouseInBackgroundWithBlock:^(HPHouse *house, NSError *error) {
         //
 #warning there should be a nil check here on the house. Cloud code could potentially fail.
+        [HPPushHelper sendNotificationWithDataToEveryoneInHouseButMe:nil andAlert:[NSString stringWithFormat:@"%@ joined the house!!", [[PFUser currentUser] username]]];
+        
+        
         PFInstallation *currentInstallation = [PFInstallation currentInstallation];
         [currentInstallation addUniqueObjectsFromArray:@[house.houseName, [PFUser currentUser].username] forKey:@"channels"];
         [currentInstallation saveInBackground];

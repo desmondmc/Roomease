@@ -13,6 +13,7 @@
 #import "RoommateImageSubview.h"
 #import "HPSettingsViewController.h"
 #import "HPUINotifier.h"
+#import "HPListTableViewCell.h"
 
 @interface HPMainViewController ()
 
@@ -113,6 +114,28 @@
     [[HPLocationManager sharedLocationManager] updateAtHomeStatus];
 }
 
+#pragma mark - UITableViewDelegate
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    return 2;
+}
+
+// Row display. Implementers should *always* try to reuse cells by setting each cell's reuseIdentifier and querying for available reusable cells with dequeueReusableCellWithIdentifier:
+// Cell gets various attributes set automatically based on table (separators) and data source (accessory views, editing controls)
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    HPListTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"hpListTableViewCell"];
+
+    if (cell == nil) {
+        //There was no reusablecell to dequeue
+        NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"HPListTableViewCell" owner:self options:nil];
+        cell = [nib objectAtIndex:0];
+    }
+    
+    return cell;
+}
+
 
 #pragma mark - Notification Handlers
 
@@ -122,8 +145,9 @@
     //dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, delayInSeconds * NSEC_PER_SEC);
     //dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
         //code to be executed on the main queue after delay
-    [[HPLocationManager sharedLocationManager] updateAtHomeStatus];
+    //[self viewDidAppear:YES];
     //});
+    [self viewDidAppear:YES];
     
 }
 
