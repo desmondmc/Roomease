@@ -5,6 +5,31 @@ Parse.Cloud.define("hello", function(request, response) {
 response.success("Hello world!");
 });
 
+
+Parse.Cloud.define("sendPushToMates", function(request, response)
+                   {
+                   
+                   console.log("Searching User Name " + request.user.get('username'));
+                   
+                   Parse.Push.send({
+                                   channels: [ request.user.get('username') ],
+                                   data: {
+                                   alert: request.params.data.alert,
+                                   syncRequestKey: request.params.data.syncRequestKey,
+                                   src_usr: request.params.data.src_usr
+                                   }
+                                   }).then(function() {
+                                           // Push was successful
+                                           console.log('Sent push.');
+                                           response.success("Push Complete\n");
+                                           },
+                                           function(error) {
+                                           throw "Push Error " + error.code + " : " + error.message;
+                                           response.error("Push Failed\n");
+                                           });
+                   
+                   });
+
 Parse.Cloud.afterSave("House", function(request, response) {
           //TODO need to check if this is the first user moving into the house.
 //                      var users = request.object.get("users");
@@ -41,7 +66,6 @@ Parse.Cloud.afterSave(Parse.User, function(request, response) {
           Parse.Push.send({
             where: queryForInstallation, // Set our Installation query.
             data: {
-              //alert: "Hello Des.", // Set our alert message.
               syncRequestKey: 0,
               src_usr: request.object.id
             }

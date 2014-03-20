@@ -97,6 +97,9 @@
 - (IBAction)onTestPress:(id)sender {
     NSDictionary *dict = [[NSDictionary alloc] initWithObjectsAndKeys:[NSNumber numberWithInt:roommatesSyncRequest], @"syncRequestKey", [PFUser currentUser].objectId, @"src_usr", nil];
     [HPPushHelper sendNotificationWithDataToEveryoneInHouseButMe:dict andAlert:[NSString stringWithFormat:@"%@ Sorry testing notifications.", [[PFUser currentUser] username]]];
+    
+//    [HPPushHelper sendNotificationWithDataToEveryoneInHouseButMe:dict andAlert: nil];
+
 }
 
 
