@@ -69,4 +69,25 @@
         return nil;
 }
 
+- (IBAction)onViewPress:(id)sender {
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"User Settings" message:@"Do you want to recieve notifications from this user?" delegate:self cancelButtonTitle:@"No" otherButtonTitles:@"Yes",nil];
+    [alert show];
+}
+
+- (void)alertView:(UIAlertView *)alertView
+clickedButtonAtIndex:(NSInteger) buttonIndex{
+    
+    if (buttonIndex == 1) {
+        // Yes
+        PFInstallation *currentInstallation = [PFInstallation currentInstallation];
+        [currentInstallation addUniqueObject:_nameLabel.text forKey:@"channels"];
+        [currentInstallation saveEventually];
+    } else {
+        // No
+        PFInstallation *currentInstallation = [PFInstallation currentInstallation];
+        [currentInstallation removeObject:_nameLabel.text forKey:@"channels"];
+        [currentInstallation saveEventually];
+    }
+}
+
 @end
