@@ -13,6 +13,7 @@
 #import "RoommateImageSubview.h"
 #import "HPSettingsViewController.h"
 #import "HPUINotifier.h"
+#import "HPListTableViewCell.h"
 
 @interface HPMainViewController ()
 
@@ -116,6 +117,45 @@
     [[HPLocationManager sharedLocationManager] updateAtHomeStatus];
 }
 
+#pragma mark - UITableViewDelegate
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    return 4;
+}
+
+// Row display. Implementers should *always* try to reuse cells by setting each cell's reuseIdentifier and querying for available reusable cells with dequeueReusableCellWithIdentifier:
+// Cell gets various attributes set automatically based on table (separators) and data source (accessory views, editing controls)
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    HPListTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"hpListTableViewCell"];
+
+    if (cell == nil) {
+        //There was no reusablecell to dequeue
+        NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"HPListTableViewCell" owner:self options:nil];
+        cell = [nib objectAtIndex:0];
+    }
+    
+    if (indexPath.row == 1) {
+        cell.entryTitle.text = @"Take out garbage before Jeremiah farts in all of our mouths.";
+        cell.entryDate.text = @"March 13, 2014 at";
+        cell.entryTime.text = @"10:45AM";
+    }
+    else if(indexPath.row == 2) {
+        cell.entryTitle.text = @"Buy red-solo cups for the party this weekend.";
+        cell.entryDate.text = @"March 17, 2014 at";
+        cell.entryTime.text = @"5:23AM";
+    }
+    else if(indexPath.row == 3) {
+        cell.entryTitle.text = @"Pay Rogers Cable bill $120.";
+        cell.entryDate.text = @"March 15, 2014 at";
+        cell.entryTime.text = @"2:45PM";
+    }
+
+    
+    return cell;
+}
+
 
 #pragma mark - Notification Handlers
 
@@ -125,8 +165,9 @@
     //dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, delayInSeconds * NSEC_PER_SEC);
     //dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
         //code to be executed on the main queue after delay
-    [[HPLocationManager sharedLocationManager] updateAtHomeStatus];
+    //[self viewDidAppear:YES];
     //});
+    [self viewDidAppear:YES];
     
 }
 

@@ -18,7 +18,7 @@
     
     
     if (roommate.profilePic) {
-        AMPAvatarView *avatar2 = [[AMPAvatarView alloc] initWithFrame:CGRectMake(11, 1, 59, 59)];
+        AMPAvatarView *avatar2 = [[AMPAvatarView alloc] initWithFrame:CGRectMake(11, 1, 65, 65)];
         [subView addSubview:avatar2];
         avatar2.image = roommate.profilePic;
         

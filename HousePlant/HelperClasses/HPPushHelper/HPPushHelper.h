@@ -16,4 +16,6 @@
 
 + (void)sendNotificationWithDataToEveryoneInHouseButMe:(NSDictionary *)data andAlert:(NSString *)alert;
 
++ (void)newUserAddedToHouseNowSetupPushChannels;
+
 @end

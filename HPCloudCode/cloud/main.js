@@ -161,7 +161,7 @@ Parse.Cloud.job("checkForLost70Users", function(request, status) {
                var object = new User();
                object = results[i];
                
-               
+               console.log("Checking time for user: " + object.id);
                var now = new Date();
                object.fetch();
                var updated_at = new Date(object.updatedAt);

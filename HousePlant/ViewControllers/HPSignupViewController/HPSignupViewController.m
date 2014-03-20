@@ -176,6 +176,7 @@
 {
     [self uploadProfilePic];
     // initialize the navigation controller and present it
+    [HPPushHelper newUserAddedToHouseNowSetupPushChannels];
     [self presentViewController:[HPLoginRouter getFirstViewToLoadForUser] animated:YES completion:nil];
 }
 
