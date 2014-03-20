@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface SingleRoommateSubview : UIView
+@interface SingleRoommateSubview : UIView <UIAlertViewDelegate>
 
 + (id)initSingleRoommateSubviewWithRoommate:(HPRoommate *)roommate;
 
@@ -16,5 +16,6 @@
 @property (weak, nonatomic) IBOutlet UILabel *nameLabel;
 @property (weak, nonatomic) IBOutlet UIView *atHomeTint;
 @property (weak, nonatomic) IBOutlet UIImageView *unknownLocationImage;
+- (IBAction)onViewPress:(id)sender;
 
 @end
