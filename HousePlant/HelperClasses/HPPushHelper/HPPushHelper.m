@@ -76,4 +76,17 @@
     }];
 }
 
++ (void)newUserAddedToHouseNowSetupPushChannels
+{
+    //The following sets up all the users with their respective channels. This includes users who are already part of the house.
+    [HPCentralData getHouseInBackgroundWithBlock:^(HPHouse *house, NSError *error) {
+        
+        //Add the house name and all the usernames as channels for this user and users already in the house.
+        //Now that everyone in the house has the new user's username channel we need to create the channels for the new user.
+        PFInstallation *currentInstallation = [PFInstallation currentInstallation];
+        [currentInstallation addUniqueObjectsFromArray:@[house.houseName] forKey:@"channels"];
+        [currentInstallation saveEventually];
+    }];
+}
+
 @end

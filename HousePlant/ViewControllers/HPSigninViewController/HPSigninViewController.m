@@ -104,6 +104,9 @@
                                         [_activityIndicator setHidden:true];
                                         if (user) {
                                             // Do stuff after successful login.
+                                            
+                                            [HPPushHelper newUserAddedToHouseNowSetupPushChannels];
+                                            
                                             UIViewController *viewController = [HPLoginRouter getFirstViewToLoadForUser];
                                             if (viewController) {
                                                 [self presentViewController:[HPLoginRouter getFirstViewToLoadForUser] animated:YES completion:nil];
