@@ -48,7 +48,6 @@
     [PFCloud callFunctionInBackground:@"sendPushToMates"
                        withParameters:@{@"data": newDict}
                                 block:^(NSString *channelName, NSError *error) {
-                                   
                                 }];
 }
 
