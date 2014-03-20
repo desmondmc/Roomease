@@ -59,11 +59,6 @@
     [[self roommateImageSubviewContainer] addSubview:roommateView];
 }
 
-- (void)viewDidAppear:(BOOL)animated
-{
-    [[HPLocationManager sharedLocationManager] updateAtHomeStatus];
-}
-
 - (void) getProfilePicturesWithUser:(PFUser *)user andIndex:(int)index
 {
     AMPAvatarView *avatar2;
@@ -161,14 +156,7 @@
 
 - (void) receiveNotificationAppActive:(NSNotification *) notification
 {
-    //double delayInSeconds = 10.0;
-    //dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, delayInSeconds * NSEC_PER_SEC);
-    //dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
-        //code to be executed on the main queue after delay
-    //[self viewDidAppear:YES];
-    //});
-    [self viewDidAppear:YES];
-    
+    [[HPLocationManager sharedLocationManager] updateAtHomeStatus];
 }
 
 #pragma mark - HPUINotifierDelegate
