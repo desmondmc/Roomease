@@ -87,9 +87,9 @@
                     </connections>
                 </tableView>
                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="To Do List" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Bgu-85-9AM">
-                    <rect key="frame" x="89" y="165" width="137" height="39"/>
+                    <rect key="frame" x="99" y="165" width="123" height="36"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="33"/>
+                    <fontDescription key="fontDescription" name="HelveticaNeue-UltraLight" family="Helvetica Neue" pointSize="31"/>
                     <color key="textColor" red="0.2941176593" green="0.7019608021" blue="0.98431378599999997" alpha="1" colorSpace="deviceRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
@@ -104,7 +104,6 @@
         </view>
     </objects>
     <resources>
-        <image name="add_item_btn" width="27" height="27"/>
         <image name="blue_divider" width="640" height="1"/>
         <image name="new-post-icon" width="31" height="31"/>
         <image name="settings-cog-icon" width="30" height="30"/>

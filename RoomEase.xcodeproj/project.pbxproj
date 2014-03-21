@@ -61,6 +61,9 @@
 		F76F513B189869B100A202A6 /* HPRoommate.m in Sources */ = {isa = PBXBuildFile; fileRef = F76F513A189869B100A202A6 /* HPRoommate.m */; };
 		F77D56E818D7934D00CFF118 /* HPListTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F77D56E618D7934D00CFF118 /* HPListTableViewCell.m */; };
 		F77D56E918D7934D00CFF118 /* HPListTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F77D56E718D7934D00CFF118 /* HPListTableViewCell.xib */; };
+		F77D56EF18DC93A800CFF118 /* HelveticaNeue.dfont in Resources */ = {isa = PBXBuildFile; fileRef = F77D56EC18DC93A800CFF118 /* HelveticaNeue.dfont */; };
+		F77D56F018DC93A800CFF118 /* Mission-Script.otf in Resources */ = {isa = PBXBuildFile; fileRef = F77D56ED18DC93A800CFF118 /* Mission-Script.otf */; };
+		F77D56F118DC93A800CFF118 /* roomease-homescreen-fonts.rtf in Resources */ = {isa = PBXBuildFile; fileRef = F77D56EE18DC93A800CFF118 /* roomease-homescreen-fonts.rtf */; };
 		F78D484E185AAB03000A79BC /* HPNetworkObject.m in Sources */ = {isa = PBXBuildFile; fileRef = F78D484D185AAB03000A79BC /* HPNetworkObject.m */; };
 		F78D4854185AC0E2000A79BC /* HPHouse.m in Sources */ = {isa = PBXBuildFile; fileRef = F78D4853185AC0E2000A79BC /* HPHouse.m */; };
 		F7A1221A18522A4100E51B06 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F7A1221918522A4100E51B06 /* Foundation.framework */; };
@@ -168,6 +171,9 @@
 		F77D56E518D7934D00CFF118 /* HPListTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HPListTableViewCell.h; path = ViewControllers/HPListTableViewCell/HPListTableViewCell.h; sourceTree = "<group>"; };
 		F77D56E618D7934D00CFF118 /* HPListTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HPListTableViewCell.m; path = ViewControllers/HPListTableViewCell/HPListTableViewCell.m; sourceTree = "<group>"; };
 		F77D56E718D7934D00CFF118 /* HPListTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = HPListTableViewCell.xib; path = ViewControllers/HPListTableViewCell/HPListTableViewCell.xib; sourceTree = "<group>"; };
+		F77D56EC18DC93A800CFF118 /* HelveticaNeue.dfont */ = {isa = PBXFileReference; lastKnownFileType = file; path = HelveticaNeue.dfont; sourceTree = "<group>"; };
+		F77D56ED18DC93A800CFF118 /* Mission-Script.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Mission-Script.otf"; sourceTree = "<group>"; };
+		F77D56EE18DC93A800CFF118 /* roomease-homescreen-fonts.rtf */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.rtf; path = "roomease-homescreen-fonts.rtf"; sourceTree = "<group>"; };
 		F78D484C185AAB03000A79BC /* HPNetworkObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HPNetworkObject.h; path = NetworkObjects/HPNetworkObject.h; sourceTree = "<group>"; };
 		F78D484D185AAB03000A79BC /* HPNetworkObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HPNetworkObject.m; path = NetworkObjects/HPNetworkObject.m; sourceTree = "<group>"; };
 		F78D4852185AC0E2000A79BC /* HPHouse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HPHouse.h; path = NetworkObjects/HPHouse.h; sourceTree = "<group>"; };
@@ -509,6 +515,24 @@
 			name = HPListTableViewCell;
 			sourceTree = "<group>";
 		};
+		F77D56EA18DC93A800CFF118 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				F77D56EB18DC93A800CFF118 /* Fonts */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		F77D56EB18DC93A800CFF118 /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				F77D56EC18DC93A800CFF118 /* HelveticaNeue.dfont */,
+				F77D56ED18DC93A800CFF118 /* Mission-Script.otf */,
+				F77D56EE18DC93A800CFF118 /* roomease-homescreen-fonts.rtf */,
+			);
+			path = Fonts;
+			sourceTree = "<group>";
+		};
 		F78D484B185AA9DA000A79BC /* NetworkObjects */ = {
 			isa = PBXGroup;
 			children = (
@@ -571,6 +595,7 @@
 		F7A1222118522A4100E51B06 /* HousePlant */ = {
 			isa = PBXGroup;
 			children = (
+				F77D56EA18DC93A800CFF118 /* Resources */,
 				F73F9EA818BE940D009D6097 /* Protocols */,
 				F710E5FB187862BE00BD9D54 /* HelperClasses */,
 				F78D484B185AA9DA000A79BC /* NetworkObjects */,
@@ -730,6 +755,8 @@
 				F711388618777B8800D9BA9E /* HPNoHomeViewController.xib in Resources */,
 				F7A1222618522A4100E51B06 /* InfoPlist.strings in Resources */,
 				F7A1223118522A4100E51B06 /* Images.xcassets in Resources */,
+				F77D56EF18DC93A800CFF118 /* HelveticaNeue.dfont in Resources */,
+				F77D56F018DC93A800CFF118 /* Mission-Script.otf in Resources */,
 				F714B83318B1387800B598E7 /* RoommateImageSubview.xib in Resources */,
 				F76535821867D1B20046263B /* HPSignupViewController.xib in Resources */,
 				F714B84B18B1CBED00B598E7 /* README.md in Resources */,
@@ -740,6 +767,7 @@
 				F71138921877837D00D9BA9E /* HPJoinHouseViewController.xib in Resources */,
 				F765357C1867C3840046263B /* HPSigninViewController.xib in Resources */,
 				F711388C1877832000D9BA9E /* HPCreateHouseViewController.xib in Resources */,
+				F77D56F118DC93A800CFF118 /* roomease-homescreen-fonts.rtf in Resources */,
 				F710E6061879213800BD9D54 /* index.html in Resources */,
 				F7A1225218522ABE00E51B06 /* HPStartingViewController.xib in Resources */,
 				F71138801877008600D9BA9E /* ottawa.gpx in Resources */,

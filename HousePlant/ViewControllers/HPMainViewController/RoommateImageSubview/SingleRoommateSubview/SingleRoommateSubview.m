@@ -70,7 +70,7 @@
 }
 
 - (IBAction)onViewPress:(id)sender {
-    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"User Settings" message:@"Do you want to recieve notifications from this user?" delegate:self cancelButtonTitle:@"No" otherButtonTitles:@"Yes",nil];
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"User Settings" message:@"Do you want to recieve notifications from this user when the leave/arrive home?" delegate:self cancelButtonTitle:@"No" otherButtonTitles:@"Yes",nil];
     [alert show];
 }
 

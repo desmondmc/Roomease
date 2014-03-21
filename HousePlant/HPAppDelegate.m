@@ -138,9 +138,14 @@ didReceiveRemoteNotification:(NSDictionary *)userInfo {
         [PFPush handlePush:userInfo];
     }
     
-    NSLog(@"Recieved Push");
+    
     if (![[userInfo objectForKey:@"src_usr"] isEqualToString:[PFUser currentUser].objectId] ) {
+        NSLog(@"Recieved Push from someone else.");
         [HPSyncWorker handleSyncRequestWithDictionary:userInfo];
+    }
+    else
+    {
+        NSLog(@"Recieved Push from myself.");
     }
 }
 
@@ -162,6 +167,7 @@ didReceiveRemoteNotification:(NSDictionary *)userInfo {
         
         [[PFUser currentUser] save];
         
+#warning this will eventually trigger a silent push notification to be sent to everyone in the house. Should maybe be rethought.
         [[HPLocationManager sharedLocationManager] updateAtHomeStatus];
         
         double delayInSeconds = 7.0;

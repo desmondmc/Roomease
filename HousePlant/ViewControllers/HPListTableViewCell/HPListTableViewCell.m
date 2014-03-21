@@ -10,6 +10,7 @@
 
 #define CLOSED_SLIDER_X 0
 #define OPEN_SLIDER_X -64
+#define HALFWAY_SLIDER_X (OPEN_SLIDER_X/2)
 
 @implementation HPListTableViewCell
 
@@ -41,18 +42,19 @@
     //Fully open of fully close the sliderView based on where the user left off.
     if (recognizer.state == UIGestureRecognizerStateEnded || outOfBounds)
     {
-//        if(_mainCellView.center.x >= (160 - 32))
-//        {
-//            [UIView animateWithDuration:0.2 animations:^{
-//                [_mainCellView setFrame:CGRectMake(0, _mainCellView.frame.origin.y, _mainCellView.frame.size.width, _mainCellView.frame.size.height)];
-//            } completion:nil];
-//            
-//        }
-//        else
-//        {
-//            
-//        }
-//        return;
+        if(_mainCellView.frame.origin.x <= HALFWAY_SLIDER_X)
+        {
+            [UIView animateWithDuration:0.2 animations:^{
+                [_mainCellView setFrame:CGRectMake(OPEN_SLIDER_X, _mainCellView.frame.origin.y, _mainCellView.frame.size.width, _mainCellView.frame.size.height)];
+            } completion:nil];
+        }
+        else
+        {
+            [UIView animateWithDuration:0.2 animations:^{
+                [_mainCellView setFrame:CGRectMake(CLOSED_SLIDER_X, _mainCellView.frame.origin.y, _mainCellView.frame.size.width, _mainCellView.frame.size.height)];
+            } completion:nil];
+            
+        }
     }
     
     if (_mainCellView.center.x + translation.x > 160) {
