@@ -209,12 +209,21 @@
             //User is inside house location
             NSLog(@"User is inside fence...");
             
-            //Always save user then send sync request, even if their location didn't change. Otherwise we don't update updates from other roommates' location/profile pic.
-            HPRoommate *roommate = [[HPRoommate alloc] init];
-            [roommate setAtHomeString:@"true"];
-            [HPCentralData saveCurrentUserInBackgroundWithRoommate:roommate andBlock:^(NSError *error) {
-                //Initiate Roommate sync.
-                [HPSyncWorker handleSyncRequestWithType:roommatesSyncRequest];
+            //Check if the location state has changed since last time and save if it has. Either way trigger a refresh.
+            [HPCentralData getCurrentUserInBackgroundWithBlock:^(HPRoommate *roommate, NSError *error) {
+                if (![[roommate atHomeString] isEqualToString:@"true"]) {
+                    HPRoommate *roommate = [[HPRoommate alloc] init];
+                    [roommate setAtHomeString:@"true"];
+                    [HPCentralData saveCurrentUserInBackgroundWithRoommate:roommate andBlock:^(NSError *error) {
+                        //Initiate Roommate sync.
+                        
+                    }];
+                }
+                else
+                {
+                    [HPSyncWorker handleSyncRequestWithType:roommatesSyncRequest];
+                }
+                
             }];
 
             
@@ -224,12 +233,21 @@
             //User is outside location or inside
             NSLog(@"User is outside fence...");
             
-            //Always save user then send sync request, even if their location didn't change. Otherwise we don't update updates from other roommates' location/profile pic.
-            HPRoommate *roommate = [[HPRoommate alloc] init];
-            [roommate setAtHomeString:@"false"];
-            [HPCentralData saveCurrentUserInBackgroundWithRoommate:roommate andBlock:^(NSError *error) {
-                //Initiate Roommate sync.
-                [HPSyncWorker handleSyncRequestWithType:roommatesSyncRequest];
+            //Check if the location state has changed since last time and save if it has. Either way trigger a refresh.
+            [HPCentralData getCurrentUserInBackgroundWithBlock:^(HPRoommate *roommate, NSError *error) {
+                if (![[roommate atHomeString] isEqualToString:@"false"]) {
+                    HPRoommate *roommate = [[HPRoommate alloc] init];
+                    [roommate setAtHomeString:@"false"];
+                    [HPCentralData saveCurrentUserInBackgroundWithRoommate:roommate andBlock:^(NSError *error) {
+                        //Initiate Roommate sync.
+                        
+                    }];
+                }
+                else
+                {
+                    [HPSyncWorker handleSyncRequestWithType:roommatesSyncRequest];
+                }
+                
             }];
         }
     }
