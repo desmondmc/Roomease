@@ -59,9 +59,12 @@
         
         //Add the house name and all the usernames as channels for this user and users already in the house.
         //Now that everyone in the house has the new user's username channel we need to create the channels for the new user.
-        PFInstallation *currentInstallation = [PFInstallation currentInstallation];
-        [currentInstallation addUniqueObjectsFromArray:@[house.houseName] forKey:@"channels"];
-        [currentInstallation saveEventually];
+        if (house)
+        {
+            PFInstallation *currentInstallation = [PFInstallation currentInstallation];
+            [currentInstallation addUniqueObjectsFromArray:@[house.houseName] forKey:@"channels"];
+            [currentInstallation saveEventually];
+        }
     }];
 }
 
