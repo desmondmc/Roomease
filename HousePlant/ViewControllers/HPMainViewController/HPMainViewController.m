@@ -55,7 +55,7 @@
     // Store a reference to the mainViewController in appdel
     kApplicationDelegate.mainViewController = self;
     
-    roommateView = [RoommateImageSubview roommateImageSubview];
+    roommateView = [RoommateImageSubview initRoommateImageSubview];
     [[self roommateImageSubviewContainer] addSubview:roommateView];
 }
 
@@ -109,7 +109,7 @@
 
 - (IBAction)onRefreshRmPress:(id)sender {
     //Starts a sync request. Will be called back on resyncUIWithDictionary.
-    [[HPLocationManager sharedLocationManager] updateAtHomeStatus];
+    [HPSyncWorker handleSyncRequestWithType:roommatesSyncRequest];
 }
 
 #pragma mark - UITableViewDelegate
@@ -165,11 +165,18 @@
 {
     if ([[uiChanges objectForKey:kRefreshRoommatesKey] boolValue] == YES)
     {
-        for (UIView *view in [[self roommateImageSubviewContainer]subviews]) {
-            [view removeFromSuperview];
+#warning this is the entry point. Idealy here we only update the information we have to. This will mean sending more information along with the resync dictionary.
+        if (true) {
+            for (UIView *view in [[self roommateImageSubviewContainer]subviews]) {
+                [view removeFromSuperview];
+            }
+            roommateView = [RoommateImageSubview initRoommateImageSubview];
+            [[self roommateImageSubviewContainer] addSubview:roommateView];
         }
-        roommateView = [RoommateImageSubview roommateImageSubview];
-        [[self roommateImageSubviewContainer] addSubview:roommateView];
+        else
+        {
+            
+        }
     }
 }
 

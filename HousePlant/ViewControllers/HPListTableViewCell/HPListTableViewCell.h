@@ -14,5 +14,6 @@
 @property (weak, nonatomic) IBOutlet UILabel *entryTitle;
 @property (weak, nonatomic) IBOutlet UILabel *entryDate;
 @property (weak, nonatomic) IBOutlet UILabel *entryTime;
+@property (weak, nonatomic) IBOutlet UIImageView *fader;
 
 @end

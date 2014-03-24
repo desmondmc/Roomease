@@ -11,7 +11,7 @@
 
 @implementation RoommateImageSubview
 
-+ (id)roommateImageSubview
++ (id)initRoommateImageSubview
 {
     RoommateImageSubview *subView = [[[NSBundle mainBundle] loadNibNamed:@"RoommateImageSubview" owner:nil options:nil] lastObject];
     
@@ -92,5 +92,7 @@
         NSLog(@"House has more than 4 roommates. This is currently not supported.");
     }
 }
+
+#warning we should have functions in here for updating, adding and removing roommates in here.
 
 @end

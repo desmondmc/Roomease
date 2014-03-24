@@ -27,6 +27,7 @@
 }
 
 - (IBAction)handlePan:(UIPanGestureRecognizer *)recognizer {
+    [_fader setHidden:false];
     CGPoint translation = [recognizer translationInView:self];
     bool outOfBounds = false;
     //Are they trying to slide it too far in one direction? Return.
@@ -52,7 +53,10 @@
         {
             [UIView animateWithDuration:0.2 animations:^{
                 [_mainCellView setFrame:CGRectMake(CLOSED_SLIDER_X, _mainCellView.frame.origin.y, _mainCellView.frame.size.width, _mainCellView.frame.size.height)];
-            } completion:nil];
+            } completion:^(BOOL finished) {
+                //
+                [_fader setHidden:true];
+            }];
             
         }
     }

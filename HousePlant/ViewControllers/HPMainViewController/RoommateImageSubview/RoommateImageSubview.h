@@ -10,7 +10,7 @@
 
 @interface RoommateImageSubview : UIView
 
-+ (id)roommateImageSubview;
++ (id)initRoommateImageSubview;
 
 @property (weak, nonatomic) IBOutlet UIActivityIndicatorView *loadingRoommatesSpinner;
 

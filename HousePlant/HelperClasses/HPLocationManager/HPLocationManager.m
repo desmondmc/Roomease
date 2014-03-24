@@ -216,7 +216,7 @@
                     [roommate setAtHomeString:@"true"];
                     [HPCentralData saveCurrentUserInBackgroundWithRoommate:roommate andBlock:^(NSError *error) {
                         //Initiate Roommate sync.
-                        
+                        [HPSyncWorker handleSyncRequestWithType:roommatesSyncRequest];
                     }];
                 }
                 else
@@ -240,7 +240,7 @@
                     [roommate setAtHomeString:@"false"];
                     [HPCentralData saveCurrentUserInBackgroundWithRoommate:roommate andBlock:^(NSError *error) {
                         //Initiate Roommate sync.
-                        
+                        [HPSyncWorker handleSyncRequestWithType:roommatesSyncRequest];
                     }];
                 }
                 else

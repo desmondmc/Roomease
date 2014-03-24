@@ -133,6 +133,7 @@
 
 - (void)application:(UIApplication *)application
 didReceiveRemoteNotification:(NSDictionary *)userInfo {
+#warning it seems like this never gets called because a silent push comes in first 
     if ([userInfo objectForKey:@"alert"] != nil)
     {
         [PFPush handlePush:userInfo];
