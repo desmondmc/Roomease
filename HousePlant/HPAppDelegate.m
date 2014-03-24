@@ -154,7 +154,7 @@ didReceiveRemoteNotification:(NSDictionary *)userInfo {
 
 -(void)application:(UIApplication *)application performFetchWithCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler {
     //Only do this if the user is running 7.0.*.
-    if(SYSTEM_VERSION_LESS_THAN(@"7.1"))
+    if(true)//SYSTEM_VERSION_LESS_THAN(@"7.1"))
     {
         NSDateFormatter *formatter;
         NSString        *dateString;
