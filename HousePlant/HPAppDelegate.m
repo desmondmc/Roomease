@@ -169,17 +169,20 @@ didReceiveRemoteNotification:(NSDictionary *)userInfo {
         [[PFUser currentUser] incrementKey:@"totalRefreshCount"];
         
         [[PFUser currentUser] save];
-        
-#warning this will eventually trigger a silent push notification to be sent to everyone in the house. Should maybe be rethought.
+
         [[HPLocationManager sharedLocationManager] updateAtHomeStatus];
-        
-        double delayInSeconds = 7.0;
-        dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, delayInSeconds * NSEC_PER_SEC);
-        dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
-            //code to be executed on the main queue after delay
-            completionHandler(UIBackgroundFetchResultNewData);
-        });
     }
+    else
+    {
+        [[HPLocationManager sharedLocationManager] updateAtHomeStatus];
+    }
+    
+    double delayInSeconds = 7.0;
+    dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, delayInSeconds * NSEC_PER_SEC);
+    dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
+        //code to be executed on the main queue after delay
+        completionHandler(UIBackgroundFetchResultNewData);
+    });
 }
 
 #pragma mark - Application's Documents directory
