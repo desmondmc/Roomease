@@ -175,6 +175,10 @@
 - (void)handleSuccessfulSignup
 {
     [self uploadProfilePic];
+    
+    //Set the state for initial login to true. This is so that when the user finally reaches the main page we can do the required setup for a new user.
+    [HPCentralData setStateFirstTimeLogin:true];
+    
     // initialize the navigation controller and present it
     [HPPushHelper newUserAddedToHouseNowSetupPushChannels];
     [self presentViewController:[HPLoginRouter getFirstViewToLoadForUser] animated:YES completion:nil];

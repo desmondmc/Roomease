@@ -22,4 +22,6 @@
 - (void)saveContext;
 - (NSURL *)applicationDocumentsDirectory;
 
+//Properties that need to be exist all the time while the app is running.
+
 @end

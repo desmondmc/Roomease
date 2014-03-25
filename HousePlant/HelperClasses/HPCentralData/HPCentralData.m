@@ -564,4 +564,27 @@
     return true;
 }
 
+//setStateFirstTimeLoginTrue and getStateFirstTimeLoginAndSetToFalse are methods that get to store the track whether a user is new or not.
++ (void) setStateFirstTimeLogin:(bool)state
+{
+    [persistantStore setObject:[NSNumber numberWithBool:state] forKey:kPersistantStoreNewUser];
+    [persistantStore synchronize];
+}
+
+//By calling this method you are stating that the current user is no longer new.
++ (bool) getStateFirstTimeLoginAndSetToFalse
+{
+    NSNumber *currentStateNumber = [persistantStore objectForKey:kPersistantStoreNewUser];
+    
+    if (currentStateNumber == nil) {
+        return false;
+    }
+
+    bool currentState = [currentStateNumber boolValue];
+    
+    [persistantStore setObject:[NSNumber numberWithBool:false] forKey:kPersistantStoreNewUser];
+    [persistantStore synchronize];
+    
+    return currentState;
+}
 @end

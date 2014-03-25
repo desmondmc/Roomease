@@ -83,11 +83,17 @@
 
 //THIS METHOD IS USED FOR DEBUGGING SHIT
 - (IBAction)onTestPress:(id)sender {
-    NSDictionary *dict = [[NSDictionary alloc] initWithObjectsAndKeys:[NSNumber numberWithInt:roommatesSyncRequest], @"syncRequestKey", [PFUser currentUser].objectId, @"src_usr", nil];
-    [HPPushHelper sendNotificationWithDataToEveryoneInHouseButMe:dict andAlert:[NSString stringWithFormat:@"%@ Sorry testing notifications.", [[PFUser currentUser] username]]];
-    
-//    [HPPushHelper sendNotificationWithDataToEveryoneInHouseButMe:dict andAlert: nil];
-
+    [HPCentralData getCurrentUserInBackgroundWithBlock:^(HPRoommate *roommate, NSError *error) {
+        if ([[roommate atHomeString] isEqualToString:@"false"]) {
+            [roommate setAtHomeString:@"true"];
+        }
+        else
+        {
+            [roommate setAtHomeString:@"false"];
+        }
+        
+        [HPCentralData saveCurrentUserInBackgroundWithRoommate:roommate andBlock:nil];
+    }];
 }
 
 

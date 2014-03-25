@@ -11,6 +11,7 @@
 #define kPersistantStoreHome @"hp_home"
 #define kPersistantStoreCurrentUser @"hp_currentUser"
 #define kPersistantStoreRoommates @"hp_roommates"
+#define kPersistantStoreNewUser @"hp_newuser"
 
 @interface HPCentralData : NSObject
 
@@ -35,6 +36,10 @@
 
 +(void) getRoommatesInBackgroundWithBlock:(CentralDataRoommatesResultBlock)block;
 +(NSArray *) getRoommates;
+
++ (void) setStateFirstTimeLogin:(bool)state;
++ (bool) getStateFirstTimeLoginAndSetToFalse;
+
 
 
 
