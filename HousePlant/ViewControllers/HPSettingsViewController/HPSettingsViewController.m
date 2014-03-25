@@ -8,6 +8,7 @@
 
 #import "HPSettingsViewController.h"
 #import "HPCameraManager.h"
+#import "HPStartingViewController.h"
 
 @interface HPSettingsViewController ()
 
@@ -101,6 +102,14 @@
 - (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker
 {
     [picker dismissViewControllerAnimated:YES completion:NULL];
+}
+
+- (IBAction)onLogoutPress:(id)sender {
+    [[[PFInstallation currentInstallation] objectForKey:@"channels"] removeAllObjects];
+    [[PFInstallation currentInstallation] saveInBackground];
+    [PFUser logOut];
+    HPStartingViewController *startingViewController = [[HPStartingViewController alloc] init];
+    [self presentViewController:startingViewController animated:NO completion:nil];
 }
 
 @end
