@@ -115,7 +115,7 @@
 #pragma mark - UITableViewDelegate
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 4;
+    return 8;
 }
 
 // Row display. Implementers should *always* try to reuse cells by setting each cell's reuseIdentifier and querying for available reusable cells with dequeueReusableCellWithIdentifier:
@@ -146,11 +146,30 @@
         cell.entryDate.text = @"March 15, 2014 at";
         cell.entryTime.text = @"2:45PM";
     }
+    else if(indexPath.row == 4) {
+        cell.entryTitle.text = @"Buy red-solo cups for the party this weekend.";
+        cell.entryDate.text = @"March 17, 2014 at";
+        cell.entryTime.text = @"5:23AM";
+    }
+    else if(indexPath.row == 5) {
+        cell.entryTitle.text = @"Pay Rogers Cable bill $120.";
+        cell.entryDate.text = @"March 15, 2014 at";
+        cell.entryTime.text = @"2:45PM";
+    }
+    else if(indexPath.row == 6) {
+        cell.entryTitle.text = @"Buy red-solo cups for the party this weekend.";
+        cell.entryDate.text = @"March 17, 2014 at";
+        cell.entryTime.text = @"5:23AM";
+    }
+    else if(indexPath.row == 7) {
+        cell.entryTitle.text = @"Pay Rogers Cable bill $120.";
+        cell.entryDate.text = @"March 15, 2014 at";
+        cell.entryTime.text = @"2:45PM";
+    }
 
     
     return cell;
 }
-
 
 #pragma mark - Notification Handlers
 

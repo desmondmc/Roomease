@@ -69,7 +69,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <gestureRecognizers/>
                         <connections>
-                            <outletCollection property="gestureRecognizers" destination="c46-4X-bcc" appends="YES" id="d7D-0x-5mr"/>
+                            <outletCollection property="gestureRecognizers" destination="c46-4X-bcc" appends="YES" id="SbO-eg-HaG"/>
                         </connections>
                     </view>
                 </subviews>
@@ -80,9 +80,10 @@
                 <outlet property="entryTitle" destination="RhL-c1-3qZ" id="Eyd-Y7-Kjv"/>
                 <outlet property="fader" destination="csK-la-kca" id="M0q-nN-RrP"/>
                 <outlet property="mainCellView" destination="IbM-g2-lgU" id="pQe-51-Im2"/>
+                <outlet property="panGesture" destination="c46-4X-bcc" id="d3I-v0-BkW"/>
             </connections>
         </tableViewCell>
-        <panGestureRecognizer minimumNumberOfTouches="1" id="c46-4X-bcc">
+        <panGestureRecognizer delaysTouchesBegan="YES" minimumNumberOfTouches="1" id="c46-4X-bcc">
             <connections>
                 <action selector="handlePan:" destination="KGk-i7-Jjw" id="nOS-jr-qxV"/>
             </connections>

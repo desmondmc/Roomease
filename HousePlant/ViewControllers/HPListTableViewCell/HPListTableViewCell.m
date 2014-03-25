@@ -17,6 +17,7 @@
 - (void)awakeFromNib
 {
     // Initialization code
+    _panGesture.delegate = self;
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated
@@ -24,6 +25,17 @@
     [super setSelected:selected animated:animated];
 
     // Configure the view for the selected state
+}
+
+- (BOOL)gestureRecognizerShouldBegin:(UIGestureRecognizer *)gestureRecognizer {
+    //If the gesture is more in the Y direction than X than don't handle pan, the user is probably trying to scroll a table.
+    if ([gestureRecognizer class] == [UIPanGestureRecognizer class]) {
+        
+        UIPanGestureRecognizer *panGestureRecognizer = (UIPanGestureRecognizer *)gestureRecognizer;
+        CGPoint translation = [panGestureRecognizer translationInView:self];
+        return fabs(translation.y) < fabs(translation.x);
+    }
+    return NO;
 }
 
 - (IBAction)handlePan:(UIPanGestureRecognizer *)recognizer {

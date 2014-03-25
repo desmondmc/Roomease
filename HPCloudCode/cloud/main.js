@@ -8,8 +8,8 @@ response.success("Hello world!");
 
 Parse.Cloud.define("sendPushToMates", function(request, response)
                    {
-                   
-                   console.log("Searching User Name " + request.user.get('username'));
+                   console.log("!!!!!!!!!!!CLOUD FUNCTION: sendPushToMates");
+                   console.log("Sending push to channel " + request.user.get('username'));
                    
                    Parse.Push.send({
                                    channels: [ request.user.get('username') ],
@@ -31,6 +31,7 @@ Parse.Cloud.define("sendPushToMates", function(request, response)
                    });
 
 Parse.Cloud.afterSave("House", function(request, response) {
+            console.log("!!!!!!!!!!!CLOUD FUNCTION: afterSave-House");
           //TODO need to check if this is the first user moving into the house.
 //                      var users = request.object.get("users");
 //                      Array(users);
@@ -45,6 +46,7 @@ Parse.Cloud.afterSave("House", function(request, response) {
 
 //After we save the user we send a silent push out to all the other users in the house to update their Roomease.
 Parse.Cloud.afterSave(Parse.User, function(request, response) {
+  console.log("!!!!!!!!!!!CLOUD FUNCTION: afterSave-Parse.User");
   Parse.Cloud.useMasterKey();
 
   var queryForHouse = new Parse.Query('House');
@@ -139,6 +141,7 @@ Parse.Cloud.afterSave(Parse.User, function(request, response) {
 
 //This function is retardedly complicated. Basicily it checks to see which user objects running ios 7.0.* have not been updated in the last hour and if they haven't it marks them as not home.
 Parse.Cloud.job("checkForLost70Users", function(request, status) {
+    console.log("!!!!!!!!!!!CLOUD FUNCTION: checkForLost70Users");
     // Set up to modify user data
     Parse.Cloud.useMasterKey();
     var User = Parse.Object.extend("User");

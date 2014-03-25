@@ -15,5 +15,6 @@
 @property (weak, nonatomic) IBOutlet UILabel *entryDate;
 @property (weak, nonatomic) IBOutlet UILabel *entryTime;
 @property (weak, nonatomic) IBOutlet UIImageView *fader;
+@property (weak, nonatomic) IBOutlet UIPanGestureRecognizer *panGesture;
 
 @end
