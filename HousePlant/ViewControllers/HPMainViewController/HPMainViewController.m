@@ -81,14 +81,6 @@
     // Dispose of any resources that can be recreated.
 }
 
-- (IBAction)onLogoutPress:(id)sender {
-    [[[PFInstallation currentInstallation] objectForKey:@"channels"] removeAllObjects];
-    [[PFInstallation currentInstallation] saveInBackground];
-    [PFUser logOut];
-    HPStartingViewController *startingViewController = [[HPStartingViewController alloc] init];
-    [self presentViewController:startingViewController animated:NO completion:nil];
-}
-
 //THIS METHOD IS USED FOR DEBUGGING SHIT
 - (IBAction)onTestPress:(id)sender {
     NSDictionary *dict = [[NSDictionary alloc] initWithObjectsAndKeys:[NSNumber numberWithInt:roommatesSyncRequest], @"syncRequestKey", [PFUser currentUser].objectId, @"src_usr", nil];
