@@ -142,14 +142,14 @@ didReceiveRemoteNotification:(NSDictionary *)userInfo {
     }
     
     
-    if (![[userInfo objectForKey:@"src_usr"] isEqualToString:[PFUser currentUser].objectId] ) {
-        NSLog(@"Recieved Push from someone else.");
+    //if (![[userInfo objectForKey:@"src_usr"] isEqualToString:[PFUser currentUser].objectId] ) {
+        //NSLog(@"Recieved Push from someone else.");
         [HPSyncWorker handleSyncRequestWithDictionary:userInfo];
-    }
-    else
-    {
-        NSLog(@"Recieved Push from myself.");
-    }
+    //}
+//    else
+//    {
+//        NSLog(@"Recieved Push from myself.");
+//    }
 }
 
 -(void)application:(UIApplication *)application performFetchWithCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler {

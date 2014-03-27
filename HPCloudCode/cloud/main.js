@@ -160,24 +160,24 @@ Parse.Cloud.beforeSave(Parse.User, function(request, response)
             });
 
           }
-          else if (profilePicChanged)
-          {
-            console.log("Sending silent push to all members of house. Profile pic changed.");
-            Parse.Push.send({
-              where: queryForInstallationHouseChannel, // Set our Installation query.
-              data: {
-                syncRequestKey: 0,
-                src_usr: request.object.id
-              }
-            }).then(function() {
-              // Push was successful
-              console.log('Sent push. silent push.');
-              response.success();
-            }, function(error) {
-              throw "Push Error " + error.code + " : " + error.message;
-              response.error();
-            });
-          }
+          // else if (profilePicChanged)
+          // {
+          //   console.log("Sending silent push to all members of house. Profile pic changed.");
+          //   Parse.Push.send({
+          //     where: queryForInstallationHouseChannel, // Set our Installation query.
+          //     data: {
+          //       syncRequestKey: 0,
+          //       src_usr: request.object.id
+          //     }
+          //   }).then(function() {
+          //     // Push was successful
+          //     console.log('Sent push. silent push.');
+          //     response.success();
+          //   }, function(error) {
+          //     throw "Push Error " + error.code + " : " + error.message;
+          //     response.error();
+          //   });
+          // }
           else
           {
             oldAtHomeString = oldUserobject.get('atHome');
@@ -218,7 +218,7 @@ Parse.Cloud.beforeSave(Parse.User, function(request, response)
                   }
                 }).then(function() {
                   // Push was successful
-                  console.log('Sent push.');
+                  console.log("Sent push." + alertString);
                   Parse.Push.send({
                     where: queryForInstallationHouseChannel, // Set our Installation query.
                     data: {
@@ -227,7 +227,7 @@ Parse.Cloud.beforeSave(Parse.User, function(request, response)
                     }
                   }).then(function() {
                     // Push was successful
-                    console.log('Sent push. alertString');
+                    console.log('Sent push. Silent push to update after atHome Change');
                     response.success();
                   }, function(error) {
                     throw "Push Error " + error.code + " : " + error.message;
@@ -249,7 +249,7 @@ Parse.Cloud.beforeSave(Parse.User, function(request, response)
                   }
                 }).then(function() {
                   // Push was successful
-                  console.log('Sent push.');
+                  console.log("Sent push." + alertString);
                   Parse.Push.send({
                     where: queryForInstallationHouseChannel, // Set our Installation query.
                     data: {
@@ -258,7 +258,7 @@ Parse.Cloud.beforeSave(Parse.User, function(request, response)
                     }
                   }).then(function() {
                     // Push was successful
-                    console.log('Sent push. alertString');
+                    console.log('Sent push. Silent push to update after atHome Change');
                     response.success();
                   }, function(error) {
                     throw "Push Error " + error.code + " : " + error.message;
