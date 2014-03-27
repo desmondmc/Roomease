@@ -97,6 +97,9 @@ Parse.Cloud.beforeSave(Parse.User, function(request, response)
   console.log("home changed:");
   console.log(homeChanged);
 
+  profilePicChanged = request.object.dirty('profilePic');
+  console.log("profilePic changed:");
+  console.log(profilePicChanged);
 
   var queryForCurrentUserInDb = new Parse.Query('_User');
   queryForCurrentUserInDb.equalTo('objectId', request.object.id);
@@ -133,15 +136,15 @@ Parse.Cloud.beforeSave(Parse.User, function(request, response)
           console.log(oldHouseObject.id + ' - ' + oldHouseObject.get('name'));
 
           //If this is a new house 
+          var queryForInstallationHouseChannel = new Parse.Query(Parse.Installation);
+          queryForInstallationHouseChannel.equalTo('channels', oldHouseObject.get('name'));
+
           if (homeChanged) 
           {
-            var queryForInstallation = new Parse.Query(Parse.Installation);
-            queryForInstallation.equalTo('channels', oldHouseObject.get('name'));
-
             alertString = request.object.get('username') + " just moved into your house."
 
             Parse.Push.send({
-              where: queryForInstallation, // Set our Installation query.
+              where: queryForInstallationHouseChannel, // Set our Installation query.
               data: {
                 alert: alertString,
                 syncRequestKey: 0,
@@ -149,13 +152,31 @@ Parse.Cloud.beforeSave(Parse.User, function(request, response)
               }
             }).then(function() {
               // Push was successful
-              console.log('Sent push. alertString');
+              console.log("Sent push. " + alertString);
               response.success();
             }, function(error) {
               throw "Push Error " + error.code + " : " + error.message;
               response.error();
             });
 
+          }
+          else if (profilePicChanged)
+          {
+            console.log("Sending silent push to all members of house. Profile pic changed.");
+            Parse.Push.send({
+              where: queryForInstallationHouseChannel, // Set our Installation query.
+              data: {
+                syncRequestKey: 0,
+                src_usr: request.object.id
+              }
+            }).then(function() {
+              // Push was successful
+              console.log('Sent push. silent push.');
+              response.success();
+            }, function(error) {
+              throw "Push Error " + error.code + " : " + error.message;
+              response.error();
+            });
           }
           else
           {
@@ -198,7 +219,20 @@ Parse.Cloud.beforeSave(Parse.User, function(request, response)
                 }).then(function() {
                   // Push was successful
                   console.log('Sent push.');
-                  response.success();
+                  Parse.Push.send({
+                    where: queryForInstallationHouseChannel, // Set our Installation query.
+                    data: {
+                      syncRequestKey: 0,
+                      src_usr: request.object.id
+                    }
+                  }).then(function() {
+                    // Push was successful
+                    console.log('Sent push. alertString');
+                    response.success();
+                  }, function(error) {
+                    throw "Push Error " + error.code + " : " + error.message;
+                    response.error();
+                  });
                 }, function(error) {
                   throw "Push Error " + error.code + " : " + error.message;
                   response.error();
@@ -216,7 +250,20 @@ Parse.Cloud.beforeSave(Parse.User, function(request, response)
                 }).then(function() {
                   // Push was successful
                   console.log('Sent push.');
-                  response.success();
+                  Parse.Push.send({
+                    where: queryForInstallationHouseChannel, // Set our Installation query.
+                    data: {
+                      syncRequestKey: 0,
+                      src_usr: request.object.id
+                    }
+                  }).then(function() {
+                    // Push was successful
+                    console.log('Sent push. alertString');
+                    response.success();
+                  }, function(error) {
+                    throw "Push Error " + error.code + " : " + error.message;
+                    response.error();
+                  });
                 }, function(error) {
                   throw "Push Error " + error.code + " : " + error.message;
                   response.error();
