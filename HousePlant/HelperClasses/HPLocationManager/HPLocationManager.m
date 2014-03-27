@@ -162,14 +162,7 @@
         NSLog(@"User is inside fence...");
         HPRoommate *roommate = [[HPRoommate alloc] init];
         [roommate setAtHomeString:@"true"];
-        [HPCentralData saveCurrentUserInBackgroundWithRoommate:roommate andBlock:^(NSError *error) {
-            
-            [HPSyncWorker handleSyncRequestWithType:roommatesSyncRequest];
-            
-            NSDictionary *dict = [[NSDictionary alloc] initWithObjectsAndKeys:[NSNumber numberWithInt:roommatesSyncRequest], @"syncRequestKey", [PFUser currentUser].objectId, @"src_usr", nil];
-            [HPPushHelper sendNotificationWithDataToEveryoneInHouseButMe:dict andAlert:[NSString stringWithFormat:@"%@ just got home!!", [[PFUser currentUser] username]]];
-            
-        }];
+        [HPCentralData saveCurrentUserInBackgroundWithRoommate:roommate andBlock:nil];
     }
 
 }
@@ -186,14 +179,8 @@
         [roommate setAtHomeString:@"false"];
         
         
-        [HPCentralData saveCurrentUserInBackgroundWithRoommate:roommate andBlock:^(NSError *error) {
-            
-            [HPSyncWorker handleSyncRequestWithType:roommatesSyncRequest];
-            
-            NSDictionary *dict = [[NSDictionary alloc] initWithObjectsAndKeys:[NSNumber numberWithInt:roommatesSyncRequest], @"syncRequestKey", [PFUser currentUser].objectId, @"src_usr", nil];
-            [HPPushHelper sendNotificationWithDataToEveryoneInHouseButMe:dict andAlert:[NSString stringWithFormat:@"%@ just left home!!", [[PFUser currentUser] username]]];
-            
-        }];
+        [HPCentralData saveCurrentUserInBackgroundWithRoommate:roommate andBlock:nil];
+        
         return;
     }
 }

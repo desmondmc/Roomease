@@ -88,6 +88,95 @@ Parse.Cloud.afterSave("House", function(request, response) {
 
 // });
 
+//After we save the user we send a silent push out to all the other users in the house to update their Roomease.
+Parse.Cloud.beforeSave(Parse.User, function(request, response) {
+  console.log("!!!!!!!!!!!CLOUD FUNCTION: beforeSave-Parse.User");
+
+    atHomeChanged = request.object.dirtyKeys();
+    console.log("Dirty Keys:");
+    console.log(atHomeChanged);
+
+
+  var queryForCurrentUserInDb = new Parse.Query('_User');
+  queryForCurrentUserInDb.equalTo('objectId', request.object.id);
+
+      queryForCurrentUserInDb.find({
+      success: function(results) {
+        var object = results[0];
+
+        oldAtHomeString = object.get('atHome');
+        newAtHomeString = request.object.get('atHome');
+        console.log("Old atHome String: " + oldAtHomeString);
+        console.log("New atHome String: " + newAtHomeString);
+
+        //If at home changed in this save. Send out a notification.
+        if (oldAtHomeString.localeCompare(newAtHomeString) != 0)
+        {
+          Parse.Cloud.useMasterKey();
+
+          var queryForHouse = new Parse.Query('House');
+          queryForHouse.equalTo('objectId', request.user.get('home').id);
+
+          console.log("Searching for House Id:" + request.user.get('home').id);
+
+          //Find the current users house then send a push to all users that have that channel in their installation.
+          queryForHouse.find({
+            success: function(results) {
+              console.log("Successfully retrieved " + results.length + " Houses.");
+              // Do something with the returned Parse.Object values
+              var object = results[0];
+              console.log(object.id + ' - ' + object.get('name'));
+
+                var queryForInstallation = new Parse.Query(Parse.Installation);
+                queryForInstallation.equalTo('channels', request.object.get('username'));
+                
+                if (newAtHomeString.localeCompare("true") == 0)
+                {
+                  alertString = request.object.get('username') + " just arrived home!";
+                }
+                else if (newAtHomeString.localeCompare("false") == 0)
+                {
+                  alertString = request.object.get('username') + " just left home!";
+                }
+                else
+                {
+                  alertString = "";
+                }
+
+                Parse.Push.send({
+                  where: queryForInstallation, // Set our Installation query.
+                  data: {
+                    alert: alertString,
+                    syncRequestKey: 0,
+                    src_usr: request.object.id
+                  }
+                }).then(function() {
+                  // Push was successful
+                  console.log('Sent push.');
+                  response.success();
+                }, function(error) {
+                  throw "Push Error " + error.code + " : " + error.message;
+                  response.error();
+                });
+            },
+            error: function(error) {
+              console.log("Error finding house: " + error.code + " " + error.message);
+              response.error();
+            }
+          });
+        }
+        else
+        {
+          console.log("AtHome didn't change. Not need to send push.");
+        }
+      },
+      error: function(error) {
+        console.log("Error finding user in user beforeSave: " + error.code + " " + error.message);
+        response.error();
+      }
+    });
+});
+
 //Parse.Cloud.afterSave(Parse.User, function(request, response) {
 //                      console.log("Running after save on user!");
 //                      var House = Parse.Object.extend("House");
@@ -184,7 +273,7 @@ Parse.Cloud.job("checkForLost70Users", function(request, status) {
                if (dif_seconds > secondsIn2Hours)
                {
                     object.set("atHome", "unknown");
-                    console.log("Saving user object:" + object);
+                    console.log("Saving user object:" + object.id);
                
                     object.save(null, {
                            success: function(object) {
