@@ -112,6 +112,10 @@
             {
                 errorString = @"Username already taken.";
             }
+            else if ([error code] == kPFErrorUserPasswordMissing)
+            {
+                errorString = @"Please enter a password.";
+            }
             
             
             [CSNotificationView showInViewController:self

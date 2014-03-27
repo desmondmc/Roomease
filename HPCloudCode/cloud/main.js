@@ -89,60 +89,123 @@ Parse.Cloud.afterSave("House", function(request, response) {
 // });
 
 //After we save the user we send a silent push out to all the other users in the house to update their Roomease.
-Parse.Cloud.beforeSave(Parse.User, function(request, response) {
+Parse.Cloud.beforeSave(Parse.User, function(request, response) 
+{
   console.log("!!!!!!!!!!!CLOUD FUNCTION: beforeSave-Parse.User");
 
-    atHomeChanged = request.object.dirtyKeys();
-    console.log("Dirty Keys:");
-    console.log(atHomeChanged);
+  homeChanged = request.object.dirty('home');
+  console.log("home changed:");
+  console.log(homeChanged);
 
 
   var queryForCurrentUserInDb = new Parse.Query('_User');
   queryForCurrentUserInDb.equalTo('objectId', request.object.id);
 
-      queryForCurrentUserInDb.find({
-      success: function(results) {
-        var object = results[0];
+  queryForCurrentUserInDb.find(
+  {
+    success: function(results) 
+    {
+      var oldUserobject = results[0];
 
-        oldAtHomeString = object.get('atHome');
-        newAtHomeString = request.object.get('atHome');
-        console.log("Old atHome String: " + oldAtHomeString);
-        console.log("New atHome String: " + newAtHomeString);
 
-        //If at home changed in this save. Send out a notification.
-        if (oldAtHomeString.localeCompare(newAtHomeString) != 0)
+      if (!oldUserobject) 
+      {
+        console.log("No user found, must be signup. Better return before we break stuff.");
+        response.success();
+        return;
+      }
+
+      Parse.Cloud.useMasterKey();
+
+      var queryForHouse = new Parse.Query('House');
+      queryForHouse.equalTo('objectId', request.object.get('home').id);
+
+      console.log("Searching for House Id:" + request.object.get('home').id);
+
+      //Find the current users house then send a push to all users that have that channel in their installation.
+      queryForHouse.find(
+      {
+        success: function(results) 
         {
-          Parse.Cloud.useMasterKey();
+          console.log("Successfully retrieved " + results.length + " Houses.");
+          // Do something with the returned Parse.Object values
+          var oldHouseObject = results[0];
+          console.log(oldHouseObject.id + ' - ' + oldHouseObject.get('name'));
 
-          var queryForHouse = new Parse.Query('House');
-          queryForHouse.equalTo('objectId', request.user.get('home').id);
+          //If this is a new house 
+          if (homeChanged) 
+          {
+            var queryForInstallation = new Parse.Query(Parse.Installation);
+            queryForInstallation.equalTo('channels', oldHouseObject.get('name'));
 
-          console.log("Searching for House Id:" + request.user.get('home').id);
+            alertString = request.object.get('username') + " just moved into your house."
 
-          //Find the current users house then send a push to all users that have that channel in their installation.
-          queryForHouse.find({
-            success: function(results) {
-              console.log("Successfully retrieved " + results.length + " Houses.");
-              // Do something with the returned Parse.Object values
-              var object = results[0];
-              console.log(object.id + ' - ' + object.get('name'));
+            Parse.Push.send({
+              where: queryForInstallation, // Set our Installation query.
+              data: {
+                alert: alertString,
+                syncRequestKey: 0,
+                src_usr: request.object.id
+              }
+            }).then(function() {
+              // Push was successful
+              console.log('Sent push. alertString');
+              response.success();
+            }, function(error) {
+              throw "Push Error " + error.code + " : " + error.message;
+              response.error();
+            });
 
-                var queryForInstallation = new Parse.Query(Parse.Installation);
-                queryForInstallation.equalTo('channels', request.object.get('username'));
-                
-                if (newAtHomeString.localeCompare("true") == 0)
-                {
-                  alertString = request.object.get('username') + " just arrived home!";
-                }
-                else if (newAtHomeString.localeCompare("false") == 0)
-                {
-                  alertString = request.object.get('username') + " just left home!";
-                }
-                else
-                {
-                  alertString = "";
-                }
+          }
+          else
+          {
+            oldAtHomeString = oldUserobject.get('atHome');
+            newAtHomeString = request.object.get('atHome');
+            console.log("Old atHome String: " + oldAtHomeString);
+            console.log("New atHome String: " + newAtHomeString);
 
+            //If at home changed in this save. Send out a notification.
+            if (!oldAtHomeString) 
+            {
+              console.log("No old at home string. Better return before we break stuff.");
+              response.success();
+              return;
+            }
+
+            var alertString;
+            if (oldAtHomeString.localeCompare(newAtHomeString) != 0)
+            {
+              var queryForInstallation = new Parse.Query(Parse.Installation);
+              queryForInstallation.equalTo('channels', request.object.get('username'));
+              
+              if (newAtHomeString.localeCompare("true") == 0)
+              {
+                alertString = request.object.get('username') + " just arrived home!";
+              }
+              else if (newAtHomeString.localeCompare("false") == 0)
+              {
+                alertString = request.object.get('username') + " just left home!";
+              }
+
+              if (!alertString) 
+              {
+                Parse.Push.send({
+                  where: queryForInstallation, // Set our Installation query.
+                  data: {
+                    syncRequestKey: 0,
+                    src_usr: request.object.id
+                  }
+                }).then(function() {
+                  // Push was successful
+                  console.log('Sent push.');
+                  response.success();
+                }, function(error) {
+                  throw "Push Error " + error.code + " : " + error.message;
+                  response.error();
+                });
+              }
+              else
+              {
                 Parse.Push.send({
                   where: queryForInstallation, // Set our Installation query.
                   data: {
@@ -158,23 +221,23 @@ Parse.Cloud.beforeSave(Parse.User, function(request, response) {
                   throw "Push Error " + error.code + " : " + error.message;
                   response.error();
                 });
-            },
-            error: function(error) {
-              console.log("Error finding house: " + error.code + " " + error.message);
-              response.error();
+              }
+
             }
-          });
+          }
+        },
+        error: function(error) {
+          console.log("Error finding house: " + error.code + " " + error.message);
+          response.error();
         }
-        else
-        {
-          console.log("AtHome didn't change. Not need to send push.");
-        }
-      },
-      error: function(error) {
-        console.log("Error finding user in user beforeSave: " + error.code + " " + error.message);
-        response.error();
-      }
-    });
+      });
+    },
+    error: function(error) 
+    {
+      console.log("Error finding user in user beforeSave: " + error.code + " " + error.message);
+      response.error();
+    }
+  });
 });
 
 //Parse.Cloud.afterSave(Parse.User, function(request, response) {

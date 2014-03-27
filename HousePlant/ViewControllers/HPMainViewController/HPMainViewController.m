@@ -84,6 +84,7 @@
 //THIS METHOD IS USED FOR DEBUGGING SHIT
 - (IBAction)onTestPress:(id)sender {
     [HPCentralData getCurrentUserInBackgroundWithBlock:^(HPRoommate *roommate, NSError *error) {
+        
         if ([[roommate atHomeString] isEqualToString:@"false"]) {
             [roommate setAtHomeString:@"true"];
         }

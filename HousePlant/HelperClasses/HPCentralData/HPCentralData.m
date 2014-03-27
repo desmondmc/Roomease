@@ -125,10 +125,8 @@
             });
         });
     }
-
-    if (block)
+    else if (block)
         block(roommate, nil);
-    
 }
 
 
