@@ -7,21 +7,20 @@
 //
 
 #import "HPListTableViewCell.h"
+#import "HPTableView.h"
 
 #define CLOSED_SLIDER_X 0
 #define OPEN_SLIDER_X -64
 #define HALFWAY_SLIDER_X (OPEN_SLIDER_X/2)
 
 @implementation HPListTableViewCell
-{
-    bool checked;
-}
+
 
 - (void)awakeFromNib
 {
     // Initialization code
     _panGesture.delegate = self;
-    checked = false;
+    _checked = false;
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated
@@ -102,9 +101,9 @@
 }
 - (IBAction)onCheckboxPress:(id)sender {
     NSLog(@"Checkbox Press");
-    if (checked) {
+    if (self.checked) {
         [self.blankCheckbox setHidden:false];
-        checked = false;
+        self.checked = false;
         [_avatar setHidden:true];
         
         NSDictionary* attributes = @{
@@ -116,37 +115,8 @@
     }
     else
     {
-        [HPCentralData getCurrentUserInBackgroundWithBlock:^(HPRoommate *roommate, NSError *error) {
-            //
-            if([roommate profilePic])
-            {
-                _avatar = [[AMPAvatarView alloc] initWithFrame:CGRectMake(20, 5, 31, 31)];
-                
-                [_mainCellView addSubview:_avatar];
-                [_mainCellView sendSubviewToBack:_avatar];
-                _avatar.image = roommate.profilePic;
-                
-                [_avatar setBorderWith:0.0];
-                [_avatar setShadowRadius:0.0];
-                [_avatar setBorderColor:kLightBlueColour];
-                
-                [self.blankCheckbox setHidden:true];
-                
-                NSDictionary* attributes = @{
-                                             NSStrikethroughStyleAttributeName: [NSNumber numberWithInt:NSUnderlineStyleSingle]
-                                             };
-                
-                NSAttributedString* attrText = [[NSAttributedString alloc] initWithString:self.entryTitle.text attributes:attributes];
-                self.entryTitle.attributedText = attrText;
-            }
-        }];
-        
-        UITableView *tableView = (UITableView *)self.superview.superview;
-        
-        NSIndexPath *lastIndexPath = [NSIndexPath indexPathForRow:([tableView numberOfRowsInSection:0] - 1) inSection:0];
-
-        [tableView moveRowAtIndexPath:[tableView indexPathForCell:self] toIndexPath:lastIndexPath];
-        checked = true;
+        HPTableView *tableView = (HPTableView *)self.superview.superview;
+        [tableView checkCellWithCell:self];
     }
 
 }
