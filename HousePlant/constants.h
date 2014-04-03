@@ -13,7 +13,7 @@
 #define persistantStore [NSUserDefaults standardUserDefaults]
 
 #define kHomeLocationIdentifier @"HOME_IDENTIFIER"
-#define kDefaultHouseRadius     0
+#define kDefaultHouseRadius     100
 
 /*********  COLOURS  *********/
 #define kLightBlueColour [UIColor colorWithRed:75/255.0f green:179/255.0f blue:251/255.0f alpha:1.0f]

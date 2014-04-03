@@ -30,7 +30,8 @@
 #warning kCLLocationAccuracyBest might be hard on the battery life.
         _locationManager.desiredAccuracy = kCLLocationAccuracyBest;
         // Set a movement threshold for new events.
-        _locationManager.distanceFilter = 500; // meters
+#warning make sure events are not being triggered constantly
+        _locationManager.distanceFilter = 100; // meters
         [_locationManager startUpdatingLocation];
         kApplicationDelegate.appLocationManager = _locationManager;
     }
