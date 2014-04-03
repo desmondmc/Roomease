@@ -34,6 +34,7 @@
         
         //pulling from parse
         PFObject *parseHome = [[PFUser currentUser] objectForKey:@"home"];
+        
 #warning house not saved to central data
         [parseHome fetch];
         if (parseHome == nil)

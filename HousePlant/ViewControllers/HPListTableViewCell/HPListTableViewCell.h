@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <AMPAvatarView/AMPAvatarView.h>
 
 @interface HPListTableViewCell : UITableViewCell <UIGestureRecognizerDelegate>
 - (IBAction)onDeletePress:(id)sender;
@@ -16,5 +17,10 @@
 @property (weak, nonatomic) IBOutlet UILabel *entryTime;
 @property (weak, nonatomic) IBOutlet UIImageView *fader;
 @property (weak, nonatomic) IBOutlet UIPanGestureRecognizer *panGesture;
+- (IBAction)onCheckboxPress:(id)sender;
+@property (weak, nonatomic) IBOutlet UIImageView *profilePic;
+@property (weak, nonatomic) IBOutlet UIImageView *blankCheckbox;
+@property (strong, nonatomic) IBOutlet AMPAvatarView *avatar;
+@property bool checked;
 
 @end

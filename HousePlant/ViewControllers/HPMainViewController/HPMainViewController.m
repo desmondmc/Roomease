@@ -170,6 +170,10 @@
     return cell;
 }
 
+- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath {
+    return YES;
+}
+
 #pragma mark - Notification Handlers
 
 - (void) receiveNotificationAppActive:(NSNotification *) notification

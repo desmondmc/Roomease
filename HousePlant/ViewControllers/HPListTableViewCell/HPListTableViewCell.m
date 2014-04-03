@@ -7,6 +7,7 @@
 //
 
 #import "HPListTableViewCell.h"
+#import "HPTableView.h"
 
 #define CLOSED_SLIDER_X 0
 #define OPEN_SLIDER_X -64
@@ -14,10 +15,12 @@
 
 @implementation HPListTableViewCell
 
+
 - (void)awakeFromNib
 {
     // Initialization code
     _panGesture.delegate = self;
+    _checked = false;
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated
@@ -94,6 +97,27 @@
 }
 
 - (IBAction)onDeletePress:(id)sender {
-    NSLog(@"Press");
+    NSLog(@"Delete Press");
+}
+- (IBAction)onCheckboxPress:(id)sender {
+    NSLog(@"Checkbox Press");
+    if (self.checked) {
+        [self.blankCheckbox setHidden:false];
+        self.checked = false;
+        [_avatar setHidden:true];
+        
+        NSDictionary* attributes = @{
+                                     NSStrikethroughStyleAttributeName: [NSNumber numberWithInt:NSUnderlineStyleNone]
+                                     };
+        
+        NSAttributedString* attrText = [[NSAttributedString alloc] initWithString:self.entryTitle.text attributes:attributes];
+        self.entryTitle.attributedText = attrText;
+    }
+    else
+    {
+        HPTableView *tableView = (HPTableView *)self.superview.superview;
+        [tableView checkCellWithCell:self];
+    }
+
 }
 @end
