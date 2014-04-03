@@ -650,10 +650,10 @@
 		F7A1225318522AD000E51B06 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
-				F77D56E418D792EF00CFF118 /* HPListTableViewCell */,
 				F710E607187B0C0600BD9D54 /* HPLogin+Onboarding */,
 				F73A01B018AAFCB5000F25B6 /* HPSettingsViewController */,
 				F7653584186F67110046263B /* HPMainViewController */,
+				F77D56E418D792EF00CFF118 /* HPListTableViewCell */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";

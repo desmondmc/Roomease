@@ -271,6 +271,11 @@ Parse.Cloud.beforeSave(Parse.User, function(request, response)
               }
 
             }
+            else
+            {
+              console.log("AtHome status didn't change. Do nothing.");
+              response.success();
+            }
           }
         },
         error: function(error) {
