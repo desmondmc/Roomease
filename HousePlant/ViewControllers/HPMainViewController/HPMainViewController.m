@@ -181,21 +181,7 @@
 
 -(void) resyncUIWithDictionary:(NSDictionary *)uiChanges
 {
-    if ([[uiChanges objectForKey:kRefreshRoommatesKey] boolValue] == YES)
-    {
-#warning this is the entry point. Idealy here we only update the information we have to. This will mean sending more information along with the resync dictionary.
-        if (true) {
-            for (UIView *view in [[self roommateImageSubviewContainer]subviews]) {
-                [view removeFromSuperview];
-            }
-            roommateView = [RoommateImageSubview initRoommateImageSubview];
-            [[self roommateImageSubviewContainer] addSubview:roommateView];
-        }
-        else
-        {
-            
-        }
-    }
+
 }
 
 @end

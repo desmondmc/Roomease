@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface RoommateImageSubview : UIView
+@interface RoommateImageSubview : UIView <HPUINotifierDelegate>
 
 + (id)initRoommateImageSubview;
 
