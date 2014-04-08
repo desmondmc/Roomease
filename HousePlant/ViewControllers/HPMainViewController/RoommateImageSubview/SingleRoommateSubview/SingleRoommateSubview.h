@@ -18,4 +18,6 @@
 @property (weak, nonatomic) IBOutlet UIImageView *unknownLocationImage;
 - (IBAction)onViewPress:(id)sender;
 
+- (void) refreshSingleRoomateSubview:(HPRoommate *)roommate;
+
 @end

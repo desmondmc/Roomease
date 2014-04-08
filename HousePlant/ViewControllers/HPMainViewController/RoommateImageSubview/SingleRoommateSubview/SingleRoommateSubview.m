@@ -16,57 +16,62 @@
 {
     SingleRoommateSubview *subView = [[[NSBundle mainBundle] loadNibNamed:@"SingleRoommateSubview" owner:nil options:nil] lastObject];
     
+    [subView refreshSingleRoomateSubview:roommate];
     
-    if (roommate.profilePic) {
-        AMPAvatarView *avatar2 = [[AMPAvatarView alloc] initWithFrame:CGRectMake(11, 1, 65, 65)];
-        [subView addSubview:avatar2];
-        avatar2.image = roommate.profilePic;
-        
-        [subView sendSubviewToBack:avatar2];
-        
-        [avatar2 setBorderWith:0.0];
-        [avatar2 setShadowRadius:0.0];
-        [avatar2 setBorderColor:kLightBlueColour];
-        
-        [subView.profilePic setHidden:YES];
-    }
-    else
-    {
-        [subView.profilePic setHidden:NO];
-    }
-    
-    
-    subView.nameLabel.text = roommate.username;
-    if ([roommate atHomeString]) {
-        if ([[roommate atHomeString] isEqualToString:@"true"])
-        {
-            [subView.atHomeTint setHidden:true];
-            [subView.unknownLocationImage setHidden: true];
-        }
-        
-        else if ([[roommate atHomeString] isEqualToString:@"false"])
-        {
-            [subView.atHomeTint setHidden:false];
-            [subView.unknownLocationImage setHidden: true];
-        }
-        
-        else if ([[roommate atHomeString] isEqualToString:@"unknown"])
-        {
-            [subView.atHomeTint setHidden:true];
-            [subView.unknownLocationImage setHidden: false];
-        }
-    }
-    else //location is undefined
-    {
-        [subView.unknownLocationImage setHidden: false];
-    }
-
     // make sure RoommateImageSubview is not nil or the wrong class!
     
     if ([subView isKindOfClass:[SingleRoommateSubview class]])
         return subView;
     else
         return nil;
+}
+
+- (void) refreshSingleRoomateSubview:(HPRoommate *)roommate
+{
+    if (roommate.profilePic) {
+        AMPAvatarView *avatar2 = [[AMPAvatarView alloc] initWithFrame:CGRectMake(11, 1, 65, 65)];
+        [self addSubview:avatar2];
+        avatar2.image = roommate.profilePic;
+        
+        [self sendSubviewToBack:avatar2];
+        
+        [avatar2 setBorderWith:0.0];
+        [avatar2 setShadowRadius:0.0];
+        [avatar2 setBorderColor:kLightBlueColour];
+        
+        [self.profilePic setHidden:YES];
+    }
+    else
+    {
+        [self.profilePic setHidden:NO];
+    }
+    
+    
+    self.nameLabel.text = roommate.username;
+    if ([roommate atHomeString]) {
+        if ([[roommate atHomeString] isEqualToString:@"true"])
+        {
+            [self.atHomeTint setHidden:true];
+            [self.unknownLocationImage setHidden: true];
+        }
+        
+        else if ([[roommate atHomeString] isEqualToString:@"false"])
+        {
+            [self.atHomeTint setHidden:false];
+            [self.unknownLocationImage setHidden: true];
+        }
+        
+        else if ([[roommate atHomeString] isEqualToString:@"unknown"])
+        {
+            [self.atHomeTint setHidden:true];
+            [self.unknownLocationImage setHidden: false];
+        }
+    }
+    else //location is undefined
+    {
+        [self.unknownLocationImage setHidden: false];
+    }
+
 }
 
 - (IBAction)onViewPress:(id)sender {

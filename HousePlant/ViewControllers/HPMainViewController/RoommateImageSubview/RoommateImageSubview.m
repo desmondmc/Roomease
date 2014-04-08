@@ -106,9 +106,19 @@
        if (true) {
            [HPCentralData getRoommatesInBackgroundWithBlock:^(NSArray *roommates, NSError *error) {
 
-               [[self subviews] makeObjectsPerformSelector:@selector(removeFromSuperview)];
+               if ([roommates count] != [[self subviews] count])
+               {
+                   [[self subviews] makeObjectsPerformSelector:@selector(removeFromSuperview)];
+                   [RoommateImageSubview setupImagesWithRoomate:roommates andSubview:self];
+               }
+               else
+               {
+                   for (int i = 0; i < [[self subviews] count]; i++)
+                   {
+                       [[[self subviews] objectAtIndex:i] refreshSingleRoomateSubview:[roommates objectAtIndex:i]];
+                   }
+               }
                
-               [RoommateImageSubview setupImagesWithRoomate:roommates andSubview:self];
            }];
        }
        else
