@@ -121,6 +121,12 @@ Parse.Cloud.beforeSave(Parse.User, function(request, response)
       Parse.Cloud.useMasterKey();
 
       var queryForHouse = new Parse.Query('House');
+      if (typeof request.object.get('home') === 'undefined')
+      {
+        console.log("Saving user without a house. They must have just signed up.");
+        response.success();
+        return;
+      }
       queryForHouse.equalTo('objectId', request.object.get('home').id);
 
       console.log("Searching for House Id:" + request.object.get('home').id);
@@ -147,7 +153,6 @@ Parse.Cloud.beforeSave(Parse.User, function(request, response)
               where: queryForInstallationHouseChannel, // Set our Installation query.
               data: {
                 alert: alertString,
-                syncRequestKey: 0,
                 src_usr: request.object.id
               }
             }).then(function() {
@@ -244,7 +249,6 @@ Parse.Cloud.beforeSave(Parse.User, function(request, response)
                   where: queryForInstallation, // Set our Installation query.
                   data: {
                     alert: alertString,
-                    syncRequestKey: 0,
                     src_usr: request.object.id
                   }
                 }).then(function() {
