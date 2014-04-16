@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "HPSyncWorker.h"
 
 #define kPersistantStoreHome @"hp_home"
 #define kPersistantStoreCurrentUser @"hp_currentUser"
@@ -24,6 +25,7 @@
 +(void) resyncCurrentUser;
 +(void) resyncHouse;
 +(void) resyncRoommates:(CentralDataSaveResultBlock)block;
++(void) resyncEntryForId:(NSString *)objectId andList:(syncRequest_t)listId withBlock:(CentralDataSaveResultBlock)block;
 
 +(void) getCurrentUserInBackgroundWithBlock:(CentralDataRoommateResultBlock)block;
 +(HPRoommate *) getCurrentUser;

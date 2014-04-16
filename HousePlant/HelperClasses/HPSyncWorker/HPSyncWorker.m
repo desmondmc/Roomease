@@ -34,9 +34,19 @@
         {
             break;
         }
-        case listSyncRequest:
+        case todoListSyncRequest:
         {
-            
+            [HPCentralData resyncEntryForId:[data objectForKey:@"objectId"] andList:todoListSyncRequest withBlock:^(NSError *error) {
+                if (error)
+                {
+                    NSLog(@"Error resync entry %@", [data objectForKey:@"objectId"]);
+                }
+                else
+                {
+                    NSDictionary *notifierDictionary = [[NSDictionary alloc] initWithObjectsAndKeys:[NSNumber numberWithBool:TRUE], kRefreshTodoListKey, nil];
+                    [[HPUINotifier sharedUINotifier] notifyDelegatesWithChange:notifierDictionary];
+                }
+            }];
             break;
         }
         default:

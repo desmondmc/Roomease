@@ -12,9 +12,8 @@ typedef enum
 {
     roommatesSyncRequest = 0,
     houseSyncRequest = 1,
-    listSyncRequest = 2,
+    todoListSyncRequest = 2,
 } syncRequest_t;
-
 
 
 @interface HPSyncWorker : NSObject

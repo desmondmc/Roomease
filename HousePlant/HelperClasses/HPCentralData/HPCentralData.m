@@ -74,6 +74,32 @@
     });
 }
 
++(void) resyncEntryForId:(NSString *)objectId andList:(syncRequest_t)listId withBlock:(CentralDataSaveResultBlock)block
+{
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
+        PFQuery *query = [PFQuery queryWithClassName:@"Entry"];
+        PFObject *pfEntry = [query getObjectWithId:objectId];
+        
+        HPListEntry *listEntry = [[HPListEntry alloc] init];
+        listEntry.description = pfEntry[@"description"];
+        listEntry.dateCompleted = pfEntry[@"dateCompleted"];
+        listEntry.dateAdded = pfEntry[@"dateAdded"];
+        listEntry.completedBy = pfEntry[@"completedBy"];
+        
+        
+        if (listId == todoListSyncRequest)
+        {
+            [HPCentralData saveToDoListEntryWithSingleEntry:listEntry];
+        }
+        else
+        {
+#warning fix this for multiple list handling
+        }
+        if (block)
+           block(nil);
+    });
+}
+
 
 +(void) clearCentralData
 {
