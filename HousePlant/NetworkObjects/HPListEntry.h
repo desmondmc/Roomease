@@ -14,5 +14,6 @@
 @property (strong, nonatomic) NSDate        *dateCompleted;
 @property (strong, nonatomic) NSDate        *dateAdded;
 @property (strong, nonatomic) HPRoommate    *completedBy;
+@property (strong, nonatomic) NSString      *objectId;
 
 @end

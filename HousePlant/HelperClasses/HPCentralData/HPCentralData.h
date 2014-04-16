@@ -11,6 +11,7 @@
 #define kPersistantStoreHome @"hp_home"
 #define kPersistantStoreCurrentUser @"hp_currentUser"
 #define kPersistantStoreRoommates @"hp_roommates"
+#define kPersistantStoreToDoListEntries @"hp_todo_list_entries"
 #define kPersistantStoreNewUser @"hp_newuser"
 
 @interface HPCentralData : NSObject

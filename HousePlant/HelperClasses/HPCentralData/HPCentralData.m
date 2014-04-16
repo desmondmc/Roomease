@@ -359,6 +359,102 @@
     return true;
 }
 
+#pragma mark - ToDoList Saving and Getting
+
++ (void) getToDoListEntriesInBackgroundWithBlock:(CentralDataListEntriesResultBlock)block
+{
+    dispatch_async( dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
+        NSArray *todoListEntries = [HPCentralData getToDoListEntries];
+        NSError *error;
+        if (!todoListEntries)
+        {
+            NSMutableDictionary* details = [NSMutableDictionary dictionary];
+            [details setValue:@"Getting todo list failed" forKey:NSLocalizedDescriptionKey];
+            error = [NSError errorWithDomain:@"todo list" code:100 userInfo:details];
+        }
+        dispatch_async(dispatch_get_main_queue(), ^{
+            if (block)
+                block(todoListEntries, error);
+        });
+    });
+}
+
++ (NSArray *) getToDoListEntries
+{
+    NSMutableArray *listEntriesData = [persistantStore objectForKey:kPersistantStoreToDoListEntries];
+    NSMutableArray *todoListEntries = [[NSMutableArray alloc] init];
+    
+    for (NSData *singleListEntryData in listEntriesData) {
+        HPListEntry *listEntry = [NSKeyedUnarchiver unarchiveObjectWithData:singleListEntryData];
+        [todoListEntries addObject:listEntry];
+    }
+    
+    if ([todoListEntries count] == 0)
+    {
+        listEntriesData = [[NSMutableArray alloc] init];
+        
+        //query for todolist for this house.
+        HPHouse *house = [HPCentralData getHouse];
+        
+        
+        PFQuery *query = [PFQuery queryWithClassName:@"ListEntry"];
+        [query whereKey:@"houseObjectId" equalTo:house.objectId];
+        NSArray *pfEntries = [query findObjects];
+        if (pfEntries)
+        {
+            for (PFObject *pfEntry in pfEntries) {
+                HPListEntry * listEntry = [[HPListEntry alloc] init];
+                listEntry.description = pfEntry[@"description"];
+                listEntry.dateCompleted = pfEntry[@"dateCompleted"];
+                listEntry.dateAdded = pfEntry[@"dateAdded"];
+                listEntry.completedBy = pfEntry[@"completedBy"];
+                
+                
+                [todoListEntries addObject:listEntry];
+                
+                NSData *listEntryData = [NSKeyedArchiver archivedDataWithRootObject:listEntry];
+                [listEntriesData addObject:listEntryData];
+            }
+        }
+        
+        [persistantStore setObject:listEntriesData forKey:kPersistantStoreToDoListEntries];
+        [persistantStore synchronize];
+        
+    }
+    
+    return todoListEntries;
+}
+
++ (bool)saveToDoListEntryWithSingleEntry:(HPListEntry *)entry
+{
+    NSMutableArray *toDoListEntriesData = [[NSMutableArray alloc] init];
+    //Find the user in the local storage roommate array.
+    if (!entry.description || !entry.objectId) {
+        [NSException raise:@"HP Exception: Invalid entry sent to saveToDoListEntryWithSingleEntry, nil description of parse objectId" format:@"entry of %@ is invalid", entry];
+    }
+    NSMutableArray *todoListEntries = [NSMutableArray arrayWithArray:[HPCentralData getToDoListEntries]];
+    
+    for (int entryCount = 0; entryCount < [todoListEntries count]; entryCount++) {
+        HPListEntry *entryToFind = [todoListEntries objectAtIndex:entryCount];
+        if ([entryToFind.objectId isEqualToString:entry.objectId]) {
+            [todoListEntries replaceObjectAtIndex:entryCount withObject:entry];
+        }
+    }
+    
+    //Loop through and convert all the roommates into data
+    for (HPListEntry* listEntryToConvertToData in todoListEntries) {
+        NSData *listEntryData = [NSKeyedArchiver archivedDataWithRootObject:listEntryToConvertToData];
+        [toDoListEntriesData addObject:listEntryData];
+    }
+    
+    [persistantStore setObject:toDoListEntriesData forKey:kPersistantStoreRoommates];
+    [persistantStore synchronize];
+    
+    return true;
+}
+
+#pragma mark - Roommates getters and savers.
+
 +(void) getRoommatesInBackgroundWithBlock:(CentralDataRoommatesResultBlock)block
 {
     dispatch_async( dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
@@ -377,7 +473,7 @@
     });
 }
 
-+(NSArray *) getRoommates
++ (NSArray *) getRoommates
 {
     NSMutableArray *roommatesData = [persistantStore objectForKey:kPersistantStoreRoommates];
     NSMutableArray *roommates = [[NSMutableArray alloc] init];
@@ -427,6 +523,35 @@
     }
     
     return roommates;
+}
+
+//You need to pass a username here bacause it is possible that a roommate object will have a null username
++ (bool)saveRoommatesWithSingleRoommate:(HPRoommate *)roommate
+{
+    NSMutableArray *roommatesData = [[NSMutableArray alloc] init];
+    //Find the user in the local storage roommate array.
+    if (!roommate.username) {
+        [NSException raise:@"HP Exception: Invalid roommate sent to saveRoommatesWithSingleRoommate" format:@"roommate of %@ is invalid", roommate];
+    }
+    NSMutableArray *roommates = [NSMutableArray arrayWithArray:[HPCentralData getRoommates]];
+    
+    for (int roommateCount = 0; roommateCount < [roommates count]; roommateCount++) {
+        HPRoommate *roommateToFind = [roommates objectAtIndex:roommateCount];
+        if ([roommateToFind.username isEqualToString:roommate.username]) {
+            [roommates replaceObjectAtIndex:roommateCount withObject:roommate];
+        }
+    }
+    
+    //Loop through and convert all the roommates into data
+    for (HPRoommate* roomateToConvertToData in roommates) {
+        NSData *roommateData = [NSKeyedArchiver archivedDataWithRootObject:roomateToConvertToData];
+        [roommatesData addObject:roommateData];
+    }
+    
+    [persistantStore setObject:roommatesData forKey:kPersistantStoreRoommates];
+    [persistantStore synchronize];
+    
+    return true;
 }
 
 #pragma mark - House Helper Methods
@@ -534,34 +659,10 @@
     return newRoommate;
 }
 
-//You need to pass a username here bacause it is possible that a roommate object will have a null username
-+ (bool)saveRoommatesWithSingleRoommate:(HPRoommate *)roommate
-{
-    NSMutableArray *roommatesData = [[NSMutableArray alloc] init];
-    //Find the user in the local storage roommate array.
-    if (!roommate.username) {
-        [NSException raise:@"HP Exception: Invalid roommate sent to saveRoommatesWithSingleRoommate" format:@"roommate of %@ is invalid", roommate];
-    }
-    NSMutableArray *roommates = [NSMutableArray arrayWithArray:[HPCentralData getRoommates]];
-    
-    for (int roommateCount = 0; roommateCount < [roommates count]; roommateCount++) {
-        HPRoommate *roommateToFind = [roommates objectAtIndex:roommateCount];
-        if ([roommateToFind.username isEqualToString:roommate.username]) {
-            [roommates replaceObjectAtIndex:roommateCount withObject:roommate];
-        }
-    }
-    
-    //Loop through and convert all the roommates into data
-    for (HPRoommate* roomateToConvertToData in roommates) {
-        NSData *roommateData = [NSKeyedArchiver archivedDataWithRootObject:roomateToConvertToData];
-        [roommatesData addObject:roommateData];
-    }
-    
-    [persistantStore setObject:roommatesData forKey:kPersistantStoreRoommates];
-    [persistantStore synchronize];
-    
-    return true;
-}
+
+
+
+
 
 //setStateFirstTimeLoginTrue and getStateFirstTimeLoginAndSetToFalse are methods that get to store the track whether a user is new or not.
 + (void) setStateFirstTimeLogin:(bool)state
