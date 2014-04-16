@@ -199,7 +199,9 @@
             NSLog(@"Error saving profile picture.");
         };
         
+        NSLog(@"Current User ID: %@",[[PFUser currentUser] objectId]);
         [PFUser currentUser][@"profilePic"] = imageFile;
+        [[PFUser currentUser] saveEventually];
     }
 }
 

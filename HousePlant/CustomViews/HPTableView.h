@@ -8,11 +8,12 @@
 
 #import <UIKit/UIKit.h>
 #import <AMPAvatarView/AMPAvatarView.h>
+#import "HPListTableViewCell.h"
 
 @interface HPTableView : UITableView
 
-- (void) checkCellWithCell:(UITableViewCell *)cell;
+- (void) checkCellWithCell:(HPListTableViewCell *)hpCell;
 
-- (void) uncheckCellWithCell:(UITableViewCell *)cell;
+- (void) uncheckCellWithCell:(HPListTableViewCell *)hpCell;
 
 @end
