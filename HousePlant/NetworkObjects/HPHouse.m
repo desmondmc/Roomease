@@ -19,6 +19,7 @@
         _location = [aDecoder decodeObjectForKey:@"location"];
         _addressText = [aDecoder decodeObjectForKey:@"addresstext"];
         _region = [aDecoder decodeObjectForKey:@"region"];
+        _objectId = [aDecoder decodeObjectForKey:@"objectId"];
     }
     return self;
 }
@@ -29,6 +30,7 @@
     [aCoder encodeObject:_location forKey:@"location"];
     [aCoder encodeObject:_addressText forKey:@"addresstext"];
     [aCoder encodeObject:_region forKey:@"region"];
+    [aCoder encodeObject:_objectId forKey:@"objectId"];
 }
 
 //This function should be used to set just the region value. It was created because region is something that is only stored locally. It doesn't make sense to have to go through central data to set a simple value
@@ -39,6 +41,7 @@
     self.houseName = oldHome.houseName;
     self.location = oldHome.location;
     self.addressText = oldHome.addressText;
+    self.objectId = oldHome.objectId;
     
     self.region = region;
     
