@@ -204,12 +204,12 @@
                     [roommate setAtHomeString:@"true"];
                     [HPCentralData saveCurrentUserInBackgroundWithRoommate:roommate andBlock:^(NSError *error) {
                         //Initiate Roommate sync.
-                        [HPSyncWorker handleSyncRequestWithType:roommatesSyncRequest];
+                        [HPSyncWorker handleSyncRequestWithType:roommatesSyncRequest andData:nil];
                     }];
                 }
                 else
                 {
-                    [HPSyncWorker handleSyncRequestWithType:roommatesSyncRequest];
+                    [HPSyncWorker handleSyncRequestWithType:roommatesSyncRequest andData:nil];
                 }
                 
             }];
@@ -228,12 +228,12 @@
                     [roommate setAtHomeString:@"false"];
                     [HPCentralData saveCurrentUserInBackgroundWithRoommate:roommate andBlock:^(NSError *error) {
                         //Initiate Roommate sync.
-                        [HPSyncWorker handleSyncRequestWithType:roommatesSyncRequest];
+                        [HPSyncWorker handleSyncRequestWithType:roommatesSyncRequest andData:nil];
                     }];
                 }
                 else
                 {
-                    [HPSyncWorker handleSyncRequestWithType:roommatesSyncRequest];
+                    [HPSyncWorker handleSyncRequestWithType:roommatesSyncRequest andData:nil];
                 }
                 
             }];

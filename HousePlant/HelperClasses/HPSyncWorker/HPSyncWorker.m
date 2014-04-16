@@ -11,7 +11,7 @@
 
 @implementation HPSyncWorker
 
-+(BOOL) handleSyncRequestWithType:(syncRequest_t)type
++(BOOL) handleSyncRequestWithType:(syncRequest_t)type andData:(NSDictionary *)data
 {
     switch (type)
     {
@@ -34,6 +34,11 @@
         {
             break;
         }
+        case listSyncRequest:
+        {
+            
+            break;
+        }
         default:
         {
             break;
@@ -47,7 +52,7 @@
 {
     syncRequest_t request = [[syncData objectForKey:@"syncRequestKey"] intValue];
     
-    return [self handleSyncRequestWithType:request];
+    return [self handleSyncRequestWithType:request andData:syncData];
 }
 
 @end

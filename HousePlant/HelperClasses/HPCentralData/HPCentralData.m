@@ -33,10 +33,11 @@
         NSMutableArray *roommatesData = [[NSMutableArray alloc] init];
         
         //pulling from parse
-        PFObject *parseHome = [[PFUser currentUser] objectForKey:@"home"];
         
-#warning house not saved to central data
-        [parseHome fetch];
+        PFQuery *query = [PFQuery queryWithClassName:@"House"];
+        [query includeKey:@"users"];
+        
+        PFObject *parseHome = [query getObjectWithId:[[[PFUser currentUser] objectForKey:@"home"] objectId]];
         if (parseHome == nil)
         {
             //No home exists for this user yet.
@@ -48,10 +49,9 @@
         
         NSArray *pfRoommates = [parseHome objectForKey:@"users"];
         for (PFObject *pfRoommate in pfRoommates) {
-            [pfRoommate fetch];
             HPRoommate * roommate = [[HPRoommate alloc] init];
             roommate.username = pfRoommate[@"username"];
-            
+            roommate.objectId = [pfRoommate objectId];
             [roommate setAtHomeString:pfRoommate[@"atHome"]];
             
             
@@ -209,7 +209,7 @@
         dispatch_async( dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
 
             home = [[HPHouse alloc] init];
-            [[PFUser currentUser] fetch];
+            [[PFUser currentUser] refresh];
             __block PFObject *parseHome = [[PFUser currentUser] objectForKey:@"home"];
             if (parseHome == nil)
             {
@@ -221,6 +221,7 @@
             
             [parseHome fetch];
             home.houseName = [parseHome objectForKey:@"name"];
+            home.objectId = [parseHome objectId];
             
             //Get the parse GeoPoint and convert it into a location to be stored locally
             PFGeoPoint *parseGeoPoint = [parseHome objectForKey:@"location"];
@@ -258,7 +259,7 @@
     if (home == nil) {
         //No local copy yet. Better grab it from parse.
         home = [[HPHouse alloc] init];
-        [[PFUser currentUser] fetch];
+        [[PFUser currentUser] refresh];
         __block PFObject *parseHome = [[PFUser currentUser] objectForKey:@"home"];
         
         [parseHome fetch];
@@ -268,6 +269,7 @@
             return nil;
         }
         home.houseName = [parseHome objectForKey:@"name"];
+        home.objectId = [parseHome objectId];
         
         //Get the parse GeoPoint and convert it into a location to be stored locally
         PFGeoPoint *parseGeoPoint = [parseHome objectForKey:@"location"];
@@ -362,6 +364,7 @@
 +(void) getRoommatesInBackgroundWithBlock:(CentralDataRoommatesResultBlock)block
 {
     dispatch_async( dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
+        [HPCentralData clearLocalRoommatesData];
         NSArray *roommates = [HPCentralData getRoommates];
         NSError *error;
         if (!roommates)
@@ -391,12 +394,14 @@
     {
         roommatesData = [[NSMutableArray alloc] init];
         
-        //As long as user is saved in the cloud we must fetch here. Trust me.
-        [[PFUser currentUser] fetch];
+        //As long as user is saved in the cloud we must refresh here. Trust me.
+        [[PFUser currentUser] refresh];
         //pulling from parse
-        PFObject *parseHome = [[PFUser currentUser] objectForKey:@"home"];
-#warning house not saved to central data
-        [parseHome fetch];
+        
+        PFQuery *query = [PFQuery queryWithClassName:@"House"];
+        [query includeKey:@"users"];
+        
+        PFObject *parseHome = [query getObjectWithId:[[[PFUser currentUser] objectForKey:@"home"] objectId]];
         if (parseHome == nil)
         {
             //No home exists for this user yet.
@@ -405,10 +410,9 @@
 
         NSArray *pfRoommates = [parseHome objectForKey:@"users"];
         for (PFObject *pfRoommate in pfRoommates) {
-            [pfRoommate fetch];
             HPRoommate * roommate = [[HPRoommate alloc] init];
             roommate.username = pfRoommate[@"username"];
-            
+            roommate.objectId = [pfRoommate objectId];
             [roommate setAtHomeString:pfRoommate[@"atHome"]];
             
             

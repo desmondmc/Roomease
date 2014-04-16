@@ -15,5 +15,5 @@
 @property (strong, nonatomic) NSString *username;
 @property (strong, nonatomic) UIImage *profilePic;
 @property (strong, nonatomic) NSString *atHomeString;
-
+@property (strong, nonatomic) NSString *objectId;
 @end

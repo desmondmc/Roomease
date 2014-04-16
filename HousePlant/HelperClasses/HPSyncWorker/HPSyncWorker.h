@@ -12,6 +12,7 @@ typedef enum
 {
     roommatesSyncRequest = 0,
     houseSyncRequest = 1,
+    listSyncRequest = 2,
 } syncRequest_t;
 
 
@@ -19,6 +20,6 @@ typedef enum
 @interface HPSyncWorker : NSObject
 
 +(BOOL) handleSyncRequestWithDictionary:(NSDictionary *)syncData;
-+(BOOL) handleSyncRequestWithType:(syncRequest_t)type;
++(BOOL) handleSyncRequestWithType:(syncRequest_t)type andData:(NSDictionary *)data;
 
 @end
