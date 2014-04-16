@@ -14,6 +14,7 @@
 
 typedef void (^CentralDataHouseResultBlock)(HPHouse *house, NSError *error);
 typedef void (^CentralDataRoommatesResultBlock)(NSArray *roommates, NSError *error);
+typedef void (^CentralDataListEntriesResultBlock)(NSArray *listEntries, NSError *error);
 typedef void (^CentralDataRoommateResultBlock)(HPRoommate *roommate, NSError *error);
 typedef void (^CentralDataSaveResultBlock)(NSError *error);
 #endif

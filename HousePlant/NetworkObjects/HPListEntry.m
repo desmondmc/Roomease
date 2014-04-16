@@ -19,6 +19,7 @@
         _dateCompleted = [aDecoder decodeObjectForKey:@"dateCompleted"];
         _dateAdded = [aDecoder decodeObjectForKey:@"dateAdded"];
         _completedBy = [aDecoder decodeObjectForKey:@"completedBy"];
+        _objectId = [aDecoder decodeObjectForKey:@"objectId"];
     }
     return self;
 }
@@ -30,6 +31,7 @@
     [aCoder encodeObject:_dateCompleted forKey:@"dateCompleted"];
     [aCoder encodeObject:_dateAdded forKey:@"dateAdded"];
     [aCoder encodeObject:_completedBy forKey:@"completedBy"];
+    [aCoder encodeObject:_objectId forKey:@"objectId"];
 }
 
 @end

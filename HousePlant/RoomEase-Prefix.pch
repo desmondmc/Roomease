@@ -24,6 +24,7 @@
 #import "HPNetworkObjectResultBlocks.h"
 #import "HPHouse.h"
 #import "HPRoommate.h"
+#import "HPListEntry.h"
 #import "HPCentralData.h"
 #import "HPLocationManager.h"
 #import "HPAppDelegate.h"
