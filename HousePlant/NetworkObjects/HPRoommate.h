@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@interface HPRoommate : NSObject
+@interface HPRoommate : HPNetworkObject
 
 +(NSNumber *) boolWithString:(NSString *)string;
 
