@@ -22,12 +22,14 @@
 @implementation HPMainViewController
 {
     RoommateImageSubview *roommateView;
+    NSMutableArray *listItems;
 }
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
+        _tableViewDataSource = [[HPToDoListDataSource alloc] init];
     }
     return self;
 }
@@ -83,18 +85,26 @@
 
 //THIS METHOD IS USED FOR DEBUGGING SHIT
 - (IBAction)onTestPress:(id)sender {
-    [HPCentralData getCurrentUserInBackgroundWithBlock:^(HPRoommate *roommate, NSError *error) {
-        
-        if ([[roommate atHomeString] isEqualToString:@"false"]) {
-            [roommate setAtHomeString:@"true"];
-        }
-        else
-        {
-            [roommate setAtHomeString:@"false"];
-        }
-        
-        [HPCentralData saveCurrentUserInBackgroundWithRoommate:roommate andBlock:nil];
-    }];
+//    [HPCentralData getCurrentUserInBackgroundWithBlock:^(HPRoommate *roommate, NSError *error) {
+//        
+//        if ([[roommate atHomeString] isEqualToString:@"false"]) {
+//            [roommate setAtHomeString:@"true"];
+//        }
+//        else
+//        {
+//            [roommate setAtHomeString:@"false"];
+//        }
+//        
+//        [HPCentralData saveCurrentUserInBackgroundWithRoommate:roommate andBlock:nil];
+//    }];
+    
+//    HPListEntry *newListEntry = [[HPListEntry alloc] init];
+//    newListEntry.description = @"test entry";
+//    [HPCentralData saveToDoListEntryWithSingleEntry:newListEntry];
+    
+    NSDictionary *notifierDictionary = [[NSDictionary alloc] initWithObjectsAndKeys:@"CeQn49plm8", @"objectId", nil];
+    [HPSyncWorker handleSyncRequestWithType:todoListSyncRequest andData:notifierDictionary];
+    
 }
 
 
@@ -108,13 +118,17 @@
 
 - (IBAction)onRefreshRmPress:(id)sender {
     //Starts a sync request. Will be called back on resyncUIWithDictionary.
-    [HPSyncWorker handleSyncRequestWithType:roommatesSyncRequest];
+    [HPSyncWorker handleSyncRequestWithType:roommatesSyncRequest andData:nil];
 }
 
 #pragma mark - UITableViewDelegate
 
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 8;
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    if (!listItems) {
+        listItems = [NSMutableArray arrayWithArray:[HPCentralData getToDoListEntries]];
+    }
+    return listItems.count;
 }
 
 // Row display. Implementers should *always* try to reuse cells by setting each cell's reuseIdentifier and querying for available reusable cells with dequeueReusableCellWithIdentifier:
@@ -122,50 +136,26 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    if (!listItems) {
+        listItems = [NSMutableArray arrayWithArray:[HPCentralData getToDoListEntries]];
+    }
     HPListTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"hpListTableViewCell"];
-
+    
     if (cell == nil) {
         //There was no reusablecell to dequeue
         NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"HPListTableViewCell" owner:self options:nil];
         cell = [nib objectAtIndex:0];
     }
     
-    if (indexPath.row == 1) {
-        cell.entryTitle.text = @"Take out garbage before Jeremiah farts in all of our mouths.";
-        cell.entryDate.text = @"March 13, 2014 at";
-        cell.entryTime.text = @"10:45AM";
-    }
-    else if(indexPath.row == 2) {
-        cell.entryTitle.text = @"Buy red-solo cups for the party this weekend.";
-        cell.entryDate.text = @"March 17, 2014 at";
-        cell.entryTime.text = @"5:23AM";
-    }
-    else if(indexPath.row == 3) {
-        cell.entryTitle.text = @"Pay Rogers Cable bill $120.";
-        cell.entryDate.text = @"March 15, 2014 at";
-        cell.entryTime.text = @"2:45PM";
-    }
-    else if(indexPath.row == 4) {
-        cell.entryTitle.text = @"Buy red-solo cups for the party this weekend.";
-        cell.entryDate.text = @"March 17, 2014 at";
-        cell.entryTime.text = @"5:23AM";
-    }
-    else if(indexPath.row == 5) {
-        cell.entryTitle.text = @"Pay Rogers Cable bill $120.";
-        cell.entryDate.text = @"March 15, 2014 at";
-        cell.entryTime.text = @"2:45PM";
-    }
-    else if(indexPath.row == 6) {
-        cell.entryTitle.text = @"Buy red-solo cups for the party this weekend.";
-        cell.entryDate.text = @"March 17, 2014 at";
-        cell.entryTime.text = @"5:23AM";
-    }
-    else if(indexPath.row == 7) {
-        cell.entryTitle.text = @"Pay Rogers Cable bill $120.";
-        cell.entryDate.text = @"March 15, 2014 at";
-        cell.entryTime.text = @"2:45PM";
-    }
-
+    HPListEntry *entry = [listItems objectAtIndex:indexPath.row];
+    cell.entryTitle.text = entry.description;
+    
+    NSString *dateString = [NSDateFormatter localizedStringFromDate:entry.dateAdded
+                                                          dateStyle:NSDateFormatterShortStyle
+                                                          timeStyle:NSDateFormatterFullStyle];
+    cell.entryDate.text = dateString;
+    cell.entryTime.text = @"";
+    
     
     return cell;
 }

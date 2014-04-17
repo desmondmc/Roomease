@@ -89,7 +89,7 @@
         [_uploadingPhotoIndicator setHidden:false];
         [HPCentralData saveCurrentUserInBackgroundWithRoommate:roommateWithNewProfilePicture andBlock:^(NSError *error) {
             [_uploadingPhotoIndicator setHidden:true];
-            [HPSyncWorker handleSyncRequestWithType:roommatesSyncRequest];
+            [HPSyncWorker handleSyncRequestWithType:roommatesSyncRequest andData:nil];
         }];
         
     }];

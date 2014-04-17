@@ -83,20 +83,22 @@
         HPListEntry *listEntry = [[HPListEntry alloc] init];
         listEntry.description = pfEntry[@"description"];
         listEntry.dateCompleted = pfEntry[@"dateCompleted"];
-        listEntry.dateAdded = pfEntry[@"dateAdded"];
+        listEntry.dateAdded = pfEntry[@"createdAt"];
         listEntry.completedBy = pfEntry[@"completedBy"];
         
         
         if (listId == todoListSyncRequest)
         {
-            [HPCentralData saveToDoListEntryWithSingleEntry:listEntry];
+            [HPCentralData saveToDoListEntryWithSingleEntryLocal:listEntry];
         }
         else
         {
 #warning fix this for multiple list handling
         }
-        if (block)
-           block(nil);
+        dispatch_async(dispatch_get_main_queue(), ^{
+            if (block)
+                block(nil);
+        });
     });
 }
 
@@ -304,6 +306,7 @@
         
         home.addressText = [parseHome objectForKey:@"addressText"];
         
+        
         //convert roommate object into encoded data to store in NSUserdefault
         homeData = [NSKeyedArchiver archivedDataWithRootObject:home];
         [persistantStore setObject:homeData forKey:kPersistantStoreHome];
@@ -425,7 +428,7 @@
         HPHouse *house = [HPCentralData getHouse];
         
         
-        PFQuery *query = [PFQuery queryWithClassName:@"ListEntry"];
+        PFQuery *query = [PFQuery queryWithClassName:@"Entry"];
         [query whereKey:@"houseObjectId" equalTo:house.objectId];
         NSArray *pfEntries = [query findObjects];
         if (pfEntries)
@@ -434,7 +437,7 @@
                 HPListEntry * listEntry = [[HPListEntry alloc] init];
                 listEntry.description = pfEntry[@"description"];
                 listEntry.dateCompleted = pfEntry[@"dateCompleted"];
-                listEntry.dateAdded = pfEntry[@"dateAdded"];
+                listEntry.dateAdded = pfEntry[@"createdAt"];
                 listEntry.completedBy = pfEntry[@"completedBy"];
                 
                 
@@ -453,13 +456,36 @@
     return todoListEntries;
 }
 
-+ (bool)saveToDoListEntryWithSingleEntry:(HPListEntry *)entry
++ (bool)saveToDoListEntryWithSingleEntryLocalAndRemote:(HPListEntry *)entry
+{
+    //Find the user in the local storage roommate array.
+    if (!entry.description) {
+        [NSException raise:@"HP Exception: Invalid entry sent to saveToDoListEntryWithSingleEntry, nil description" format:@"entry of %@ is invalid", entry];
+    }
+    
+    //Save the entry to parse
+    PFObject *pfNewListEntry = [PFObject objectWithClassName:@"Entry"];
+    
+    
+    
+    [pfNewListEntry setObject:@"ToDo List" forKey:@"listName"];
+    [pfNewListEntry setObject:[HPCentralData getHouse].objectId forKey:@"houseObjectId"];
+    [pfNewListEntry setObject:entry.description forKey:@"description"];
+    [pfNewListEntry setObject:[NSNumber numberWithBool:false] forKey:@"isComplete"];
+    
+    [pfNewListEntry save];
+    
+    entry.objectId = pfNewListEntry.objectId;
+    
+    [HPCentralData saveToDoListEntryWithSingleEntryLocal:entry];
+    
+    return true;
+}
+
++ (bool)saveToDoListEntryWithSingleEntryLocal:(HPListEntry *)entry
 {
     NSMutableArray *toDoListEntriesData = [[NSMutableArray alloc] init];
-    //Find the user in the local storage roommate array.
-    if (!entry.description || !entry.objectId) {
-        [NSException raise:@"HP Exception: Invalid entry sent to saveToDoListEntryWithSingleEntry, nil description of parse objectId" format:@"entry of %@ is invalid", entry];
-    }
+
     NSMutableArray *todoListEntries = [NSMutableArray arrayWithArray:[HPCentralData getToDoListEntries]];
     
     for (int entryCount = 0; entryCount < [todoListEntries count]; entryCount++) {
@@ -469,7 +495,7 @@
         }
     }
     
-    //Loop through and convert all the roommates into data
+    //Loop through and convert all the listEntries into data
     for (HPListEntry* listEntryToConvertToData in todoListEntries) {
         NSData *listEntryData = [NSKeyedArchiver archivedDataWithRootObject:listEntryToConvertToData];
         [toDoListEntriesData addObject:listEntryData];

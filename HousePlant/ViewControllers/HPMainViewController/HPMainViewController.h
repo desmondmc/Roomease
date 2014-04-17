@@ -9,12 +9,13 @@
 #import <UIKit/UIKit.h>
 #import <CoreLocation/CoreLocation.h>
 #import "HPUINotifierDelegate.h"
+#import "HPToDoListDataSource.h"
 
 @interface HPMainViewController : UIViewController <HPUINotifierDelegate, UITableViewDelegate>
-@property (weak, nonatomic) IBOutlet UILabel *usernameLabel;
-- (IBAction)onLogoutPress:(id)sender;
-@property (weak, nonatomic) IBOutlet UILabel *houseLabel;
+
 @property (weak, nonatomic) IBOutlet UIView *roommateImageSubviewContainer;
+@property (strong, nonatomic) HPToDoListDataSource *tableViewDataSource;
+
 - (IBAction)onSettingsPress:(id)sender;
 - (IBAction)onRefreshRmPress:(id)sender;
 

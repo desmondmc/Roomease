@@ -37,6 +37,11 @@
 +(void) saveHouseInBackgroundWithHouse:(HPHouse *)house andBlock:(CentralDataSaveResultBlock)block;
 +(bool) saveHouse:(HPHouse *)house;
 
++ (void) getToDoListEntriesInBackgroundWithBlock:(CentralDataListEntriesResultBlock)block;
++ (NSArray *) getToDoListEntries;
++ (bool)saveToDoListEntryWithSingleEntryLocalAndRemote:(HPListEntry *)entry;
++ (bool)saveToDoListEntryWithSingleEntryLocal:(HPListEntry *)entry;
+
 +(void) getRoommatesInBackgroundWithBlock:(CentralDataRoommatesResultBlock)block;
 +(NSArray *) getRoommates;
 

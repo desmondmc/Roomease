@@ -50,6 +50,7 @@
 		F714B84E18B1CC5800B598E7 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = F714B84D18B1CC5800B598E7 /* libz.dylib */; };
 		F714B89518B5B96E00B598E7 /* HPCameraManager.m in Sources */ = {isa = PBXBuildFile; fileRef = F714B89418B5B96E00B598E7 /* HPCameraManager.m */; };
 		F737152918FF2CD700668251 /* HPListEntry.m in Sources */ = {isa = PBXBuildFile; fileRef = F737152818FF2CD700668251 /* HPListEntry.m */; };
+		F737152D18FF40F800668251 /* HPToDoListDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = F737152C18FF40F800668251 /* HPToDoListDataSource.m */; };
 		F73A01B418AAFD00000F25B6 /* HPSettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F73A01B218AAFD00000F25B6 /* HPSettingsViewController.m */; };
 		F73A01B518AAFD00000F25B6 /* HPSettingsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F73A01B318AAFD00000F25B6 /* HPSettingsViewController.xib */; };
 		F73F9EAC18BE9674009D6097 /* HPUINotifier.m in Sources */ = {isa = PBXBuildFile; fileRef = F73F9EAB18BE9674009D6097 /* HPUINotifier.m */; };
@@ -154,6 +155,8 @@
 		F714B89418B5B96E00B598E7 /* HPCameraManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HPCameraManager.m; path = HelperClasses/HPCameraManager/HPCameraManager.m; sourceTree = "<group>"; };
 		F737152718FF2CD700668251 /* HPListEntry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HPListEntry.h; path = NetworkObjects/HPListEntry.h; sourceTree = "<group>"; };
 		F737152818FF2CD700668251 /* HPListEntry.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HPListEntry.m; path = NetworkObjects/HPListEntry.m; sourceTree = "<group>"; };
+		F737152B18FF40F800668251 /* HPToDoListDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HPToDoListDataSource.h; path = CustomViews/HPToDoListDataSource/HPToDoListDataSource.h; sourceTree = "<group>"; };
+		F737152C18FF40F800668251 /* HPToDoListDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HPToDoListDataSource.m; path = CustomViews/HPToDoListDataSource/HPToDoListDataSource.m; sourceTree = "<group>"; };
 		F73A01B118AAFD00000F25B6 /* HPSettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HPSettingsViewController.h; path = ViewControllers/HPSettingsViewController/HPSettingsViewController.h; sourceTree = "<group>"; };
 		F73A01B218AAFD00000F25B6 /* HPSettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HPSettingsViewController.m; path = ViewControllers/HPSettingsViewController/HPSettingsViewController.m; sourceTree = "<group>"; };
 		F73A01B318AAFD00000F25B6 /* HPSettingsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = HPSettingsViewController.xib; path = ViewControllers/HPSettingsViewController/HPSettingsViewController.xib; sourceTree = "<group>"; };
@@ -446,6 +449,15 @@
 			name = HPCameraManager;
 			sourceTree = "<group>";
 		};
+		F737152A18FF40AC00668251 /* HPToDoListDataSource */ = {
+			isa = PBXGroup;
+			children = (
+				F737152B18FF40F800668251 /* HPToDoListDataSource.h */,
+				F737152C18FF40F800668251 /* HPToDoListDataSource.m */,
+			);
+			name = HPToDoListDataSource;
+			sourceTree = "<group>";
+		};
 		F737161818A9BAB500A5AA4B /* RoommateImageSubview */ = {
 			isa = PBXGroup;
 			children = (
@@ -688,6 +700,7 @@
 		F7E3E52318EE2332007A9C02 /* HPTableView */ = {
 			isa = PBXGroup;
 			children = (
+				F737152A18FF40AC00668251 /* HPToDoListDataSource */,
 				F7E3E52418EE23E3007A9C02 /* HPTableView.h */,
 				F7E3E52518EE23E3007A9C02 /* HPTableView.m */,
 			);
@@ -882,6 +895,7 @@
 				F714B83218B1387800B598E7 /* RoommateImageSubview.m in Sources */,
 				F76535811867D1B20046263B /* HPSignupViewController.m in Sources */,
 				F36CEC1B18C6880B0013D094 /* HPSyncWorker.m in Sources */,
+				F737152D18FF40F800668251 /* HPToDoListDataSource.m in Sources */,
 				F73A01B418AAFD00000F25B6 /* HPSettingsViewController.m in Sources */,
 				F73F9EAC18BE9674009D6097 /* HPUINotifier.m in Sources */,
 				F711388518777B8800D9BA9E /* HPNoHomeViewController.m in Sources */,
