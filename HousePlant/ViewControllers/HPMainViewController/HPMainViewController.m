@@ -38,6 +38,7 @@
 {
     [super viewDidLoad];
     
+    [HPSyncWorker handleSyncRequestWithType:todoListSyncRequest andData:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(receiveNotificationAppActive:)
                                                  name:NOTIFICATION_APP_BECAME_ACTIVE
@@ -148,7 +149,7 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     if (!listItems) {
-        listItems = [NSMutableArray arrayWithArray:[HPCentralData getToDoListEntries]];
+        listItems = [NSMutableArray arrayWithArray:[HPCentralData getToDoListEntriesAndForceReloadFromParse:NO]];
     }
     return listItems.count;
 }
@@ -159,7 +160,7 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (!listItems) {
-        listItems = [NSMutableArray arrayWithArray:[HPCentralData getToDoListEntries]];
+        listItems = [NSMutableArray arrayWithArray:[HPCentralData getToDoListEntriesAndForceReloadFromParse:NO]];
     }
     HPListTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"hpListTableViewCell"];
     
@@ -170,15 +171,7 @@
     }
     
     HPListEntry *entry = [listItems objectAtIndex:indexPath.row];
-    cell.entryTitle.text = entry.description;
-    
-    NSString *dateString = [NSDateFormatter localizedStringFromDate:entry.dateAdded
-                                                          dateStyle:NSDateFormatterShortStyle
-                                                          timeStyle:NSDateFormatterFullStyle];
-    cell.entryDate.text = dateString;
-    cell.entryTime.text = @"";
-    
-    
+    [cell initWithListEntry:entry];
     return cell;
 }
 

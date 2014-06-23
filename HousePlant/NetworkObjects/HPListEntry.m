@@ -10,6 +10,21 @@
 
 @implementation HPListEntry
 
+-(id) initWithPFObject: (PFObject *) object
+{
+    if (self = [super init]) {
+        _objectId = object.objectId;
+        _description = object[@"description"];
+        _dateCompleted = object[@"dateCompleted"];
+        _dateAdded = object[@"createdAt"];
+        _completedBy = [[HPRoommate alloc] initWithPFObject:object[@"completedBy"]];
+        _completedByName = _completedBy.username;
+        _completedByImage = _completedBy.profilePic;
+    }
+    
+    return self;
+}
+
 //Pulling data from NSUserDefaults
 - (id)initWithCoder:(NSCoder *)aDecoder
 {
@@ -18,7 +33,8 @@
         _description = [aDecoder decodeObjectForKey:@"description"];
         _dateCompleted = [aDecoder decodeObjectForKey:@"dateCompleted"];
         _dateAdded = [aDecoder decodeObjectForKey:@"dateAdded"];
-        _completedBy = [aDecoder decodeObjectForKey:@"completedBy"];
+        _completedByImage = [aDecoder decodeObjectForKey:@"completedByImage"];
+        _completedByName = [aDecoder decodeObjectForKey:@"completedByName"];
         _objectId = [aDecoder decodeObjectForKey:@"objectId"];
     }
     return self;
@@ -30,7 +46,8 @@
     [aCoder encodeObject:_description forKey:@"description"];
     [aCoder encodeObject:_dateCompleted forKey:@"dateCompleted"];
     [aCoder encodeObject:_dateAdded forKey:@"dateAdded"];
-    [aCoder encodeObject:_completedBy forKey:@"completedBy"];
+    [aCoder encodeObject:_completedByImage forKey:@"completedByImage"];
+    [aCoder encodeObject:_completedByName forKey:@"completedByName"];
     [aCoder encodeObject:_objectId forKey:@"objectId"];
 }
 

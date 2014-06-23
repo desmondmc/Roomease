@@ -36,6 +36,14 @@
         }
         case todoListSyncRequest:
         {
+            [HPCentralData getToDoListEntriesAndForceReloadFromParse:YES];
+
+            NSDictionary *notifierDictionary = [[NSDictionary alloc] initWithObjectsAndKeys:[NSNumber numberWithBool:TRUE], kRefreshTodoListKey, nil];
+            [[HPUINotifier sharedUINotifier] notifyDelegatesWithChange:notifierDictionary];
+            break;
+        }
+        case todoListItemSyncRequest:
+        {
             [HPCentralData resyncEntryForId:[data objectForKey:@"objectId"] andList:todoListSyncRequest withBlock:^(NSError *error) {
                 if (error)
                 {

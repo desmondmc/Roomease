@@ -38,7 +38,7 @@
 +(bool) saveHouse:(HPHouse *)house;
 
 + (void) getToDoListEntriesInBackgroundWithBlock:(CentralDataListEntriesResultBlock)block;
-+ (NSArray *) getToDoListEntries;
++ (NSArray *) getToDoListEntriesAndForceReloadFromParse: (BOOL) forceReload;
 + (bool)saveToDoListEntryWithSingleEntryLocalAndRemote:(HPListEntry *)entry;
 + (bool)saveToDoListEntryWithSingleEntryLocal:(HPListEntry *)entry;
 

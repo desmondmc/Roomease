@@ -14,6 +14,9 @@
 #define HALFWAY_SLIDER_X (OPEN_SLIDER_X/2)
 
 @implementation HPListTableViewCell
+{
+    HPListEntry *listEntry;
+}
 
 
 - (void)awakeFromNib
@@ -100,16 +103,39 @@
     NSLog(@"Delete Press");
 }
 - (IBAction)onCheckboxPress:(id)sender {
-    NSLog(@"Checkbox Press");
+
     if (self.checked) {
         HPTableView *tableView = (HPTableView *)self.superview.superview;
         [tableView uncheckCellWithCell:self];
+        [self->listEntry setCompletedBy:nil];
+        [HPCentralData saveToDoListEntryWithSingleEntryLocalAndRemote:self->listEntry];
     }
     else
     {
         HPTableView *tableView = (HPTableView *)self.superview.superview;
         [tableView checkCellWithCell:self];
+        [self->listEntry setCompletedBy:[HPCentralData getCurrentUser]];
+        [HPCentralData saveToDoListEntryWithSingleEntryLocalAndRemote:self->listEntry];
     }
 
+}
+
+- (void) initWithListEntry:(HPListEntry *) entry
+{
+    self.entryTitle.text = entry.description;
+    
+    NSString *dateString = [NSDateFormatter localizedStringFromDate:entry.dateAdded
+                                                          dateStyle:NSDateFormatterShortStyle
+                                                          timeStyle:NSDateFormatterFullStyle];
+    self.entryDate.text = dateString;
+    self.entryTime.text = dateString;
+    if ([entry completedByName]) {
+        HPTableView *tableView = (HPTableView *)self.superview.superview;
+        [tableView checkCellWithCell:self];
+    } else {
+        HPTableView *tableView = (HPTableView *)self.superview.superview;
+        [tableView uncheckCellWithCell:self];
+    }
+    self->listEntry = entry;
 }
 @end

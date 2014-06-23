@@ -13,6 +13,7 @@ typedef enum
     roommatesSyncRequest = 0,
     houseSyncRequest = 1,
     todoListSyncRequest = 2,
+    todoListItemSyncRequest = 3,
 } syncRequest_t;
 
 

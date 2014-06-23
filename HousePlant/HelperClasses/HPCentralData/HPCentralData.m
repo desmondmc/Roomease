@@ -49,14 +49,7 @@
         
         NSArray *pfRoommates = [parseHome objectForKey:@"users"];
         for (PFObject *pfRoommate in pfRoommates) {
-            HPRoommate * roommate = [[HPRoommate alloc] init];
-            roommate.username = pfRoommate[@"username"];
-            roommate.objectId = [pfRoommate objectId];
-            [roommate setAtHomeString:pfRoommate[@"atHome"]];
-            
-            
-            PFFile *userImageFile = [pfRoommate objectForKey:@"profilePic"];
-            roommate.profilePic = [UIImage imageWithData:[userImageFile getData]];
+            HPRoommate * roommate = [[HPRoommate alloc] initWithPFObject:pfRoommate];
             
             NSData *roommateData = [NSKeyedArchiver archivedDataWithRootObject:roommate];
             [roommatesData addObject:roommateData];
@@ -79,7 +72,7 @@
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
         PFQuery *query = [PFQuery queryWithClassName:@"Entry"];
         PFObject *pfEntry = [query getObjectWithId:objectId];
-        
+
         HPListEntry *listEntry = [[HPListEntry alloc] init];
         listEntry.description = pfEntry[@"description"];
         listEntry.dateCompleted = pfEntry[@"dateCompleted"];
@@ -175,7 +168,7 @@
        
         PFFile *userImageFile = [[PFUser currentUser] objectForKey:@"profilePic"];
         roommate.profilePic = [UIImage imageWithData:[userImageFile getData]];
-        
+        roommate.objectId = currentUser.objectId;
         [roommate setAtHomeString:currentUser[@"atHome"]];
         
         //convert roommate object into encoded data to store in NSUserdefault
@@ -395,7 +388,7 @@
 + (void) getToDoListEntriesInBackgroundWithBlock:(CentralDataListEntriesResultBlock)block
 {
     dispatch_async( dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
-        NSArray *todoListEntries = [HPCentralData getToDoListEntries];
+        NSArray *todoListEntries = [HPCentralData getToDoListEntriesAndForceReloadFromParse:NO];
         NSError *error;
         if (!todoListEntries)
         {
@@ -410,7 +403,7 @@
     });
 }
 
-+ (NSArray *) getToDoListEntries
++ (NSArray *) getToDoListEntriesAndForceReloadFromParse: (BOOL) forceReload
 {
     NSMutableArray *listEntriesData = [persistantStore objectForKey:kPersistantStoreToDoListEntries];
     NSMutableArray *todoListEntries = [[NSMutableArray alloc] init];
@@ -420,7 +413,7 @@
         [todoListEntries addObject:listEntry];
     }
     
-    if ([todoListEntries count] == 0)
+    if ([todoListEntries count] == 0 || forceReload)
     {
         listEntriesData = [[NSMutableArray alloc] init];
         
@@ -430,15 +423,12 @@
         
         PFQuery *query = [PFQuery queryWithClassName:@"Entry"];
         [query whereKey:@"houseObjectId" equalTo:house.objectId];
+        [query includeKey:@"completedBy"];
         NSArray *pfEntries = [query findObjects];
         if (pfEntries)
         {
             for (PFObject *pfEntry in pfEntries) {
-                HPListEntry * listEntry = [[HPListEntry alloc] init];
-                listEntry.description = pfEntry[@"description"];
-                listEntry.dateCompleted = pfEntry[@"dateCompleted"];
-                listEntry.dateAdded = pfEntry[@"createdAt"];
-                listEntry.completedBy = pfEntry[@"completedBy"];
+                HPListEntry * listEntry = [[HPListEntry alloc] initWithPFObject:pfEntry];
                 
                 
                 [todoListEntries addObject:listEntry];
@@ -463,17 +453,35 @@
         [NSException raise:@"HP Exception: Invalid entry sent to saveToDoListEntryWithSingleEntry, nil description" format:@"entry of %@ is invalid", entry];
     }
     
-    //Save the entry to parse
-    PFObject *pfNewListEntry = [PFObject objectWithClassName:@"Entry"];
+    NSMutableArray *todoListEntries = [NSMutableArray arrayWithArray:[HPCentralData getToDoListEntriesAndForceReloadFromParse:NO]];
     
+    PFObject *pfNewListEntry;
     
+    if(entry.objectId) {
+        NSLog(@"Saving existing object...");
+        pfNewListEntry = [PFObject objectWithoutDataWithClassName:@"Entry" objectId:entry.objectId];
+        [pfNewListEntry setObject:[NSNumber numberWithBool:([entry completedBy] != nil) ] forKey:@"isComplete"];
+        if(entry.completedBy.objectId) {
+            NSLog(@"Awesome");
+        }
+        [pfNewListEntry setObject:[entry completedBy].objectId ? [PFUser currentUser] : [NSNull alloc] forKey:@"completedBy"];
+    }
     
-    [pfNewListEntry setObject:@"ToDo List" forKey:@"listName"];
-    [pfNewListEntry setObject:[HPCentralData getHouse].objectId forKey:@"houseObjectId"];
-    [pfNewListEntry setObject:entry.description forKey:@"description"];
-    [pfNewListEntry setObject:[NSNumber numberWithBool:false] forKey:@"isComplete"];
+    //Save the NEW entry to parse
+    if (!pfNewListEntry){
+        NSLog(@"Saving new object...");
+        pfNewListEntry = [PFObject objectWithClassName:@"Entry"];
+
+        [pfNewListEntry setObject:@"ToDo List" forKey:@"listName"];
+        [pfNewListEntry setObject:[HPCentralData getHouse].objectId forKey:@"houseObjectId"];
+        [pfNewListEntry setObject:entry.description forKey:@"description"];
+        [pfNewListEntry setObject:[NSNumber numberWithBool:false] forKey:@"isComplete"];
+    }
+
     
     [pfNewListEntry save];
+    
+    [HPSyncWorker handleSyncRequestWithType:todoListSyncRequest andData:nil];
     
     entry.objectId = pfNewListEntry.objectId;
     
@@ -486,7 +494,7 @@
 {
     NSMutableArray *toDoListEntriesData = [[NSMutableArray alloc] init];
 
-    NSMutableArray *todoListEntries = [NSMutableArray arrayWithArray:[HPCentralData getToDoListEntries]];
+    NSMutableArray *todoListEntries = [NSMutableArray arrayWithArray:[HPCentralData getToDoListEntriesAndForceReloadFromParse:NO]];
     
     for (int entryCount = 0; entryCount < [todoListEntries count]; entryCount++) {
         HPListEntry *entryToFind = [todoListEntries objectAtIndex:entryCount];
@@ -714,10 +722,6 @@
 
     return newRoommate;
 }
-
-
-
-
 
 
 //setStateFirstTimeLoginTrue and getStateFirstTimeLoginAndSetToFalse are methods that get to store the track whether a user is new or not.
