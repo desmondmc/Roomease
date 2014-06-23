@@ -39,16 +39,15 @@
             [hpCell.avatar setBorderWith:0.0];
             [hpCell.avatar setShadowRadius:0.0];
             [hpCell.avatar setBorderColor:kLightBlueColour];
-            
-            [hpCell.blankCheckbox setHidden:true];
-            
-            NSDictionary* attributes = @{
-                                         NSStrikethroughStyleAttributeName: [NSNumber numberWithInt:NSUnderlineStyleSingle]
-                                         };
-            
-            NSAttributedString* attrText = [[NSAttributedString alloc] initWithString:hpCell.entryTitle.text attributes:attributes];
-            hpCell.entryTitle.attributedText = attrText;
         }
+        [hpCell.blankCheckbox setHidden:true];
+        
+        NSDictionary* attributes = @{
+                                     NSStrikethroughStyleAttributeName: [NSNumber numberWithInt:NSUnderlineStyleSingle]
+                                     };
+        
+        NSAttributedString* attrText = [[NSAttributedString alloc] initWithString:hpCell.entryTitle.text attributes:attributes];
+        hpCell.entryTitle.attributedText = attrText;
     }];
     
     

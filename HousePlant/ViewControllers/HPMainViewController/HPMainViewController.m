@@ -119,6 +119,28 @@
 - (IBAction)onRefreshRmPress:(id)sender {
     //Starts a sync request. Will be called back on resyncUIWithDictionary.
     [HPSyncWorker handleSyncRequestWithType:roommatesSyncRequest andData:nil];
+    [HPSyncWorker handleSyncRequestWithType:todoListSyncRequest andData:nil];
+}
+
+- (IBAction)onAddListEntryPress:(id)sender {
+    UIAlertView * alert = [[UIAlertView alloc] initWithTitle:@"Add a List Item" message:nil delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"Ok", nil];
+    alert.alertViewStyle = UIAlertViewStylePlainTextInput;
+    [alert show];
+}
+
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    //If the user hits ok.
+    if (buttonIndex == 1) {
+        //Save entry to parse.
+        
+        HPListEntry *listEntry = [[HPListEntry alloc] init];
+        
+        listEntry.description = [alertView textFieldAtIndex:0].text;
+        listEntry.dateAdded = [NSDate date];
+        
+        [HPCentralData saveToDoListEntryWithSingleEntryLocalAndRemote:listEntry];
+    }
 }
 
 #pragma mark - UITableViewDelegate

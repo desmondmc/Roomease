@@ -11,12 +11,13 @@
 #import "HPUINotifierDelegate.h"
 #import "HPToDoListDataSource.h"
 
-@interface HPMainViewController : UIViewController <HPUINotifierDelegate, UITableViewDelegate>
+@interface HPMainViewController : UIViewController <HPUINotifierDelegate, UITableViewDelegate, UIAlertViewDelegate>
 
 @property (weak, nonatomic) IBOutlet UIView *roommateImageSubviewContainer;
 @property (strong, nonatomic) HPToDoListDataSource *tableViewDataSource;
 
 - (IBAction)onSettingsPress:(id)sender;
 - (IBAction)onRefreshRmPress:(id)sender;
+- (IBAction)onAddListEntryPress:(id)sender;
 
 @end
