@@ -108,7 +108,7 @@
             
             [self addSubview:_avatar];
             [self sendSubviewToBack:_avatar];
-            _avatar.image = roommate.profilePic;
+            _avatar.image = [roommate profilePic];
             
             [_avatar setBorderWith:0.0];
             [_avatar setShadowRadius:0.0];

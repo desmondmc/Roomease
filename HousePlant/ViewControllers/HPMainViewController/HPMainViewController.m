@@ -118,9 +118,7 @@
     [self.todoListTableView moveRowAtIndexPath:[self.todoListTableView indexPathForCell:cell] toIndexPath:lastIndexPath];
     [self.todoListTableView endUpdates];
     
-    NSLog(@"Moving from %@", [self.todoListTableView indexPathForCell:cell]);
     numberOfCheckedCells++;
-        NSLog(@"Checked cell. There are %d cells and %d checked", [self.todoListTableView numberOfRowsInSection:0], numberOfCheckedCells);
 }
 - (void) uncheckCell:(HPListTableViewCell *) cell
 {
@@ -130,9 +128,7 @@
     [self.todoListTableView moveRowAtIndexPath:[self.todoListTableView indexPathForCell:cell] toIndexPath:lastIndexPath];
     [self.todoListTableView endUpdates];
     
-    NSLog(@"Moving from %@", [self.todoListTableView indexPathForCell:cell]);
     numberOfCheckedCells--;
-    NSLog(@"Unchecked cell. There are %d cells and %d checked", [self.todoListTableView numberOfRowsInSection:0], numberOfCheckedCells);
 }
 
 
@@ -225,18 +221,12 @@
         
         numberOfCheckedCells = 0;
         for (HPListEntry *entry in listItems) {
-            if(entry.completedBy)
+            if(entry.completedByName)
                 numberOfCheckedCells++;
         }
         
         [[self todoListTableView] reloadData];
         
-        NSLog(@"refresh todo list. List item count=%d", listItems.count);
-        
-    }
-    if ([uiChanges objectForKey:kRefreshRoommatesKey] != nil)
-    {
-        NSLog(@"refresh roommates list");
     }
 }
 

@@ -40,41 +40,67 @@
 
 - (void) saveNewHouseLocationInBackgroundWithAddressString:(NSString *)addressString andBlock:(LocationManagerSaveResultBlock)block
 {
-    CLGeocoder *geocoder = [[CLGeocoder alloc] init];
-    [geocoder geocodeAddressString:addressString inRegion:nil
-                 completionHandler:^(NSArray *placemarks, NSError *error) {
-                     NSLog(@"placemarks: %@", placemarks);
-                     if (placemarks)
-                     {
-                         CLPlacemark *placeMark = ((CLPlacemark *)[placemarks objectAtIndex:0]);
-                         
-                         HPHouse *house = [[HPHouse alloc] init];
-                         
-                         [house setLocation:placeMark.location];
-                         [house setAddressText:addressString];
-                         
-                         [HPCentralData saveHouseInBackgroundWithHouse:house andBlock:^(NSError *error) {
-                             if (!error) {
-                                 if (block) {
-                                     block(nil);
-                                 }
-                             }
-                             else
-                             {
-                                 if (block) {
-                                     block(@"Error saving house.");
-                                 }
-                             }
+    if (addressString == nil)
+    {
+        HPHouse *house = [[HPHouse alloc] init];
+        
+        [house setLocation:[self lastLocation]];
+        [house setAddressText:addressString];
+        
+        [HPCentralData saveHouseInBackgroundWithHouse:house andBlock:^(NSError *error) {
+            if (!error) {
+                if (block) {
+                    block(nil);
+                }
+            }
+            else
+            {
+                if (block) {
+                    block(@"Error saving house.");
+                }
+            }
+            
+        }];
+    }
+    else
+    {
+        CLGeocoder *geocoder = [[CLGeocoder alloc] init];
+        [geocoder geocodeAddressString:addressString inRegion:nil
+                     completionHandler:^(NSArray *placemarks, NSError *error) {
+                         NSLog(@"placemarks: %@", placemarks);
+                         if (placemarks)
+                         {
+                             CLPlacemark *placeMark = ((CLPlacemark *)[placemarks objectAtIndex:0]);
                              
-                         }];
-                     }
-                     else
-                     {
-                         if (block) {
-                             block(@"Could not find address.");
+                             HPHouse *house = [[HPHouse alloc] init];
+                             
+                             [house setLocation:placeMark.location];
+                             [house setAddressText:addressString];
+                             
+                             [HPCentralData saveHouseInBackgroundWithHouse:house andBlock:^(NSError *error) {
+                                 if (!error) {
+                                     if (block) {
+                                         block(nil);
+                                     }
+                                 }
+                                 else
+                                 {
+                                     if (block) {
+                                         block(@"Error saving house.");
+                                     }
+                                 }
+                                 
+                             }];
                          }
-                     }
-                 }];
+                         else
+                         {
+                             if (block) {
+                                 block(@"Could not find address.");
+                             }
+                         }
+                     }];
+    }
+
 }
 
 - (void) updateAtHomeStatus
@@ -152,6 +178,11 @@
 }
 
 #pragma mark - CLLocationManagerDelegate
+
+- (void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray *)locations
+{
+    [self setLastLocation:[locations lastObject]];
+}
 
 - (void)locationManager:(CLLocationManager *)manager
          didEnterRegion:(CLRegion *)region

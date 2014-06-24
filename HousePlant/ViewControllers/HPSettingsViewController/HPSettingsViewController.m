@@ -51,7 +51,7 @@
 - (IBAction)onSetLocationPress:(id)sender {
     NSString *addressText = [NSString stringWithFormat:@"%@ %@ %@",_houseNumberField.text,_streetField.text,_cityField.text];
     
-    [[HPLocationManager sharedLocationManager] saveNewHouseLocationInBackgroundWithAddressString:addressText andBlock:^(NSString *errorString) {
+    [[HPLocationManager sharedLocationManager] saveNewHouseLocationInBackgroundWithAddressString:[[self useCurrentLocation] isOn] ? nil : addressText andBlock:^(NSString *errorString) {
         if (errorString) {
             [CSNotificationView showInViewController:self
                                                style:CSNotificationViewStyleError

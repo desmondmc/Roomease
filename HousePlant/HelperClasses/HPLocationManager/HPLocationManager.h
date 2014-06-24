@@ -13,6 +13,7 @@ typedef void (^LocationManagerSaveResultBlock)(NSString *error);
 @interface HPLocationManager : NSObject <CLLocationManagerDelegate>
 
 @property (strong, atomic) CLLocationManager *locationManager;
+@property (strong, atomic) CLLocation *lastLocation;
 
 /************New functions***********/
 + (id)sharedLocationManager;

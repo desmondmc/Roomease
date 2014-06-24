@@ -454,8 +454,6 @@
         [NSException raise:@"HP Exception: Invalid entry sent to saveToDoListEntryWithSingleEntry, nil description" format:@"entry of %@ is invalid", entry];
     }
     
-    NSMutableArray *todoListEntries = [NSMutableArray arrayWithArray:[HPCentralData getToDoListEntriesAndForceReloadFromParse:NO]];
-    
     PFObject *pfNewListEntry;
     
     if(entry.objectId) {
@@ -477,8 +475,6 @@
 
     
     [pfNewListEntry save];
-    
-    [HPSyncWorker handleSyncRequestWithType:todoListSyncRequest andData:nil];
     
     entry.objectId = pfNewListEntry.objectId;
     
@@ -506,7 +502,7 @@
         [toDoListEntriesData addObject:listEntryData];
     }
     
-    [persistantStore setObject:toDoListEntriesData forKey:kPersistantStoreRoommates];
+    [persistantStore setObject:toDoListEntriesData forKey:kPersistantStoreToDoListEntries];
     [persistantStore synchronize];
     
     return true;
