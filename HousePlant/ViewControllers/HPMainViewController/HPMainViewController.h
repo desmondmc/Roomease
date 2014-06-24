@@ -15,9 +15,11 @@
 
 @property (weak, nonatomic) IBOutlet UIView *roommateImageSubviewContainer;
 @property (strong, nonatomic) HPToDoListDataSource *tableViewDataSource;
+@property (weak, nonatomic) IBOutlet UITableView *todoListTableView;
 
 - (IBAction)onSettingsPress:(id)sender;
 - (IBAction)onRefreshRmPress:(id)sender;
 - (IBAction)onAddListEntryPress:(id)sender;
+
 
 @end

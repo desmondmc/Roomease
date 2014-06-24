@@ -141,6 +141,8 @@
         listEntry.dateAdded = [NSDate date];
         
         [HPCentralData saveToDoListEntryWithSingleEntryLocalAndRemote:listEntry];
+        
+        [HPSyncWorker handleSyncRequestWithType:todoListSyncRequest andData:nil];
     }
 }
 
@@ -190,7 +192,19 @@
 
 -(void) resyncUIWithDictionary:(NSDictionary *)uiChanges
 {
-
+    if ([uiChanges objectForKey:kRefreshTodoListKey] != nil)
+    {
+        listItems = [NSMutableArray arrayWithArray:[HPCentralData getToDoListEntriesAndForceReloadFromParse:NO]];
+        
+        [[self todoListTableView] reloadData];
+        
+        NSLog(@"refresh todo list. List item count=%d", listItems.count);
+        
+    }
+    if ([uiChanges objectForKey:kRefreshRoommatesKey] != nil)
+    {
+        NSLog(@"refresh roommates list");
+    }
 }
 
 @end
