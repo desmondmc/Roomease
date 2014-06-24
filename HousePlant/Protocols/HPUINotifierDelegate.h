@@ -12,6 +12,7 @@
 
 #define kRefreshRoommatesKey @"refreshRoommatesKey"
 #define kRefreshTodoListKey      @"refreshTodoListKey"
+#define kRefreshTodoListItemKey      @"refreshTodoListItemKey"
 
 
 @protocol HPUINotifierDelegate <NSObject>

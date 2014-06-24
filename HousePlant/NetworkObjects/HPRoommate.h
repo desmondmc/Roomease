@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 
 @interface HPRoommate : HPNetworkObject
-
+- (id) initWithPFObject:(PFObject *) object;
 +(NSNumber *) boolWithString:(NSString *)string;
 
 @property (strong, nonatomic) NSString *username;

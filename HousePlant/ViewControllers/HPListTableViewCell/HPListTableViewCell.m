@@ -7,13 +7,15 @@
 //
 
 #import "HPListTableViewCell.h"
-#import "HPTableView.h"
 
 #define CLOSED_SLIDER_X 0
 #define OPEN_SLIDER_X -64
 #define HALFWAY_SLIDER_X (OPEN_SLIDER_X/2)
 
 @implementation HPListTableViewCell
+{
+    HPListEntry *listEntry;
+}
 
 
 - (void)awakeFromNib
@@ -96,20 +98,91 @@
     [recognizer setTranslation:CGPointMake(0, 0) inView:self];
 }
 
+- (void) checkCell {
+    [HPCentralData getCurrentUserInBackgroundWithBlock:^(HPRoommate *roommate, NSError *error) {
+        //
+        if([roommate profilePic])
+        {
+            _avatar = [[AMPAvatarView alloc] initWithFrame:CGRectMake(20, 5, 31, 31)];
+            
+            [self addSubview:_avatar];
+            [self sendSubviewToBack:_avatar];
+            _avatar.image = roommate.profilePic;
+            
+            [_avatar setBorderWith:0.0];
+            [_avatar setShadowRadius:0.0];
+            [_avatar setBorderColor:kLightBlueColour];
+        }
+        [_blankCheckbox setHidden:true];
+        
+        NSDictionary* attributes = @{
+                                     NSStrikethroughStyleAttributeName: [NSNumber numberWithInt:NSUnderlineStyleSingle]
+                                     };
+        
+        NSAttributedString* attrText = [[NSAttributedString alloc] initWithString:_entryTitle.text attributes:attributes];
+        _entryTitle.attributedText = attrText;
+    }];
+    
+    
+//    NSIndexPath *lastIndexPath = [NSIndexPath indexPathForRow:([self numberOfRowsInSection:0] - 1) inSection:0];
+    
+//    [self moveRowAtIndexPath:[self indexPathForCell:hpCell] toIndexPath:lastIndexPath];
+    _checked = true;
+    
+}
+
+- (void) uncheckCell {
+    [_blankCheckbox setHidden:false];
+    _checked = false;
+    [_avatar setHidden:true];
+    
+    NSDictionary* attributes = @{
+                                 NSStrikethroughStyleAttributeName: [NSNumber numberWithInt:NSUnderlineStyleNone]
+                                 };
+    
+    NSAttributedString* attrText = [[NSAttributedString alloc] initWithString:_entryTitle.text attributes:attributes];
+    _entryTitle.attributedText = attrText;
+    
+//    NSIndexPath *indexPathOfLastNonChecked = [NSIndexPath indexPathForRow:([self numberOfRowsInSection:0] - _numberOfCheckedRows) inSection:0];
+    
+//    [self moveRowAtIndexPath:[self indexPathForCell:hpCell] toIndexPath:indexPathOfLastNonChecked];
+}
+
 - (IBAction)onDeletePress:(id)sender {
     NSLog(@"Delete Press");
 }
 - (IBAction)onCheckboxPress:(id)sender {
-    NSLog(@"Checkbox Press");
+
     if (self.checked) {
-        HPTableView *tableView = (HPTableView *)self.superview.superview;
-        [tableView uncheckCellWithCell:self];
+        [self uncheckCell];
+        [self->listEntry setCompletedBy:nil];
+        [self->listEntry setCompletedByName:nil];
+        [self->listEntry setCompletedByImage:nil];
     }
     else
     {
-        HPTableView *tableView = (HPTableView *)self.superview.superview;
-        [tableView checkCellWithCell:self];
+        [self checkCell];
+        [self->listEntry setCompletedBy:[HPCentralData getCurrentUser]];
+        [self->listEntry setCompletedByName:self->listEntry.completedBy.username];
+        self->listEntry.completedByImage = self->listEntry.completedBy.profilePic;
     }
+    [HPCentralData saveToDoListEntryWithSingleEntryLocalAndRemote:self->listEntry];
+}
 
+- (void) initWithListEntry:(HPListEntry *) entry
+{
+    self.entryTitle.text = entry.description;
+    
+    NSString *dateString = [NSDateFormatter localizedStringFromDate:entry.dateAdded
+                                                          dateStyle:NSDateFormatterShortStyle
+                                                          timeStyle:NSDateFormatterFullStyle];
+    self.entryDate.text = dateString;
+    self.entryTime.text = dateString;
+    if ([entry completedByName]) {
+        [self checkCell];
+    } else {
+        [self uncheckCell];
+    }
+    self->listEntry = entry;
 }
 @end

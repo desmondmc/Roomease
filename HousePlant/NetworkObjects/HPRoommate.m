@@ -25,6 +25,21 @@
     return self;
 }
 
+- (id) initWithPFObject:(PFObject *) object
+{
+    if (self = [super init]) {
+        _username = object[@"username"];
+        _objectId = [object objectId];
+        [self setAtHomeString:object[@"atHome"]];
+        
+        
+        PFFile *userImageFile = [object objectForKey:@"profilePic"];
+        _profilePic = [UIImage imageWithData:[userImageFile getData]];
+    }
+    
+    return self;
+}
+
 //Storing data in NSUSerDefaults
 - (void)encodeWithCoder:(NSCoder *)aCoder
 {

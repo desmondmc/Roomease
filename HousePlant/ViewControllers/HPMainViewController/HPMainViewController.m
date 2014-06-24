@@ -38,6 +38,7 @@
 {
     [super viewDidLoad];
     
+    [HPSyncWorker handleSyncRequestWithType:todoListSyncRequest andData:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(receiveNotificationAppActive:)
                                                  name:NOTIFICATION_APP_BECAME_ACTIVE
@@ -119,6 +120,30 @@
 - (IBAction)onRefreshRmPress:(id)sender {
     //Starts a sync request. Will be called back on resyncUIWithDictionary.
     [HPSyncWorker handleSyncRequestWithType:roommatesSyncRequest andData:nil];
+    [HPSyncWorker handleSyncRequestWithType:todoListSyncRequest andData:nil];
+}
+
+- (IBAction)onAddListEntryPress:(id)sender {
+    UIAlertView * alert = [[UIAlertView alloc] initWithTitle:@"Add a List Item" message:nil delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"Ok", nil];
+    alert.alertViewStyle = UIAlertViewStylePlainTextInput;
+    [alert show];
+}
+
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    //If the user hits ok.
+    if (buttonIndex == 1) {
+        //Save entry to parse.
+        
+        HPListEntry *listEntry = [[HPListEntry alloc] init];
+        
+        listEntry.description = [alertView textFieldAtIndex:0].text;
+        listEntry.dateAdded = [NSDate date];
+        
+        [HPCentralData saveToDoListEntryWithSingleEntryLocalAndRemote:listEntry];
+        
+        [HPSyncWorker handleSyncRequestWithType:todoListSyncRequest andData:nil];
+    }
 }
 
 #pragma mark - UITableViewDelegate
@@ -126,7 +151,7 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     if (!listItems) {
-        listItems = [NSMutableArray arrayWithArray:[HPCentralData getToDoListEntries]];
+        listItems = [NSMutableArray arrayWithArray:[HPCentralData getToDoListEntriesAndForceReloadFromParse:NO]];
     }
     return listItems.count;
 }
@@ -137,7 +162,7 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (!listItems) {
-        listItems = [NSMutableArray arrayWithArray:[HPCentralData getToDoListEntries]];
+        listItems = [NSMutableArray arrayWithArray:[HPCentralData getToDoListEntriesAndForceReloadFromParse:NO]];
     }
     HPListTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"hpListTableViewCell"];
     
@@ -148,15 +173,7 @@
     }
     
     HPListEntry *entry = [listItems objectAtIndex:indexPath.row];
-    cell.entryTitle.text = entry.description;
-    
-    NSString *dateString = [NSDateFormatter localizedStringFromDate:entry.dateAdded
-                                                          dateStyle:NSDateFormatterShortStyle
-                                                          timeStyle:NSDateFormatterFullStyle];
-    cell.entryDate.text = dateString;
-    cell.entryTime.text = @"";
-    
-    
+    [cell initWithListEntry:entry];
     return cell;
 }
 
@@ -175,7 +192,19 @@
 
 -(void) resyncUIWithDictionary:(NSDictionary *)uiChanges
 {
-
+    if ([uiChanges objectForKey:kRefreshTodoListKey] != nil)
+    {
+        listItems = [NSMutableArray arrayWithArray:[HPCentralData getToDoListEntriesAndForceReloadFromParse:NO]];
+        
+        [[self todoListTableView] reloadData];
+        
+        NSLog(@"refresh todo list. List item count=%d", listItems.count);
+        
+    }
+    if ([uiChanges objectForKey:kRefreshRoommatesKey] != nil)
+    {
+        NSLog(@"refresh roommates list");
+    }
 }
 
 @end
