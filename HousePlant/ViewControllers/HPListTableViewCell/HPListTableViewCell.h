@@ -27,5 +27,6 @@
 @property (strong, nonatomic) IBOutlet AMPAvatarView *avatar;
 @property bool checked;
 @property (weak, nonatomic) IBOutlet UIButton *checkButton;
+@property (weak, nonatomic) IBOutlet UIImageView *noProfilePicImage;
 
 @end

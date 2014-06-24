@@ -13,10 +13,10 @@ DEPENDENCIES:
   - Reachability (~> 3.1.1)
 
 SPEC CHECKSUMS:
-  AMPAvatarView: 473eae59b5d71dfdeed18803917bfc2a9e0a0a42
-  CSNotificationView: f14352657afe7255be9fb2446eb99d5914b97b5d
-  MBProgressHUD: 2bbc6f470111daf7f3eaa4eb12b8cbf01c4c0622
-  NPReachability: 20281bf45f6124421a43668d2c7a61d1ecba8cf2
-  Reachability: be4883bb93f31e38266ae3365e5600a317aae735
+  AMPAvatarView: b4b26cb1350a4eaefc47e6b71f389d190dbde073
+  CSNotificationView: 21575accc254fa6684314bc6099c8475a4b52684
+  MBProgressHUD: c356980b0cd097f19acec959b49dca5eb8ec31be
+  NPReachability: 3f1d22668d58b79ac37d08e88d03477cef7b4c24
+  Reachability: 8e9635e3cb4f98e7f825e51147f677ecc694d0e7
 
-COCOAPODS: 0.29.0
+COCOAPODS: 0.33.1

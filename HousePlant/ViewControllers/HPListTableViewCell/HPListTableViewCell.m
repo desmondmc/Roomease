@@ -104,6 +104,7 @@
         //
         if([roommate profilePic])
         {
+            [_noProfilePicImage setHidden:YES];
             _avatar = [[AMPAvatarView alloc] initWithFrame:CGRectMake(20, 5, 31, 31)];
             
             [self.mainCellView addSubview:_avatar];
@@ -114,6 +115,11 @@
             [_avatar setShadowRadius:0.0];
             [_avatar setBorderColor:kLightBlueColour];
             
+        }
+        else
+        {
+            [_avatar setHidden:YES];
+            [_noProfilePicImage setHidden:NO];
         }
         [_blankCheckbox setHidden:true];
         
@@ -136,6 +142,7 @@
     [_blankCheckbox setHidden:false];
 
     [_avatar setHidden:true];
+    [_noProfilePicImage setHidden:YES];
     
     NSDictionary* attributes = @{
                                  NSStrikethroughStyleAttributeName: [NSNumber numberWithInt:NSUnderlineStyleNone]
