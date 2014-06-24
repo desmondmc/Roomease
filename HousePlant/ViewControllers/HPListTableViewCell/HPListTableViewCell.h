@@ -6,12 +6,14 @@
 //  Copyright (c) 2014 HousePlant. All rights reserved.
 //
 
+
 #import <UIKit/UIKit.h>
 #import <AMPAvatarView/AMPAvatarView.h>
+#import "HPMainViewController.h"
 
 @interface HPListTableViewCell : UITableViewCell <UIGestureRecognizerDelegate>
 - (IBAction)onDeletePress:(id)sender;
-- (void) initWithListEntry:(HPListEntry *)entry;
+- (void) initWithListEntry:(HPListEntry *) entry andTableView:(HPMainViewController *) tableViewController;
 @property (weak, nonatomic) IBOutlet UIView *mainCellView;
 @property (weak, nonatomic) IBOutlet UILabel *entryTitle;
 @property (weak, nonatomic) IBOutlet UILabel *entryDate;
@@ -23,5 +25,6 @@
 @property (weak, nonatomic) IBOutlet UIImageView *blankCheckbox;
 @property (strong, nonatomic) IBOutlet AMPAvatarView *avatar;
 @property bool checked;
+@property (weak, nonatomic) IBOutlet UIButton *checkButton;
 
 @end

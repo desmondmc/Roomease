@@ -23,12 +23,14 @@
 {
     RoommateImageSubview *roommateView;
     NSMutableArray *listItems;
+    int numberOfCheckedCells;
 }
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
+        numberOfCheckedCells = 0;
         _tableViewDataSource = [[HPToDoListDataSource alloc] init];
     }
     return self;
@@ -108,6 +110,27 @@
     
 }
 
+- (void) checkCell:(HPListTableViewCell *) cell
+{
+    NSIndexPath *lastIndexPath = [NSIndexPath indexPathForRow:([self.todoListTableView numberOfRowsInSection:0] - 1) inSection:0];
+    
+    [self.todoListTableView beginUpdates];
+    [self.todoListTableView moveRowAtIndexPath:[self.todoListTableView indexPathForCell:cell] toIndexPath:lastIndexPath];
+    [self.todoListTableView endUpdates];
+    
+    numberOfCheckedCells++;
+}
+- (void) uncheckCell:(HPListTableViewCell *) cell
+{
+    NSIndexPath *lastIndexPath = [NSIndexPath indexPathForRow:([self.todoListTableView numberOfRowsInSection:0] - (numberOfCheckedCells + 1)) inSection:0];
+    
+    [self.todoListTableView beginUpdates];
+    [self.todoListTableView moveRowAtIndexPath:[self.todoListTableView indexPathForCell:cell] toIndexPath:lastIndexPath];
+    [self.todoListTableView endUpdates];
+    
+    numberOfCheckedCells--;
+}
+
 
 - (IBAction)onSettingsPress:(id)sender {
     HPSettingsViewController *settingsViewController = [[HPSettingsViewController alloc] init];
@@ -173,7 +196,7 @@
     }
     
     HPListEntry *entry = [listItems objectAtIndex:indexPath.row];
-    [cell initWithListEntry:entry];
+    [cell initWithListEntry:entry andTableView:self];
     return cell;
 }
 
@@ -196,14 +219,14 @@
     {
         listItems = [NSMutableArray arrayWithArray:[HPCentralData getToDoListEntriesAndForceReloadFromParse:NO]];
         
+        numberOfCheckedCells = 0;
+        for (HPListEntry *entry in listItems) {
+            if(entry.completedByName)
+                numberOfCheckedCells++;
+        }
+        
         [[self todoListTableView] reloadData];
         
-        NSLog(@"refresh todo list. List item count=%d", listItems.count);
-        
-    }
-    if ([uiChanges objectForKey:kRefreshRoommatesKey] != nil)
-    {
-        NSLog(@"refresh roommates list");
     }
 }
 
