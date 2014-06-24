@@ -17,9 +17,11 @@
         _description = object[@"description"];
         _dateCompleted = object[@"dateCompleted"];
         _dateAdded = object[@"createdAt"];
-        _completedBy = [[HPRoommate alloc] initWithPFObject:object[@"completedBy"]];
-        _completedByName = _completedBy.username;
-        _completedByImage = _completedBy.profilePic;
+        if (![object[@"completedBy"] isEqual:[NSNull null]]) {
+            _completedBy = [[HPRoommate alloc] initWithPFObject:object[@"completedBy"]];
+            _completedByName = _completedBy.username;
+            _completedByImage = _completedBy.profilePic;
+        }
     }
     
     return self;

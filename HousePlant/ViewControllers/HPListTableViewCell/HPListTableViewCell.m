@@ -156,15 +156,17 @@
     if (self.checked) {
         [self uncheckCell];
         [self->listEntry setCompletedBy:nil];
-        [HPCentralData saveToDoListEntryWithSingleEntryLocalAndRemote:self->listEntry];
+        [self->listEntry setCompletedByName:nil];
+        [self->listEntry setCompletedByImage:nil];
     }
     else
     {
         [self checkCell];
         [self->listEntry setCompletedBy:[HPCentralData getCurrentUser]];
-        [HPCentralData saveToDoListEntryWithSingleEntryLocalAndRemote:self->listEntry];
+        [self->listEntry setCompletedByName:self->listEntry.completedBy.username];
+        self->listEntry.completedByImage = self->listEntry.completedBy.profilePic;
     }
-
+    [HPCentralData saveToDoListEntryWithSingleEntryLocalAndRemote:self->listEntry];
 }
 
 - (void) initWithListEntry:(HPListEntry *) entry

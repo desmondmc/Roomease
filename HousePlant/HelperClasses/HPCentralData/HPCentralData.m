@@ -461,9 +461,6 @@
         NSLog(@"Saving existing object...");
         pfNewListEntry = [PFObject objectWithoutDataWithClassName:@"Entry" objectId:entry.objectId];
         [pfNewListEntry setObject:[NSNumber numberWithBool:([entry completedBy] != nil) ] forKey:@"isComplete"];
-        if(entry.completedBy.objectId) {
-            NSLog(@"Awesome");
-        }
         [pfNewListEntry setObject:[entry completedBy].objectId ? [PFUser currentUser] : [NSNull alloc] forKey:@"completedBy"];
     }
     
