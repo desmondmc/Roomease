@@ -35,11 +35,20 @@
     
     [_uploadingPhotoIndicator setHidden:true];
     // Do any additional setup after loading the view from its nib.
+    
+    CGSize screenSize = [[UIScreen mainScreen] bounds].size;
+    
+    if (screenSize.height > 480.0f)
+    {
+        /*Do iPhone 5 stuff here.*/
+        [[self logoutButton] setFrame:CGRectMake(14, 501, [self logoutButton].frame.size.width, [self logoutButton].frame.size.height)];
+    }
 }
 
 - (void)viewDidAppear:(BOOL)animated
 {
     [[UIApplication sharedApplication] setStatusBarHidden:NO];
+    
 }
 
 - (void)didReceiveMemoryWarning

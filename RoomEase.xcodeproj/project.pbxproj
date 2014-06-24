@@ -95,7 +95,6 @@
 		F7A6F4B71852324000CEB9FD /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F7A6F4B11852324000CEB9FD /* SystemConfiguration.framework */; };
 		F7A6F4BD18524A8300CEB9FD /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F7A6F4BC18524A8300CEB9FD /* Parse.framework */; };
 		F7E3E52218E22251007A9C02 /* HPFreshLoginNewUserSetup.m in Sources */ = {isa = PBXBuildFile; fileRef = F7E3E52118E22251007A9C02 /* HPFreshLoginNewUserSetup.m */; };
-		F7E3E52618EE23E3007A9C02 /* HPTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = F7E3E52518EE23E3007A9C02 /* HPTableView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -219,8 +218,6 @@
 		F7A6F4BC18524A8300CEB9FD /* Parse.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Parse.framework; sourceTree = "<group>"; };
 		F7E3E52018E22251007A9C02 /* HPFreshLoginNewUserSetup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HPFreshLoginNewUserSetup.h; path = HelperClasses/HPFreshLoginNewUserSetup/HPFreshLoginNewUserSetup.h; sourceTree = "<group>"; };
 		F7E3E52118E22251007A9C02 /* HPFreshLoginNewUserSetup.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HPFreshLoginNewUserSetup.m; path = HelperClasses/HPFreshLoginNewUserSetup/HPFreshLoginNewUserSetup.m; sourceTree = "<group>"; };
-		F7E3E52418EE23E3007A9C02 /* HPTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HPTableView.h; path = CustomViews/HPTableView.h; sourceTree = "<group>"; };
-		F7E3E52518EE23E3007A9C02 /* HPTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HPTableView.m; path = CustomViews/HPTableView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -701,8 +698,6 @@
 			isa = PBXGroup;
 			children = (
 				F737152A18FF40AC00668251 /* HPToDoListDataSource */,
-				F7E3E52418EE23E3007A9C02 /* HPTableView.h */,
-				F7E3E52518EE23E3007A9C02 /* HPTableView.m */,
 			);
 			name = HPTableView;
 			sourceTree = "<group>";
@@ -908,7 +903,6 @@
 				F7653588186F67CA0046263B /* HPMainViewController.m in Sources */,
 				F7A1222F18522A4100E51B06 /* HousePlant.xcdatamodeld in Sources */,
 				F710E5FA187862B700BD9D54 /* HPLoginRouter.m in Sources */,
-				F7E3E52618EE23E3007A9C02 /* HPTableView.m in Sources */,
 				F77D56E818D7934D00CFF118 /* HPListTableViewCell.m in Sources */,
 				F710E60B187F77BC00BD9D54 /* HPCentralData.m in Sources */,
 				F36CEC2018C804160013D094 /* HPPushHelper.m in Sources */,
