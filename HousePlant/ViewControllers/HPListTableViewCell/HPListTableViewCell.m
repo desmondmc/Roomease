@@ -98,7 +98,7 @@
     [recognizer setTranslation:CGPointMake(0, 0) inView:self];
 }
 
-- (void) checkCell {
+- (void) checkCell{
     [HPCentralData getCurrentUserInBackgroundWithBlock:^(HPRoommate *roommate, NSError *error) {
         //
         if([roommate profilePic])
@@ -107,7 +107,7 @@
             
             [self addSubview:_avatar];
             [self sendSubviewToBack:_avatar];
-            _avatar.image = roommate.profilePic;
+            _avatar.image = [roommate profilePic];
             
             [_avatar setBorderWith:0.0];
             [_avatar setShadowRadius:0.0];

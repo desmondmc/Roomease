@@ -198,12 +198,6 @@
         
         [[self todoListTableView] reloadData];
         
-        NSLog(@"refresh todo list. List item count=%d", listItems.count);
-        
-    }
-    if ([uiChanges objectForKey:kRefreshRoommatesKey] != nil)
-    {
-        NSLog(@"refresh roommates list");
     }
 }
 

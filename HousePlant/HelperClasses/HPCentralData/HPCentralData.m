@@ -476,8 +476,6 @@
     
     [pfNewListEntry save];
     
-    [HPSyncWorker handleSyncRequestWithType:todoListSyncRequest andData:nil];
-    
     entry.objectId = pfNewListEntry.objectId;
     
     [HPCentralData saveToDoListEntryWithSingleEntryLocal:entry];
