@@ -50,8 +50,20 @@
 
 - (IBAction)onSetLocationPress:(id)sender {
     NSString *addressText = [NSString stringWithFormat:@"%@ %@ %@",_houseNumberField.text,_streetField.text,_cityField.text];
+    BOOL isAddressBasedLocation = FALSE;
     
-    [[HPLocationManager sharedLocationManager] saveNewHouseLocationInBackgroundWithAddressString:[[self useCurrentLocation] isOn] ? nil : addressText andBlock:^(NSString *errorString) {
+    
+    if (sender == [self setLocationButton])
+    {
+        isAddressBasedLocation = TRUE;
+    }
+    else if (sender == [self useCurrentLocationButton])
+    {
+        isAddressBasedLocation = FALSE;
+    }
+    
+    
+    [[HPLocationManager sharedLocationManager] saveNewHouseLocationInBackgroundWithAddressString: isAddressBasedLocation ? nil : addressText andBlock:^(NSString *errorString) {
         if (errorString) {
             [CSNotificationView showInViewController:self
                                                style:CSNotificationViewStyleError

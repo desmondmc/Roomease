@@ -9,9 +9,10 @@
                 <outlet property="cityField" destination="h6T-ZG-hJd" id="XEQ-qV-JfK"/>
                 <outlet property="homeLocationLabel" destination="Z13-H5-ZKG" id="u00-1G-Uji"/>
                 <outlet property="houseNumberField" destination="EyZ-hR-zEc" id="Vqy-BT-QxK"/>
+                <outlet property="setLocationButton" destination="adP-Z1-RLa" id="076-RC-jBj"/>
                 <outlet property="streetField" destination="GSo-wc-lTm" id="xGB-mU-gmf"/>
                 <outlet property="uploadingPhotoIndicator" destination="8e8-q7-5ZT" id="hvg-CF-VlM"/>
-                <outlet property="useCurrentLocation" destination="PID-ZY-vwK" id="gP9-zP-kec"/>
+                <outlet property="useCurrentLocationButton" destination="M6h-Gn-ch4" id="eSw-MO-o04"/>
                 <outlet property="view" destination="1" id="3"/>
             </connections>
         </placeholder>
@@ -20,15 +21,8 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Home Location:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mfF-Aq-T2n">
-                    <rect key="frame" x="26" y="59" width="122" height="21"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                    <nil key="highlightedColor"/>
-                </label>
                 <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QMr-hu-UbP">
-                    <rect key="frame" x="-39" y="19" width="115" height="46"/>
+                    <rect key="frame" x="-29" y="19" width="115" height="46"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <rect key="contentStretch" x="0.0" y="0.0" width="0.0" height="0.0"/>
                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
@@ -39,39 +33,18 @@
                         <action selector="onBackPress:" destination="-1" eventType="touchUpInside" id="1gC-f4-2gW"/>
                     </connections>
                 </button>
-                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="House #" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="EyZ-hR-zEc">
-                    <rect key="frame" x="26" y="88" width="97" height="30"/>
+                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="adP-Z1-RLa">
+                    <rect key="frame" x="14" y="219" width="293" height="47"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                    <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
-                </textField>
-                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Street" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="GSo-wc-lTm">
-                    <rect key="frame" x="26" y="126" width="230" height="30"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                    <textInputTraits key="textInputTraits"/>
-                </textField>
-                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="CIty" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="h6T-ZG-hJd">
-                    <rect key="frame" x="26" y="164" width="230" height="30"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                    <textInputTraits key="textInputTraits"/>
-                </textField>
-                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="adP-Z1-RLa">
-                    <rect key="frame" x="103" y="226" width="87" height="30"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <state key="normal" title="Set Location">
-                        <color key="titleColor" red="0.1400408061" green="0.91665338009999997" blue="0.29529888929999998" alpha="1" colorSpace="calibratedRGB"/>
-                        <color key="titleShadowColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-                    </state>
+                    <state key="normal" image="set-location-btn"/>
                     <connections>
                         <action selector="onSetLocationPress:" destination="-1" eventType="touchUpInside" id="dCw-wa-eNh"/>
                     </connections>
                 </button>
-                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="H1y-yb-D0Q">
-                    <rect key="frame" x="117" y="375" width="49" height="30"/>
+                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="H1y-yb-D0Q">
+                    <rect key="frame" x="14" y="472" width="293" height="47"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <state key="normal" title="Logout">
+                    <state key="normal" image="logout-btn">
                         <color key="titleColor" red="0.1400408061" green="0.91665338009999997" blue="0.29529888929999998" alpha="1" colorSpace="calibratedRGB"/>
                         <color key="titleShadowColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </state>
@@ -87,10 +60,10 @@
                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="X7L-iW-LR6">
-                    <rect key="frame" x="93" y="264" width="97" height="30"/>
+                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="X7L-iW-LR6">
+                    <rect key="frame" x="14" y="329" width="293" height="47"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <state key="normal" title="Set Profile Pic">
+                    <state key="normal" image="set-pic-btn">
                         <color key="titleColor" red="0.1400408061" green="0.91665338009999997" blue="0.29529888929999998" alpha="1" colorSpace="calibratedRGB"/>
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
@@ -99,28 +72,72 @@
                     </connections>
                 </button>
                 <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="8e8-q7-5ZT" userLabel="uploadingPhotoIndicator">
-                    <rect key="frame" x="74" y="302" width="134" height="38"/>
+                    <rect key="frame" x="93" y="384" width="134" height="38"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <subviews>
                         <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" animating="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="sV3-3z-VX5">
-                            <rect key="frame" x="109" y="9" width="20" height="20"/>
+                            <rect key="frame" x="57" y="9" width="20" height="20"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         </activityIndicatorView>
-                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Uploading photo..." lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="97r-Lh-Eyr">
-                            <rect key="frame" x="5" y="9" width="136" height="20"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            <fontDescription key="fontDescription" type="system" pointSize="11"/>
-                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                            <nil key="highlightedColor"/>
-                        </label>
                     </subviews>
                     <color key="backgroundColor" red="0.29019607843137252" green="0.69411764705882351" blue="0.9882352941176471" alpha="1" colorSpace="deviceRGB"/>
                 </view>
-                <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="PID-ZY-vwK">
-                    <rect key="frame" x="207" y="87" width="51" height="31"/>
+                <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" fixedFrame="YES" image="settings-title" translatesAutoresizingMaskIntoConstraints="NO" id="Ja6-9u-RtY">
+                    <rect key="frame" x="103" y="20" width="105" height="45"/>
+                    <autoresizingMask key="autoresizingMask"/>
+                </imageView>
+                <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" fixedFrame="YES" image="text-field" translatesAutoresizingMaskIntoConstraints="NO" id="smL-xV-Tsj">
+                    <rect key="frame" x="14" y="84" width="293" height="37"/>
+                    <autoresizingMask key="autoresizingMask"/>
+                </imageView>
+                <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" fixedFrame="YES" image="text-field" translatesAutoresizingMaskIntoConstraints="NO" id="lHM-JX-RGz">
+                    <rect key="frame" x="14" y="129" width="293" height="37"/>
+                    <autoresizingMask key="autoresizingMask"/>
+                </imageView>
+                <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" fixedFrame="YES" image="text-field" translatesAutoresizingMaskIntoConstraints="NO" id="gtf-tD-cJo">
+                    <rect key="frame" x="14" y="174" width="293" height="37"/>
+                    <autoresizingMask key="autoresizingMask"/>
+                </imageView>
+                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" usesAttributedText="YES" placeholder="House #" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="EyZ-hR-zEc">
+                    <rect key="frame" x="20" y="88" width="230" height="30"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <color key="onTintColor" red="1" green="0.40000000600000002" blue="0.40000000600000002" alpha="1" colorSpace="calibratedRGB"/>
-                </switch>
+                    <attributedString key="attributedText"/>
+                    <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
+                </textField>
+                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" usesAttributedText="YES" placeholder="Street" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="GSo-wc-lTm">
+                    <rect key="frame" x="20" y="133" width="230" height="30"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <attributedString key="attributedText"/>
+                    <textInputTraits key="textInputTraits"/>
+                </textField>
+                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" usesAttributedText="YES" placeholder="CIty" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="h6T-ZG-hJd">
+                    <rect key="frame" x="20" y="178" width="230" height="30"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <attributedString key="attributedText"/>
+                    <textInputTraits key="textInputTraits"/>
+                </textField>
+                <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" fixedFrame="YES" image="text-field-delete" translatesAutoresizingMaskIntoConstraints="NO" id="zjl-WG-vbD">
+                    <rect key="frame" x="278" y="92" width="22" height="22"/>
+                    <autoresizingMask key="autoresizingMask"/>
+                </imageView>
+                <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" fixedFrame="YES" image="text-field-delete" translatesAutoresizingMaskIntoConstraints="NO" id="Wqu-Wp-RzX">
+                    <rect key="frame" x="278" y="137" width="22" height="22"/>
+                    <autoresizingMask key="autoresizingMask"/>
+                </imageView>
+                <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" fixedFrame="YES" image="text-field-delete" translatesAutoresizingMaskIntoConstraints="NO" id="7i2-DB-JKz">
+                    <rect key="frame" x="278" y="182" width="22" height="22"/>
+                    <autoresizingMask key="autoresizingMask"/>
+                </imageView>
+                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="M6h-Gn-ch4">
+                    <rect key="frame" x="14" y="274" width="293" height="47"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <state key="normal" image="use-current-location-btn">
+                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <connections>
+                        <action selector="onSetLocationPress:" destination="-1" eventType="touchUpInside" id="azQ-GP-Kff"/>
+                    </connections>
+                </button>
             </subviews>
             <color key="backgroundColor" red="0.29019609089999998" green="0.69411766529999996" blue="0.98823535439999999" alpha="1" colorSpace="deviceRGB"/>
             <simulatedStatusBarMetrics key="simulatedStatusBarMetrics"/>
@@ -128,6 +145,13 @@
         </view>
     </objects>
     <resources>
+        <image name="logout-btn" width="293" height="47"/>
+        <image name="set-location-btn" width="293" height="47"/>
+        <image name="set-pic-btn" width="293" height="47"/>
+        <image name="settings-title" width="105" height="45"/>
+        <image name="text-field" width="293" height="37"/>
+        <image name="text-field-delete" width="22" height="22"/>
+        <image name="use-current-location-btn" width="293" height="47"/>
         <image name="white-back-arrow" width="22" height="28"/>
     </resources>
 </document>
