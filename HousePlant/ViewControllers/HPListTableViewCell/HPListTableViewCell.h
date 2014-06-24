@@ -26,5 +26,6 @@
 @property (weak, nonatomic) IBOutlet UIImageView *blankCheckbox;
 @property (strong, nonatomic) IBOutlet AMPAvatarView *avatar;
 @property bool checked;
+@property (weak, nonatomic) IBOutlet UIButton *checkButton;
 
 @end
