@@ -171,24 +171,58 @@
         self->listEntry.completedByImage = self->listEntry.completedBy.profilePic;
         self->listEntry.dateCompleted = [[NSDate alloc] init];
     }
+    [self setText];
     [HPCentralData saveToDoListEntryWithSingleEntryLocalAndRemote:self->listEntry];
+}
+
+- (void) setText {
+    if ([self->listEntry completedByName]) {
+        NSString *dateString = [NSDateFormatter localizedStringFromDate:self->listEntry.dateCompleted
+                                                              dateStyle:NSDateFormatterMediumStyle
+                                                              timeStyle:NSDateFormatterNoStyle];
+        NSString *timeString = [NSDateFormatter localizedStringFromDate:self->listEntry.dateCompleted
+                                                              dateStyle:NSDateFormatterNoStyle
+                                                              timeStyle:NSDateFormatterShortStyle];
+        self.entryDate.text = [NSString stringWithFormat:@"%@ at", dateString ];
+        self.entryTime.text = timeString;
+        _entryAddedName.text = @"Completed";
+        CGRect frame = self.entryDate.frame;
+        frame.origin.x = 110;
+        self.entryDate.frame = frame;
+        frame = self.entryTime.frame;
+        frame.origin.x = 195;
+        self.entryTime.frame =frame;
+    } else {
+        NSString *dateString = [NSDateFormatter localizedStringFromDate:self->listEntry.dateAdded
+                                                              dateStyle:NSDateFormatterMediumStyle
+                                                              timeStyle:NSDateFormatterNoStyle];
+        NSString *timeString = [NSDateFormatter localizedStringFromDate:self->listEntry.dateAdded
+                                                              dateStyle:NSDateFormatterNoStyle
+                                                              timeStyle:NSDateFormatterShortStyle];
+        self.entryDate.text = [NSString stringWithFormat:@"%@ at", dateString ];
+        self.entryTime.text = timeString;
+        _entryAddedName.text = @"Added";
+        CGRect frame = self.entryDate.frame;
+        frame.origin.x = 90;
+        self.entryDate.frame = frame;
+        frame = self.entryTime.frame;
+        frame.origin.x = 175;
+        self.entryTime.frame =frame;
+    }
+    [self layoutSubviews];
 }
 
 - (void) initWithListEntry:(HPListEntry *) entry andTableView:(HPMainViewController *) tableViewController
 {
+    self->listEntry = entry;
     self->mainTableViewController = tableViewController;
     self.entryTitle.text = entry.description;
     
-    NSString *dateString = [NSDateFormatter localizedStringFromDate:entry.dateAdded
-                                                          dateStyle:NSDateFormatterShortStyle
-                                                          timeStyle:NSDateFormatterFullStyle];
-    self.entryDate.text = dateString;
-    self.entryTime.text = dateString;
+    [self setText];
     if ([entry completedByName]) {
         [self checkCellAndMove:NO];
     } else {
         [self uncheckCellAndMove:NO];
     }
-    self->listEntry = entry;
 }
 @end

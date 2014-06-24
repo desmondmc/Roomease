@@ -15,12 +15,12 @@
     if (self = [super init]) {
         _objectId = object.objectId;
         _description = object[@"description"];
-        _dateCompleted = object[@"dateCompleted"];
-        _dateAdded = object[@"createdAt"];
+        _dateAdded = object.createdAt;
         if (![object[@"completedBy"] isEqual:[NSNull null]]) {
             _completedBy = [[HPRoommate alloc] initWithPFObject:object[@"completedBy"]];
             _completedByName = _completedBy.username;
             _completedByImage = _completedBy.profilePic;
+            _dateCompleted = object[@"completedAt"];
         }
     }
     

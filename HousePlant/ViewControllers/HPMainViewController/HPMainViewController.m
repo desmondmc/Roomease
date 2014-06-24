@@ -62,6 +62,7 @@
     
     roommateView = [RoommateImageSubview initRoommateImageSubview];
     [[self roommateImageSubviewContainer] addSubview:roommateView];
+    [self countChecked];
 }
 
 - (void) getProfilePicturesWithUser:(PFUser *)user andIndex:(int)index
@@ -112,6 +113,7 @@
 
 - (void) checkCell:(HPListTableViewCell *) cell
 {
+    [self countChecked];
     NSIndexPath *lastIndexPath = [NSIndexPath indexPathForRow:([self.todoListTableView numberOfRowsInSection:0] - 1) inSection:0];
     
     [self.todoListTableView beginUpdates];
@@ -122,7 +124,8 @@
 }
 - (void) uncheckCell:(HPListTableViewCell *) cell
 {
-    NSIndexPath *lastIndexPath = [NSIndexPath indexPathForRow:([self.todoListTableView numberOfRowsInSection:0] - (numberOfCheckedCells + 1)) inSection:0];
+    [self countChecked];
+    NSIndexPath *lastIndexPath = [NSIndexPath indexPathForRow:([self.todoListTableView numberOfRowsInSection:0] - (numberOfCheckedCells)) inSection:0];
     
     [self.todoListTableView beginUpdates];
     [self.todoListTableView moveRowAtIndexPath:[self.todoListTableView indexPathForCell:cell] toIndexPath:lastIndexPath];
@@ -218,17 +221,19 @@
     if ([uiChanges objectForKey:kRefreshTodoListKey] != nil)
     {
         listItems = [NSMutableArray arrayWithArray:[HPCentralData getToDoListEntriesAndForceReloadFromParse:NO]];
-        
-        numberOfCheckedCells = 0;
-        for (HPListEntry *entry in listItems) {
-            if(entry.completedByName)
-                numberOfCheckedCells++;
-        }
+        [self countChecked];
         
         [[self todoListTableView] reloadData];
         
     }
 }
+
+- (void) countChecked {
+    numberOfCheckedCells = 0;
+    for (HPListEntry *entry in listItems) {
+        if(entry.completedByName)
+            numberOfCheckedCells++;
+    }}
 
 @end
 

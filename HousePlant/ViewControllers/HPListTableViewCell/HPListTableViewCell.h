@@ -16,6 +16,7 @@
 - (void) initWithListEntry:(HPListEntry *) entry andTableView:(HPMainViewController *) tableViewController;
 @property (weak, nonatomic) IBOutlet UIView *mainCellView;
 @property (weak, nonatomic) IBOutlet UILabel *entryTitle;
+@property (weak, nonatomic) IBOutlet UILabel *entryAddedName;
 @property (weak, nonatomic) IBOutlet UILabel *entryDate;
 @property (weak, nonatomic) IBOutlet UILabel *entryTime;
 @property (weak, nonatomic) IBOutlet UIImageView *fader;
