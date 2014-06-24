@@ -25,22 +25,4 @@
 // Row display. Implementers should *always* try to reuse cells by setting each cell's reuseIdentifier and querying for available reusable cells with dequeueReusableCellWithIdentifier:
 // Cell gets various attributes set automatically based on table (separators) and data source (accessory views, editing controls)
 
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    if (!listItems) {
-        listItems = [NSMutableArray arrayWithArray:[HPCentralData getToDoListEntriesAndForceReloadFromParse:NO]];
-    }
-    HPListTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"hpListTableViewCell"];
-    
-    if (cell == nil) {
-        //There was no reusablecell to dequeue
-        NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"HPListTableViewCell" owner:self options:nil];
-        cell = [nib objectAtIndex:0];
-    }
-    
-    HPListEntry *entry = [listItems objectAtIndex:indexPath.row];
-    [cell initWithListEntry:entry];
-    return cell;
-}
-
 @end

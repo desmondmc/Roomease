@@ -424,6 +424,7 @@
         PFQuery *query = [PFQuery queryWithClassName:@"Entry"];
         [query whereKey:@"houseObjectId" equalTo:house.objectId];
         [query includeKey:@"completedBy"];
+        [query orderByAscending:@"completedAt"];
         NSArray *pfEntries = [query findObjects];
         if (pfEntries)
         {
@@ -458,15 +459,14 @@
     PFObject *pfNewListEntry;
     
     if(entry.objectId) {
-        NSLog(@"Saving existing object...");
         pfNewListEntry = [PFObject objectWithoutDataWithClassName:@"Entry" objectId:entry.objectId];
         [pfNewListEntry setObject:[NSNumber numberWithBool:([entry completedBy] != nil) ] forKey:@"isComplete"];
         [pfNewListEntry setObject:[entry completedBy].objectId ? [PFUser currentUser] : [NSNull alloc] forKey:@"completedBy"];
+        [pfNewListEntry setObject:entry.dateCompleted ? entry.dateCompleted : [NSNull null] forKey:@"completedAt"];
     }
     
     //Save the NEW entry to parse
     if (!pfNewListEntry){
-        NSLog(@"Saving new object...");
         pfNewListEntry = [PFObject objectWithClassName:@"Entry"];
 
         [pfNewListEntry setObject:@"ToDo List" forKey:@"listName"];
