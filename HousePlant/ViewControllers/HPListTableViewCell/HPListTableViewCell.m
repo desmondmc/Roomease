@@ -106,13 +106,14 @@
         {
             _avatar = [[AMPAvatarView alloc] initWithFrame:CGRectMake(20, 5, 31, 31)];
             
-            [self addSubview:_avatar];
-            [self sendSubviewToBack:_avatar];
+            [self.mainCellView addSubview:_avatar];
+            [self.mainCellView sendSubviewToBack:_avatar];
             _avatar.image = [roommate profilePic];
             
             [_avatar setBorderWith:0.0];
             [_avatar setShadowRadius:0.0];
             [_avatar setBorderColor:kLightBlueColour];
+            
         }
         [_blankCheckbox setHidden:true];
         
