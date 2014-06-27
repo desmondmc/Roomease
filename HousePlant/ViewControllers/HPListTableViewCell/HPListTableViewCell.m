@@ -27,8 +27,8 @@
     UITapGestureRecognizer *singleTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(onDeletePress:)];
     singleTap.numberOfTapsRequired = 1;
     singleTap.numberOfTouchesRequired = 1;
-    [self addGestureRecognizer:singleTap];
-    [self setUserInteractionEnabled:YES];
+    [self.deleteButton addGestureRecognizer:singleTap];
+    [self.deleteButton setUserInteractionEnabled:YES];
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated
@@ -105,14 +105,15 @@
 }
 
 - (void) checkCellAndMove:(BOOL) move {
-    if([self.listEntry completedBy].profilePic)
+    
+    if([self.listEntry completedByImage] != nil)
     {
         [_noProfilePicImage setHidden:YES];
-        _avatar = [[AMPAvatarView alloc] initWithFrame:CGRectMake(20, 5, 31, 31)];
+        _avatar = [[AMPAvatarView alloc] initWithFrame:CGRectMake(20, 12, 31, 31)];
         
         [self.mainCellView addSubview:_avatar];
         [self.mainCellView sendSubviewToBack:_avatar];
-        _avatar.image = [self.listEntry completedBy].profilePic;
+        _avatar.image = [self.listEntry completedByImage];
         
         [_avatar setBorderWith:0.0];
         [_avatar setShadowRadius:0.0];
@@ -176,41 +177,21 @@
 - (IBAction)onCheckboxPress:(id)sender {
 
     if (self.checked) {
-        [self uncheckCellAndMove:YES];
-        [self.listEntry setCompletedBy:nil];
         [self.listEntry setCompletedByName:nil];
         [self.listEntry setCompletedByImage:nil];
         self.listEntry.dateCompleted = nil;
         [avatar2 setHidden:YES];
+        [self uncheckCellAndMove:YES];
+        [self.listEntry setCompletedBy:nil];
     }
     else
     {
-        [self checkCellAndMove:YES];
+
         [self.listEntry setCompletedBy:[HPCentralData getCurrentUser]];
         [self.listEntry setCompletedByName:self.listEntry.completedBy.username];
         self.listEntry.completedByImage = self.listEntry.completedBy.profilePic;
-        if (self.listEntry.completedByImage != nil)
-        {
-            [_noProfilePicImage setHidden:YES];
-            
-            avatar2 = [[AMPAvatarView alloc] initWithFrame:CGRectMake(20, 5, 31, 31)];
-            [self.mainCellView addSubview:avatar2];
-            [self.mainCellView sendSubviewToBack:avatar2];
-            [avatar2 setHidden:YES];
-            
-            [avatar2 setBorderWith:0.0];
-            [avatar2 setShadowRadius:0.0];
-            [avatar2 setImage:self.listEntry.completedByImage];
-            
-            [avatar2 setHidden:NO];
-        }
-        else
-        {
-            [_noProfilePicImage setHidden:NO];
-            [_profilePic setHidden:YES];
-            [avatar2 setHidden:YES];
-        }
         self.listEntry.dateCompleted = [[NSDate alloc] init];
+        [self checkCellAndMove:YES];
     }
     [self setText];
     [HPCentralData saveToDoListEntryWithSingleEntryLocalAndRemote:self.listEntry];
@@ -262,21 +243,6 @@
     [self setText];
     if ([entry completedByName]) {
         [self checkCellAndMove:NO];
-        if (self.listEntry.completedByImage != nil)
-        {
-            [_noProfilePicImage setHidden:YES];
-            
-            avatar2 = [[AMPAvatarView alloc] initWithFrame:CGRectMake(20, 5, 31, 31)];
-            [self.mainCellView addSubview:avatar2];
-            [self.mainCellView sendSubviewToBack:avatar2];
-            [avatar2 setHidden:YES];
-            
-            [avatar2 setBorderWith:0.0];
-            [avatar2 setShadowRadius:0.0];
-            [avatar2 setImage:self->listEntry.completedByImage];
-            
-            [avatar2 setHidden:NO];
-        }
     } else {
         [self uncheckCellAndMove:NO];
     }

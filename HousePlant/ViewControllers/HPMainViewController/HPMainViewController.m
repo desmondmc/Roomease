@@ -24,7 +24,6 @@
 {
     RoommateImageSubview *roommateView;
     NSMutableArray *listItems;
-    int numberOfCheckedCells;
     ISRefreshControl *refreshControl;
 }
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -32,7 +31,6 @@
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
-        numberOfCheckedCells = 0;
         _tableViewDataSource = [[HPToDoListDataSource alloc] init];
     }
     return self;
@@ -49,7 +47,7 @@
                                                object:nil];
     
     self->refreshControl = [[ISRefreshControl alloc] init];
-    [self->refreshControl setAttributedTitle:[[NSAttributedString alloc] initWithString:@"Refreshing..." attributes:nil]];
+//    [self->refreshControl setAttributedTitle:[[NSAttributedString alloc] initWithString:@"Refreshing..." attributes:nil]];
     [self->refreshControl setTintColor:[UIColor blueColor]];
     [self.todoListTableView addSubview:refreshControl];
     
@@ -139,19 +137,15 @@
     [self.todoListTableView beginUpdates];
     [self.todoListTableView moveRowAtIndexPath:[self.todoListTableView indexPathForCell:cell] toIndexPath:lastIndexPath];
     [self.todoListTableView endUpdates];
-    
-    numberOfCheckedCells++;
 }
 - (void) uncheckCell:(HPListTableViewCell *) cell
 {
-    [self countChecked];
+    int numberOfCheckedCells = [self countChecked] + 1;
     NSIndexPath *lastIndexPath = [NSIndexPath indexPathForRow:([self.todoListTableView numberOfRowsInSection:0] - (numberOfCheckedCells)) inSection:0];
     
     [self.todoListTableView beginUpdates];
     [self.todoListTableView moveRowAtIndexPath:[self.todoListTableView indexPathForCell:cell] toIndexPath:lastIndexPath];
     [self.todoListTableView endUpdates];
-    
-    numberOfCheckedCells--;
 }
 
 
@@ -246,12 +240,14 @@
     }
 }
 
-- (void) countChecked {
-    numberOfCheckedCells = 0;
+- (int) countChecked {
+    int numberOfCheckedCells = 0;
     for (HPListEntry *entry in listItems) {
         if(entry.completedByName)
             numberOfCheckedCells++;
-    }}
+    }
+    return numberOfCheckedCells;
+}
 
 @end
 
