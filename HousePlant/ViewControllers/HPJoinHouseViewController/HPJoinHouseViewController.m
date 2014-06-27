@@ -168,6 +168,11 @@ typedef void (^BackgroundTaskResultBlock)(NSString *errorString);
     {
         return @"There was an error moving in. Please try again.";
     }
+    else
+    {
+        [[PFUser currentUser] setObject:house forKey:@"home"];
+        [[PFUser currentUser] save];
+    }
     
     return nil;
 }

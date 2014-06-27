@@ -165,11 +165,16 @@ typedef void (^BackgroundTaskResultBlock)(NSString *errorString);
             {
                 errorString = @"There was an error building you house. Please try again.";
             }
-//            else
-//            {
-//                [[PFUser currentUser] setObject:newHouse forKey:@"home"];
-//                [[PFUser currentUser] save];
-//            }
+            else
+            {
+                PFQuery *query = [PFQuery queryWithClassName:@"House"];
+                [query whereKey:@"name" equalTo:_houseNameField.text];
+                NSArray *houses = [query findObjects];
+                PFObject *house = [houses objectAtIndex:0];
+                PFUser *currentUser = [PFUser currentUser];
+                currentUser[@"home"] = house;
+                [currentUser save];
+            }
             
             if(!errorString)
             {

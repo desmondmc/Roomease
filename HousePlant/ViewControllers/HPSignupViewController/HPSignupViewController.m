@@ -140,6 +140,18 @@
 - (IBAction)onEditProfilePicturePress:(id)sender {
     UIImagePickerController *picker = [HPCameraManager setupCameraWithDelegate:self];
     
+    if (picker == nil)
+    {
+        UIAlertView *myAlertView = [[UIAlertView alloc] initWithTitle:@"Error"
+                                                              message:@"Device has no camera"
+                                                             delegate:nil
+                                                    cancelButtonTitle:@"OK"
+                                                    otherButtonTitles: nil];
+        
+        [myAlertView show];
+        return;
+    }
+    
     [[UIApplication sharedApplication] setStatusBarHidden:YES];
     [self presentViewController:picker animated:YES completion:NULL];
 }

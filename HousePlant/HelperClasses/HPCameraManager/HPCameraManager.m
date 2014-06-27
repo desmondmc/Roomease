@@ -13,14 +13,6 @@
 + (UIImagePickerController *) setupCameraWithDelegate:(id)delegate
 {
     if (![UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
-        
-        UIAlertView *myAlertView = [[UIAlertView alloc] initWithTitle:@"Error"
-                                                              message:@"Device has no camera"
-                                                             delegate:nil
-                                                    cancelButtonTitle:@"OK"
-                                                    otherButtonTitles: nil];
-        
-        [myAlertView show];
         return nil;
     }
     UIImagePickerController *picker = [[UIImagePickerController alloc] init];

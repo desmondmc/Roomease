@@ -1,10 +1,6 @@
 
 // Use Parse.Cloud.define to define as many cloud functions as you want.
 // For example:
-Parse.Cloud.define("hello", function(request, response) {
-response.success("Hello world!");
-});
-
 
 Parse.Cloud.define("sendPushToMates", function(request, response)
                    {
@@ -30,63 +26,6 @@ Parse.Cloud.define("sendPushToMates", function(request, response)
                    
                    });
 
-Parse.Cloud.afterSave("House", function(request, response) {
-            console.log("!!!!!!!!!!!CLOUD FUNCTION: afterSave-House");
-          //TODO need to check if this is the first user moving into the house.
-//                      var users = request.object.get("users");
-//                      Array(users);
-//                      if (users.length == 1)
-//                      {
-//                        Parse.User.current().set("home", request.object);
-//                        Parse.User.current().save();
-//                      }
-           Parse.User.current().set("home", request.object);
-           Parse.User.current().save();
-});
-
-//After we save the user we send a silent push out to all the other users in the house to update their Roomease.
-// Parse.Cloud.afterSave(Parse.User, function(request, response) {
-//   console.log("!!!!!!!!!!!CLOUD FUNCTION: afterSave-Parse.User");
-
-//   Parse.Cloud.useMasterKey();
-
-//   var queryForHouse = new Parse.Query('House');
-//   queryForHouse.equalTo('objectId', request.user.get('home').id);
-  
-//   console.log("Searching for House Id:" + request.user.get('home').id);
-
-//   queryForHouse.find({
-//     success: function(results) {
-//       console.log("Successfully retrieved " + results.length + " Houses.");
-//       // Do something with the returned Parse.Object values
-//       for (var i = 0; i < results.length; i++) { 
-//         var object = results[i];
-//         console.log(object.id + ' - ' + object.get('name'));
-
-//           var queryForInstallation = new Parse.Query(Parse.Installation);
-//           queryForInstallation.equalTo('channels', object.get('name'));
-          
-//           Parse.Push.send({
-//             where: queryForInstallation, // Set our Installation query.
-//             data: {
-//               syncRequestKey: 0,
-//               src_usr: request.object.id
-//             }
-//           }).then(function() {
-//             // Push was successful
-//             console.log('Sent push.');
-//           }, function(error) {
-//             throw "Push Error " + error.code + " : " + error.message;
-//           });
-//       }
-//     },
-//     error: function(error) {
-//       console.log("Error finding house: " + error.code + " " + error.message);
-//     }
-//   });
-
-
-// });
 
 //After we save the user we send a silent push out to all the other users in the house to update their Roomease.
 Parse.Cloud.beforeSave(Parse.User, function(request, response) 
