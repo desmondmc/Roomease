@@ -262,7 +262,7 @@
     [self setText];
     if ([entry completedByName]) {
         [self checkCellAndMove:NO];
-        if (self->listEntry.completedByImage != nil)
+        if (self.listEntry.completedByImage != nil)
         {
             [_noProfilePicImage setHidden:YES];
             
