@@ -146,12 +146,56 @@
     [self presentViewController:startingViewController animated:NO completion:nil];
 }
 
+- (void)textFieldDidBeginEditing:(UITextField *)textField {
+    if (textField == _houseNumberField)
+    {
+        [_houseDeleteButton setHidden:NO];
+        [_streetDeleteButton setHidden:YES];
+        [_cityDeleteButton setHidden:YES];
+    }
+    else if (textField == _streetField)
+    {
+        [_houseDeleteButton setHidden:YES];
+        [_streetDeleteButton setHidden:NO];
+        [_cityDeleteButton setHidden:YES];
+    }
+    else if (textField == _cityField)
+    {
+        [_houseDeleteButton setHidden:YES];
+        [_streetDeleteButton setHidden:YES];
+        [_cityDeleteButton setHidden:NO];
+    }
+    
+}
+
 - (IBAction)onHouseDeletePress:(id)sender {
+    [_houseNumberField setText:@""];
 }
 
 - (IBAction)onStreetDeletePress:(id)sender {
+    [_streetField setText:@""];
 }
 
 - (IBAction)onCityDeletePress:(id)sender {
+    [_cityField setText:@""];
 }
+
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textField {
+    if (textField == _houseNumberField)
+    {
+       // nothing this is impossible to get to.
+    }
+    else if (textField == _streetField)
+    {
+        [_cityField becomeFirstResponder];
+    }
+    else if (textField == _cityField)
+    {
+        [_cityField resignFirstResponder];
+    }
+    return true;
+}
+
+
 @end
