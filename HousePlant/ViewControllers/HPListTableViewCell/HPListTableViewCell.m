@@ -262,8 +262,24 @@
     [self setText];
     if ([entry completedByName]) {
         [self checkCellAndMove:NO];
+        if (self->listEntry.completedByImage != nil)
+        {
+            [_noProfilePicImage setHidden:YES];
+            
+            avatar2 = [[AMPAvatarView alloc] initWithFrame:CGRectMake(20, 5, 31, 31)];
+            [self.mainCellView addSubview:avatar2];
+            [self.mainCellView sendSubviewToBack:avatar2];
+            [avatar2 setHidden:YES];
+            
+            [avatar2 setBorderWith:0.0];
+            [avatar2 setShadowRadius:0.0];
+            [avatar2 setImage:self->listEntry.completedByImage];
+            
+            [avatar2 setHidden:NO];
+        }
     } else {
         [self uncheckCellAndMove:NO];
     }
+    
 }
 @end

@@ -510,7 +510,7 @@
     }
 
     
-    [pfNewListEntry save];
+    [pfNewListEntry saveEventually];
     
     entry.objectId = pfNewListEntry.objectId;
     
