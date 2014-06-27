@@ -11,9 +11,15 @@
 #import <AMPAvatarView/AMPAvatarView.h>
 #import "HPMainViewController.h"
 
-@interface HPListTableViewCell : UITableViewCell <UIGestureRecognizerDelegate>
+@interface HPListTableViewCell : UITableViewCell <UIGestureRecognizerDelegate, UIAlertViewDelegate>
+{
+
+}
+@property (weak, nonatomic) HPListEntry *listEntry;
+
 - (IBAction)onDeletePress:(id)sender;
 - (void) initWithListEntry:(HPListEntry *) entry andTableView:(HPMainViewController *) tableViewController;
+@property (weak, nonatomic) IBOutlet UIImageView *deleteButton;
 @property (weak, nonatomic) IBOutlet UIView *mainCellView;
 @property (weak, nonatomic) IBOutlet UILabel *entryTitle;
 @property (weak, nonatomic) IBOutlet UILabel *entryAddedName;

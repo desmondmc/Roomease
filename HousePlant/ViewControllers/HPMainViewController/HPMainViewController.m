@@ -123,6 +123,14 @@
     
 }
 
+- (void) removeCell:(HPListTableViewCell *) cell
+{
+    [self.todoListTableView beginUpdates];
+    [self.todoListTableView deleteRowsAtIndexPaths:[[NSArray alloc] initWithObjects:[self.todoListTableView indexPathForCell:cell], nil]  withRowAnimation:UITableViewRowAnimationFade];
+    [HPCentralData removeToDoListEntryWithSingleEntryLocalAndRemote:cell.listEntry];
+    [self.todoListTableView endUpdates];
+}
+
 - (void) checkCell:(HPListTableViewCell *) cell
 {
     [self countChecked];
@@ -189,10 +197,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    if (!listItems) {
-        listItems = [NSMutableArray arrayWithArray:[HPCentralData getToDoListEntriesAndForceReloadFromParse:NO]];
-    }
-    return listItems.count;
+    return [[NSMutableArray arrayWithArray:[HPCentralData getToDoListEntriesAndForceReloadFromParse:NO]] count];
 }
 
 // Row display. Implementers should *always* try to reuse cells by setting each cell's reuseIdentifier and querying for available reusable cells with dequeueReusableCellWithIdentifier:

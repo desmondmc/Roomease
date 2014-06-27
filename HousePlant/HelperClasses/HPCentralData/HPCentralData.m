@@ -453,6 +453,36 @@
     return todoListEntries;
 }
 
++ (bool)removeToDoListEntryWithSingleEntryLocalAndRemote:(HPListEntry *) entry
+{
+    PFObject *pfNewListEntry = [PFObject objectWithoutDataWithClassName:@"Entry" objectId:entry.objectId];
+    [pfNewListEntry delete];
+    
+    NSMutableArray *toDoListEntriesData = [[NSMutableArray alloc] init];
+    
+    NSMutableArray *todoListEntries = [NSMutableArray arrayWithArray:[HPCentralData getToDoListEntriesAndForceReloadFromParse:NO]];
+    
+    for (int entryCount = 0; entryCount < [todoListEntries count]; entryCount++) {
+        HPListEntry *entryToFind = [todoListEntries objectAtIndex:entryCount];
+        if ([entryToFind.objectId isEqualToString:entry.objectId]) {
+            [todoListEntries replaceObjectAtIndex:entryCount withObject:entry];
+        }
+    }
+    
+    //Loop through and convert all the listEntries into data
+    for (HPListEntry* listEntryToConvertToData in todoListEntries) {
+        if ([listEntryToConvertToData objectId] == [entry objectId]) {
+            continue;
+        }
+        NSData *listEntryData = [NSKeyedArchiver archivedDataWithRootObject:listEntryToConvertToData];
+        [toDoListEntriesData addObject:listEntryData];
+    }
+    
+    [persistantStore setObject:toDoListEntriesData forKey:kPersistantStoreToDoListEntries];
+    [persistantStore synchronize];
+    return YES;
+}
+
 + (bool)saveToDoListEntryWithSingleEntryLocalAndRemote:(HPListEntry *)entry
 {
     //Find the user in the local storage roommate array.

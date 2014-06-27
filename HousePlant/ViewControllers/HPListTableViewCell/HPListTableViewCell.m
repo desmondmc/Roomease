@@ -9,12 +9,11 @@
 #import "HPListTableViewCell.h"
 
 #define CLOSED_SLIDER_X 0
-#define OPEN_SLIDER_X -64
+#define OPEN_SLIDER_X -93
 #define HALFWAY_SLIDER_X (OPEN_SLIDER_X/2)
 
 @implementation HPListTableViewCell
 {
-    HPListEntry *listEntry;
     HPMainViewController *mainTableViewController;
 }
 
@@ -24,6 +23,11 @@
     // Initialization code
     _panGesture.delegate = self;
     _checked = false;
+    UITapGestureRecognizer *singleTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(onDeletePress:)];
+    singleTap.numberOfTapsRequired = 1;
+    singleTap.numberOfTouchesRequired = 1;
+    [self addGestureRecognizer:singleTap];
+    [self setUserInteractionEnabled:YES];
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated
@@ -100,14 +104,14 @@
 }
 
 - (void) checkCellAndMove:(BOOL) move {
-    if([listEntry completedBy].profilePic)
+    if([self.listEntry completedBy].profilePic)
     {
         [_noProfilePicImage setHidden:YES];
         _avatar = [[AMPAvatarView alloc] initWithFrame:CGRectMake(20, 5, 31, 31)];
         
         [self.mainCellView addSubview:_avatar];
         [self.mainCellView sendSubviewToBack:_avatar];
-        _avatar.image = [listEntry completedBy].profilePic;
+        _avatar.image = [self.listEntry completedBy].profilePic;
         
         [_avatar setBorderWith:0.0];
         [_avatar setShadowRadius:0.0];
@@ -157,36 +161,44 @@
 }
 
 - (IBAction)onDeletePress:(id)sender {
-    NSLog(@"Delete Press");
+    UIAlertView *view = [[UIAlertView alloc] initWithTitle:@"You sure?" message:@"Are you sure you want to remove this item?" delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"Yup", nil];
+    [view show];
+}
+
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    if(buttonIndex == 1) {
+        [self->mainTableViewController removeCell:self];
+    }
 }
 
 - (IBAction)onCheckboxPress:(id)sender {
 
     if (self.checked) {
         [self uncheckCellAndMove:YES];
-        [self->listEntry setCompletedBy:nil];
-        [self->listEntry setCompletedByName:nil];
-        [self->listEntry setCompletedByImage:nil];
-        self->listEntry.dateCompleted = nil;
+        [self.listEntry setCompletedBy:nil];
+        [self.listEntry setCompletedByName:nil];
+        [self.listEntry setCompletedByImage:nil];
+        self.listEntry.dateCompleted = nil;
     }
     else
     {
         [self checkCellAndMove:YES];
-        [self->listEntry setCompletedBy:[HPCentralData getCurrentUser]];
-        [self->listEntry setCompletedByName:self->listEntry.completedBy.username];
-        self->listEntry.completedByImage = self->listEntry.completedBy.profilePic;
-        self->listEntry.dateCompleted = [[NSDate alloc] init];
+        [self.listEntry setCompletedBy:[HPCentralData getCurrentUser]];
+        [self.listEntry setCompletedByName:self.listEntry.completedBy.username];
+        self.listEntry.completedByImage = self.listEntry.completedBy.profilePic;
+        self.listEntry.dateCompleted = [[NSDate alloc] init];
     }
     [self setText];
-    [HPCentralData saveToDoListEntryWithSingleEntryLocalAndRemote:self->listEntry];
+    [HPCentralData saveToDoListEntryWithSingleEntryLocalAndRemote:self.listEntry];
 }
 
 - (void) setText {
-    if ([self->listEntry completedByName]) {
-        NSString *dateString = [NSDateFormatter localizedStringFromDate:self->listEntry.dateCompleted
+    if ([self.listEntry completedByName]) {
+        NSString *dateString = [NSDateFormatter localizedStringFromDate:self.listEntry.dateCompleted
                                                               dateStyle:NSDateFormatterMediumStyle
                                                               timeStyle:NSDateFormatterNoStyle];
-        NSString *timeString = [NSDateFormatter localizedStringFromDate:self->listEntry.dateCompleted
+        NSString *timeString = [NSDateFormatter localizedStringFromDate:self.listEntry.dateCompleted
                                                               dateStyle:NSDateFormatterNoStyle
                                                               timeStyle:NSDateFormatterShortStyle];
         self.entryDate.text = [NSString stringWithFormat:@"%@ at", dateString ];
@@ -199,10 +211,10 @@
         frame.origin.x = 195;
         self.entryTime.frame =frame;
     } else {
-        NSString *dateString = [NSDateFormatter localizedStringFromDate:self->listEntry.dateAdded
+        NSString *dateString = [NSDateFormatter localizedStringFromDate:self.listEntry.dateAdded
                                                               dateStyle:NSDateFormatterMediumStyle
                                                               timeStyle:NSDateFormatterNoStyle];
-        NSString *timeString = [NSDateFormatter localizedStringFromDate:self->listEntry.dateAdded
+        NSString *timeString = [NSDateFormatter localizedStringFromDate:self.listEntry.dateAdded
                                                               dateStyle:NSDateFormatterNoStyle
                                                               timeStyle:NSDateFormatterShortStyle];
         self.entryDate.text = [NSString stringWithFormat:@"%@ at", dateString ];
@@ -220,7 +232,7 @@
 
 - (void) initWithListEntry:(HPListEntry *) entry andTableView:(HPMainViewController *) tableViewController
 {
-    self->listEntry = entry;
+    self.listEntry = entry;
     self->mainTableViewController = tableViewController;
     self.entryTitle.text = entry.description;
     

@@ -18,6 +18,7 @@
 @property (strong, nonatomic) HPToDoListDataSource *tableViewDataSource;
 @property (weak, nonatomic) IBOutlet UITableView *todoListTableView;
 
+- (void) removeCell:(id) cell;
 - (void) checkCell:(id) cell;
 - (void) uncheckCell:(id) cell;
 - (IBAction)onSettingsPress:(id)sender;

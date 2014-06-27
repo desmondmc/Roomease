@@ -39,6 +39,7 @@
 
 + (void) getToDoListEntriesInBackgroundWithBlock:(CentralDataListEntriesResultBlock)block;
 + (NSArray *) getToDoListEntriesAndForceReloadFromParse: (BOOL) forceReload;
++ (bool)removeToDoListEntryWithSingleEntryLocalAndRemote:(HPListEntry *) entry;
 + (bool)saveToDoListEntryWithSingleEntryLocalAndRemote:(HPListEntry *)entry;
 + (bool)saveToDoListEntryWithSingleEntryLocal:(HPListEntry *)entry;
 
