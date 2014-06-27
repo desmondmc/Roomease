@@ -14,6 +14,7 @@
 #import "HPSettingsViewController.h"
 #import "HPUINotifier.h"
 #import "HPListTableViewCell.h"
+#import "ISRefreshControl.h"
 
 @interface HPMainViewController ()
 
@@ -24,6 +25,7 @@
     RoommateImageSubview *roommateView;
     NSMutableArray *listItems;
     int numberOfCheckedCells;
+    ISRefreshControl *refreshControl;
 }
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -46,6 +48,15 @@
                                                  name:NOTIFICATION_APP_BECAME_ACTIVE
                                                object:nil];
     
+    self->refreshControl = [[ISRefreshControl alloc] init];
+    [self->refreshControl setAttributedTitle:[[NSAttributedString alloc] initWithString:@"Refreshing..." attributes:nil]];
+    [self->refreshControl setTintColor:[UIColor blueColor]];
+    [self.todoListTableView addSubview:refreshControl];
+    
+    [self->refreshControl addTarget:self
+                       action:@selector(onRefreshRmPress:)
+             forControlEvents:UIControlEventValueChanged];
+    
     NSString *systemVersion = [[UIDevice currentDevice] systemVersion];
     
     if (SYSTEM_VERSION_LESS_THAN(@"7.1")) {
@@ -64,6 +75,7 @@
     [[self roommateImageSubviewContainer] addSubview:roommateView];
     [self countChecked];
 }
+
 
 - (void) getProfilePicturesWithUser:(PFUser *)user andIndex:(int)index
 {
@@ -147,6 +159,7 @@
     //Starts a sync request. Will be called back on resyncUIWithDictionary.
     [HPSyncWorker handleSyncRequestWithType:roommatesSyncRequest andData:nil];
     [HPSyncWorker handleSyncRequestWithType:todoListSyncRequest andData:nil];
+    [self->refreshControl endRefreshing];
 }
 
 - (IBAction)onAddListEntryPress:(id)sender {
