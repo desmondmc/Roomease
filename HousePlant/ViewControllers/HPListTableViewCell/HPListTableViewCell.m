@@ -100,36 +100,34 @@
 }
 
 - (void) checkCellAndMove:(BOOL) move {
-    [HPCentralData getCurrentUserInBackgroundWithBlock:^(HPRoommate *roommate, NSError *error) {
-        //
-        if([roommate profilePic])
-        {
-            [_noProfilePicImage setHidden:YES];
-            _avatar = [[AMPAvatarView alloc] initWithFrame:CGRectMake(20, 5, 31, 31)];
-            
-            [self.mainCellView addSubview:_avatar];
-            [self.mainCellView sendSubviewToBack:_avatar];
-            _avatar.image = [roommate profilePic];
-            
-            [_avatar setBorderWith:0.0];
-            [_avatar setShadowRadius:0.0];
-            [_avatar setBorderColor:kLightBlueColour];
-            
-        }
-        else
-        {
-            [_avatar setHidden:YES];
-            [_noProfilePicImage setHidden:NO];
-        }
-        [_blankCheckbox setHidden:true];
+    if([listEntry completedBy].profilePic)
+    {
+        [_noProfilePicImage setHidden:YES];
+        _avatar = [[AMPAvatarView alloc] initWithFrame:CGRectMake(20, 5, 31, 31)];
         
-        NSDictionary* attributes = @{
-                                     NSStrikethroughStyleAttributeName: [NSNumber numberWithInt:NSUnderlineStyleSingle]
-                                     };
+        [self.mainCellView addSubview:_avatar];
+        [self.mainCellView sendSubviewToBack:_avatar];
+        _avatar.image = [listEntry completedBy].profilePic;
         
-        NSAttributedString* attrText = [[NSAttributedString alloc] initWithString:_entryTitle.text attributes:attributes];
-        _entryTitle.attributedText = attrText;
-    }];
+        [_avatar setBorderWith:0.0];
+        [_avatar setShadowRadius:0.0];
+        [_avatar setBorderColor:kLightBlueColour];
+        
+    }
+    else
+    {
+        [_avatar setHidden:YES];
+        [_noProfilePicImage setHidden:NO];
+    }
+    [_blankCheckbox setHidden:true];
+    
+    NSDictionary* attributes = @{
+                                 NSStrikethroughStyleAttributeName: [NSNumber numberWithInt:NSUnderlineStyleSingle]
+                                 };
+    
+    NSAttributedString* attrText = [[NSAttributedString alloc] initWithString:_entryTitle.text attributes:attributes];
+    _entryTitle.attributedText = attrText;
+
     
     _checked = true;
     

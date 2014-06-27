@@ -20,7 +20,7 @@
         _username = [aDecoder decodeObjectForKey:@"username"];
         _profilePic = [aDecoder decodeObjectForKey:@"profilePic"];
         _atHomeString = [aDecoder decodeObjectForKey:@"atHome"];
-        _objectId = [aDecoder decodeObjectForKey:@"objectId"];
+        _objectId = [aDecoder decodeObjectForKey:@"userObjectId"];
     }
     return self;
 }
@@ -46,7 +46,7 @@
     [aCoder encodeObject:_username forKey:@"username"];
     [aCoder encodeObject:_profilePic forKey:@"profilePic"];
     [aCoder encodeObject:_atHomeString forKey:@"atHome"];
-    [aCoder encodeObject:_objectId forKey:@"objectId"];
+    [aCoder encodeObject:_objectId forKey:@"userObjectId"];
 }
 
 #warning Why is this here?

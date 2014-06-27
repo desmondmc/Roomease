@@ -148,7 +148,13 @@
         });
     }
     else if (block)
-        block(roommate, nil);
+    {
+        dispatch_async( dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
+            dispatch_async(dispatch_get_main_queue(), ^{
+                block(roommate, nil);
+            });
+        });
+    }
 }
 
 
@@ -159,7 +165,7 @@
     NSData *roommateData = [persistantStore objectForKey:kPersistantStoreCurrentUser];
     HPRoommate *roommate =  [NSKeyedUnarchiver unarchiveObjectWithData:roommateData];
     
-    if(roommate == nil)
+    if(roommate == nil || [roommate objectId] == nil)
     {
         roommate = [[HPRoommate alloc] init];
         [[PFUser currentUser] fetch];
@@ -175,7 +181,7 @@
         roommateData = [NSKeyedArchiver archivedDataWithRootObject:roommate];
         
         [persistantStore setObject:roommateData forKey:kPersistantStoreCurrentUser];
-        [persistantStore synchronize];
+        [persistantStore synchronize];        
     }
     
     return roommate;
@@ -459,7 +465,7 @@
     if(entry.objectId) {
         pfNewListEntry = [PFObject objectWithoutDataWithClassName:@"Entry" objectId:entry.objectId];
         [pfNewListEntry setObject:[NSNumber numberWithBool:([entry completedBy] != nil) ] forKey:@"isComplete"];
-        [pfNewListEntry setObject:[entry completedBy].objectId ? [PFUser currentUser] : [NSNull alloc] forKey:@"completedBy"];
+        [pfNewListEntry setObject:[entry completedBy].objectId ? [PFUser currentUser] : [NSNull null] forKey:@"completedBy"];
         [pfNewListEntry setObject:entry.dateCompleted ? entry.dateCompleted : [NSNull null] forKey:@"completedAt"];
     }
     

@@ -12,8 +12,8 @@
 - (id) initWithPFObject:(PFObject *) object;
 +(NSNumber *) boolWithString:(NSString *)string;
 
-@property (strong, nonatomic) NSString *username;
-@property (strong, nonatomic) UIImage *profilePic;
-@property (strong, nonatomic) NSString *atHomeString;
-@property (strong, nonatomic) NSString *objectId;
+@property (strong, nonatomic) NSString  *username;
+@property (strong, nonatomic) UIImage   *profilePic;
+@property (strong, nonatomic) NSString  *atHomeString;
+@property (strong, nonatomic) NSString  *objectId;
 @end
