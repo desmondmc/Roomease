@@ -146,4 +146,12 @@
     [self presentViewController:startingViewController animated:NO completion:nil];
 }
 
+- (IBAction)onHouseDeletePress:(id)sender {
+}
+
+- (IBAction)onStreetDeletePress:(id)sender {
+}
+
+- (IBAction)onCityDeletePress:(id)sender {
+}
 @end

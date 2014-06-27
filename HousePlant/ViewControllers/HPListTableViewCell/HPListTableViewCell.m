@@ -16,6 +16,7 @@
 {
     HPListEntry *listEntry;
     HPMainViewController *mainTableViewController;
+    AMPAvatarView *avatar2;
 }
 
 
@@ -168,6 +169,7 @@
         [self->listEntry setCompletedByName:nil];
         [self->listEntry setCompletedByImage:nil];
         self->listEntry.dateCompleted = nil;
+        [avatar2 setHidden:YES];
     }
     else
     {
@@ -175,6 +177,27 @@
         [self->listEntry setCompletedBy:[HPCentralData getCurrentUser]];
         [self->listEntry setCompletedByName:self->listEntry.completedBy.username];
         self->listEntry.completedByImage = self->listEntry.completedBy.profilePic;
+        if (self->listEntry.completedByImage != nil)
+        {
+            [_noProfilePicImage setHidden:YES];
+            
+            avatar2 = [[AMPAvatarView alloc] initWithFrame:CGRectMake(20, 5, 31, 31)];
+            [self.mainCellView addSubview:avatar2];
+            [self.mainCellView sendSubviewToBack:avatar2];
+            [avatar2 setHidden:YES];
+            
+            [avatar2 setBorderWith:0.0];
+            [avatar2 setShadowRadius:0.0];
+            [avatar2 setImage:self->listEntry.completedByImage];
+            
+            [avatar2 setHidden:NO];
+        }
+        else
+        {
+            [_noProfilePicImage setHidden:NO];
+            [_profilePic setHidden:YES];
+            [avatar2 setHidden:YES];
+        }
         self->listEntry.dateCompleted = [[NSDate alloc] init];
     }
     [self setText];
