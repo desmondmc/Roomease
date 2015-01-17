@@ -74,7 +74,7 @@
         PFObject *pfEntry = [query getObjectWithId:objectId];
 
         HPListEntry *listEntry = [[HPListEntry alloc] init];
-        listEntry.description = pfEntry[@"description"];
+        listEntry.description2 = pfEntry[@"description"];
         listEntry.dateCompleted = pfEntry[@"dateCompleted"];
         listEntry.dateAdded = pfEntry[@"createdAt"];
         listEntry.completedBy = pfEntry[@"completedBy"];
@@ -486,7 +486,7 @@
 + (bool)saveToDoListEntryWithSingleEntryLocalAndRemote:(HPListEntry *)entry
 {
     //Find the user in the local storage roommate array.
-    if (!entry.description) {
+    if (!entry.description2) {
         [NSException raise:@"HP Exception: Invalid entry sent to saveToDoListEntryWithSingleEntry, nil description" format:@"entry of %@ is invalid", entry];
     }
     
@@ -505,7 +505,7 @@
 
         [pfNewListEntry setObject:@"ToDo List" forKey:@"listName"];
         [pfNewListEntry setObject:[HPCentralData getHouse].objectId forKey:@"houseObjectId"];
-        [pfNewListEntry setObject:entry.description forKey:@"description"];
+        [pfNewListEntry setObject:entry.description2 forKey:@"description"];
         [pfNewListEntry setObject:[NSNumber numberWithBool:false] forKey:@"isComplete"];
     }
 

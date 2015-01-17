@@ -6,22 +6,13 @@
 	objectVersion = 46;
 	objects = {
 
-/* Begin PBXAggregateTarget section */
-		F710E60F1890BD4400BD9D54 /* Mogenerator */ = {
-			isa = PBXAggregateTarget;
-			buildConfigurationList = F710E6101890BD4400BD9D54 /* Build configuration list for PBXAggregateTarget "Mogenerator" */;
-			buildPhases = (
-				F710E61318916C5600BD9D54 /* ShellScript */,
-			);
-			dependencies = (
-			);
-			name = Mogenerator;
-			productName = Mogenerator;
-		};
-/* End PBXAggregateTarget section */
-
 /* Begin PBXBuildFile section */
 		641AF380FE954A6D996B029D /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F2ADBFAE68984DBDA17CC3D1 /* libPods.a */; };
+		7AD77F691A690DE200421DB8 /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7AD77F671A690DE200421DB8 /* Bolts.framework */; };
+		7AD77F6B1A690DE200421DB8 /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7AD77F681A690DE200421DB8 /* Parse.framework */; };
+		7AD77F6E1A690EB100421DB8 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 7AD77F6D1A690EB100421DB8 /* libsqlite3.dylib */; };
+		7AD77F701A690F5900421DB8 /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7AD77F6F1A690F5900421DB8 /* Social.framework */; };
+		7AD77F741A690FAC00421DB8 /* Accounts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7AD77F731A690FAC00421DB8 /* Accounts.framework */; };
 		F36CEC1B18C6880B0013D094 /* HPSyncWorker.m in Sources */ = {isa = PBXBuildFile; fileRef = F36CEC1A18C6880B0013D094 /* HPSyncWorker.m */; };
 		F36CEC2018C804160013D094 /* HPPushHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = F36CEC1F18C804160013D094 /* HPPushHelper.m */; };
 		F710E5FA187862B700BD9D54 /* HPLoginRouter.m in Sources */ = {isa = PBXBuildFile; fileRef = F710E5F9187862B700BD9D54 /* HPLoginRouter.m */; };
@@ -77,12 +68,6 @@
 		F7A1222C18522A4100E51B06 /* HPAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = F7A1222B18522A4100E51B06 /* HPAppDelegate.m */; };
 		F7A1222F18522A4100E51B06 /* HousePlant.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = F7A1222D18522A4100E51B06 /* HousePlant.xcdatamodeld */; };
 		F7A1223118522A4100E51B06 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F7A1223018522A4100E51B06 /* Images.xcassets */; };
-		F7A1223818522A4100E51B06 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F7A1223718522A4100E51B06 /* XCTest.framework */; };
-		F7A1223918522A4100E51B06 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F7A1221918522A4100E51B06 /* Foundation.framework */; };
-		F7A1223A18522A4100E51B06 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F7A1221D18522A4100E51B06 /* UIKit.framework */; };
-		F7A1223B18522A4100E51B06 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F7A1221F18522A4100E51B06 /* CoreData.framework */; };
-		F7A1224318522A4100E51B06 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = F7A1224118522A4100E51B06 /* InfoPlist.strings */; };
-		F7A1224518522A4100E51B06 /* HousePlantTests.m in Sources */ = {isa = PBXBuildFile; fileRef = F7A1224418522A4100E51B06 /* HousePlantTests.m */; };
 		F7A1225118522ABE00E51B06 /* HPStartingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F7A1224F18522ABE00E51B06 /* HPStartingViewController.m */; };
 		F7A1225218522ABE00E51B06 /* HPStartingViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F7A1225018522ABE00E51B06 /* HPStartingViewController.xib */; };
 		F7A6F4A91852320A00CEB9FD /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F7A6F4A61852320A00CEB9FD /* AudioToolbox.framework */; };
@@ -93,22 +78,18 @@
 		F7A6F4B51852324000CEB9FD /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F7A6F4AF1852324000CEB9FD /* Security.framework */; };
 		F7A6F4B61852324000CEB9FD /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F7A6F4B01852324000CEB9FD /* StoreKit.framework */; };
 		F7A6F4B71852324000CEB9FD /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F7A6F4B11852324000CEB9FD /* SystemConfiguration.framework */; };
-		F7A6F4BD18524A8300CEB9FD /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F7A6F4BC18524A8300CEB9FD /* Parse.framework */; };
 		F7E3E52218E22251007A9C02 /* HPFreshLoginNewUserSetup.m in Sources */ = {isa = PBXBuildFile; fileRef = F7E3E52118E22251007A9C02 /* HPFreshLoginNewUserSetup.m */; };
 /* End PBXBuildFile section */
 
-/* Begin PBXContainerItemProxy section */
-		F7A1223C18522A4100E51B06 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = F7A1220E18522A4100E51B06 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = F7A1221518522A4100E51B06;
-			remoteInfo = HousePlant;
-		};
-/* End PBXContainerItemProxy section */
-
 /* Begin PBXFileReference section */
-		CABE67E5142742FBABED9A90 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
+		447CBE3F67C1D3BDB780BEF1 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
+		7AD77F671A690DE200421DB8 /* Bolts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Bolts.framework; path = "parse-library-1.6.1/Bolts.framework"; sourceTree = "<group>"; };
+		7AD77F681A690DE200421DB8 /* Parse.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Parse.framework; path = "parse-library-1.6.1/Parse.framework"; sourceTree = "<group>"; };
+		7AD77F6D1A690EB100421DB8 /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
+		7AD77F6F1A690F5900421DB8 /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
+		7AD77F711A690F8500421DB8 /* Twitter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Twitter.framework; path = System/Library/Frameworks/Twitter.framework; sourceTree = SDKROOT; };
+		7AD77F731A690FAC00421DB8 /* Accounts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accounts.framework; path = System/Library/Frameworks/Accounts.framework; sourceTree = SDKROOT; };
+		AF077DDD507839C82B4D789F /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		F2ADBFAE68984DBDA17CC3D1 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		F36CEC1918C6880B0013D094 /* HPSyncWorker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HPSyncWorker.h; path = HelperClasses/HPSyncWorker/HPSyncWorker.h; sourceTree = "<group>"; };
 		F36CEC1A18C6880B0013D094 /* HPSyncWorker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HPSyncWorker.m; path = HelperClasses/HPSyncWorker/HPSyncWorker.m; sourceTree = "<group>"; };
@@ -198,7 +179,6 @@
 		F7A1222B18522A4100E51B06 /* HPAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HPAppDelegate.m; sourceTree = "<group>"; };
 		F7A1222E18522A4100E51B06 /* HousePlant.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = HousePlant.xcdatamodel; sourceTree = "<group>"; };
 		F7A1223018522A4100E51B06 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
-		F7A1223618522A4100E51B06 /* RoomEaseTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RoomEaseTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		F7A1223718522A4100E51B06 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		F7A1224018522A4100E51B06 /* RoomEaseTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "RoomEaseTests-Info.plist"; sourceTree = "<group>"; };
 		F7A1224218522A4100E51B06 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
@@ -215,7 +195,6 @@
 		F7A6F4AF1852324000CEB9FD /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		F7A6F4B01852324000CEB9FD /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		F7A6F4B11852324000CEB9FD /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
-		F7A6F4BC18524A8300CEB9FD /* Parse.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Parse.framework; sourceTree = "<group>"; };
 		F7E3E52018E22251007A9C02 /* HPFreshLoginNewUserSetup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HPFreshLoginNewUserSetup.h; path = HelperClasses/HPFreshLoginNewUserSetup/HPFreshLoginNewUserSetup.h; sourceTree = "<group>"; };
 		F7E3E52118E22251007A9C02 /* HPFreshLoginNewUserSetup.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HPFreshLoginNewUserSetup.m; path = HelperClasses/HPFreshLoginNewUserSetup/HPFreshLoginNewUserSetup.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -225,6 +204,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7AD77F741A690FAC00421DB8 /* Accounts.framework in Frameworks */,
+				7AD77F701A690F5900421DB8 /* Social.framework in Frameworks */,
+				7AD77F6E1A690EB100421DB8 /* libsqlite3.dylib in Frameworks */,
 				F714B84E18B1CC5800B598E7 /* libz.dylib in Frameworks */,
 				F711387E1876086B00D9BA9E /* CoreLocation.framework in Frameworks */,
 				F7A6F4B21852324000CEB9FD /* libz.1.1.3.dylib in Frameworks */,
@@ -232,12 +214,13 @@
 				F714B84A18B1CBED00B598E7 /* libTestFlight.a in Frameworks */,
 				F7A6F4B41852324000CEB9FD /* QuartzCore.framework in Frameworks */,
 				F7A6F4B51852324000CEB9FD /* Security.framework in Frameworks */,
-				F7A6F4BD18524A8300CEB9FD /* Parse.framework in Frameworks */,
 				F7A6F4B61852324000CEB9FD /* StoreKit.framework in Frameworks */,
 				F7A6F4B71852324000CEB9FD /* SystemConfiguration.framework in Frameworks */,
 				F7A6F4A91852320A00CEB9FD /* AudioToolbox.framework in Frameworks */,
+				7AD77F6B1A690DE200421DB8 /* Parse.framework in Frameworks */,
 				F7A6F4AA1852320A00CEB9FD /* CFNetwork.framework in Frameworks */,
 				F7A1221C18522A4100E51B06 /* CoreGraphics.framework in Frameworks */,
+				7AD77F691A690DE200421DB8 /* Bolts.framework in Frameworks */,
 				F7A1222018522A4100E51B06 /* CoreData.framework in Frameworks */,
 				F7A1221E18522A4100E51B06 /* UIKit.framework in Frameworks */,
 				F7A1221A18522A4100E51B06 /* Foundation.framework in Frameworks */,
@@ -245,20 +228,18 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		F7A1223318522A4100E51B06 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				F7A1223818522A4100E51B06 /* XCTest.framework in Frameworks */,
-				F7A1223B18522A4100E51B06 /* CoreData.framework in Frameworks */,
-				F7A1223A18522A4100E51B06 /* UIKit.framework in Frameworks */,
-				F7A1223918522A4100E51B06 /* Foundation.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		DA734B980359F9A8D8DF60DE /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				447CBE3F67C1D3BDB780BEF1 /* Pods.debug.xcconfig */,
+				AF077DDD507839C82B4D789F /* Pods.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 		F36CEC1C18C6881F0013D094 /* HPSyncWorker */ = {
 			isa = PBXGroup;
 			children = (
@@ -576,7 +557,7 @@
 				F7A1223E18522A4100E51B06 /* HousePlantTests */,
 				F7A1221818522A4100E51B06 /* Frameworks */,
 				F7A1221718522A4100E51B06 /* Products */,
-				CABE67E5142742FBABED9A90 /* Pods.xcconfig */,
+				DA734B980359F9A8D8DF60DE /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -584,7 +565,6 @@
 			isa = PBXGroup;
 			children = (
 				F7A1221618522A4100E51B06 /* RoomEase.app */,
-				F7A1223618522A4100E51B06 /* RoomEaseTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -592,9 +572,14 @@
 		F7A1221818522A4100E51B06 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				7AD77F731A690FAC00421DB8 /* Accounts.framework */,
+				7AD77F711A690F8500421DB8 /* Twitter.framework */,
+				7AD77F6F1A690F5900421DB8 /* Social.framework */,
+				7AD77F6D1A690EB100421DB8 /* libsqlite3.dylib */,
 				F714B84D18B1CC5800B598E7 /* libz.dylib */,
 				F7A6F4AC1852324000CEB9FD /* libz.1.1.3.dylib */,
-				F7A6F4BC18524A8300CEB9FD /* Parse.framework */,
+				7AD77F671A690DE200421DB8 /* Bolts.framework */,
+				7AD77F681A690DE200421DB8 /* Parse.framework */,
 				F7A6F4AD1852324000CEB9FD /* MobileCoreServices.framework */,
 				F7A6F4AE1852324000CEB9FD /* QuartzCore.framework */,
 				F7A6F4AF1852324000CEB9FD /* Security.framework */,
@@ -733,24 +718,6 @@
 			productReference = F7A1221618522A4100E51B06 /* RoomEase.app */;
 			productType = "com.apple.product-type.application";
 		};
-		F7A1223518522A4100E51B06 /* RoomEaseTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = F7A1224B18522A4100E51B06 /* Build configuration list for PBXNativeTarget "RoomEaseTests" */;
-			buildPhases = (
-				F7A1223218522A4100E51B06 /* Sources */,
-				F7A1223318522A4100E51B06 /* Frameworks */,
-				F7A1223418522A4100E51B06 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				F7A1223D18522A4100E51B06 /* PBXTargetDependency */,
-			);
-			name = RoomEaseTests;
-			productName = HousePlantTests;
-			productReference = F7A1223618522A4100E51B06 /* RoomEaseTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -769,9 +736,6 @@
 							};
 						};
 					};
-					F7A1223518522A4100E51B06 = {
-						TestTargetID = F7A1221518522A4100E51B06;
-					};
 				};
 			};
 			buildConfigurationList = F7A1221118522A4100E51B06 /* Build configuration list for PBXProject "RoomEase" */;
@@ -787,8 +751,6 @@
 			projectRoot = "";
 			targets = (
 				F7A1221518522A4100E51B06 /* Roomease */,
-				F7A1223518522A4100E51B06 /* RoomEaseTests */,
-				F710E60F1890BD4400BD9D54 /* Mogenerator */,
 			);
 		};
 /* End PBXProject section */
@@ -822,14 +784,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		F7A1223418522A4100E51B06 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				F7A1224318522A4100E51B06 /* InfoPlist.strings in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
@@ -860,21 +814,8 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Pods-resources.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-resources.sh\"\n";
 			showEnvVarsInLog = 0;
-		};
-		F710E61318916C5600BD9D54 /* ShellScript */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "mogenerator -m HousePlant/ParseSync.xcdatamodeld/ParseSync.xcdatamodel -O HousePlant/Model --template-var arc=true";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -916,23 +857,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		F7A1223218522A4100E51B06 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				F7A1224518522A4100E51B06 /* HousePlantTests.m in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXTargetDependency section */
-		F7A1223D18522A4100E51B06 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = F7A1221518522A4100E51B06 /* Roomease */;
-			targetProxy = F7A1223C18522A4100E51B06 /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		F7A1222418522A4100E51B06 /* InfoPlist.strings */ = {
@@ -954,20 +879,6 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
-		F710E6111890BD4400BD9D54 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				PRODUCT_NAME = "$(TARGET_NAME)";
-			};
-			name = Debug;
-		};
-		F710E6121890BD4400BD9D54 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				PRODUCT_NAME = "$(TARGET_NAME)";
-			};
-			name = Release;
-		};
 		F7A1224618522A4100E51B06 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -1042,7 +953,7 @@
 		};
 		F7A1224918522A4100E51B06 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = CABE67E5142742FBABED9A90 /* Pods.xcconfig */;
+			baseConfigurationReference = 447CBE3F67C1D3BDB780BEF1 /* Pods.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
@@ -1053,6 +964,7 @@
 					"$(inherited)",
 					"$(SRCROOT)/Pods",
 					"$(SRCROOT)",
+					"$(PROJECT_DIR)/parse-library-1.6.1",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "HousePlant/RoomEase-Prefix.pch";
@@ -1062,10 +974,7 @@
 					"$(inherited)",
 					"$(SRCROOT)/HousePlant/TestFlightSDK2.2.1",
 				);
-				OTHER_LDFLAGS = (
-					"-framework",
-					SystemConfiguration,
-				);
+				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_NAME = RoomEase;
 				PROVISIONING_PROFILE = "";
 				STRIP_INSTALLED_PRODUCT = NO;
@@ -1075,7 +984,7 @@
 		};
 		F7A1224A18522A4100E51B06 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = CABE67E5142742FBABED9A90 /* Pods.xcconfig */;
+			baseConfigurationReference = AF077DDD507839C82B4D789F /* Pods.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
@@ -1086,6 +995,7 @@
 					"$(inherited)",
 					"$(SRCROOT)/Pods",
 					"$(SRCROOT)",
+					"$(PROJECT_DIR)/parse-library-1.6.1",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "HousePlant/RoomEase-Prefix.pch";
@@ -1095,10 +1005,7 @@
 					"$(inherited)",
 					"$(SRCROOT)/HousePlant/TestFlightSDK2.2.1",
 				);
-				OTHER_LDFLAGS = (
-					"-framework",
-					SystemConfiguration,
-				);
+				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_NAME = RoomEase;
 				PROVISIONING_PROFILE = "";
 				STRIP_INSTALLED_PRODUCT = NO;
@@ -1106,60 +1013,9 @@
 			};
 			name = Release;
 		};
-		F7A1224C18522A4100E51B06 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
-				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/RoomEase.app/RoomEase";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(inherited)",
-					"$(DEVELOPER_FRAMEWORKS_DIR)",
-				);
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "HousePlant/HousePlant-Prefix.pch";
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"DEBUG=1",
-					"$(inherited)",
-				);
-				INFOPLIST_FILE = "HousePlantTests/RoomEaseTests-Info.plist";
-				PRODUCT_NAME = RoomEaseTests;
-				TEST_HOST = "$(BUNDLE_LOADER)";
-				WRAPPER_EXTENSION = xctest;
-			};
-			name = Debug;
-		};
-		F7A1224D18522A4100E51B06 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
-				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/RoomEase.app/RoomEase";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(inherited)",
-					"$(DEVELOPER_FRAMEWORKS_DIR)",
-				);
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "HousePlant/HousePlant-Prefix.pch";
-				INFOPLIST_FILE = "HousePlantTests/RoomEaseTests-Info.plist";
-				PRODUCT_NAME = RoomEaseTests;
-				TEST_HOST = "$(BUNDLE_LOADER)";
-				WRAPPER_EXTENSION = xctest;
-			};
-			name = Release;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		F710E6101890BD4400BD9D54 /* Build configuration list for PBXAggregateTarget "Mogenerator" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				F710E6111890BD4400BD9D54 /* Debug */,
-				F710E6121890BD4400BD9D54 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
 		F7A1221118522A4100E51B06 /* Build configuration list for PBXProject "RoomEase" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
@@ -1174,15 +1030,6 @@
 			buildConfigurations = (
 				F7A1224918522A4100E51B06 /* Debug */,
 				F7A1224A18522A4100E51B06 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		F7A1224B18522A4100E51B06 /* Build configuration list for PBXNativeTarget "RoomEaseTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				F7A1224C18522A4100E51B06 /* Debug */,
-				F7A1224D18522A4100E51B06 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

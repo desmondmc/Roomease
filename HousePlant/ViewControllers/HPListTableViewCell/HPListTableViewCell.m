@@ -238,7 +238,7 @@
 {
     self.listEntry = entry;
     self->mainTableViewController = tableViewController;
-    self.entryTitle.text = entry.description;
+    self.entryTitle.text = entry.description2;
     
     [self setText];
     if ([entry completedByName]) {

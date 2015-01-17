@@ -10,11 +10,12 @@
 
 @implementation HPListEntry
 
+
 -(id) initWithPFObject: (PFObject *) object
 {
     if (self = [super init]) {
         _objectId = object.objectId;
-        _description = object[@"description"];
+        _description2 = object[@"description"];
         _dateAdded = object.createdAt;
         if (![object[@"completedBy"] isEqual:[NSNull null]]) {
             _completedBy = [[HPRoommate alloc] initWithPFObject:object[@"completedBy"]];
@@ -32,7 +33,7 @@
 {
     if (self = [super init])
     {
-        _description = [aDecoder decodeObjectForKey:@"description"];
+        _description2 = [aDecoder decodeObjectForKey:@"description"];
         _dateCompleted = [aDecoder decodeObjectForKey:@"dateCompleted"];
         _dateAdded = [aDecoder decodeObjectForKey:@"dateAdded"];
         _completedByImage = [aDecoder decodeObjectForKey:@"completedByImage"];
@@ -45,7 +46,7 @@
 //Storing data in NSUSerDefaults
 - (void)encodeWithCoder:(NSCoder *)aCoder
 {
-    [aCoder encodeObject:_description forKey:@"description"];
+    [aCoder encodeObject:_description2 forKey:@"description"];
     [aCoder encodeObject:_dateCompleted forKey:@"dateCompleted"];
     [aCoder encodeObject:_dateAdded forKey:@"dateAdded"];
     [aCoder encodeObject:_completedByImage forKey:@"completedByImage"];

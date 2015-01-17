@@ -10,7 +10,8 @@
 
 @interface HPListEntry : HPNetworkObject
 -(id) initWithPFObject: (PFObject *) object;
-@property (strong, nonatomic) NSString      *description;
+
+@property (strong, readwrite) NSString      *description2;
 @property (strong, nonatomic) NSDate        *dateCompleted;
 @property (strong, nonatomic) NSDate        *dateAdded;
 @property (strong, nonatomic) HPRoommate    *completedBy;

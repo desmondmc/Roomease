@@ -178,7 +178,7 @@
         
         HPListEntry *listEntry = [[HPListEntry alloc] init];
         
-        listEntry.description = [alertView textFieldAtIndex:0].text;
+        listEntry.description2 = [alertView textFieldAtIndex:0].text;
         listEntry.dateAdded = [NSDate date];
         
         [HPCentralData saveToDoListEntryWithSingleEntryLocalAndRemote:listEntry];
