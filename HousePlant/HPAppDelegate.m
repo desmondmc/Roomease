@@ -10,6 +10,7 @@
 #import "HPMainViewController.h"
 #import "HPStartingViewController.h"
 #import "HPNoHomeViewController.h"
+#import "HPCentralData.h"
 #import "CheckConnectivityView.h"
 
 #import "ParseKeys.h"
@@ -50,36 +51,19 @@
      UIRemoteNotificationTypeAlert |
      UIRemoteNotificationTypeSound];
     
-    
-    PFUser *currentUser = [PFUser currentUser];
-    
-    if (currentUser)
-    {
-        [[PFUser currentUser] fetchIfNeededInBackgroundWithBlock:^(PFObject *object, NSError *error) {
-            
-            if (currentUser) {
-                
-                PFObject *house = [currentUser objectForKey:@"home"];
-                if (house) {
-                    self.window.rootViewController = [[HPMainViewController alloc] init];
-                }
-                else
-                {
-                    self.window.rootViewController = [[HPStartingViewController alloc] init];
-                }
-            }
-            else
-            {
-                self.window.rootViewController = [[HPStartingViewController alloc] init];
-            }
-            [self.window makeKeyAndVisible];
-        }];
+    //If there is a user with a house in local storage load the mainViewController.
+    if ([HPCentralData userWithHouseInLocalStorage]) {
+        self.window.rootViewController = [[HPMainViewController alloc] init];
     }
     else
     {
         self.window.rootViewController = [[HPStartingViewController alloc] init];
-        [self.window makeKeyAndVisible];
     }
+    
+    [self.window makeKeyAndVisible];
+    
+    //Else load the startingViewController
+    
     
     [reachability addHandler:^(NPReachability *curReach) {
         [self checkNetworkConnectivityPopup:curReach];
@@ -126,6 +110,7 @@
 - (void)applicationWillEnterForeground:(UIApplication *)application
 {
     // Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
+    
 }
 
 - (void)applicationDidBecomeActive:(UIApplication *)application
@@ -134,6 +119,8 @@
 #warning Should not be clearing Central Data everytime the app comes into view.
     //[HPCentralData clearCentralData];
     [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICATION_APP_BECAME_ACTIVE object:self];
+    [self checkNetworkConnectivityPopup:[NPReachability sharedInstance]];
+
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application

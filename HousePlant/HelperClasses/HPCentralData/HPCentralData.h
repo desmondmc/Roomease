@@ -48,6 +48,8 @@
 
 + (void) setStateFirstTimeLogin:(bool)state;
 + (bool) getStateFirstTimeLoginAndSetToFalse;
++ (bool) userWithHouseInLocalStorage;
+
 
 
 

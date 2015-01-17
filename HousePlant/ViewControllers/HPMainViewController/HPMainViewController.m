@@ -9,7 +9,7 @@
 #import "HPMainViewController.h"
 #import "HPStartingViewController.h"
 #import "AMPAvatarView.h"
-
+#import "NPReachability.h"
 #import "RoommateImageSubview.h"
 #import "HPSettingsViewController.h"
 #import "HPUINotifier.h"

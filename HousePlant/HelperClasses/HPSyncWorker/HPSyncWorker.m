@@ -36,10 +36,14 @@
         }
         case todoListSyncRequest:
         {
-            [HPCentralData getToDoListEntriesAndForceReloadFromParse:YES];
+            dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
+                [HPCentralData getToDoListEntriesAndForceReloadFromParse:YES];
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    NSDictionary *notifierDictionary = [[NSDictionary alloc] initWithObjectsAndKeys:[NSNumber numberWithBool:TRUE], kRefreshTodoListKey, nil];
+                    [[HPUINotifier sharedUINotifier] notifyDelegatesWithChange:notifierDictionary];
+                });
+            });
 
-            NSDictionary *notifierDictionary = [[NSDictionary alloc] initWithObjectsAndKeys:[NSNumber numberWithBool:TRUE], kRefreshTodoListKey, nil];
-            [[HPUINotifier sharedUINotifier] notifyDelegatesWithChange:notifierDictionary];
             break;
         }
         case todoListItemSyncRequest:
