@@ -10,6 +10,9 @@
 
 #import <AMPAvatarView/AMPAvatarView.h>
 
+//Change this define to 1 if at home feature is enabled.
+#define AT_HOME_ENABLED 0
+
 @implementation SingleRoommateSubview
 
 + (id)initSingleRoommateSubviewWithRoommate:(HPRoommate *)roommate
@@ -48,28 +51,32 @@
     
     
     self.nameLabel.text = roommate.username;
-    if ([roommate atHomeString]) {
-        if ([[roommate atHomeString] isEqualToString:@"true"])
-        {
-            [self.atHomeTint setHidden:true];
-            [self.unknownLocationImage setHidden: true];
+    
+    if (AT_HOME_ENABLED)
+    {
+        if ([roommate atHomeString]) {
+            if ([[roommate atHomeString] isEqualToString:@"true"])
+            {
+                [self.atHomeTint setHidden:true];
+                [self.unknownLocationImage setHidden: true];
+            }
+            
+            else if ([[roommate atHomeString] isEqualToString:@"false"])
+            {
+                [self.atHomeTint setHidden:false];
+                [self.unknownLocationImage setHidden: true];
+            }
+            
+            else if ([[roommate atHomeString] isEqualToString:@"unknown"])
+            {
+                [self.atHomeTint setHidden:true];
+                [self.unknownLocationImage setHidden: false];
+            }
         }
-        
-        else if ([[roommate atHomeString] isEqualToString:@"false"])
+        else //location is undefined
         {
-            [self.atHomeTint setHidden:false];
-            [self.unknownLocationImage setHidden: true];
-        }
-        
-        else if ([[roommate atHomeString] isEqualToString:@"unknown"])
-        {
-            [self.atHomeTint setHidden:true];
             [self.unknownLocationImage setHidden: false];
         }
-    }
-    else //location is undefined
-    {
-        [self.unknownLocationImage setHidden: false];
     }
 
 }

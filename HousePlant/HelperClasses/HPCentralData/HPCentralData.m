@@ -510,7 +510,7 @@
     }
 
     
-    [pfNewListEntry saveEventually];
+    [pfNewListEntry saveInBackground];
     
     entry.objectId = pfNewListEntry.objectId;
     

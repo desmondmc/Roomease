@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="5056" systemVersion="13D65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6254" systemVersion="14B25" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="HPSettingsViewController">
@@ -24,7 +25,7 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="QMr-hu-UbP">
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="QMr-hu-UbP" userLabel="BackButton">
                     <rect key="frame" x="-29" y="19" width="115" height="46"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <rect key="contentStretch" x="0.0" y="0.0" width="0.0" height="0.0"/>
@@ -36,7 +37,7 @@
                         <action selector="onBackPress:" destination="-1" eventType="touchUpInside" id="1gC-f4-2gW"/>
                     </connections>
                 </button>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="adP-Z1-RLa">
+                <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="adP-Z1-RLa" userLabel="SetLocationButton">
                     <rect key="frame" x="14" y="219" width="293" height="47"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <state key="normal" image="set-location-btn"/>
@@ -44,7 +45,7 @@
                         <action selector="onSetLocationPress:" destination="-1" eventType="touchUpInside" id="dCw-wa-eNh"/>
                     </connections>
                 </button>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="H1y-yb-D0Q">
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="H1y-yb-D0Q" userLabel="LogoutButton">
                     <rect key="frame" x="14" y="430" width="293" height="47"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <state key="normal" image="logout-btn">
@@ -56,8 +57,109 @@
                         <action selector="onSetLocationPress:" destination="-1" eventType="touchUpInside" id="yxU-F2-Qkf"/>
                     </connections>
                 </button>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="X7L-iW-LR6">
-                    <rect key="frame" x="14" y="329" width="293" height="47"/>
+                <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" image="settings-title" id="Ja6-9u-RtY">
+                    <rect key="frame" x="108" y="26" width="105" height="45"/>
+                    <autoresizingMask key="autoresizingMask"/>
+                </imageView>
+                <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="M6h-Gn-ch4" userLabel="UseCurrentLocation Button">
+                    <rect key="frame" x="14" y="274" width="293" height="47"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <state key="normal" image="use-current-location-btn">
+                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <connections>
+                        <action selector="onSetLocationPress:" destination="-1" eventType="touchUpInside" id="azQ-GP-Kff"/>
+                    </connections>
+                </button>
+                <view hidden="YES" contentMode="scaleToFill" id="ptj-9B-yzT" userLabel="House # View">
+                    <rect key="frame" x="14" y="507" width="293" height="37"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <subviews>
+                        <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" image="text-field" id="smL-xV-Tsj">
+                            <rect key="frame" x="0.0" y="0.0" width="293" height="37"/>
+                            <autoresizingMask key="autoresizingMask"/>
+                        </imageView>
+                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" usesAttributedText="YES" placeholder="House #" minimumFontSize="17" id="EyZ-hR-zEc">
+                            <rect key="frame" x="6" y="4" width="230" height="30"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <attributedString key="attributedText"/>
+                            <textInputTraits key="textInputTraits" keyboardType="numberPad" returnKeyType="next"/>
+                            <connections>
+                                <outlet property="delegate" destination="-1" id="GdY-0d-PAL"/>
+                            </connections>
+                        </textField>
+                        <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="KhR-fO-MJg" userLabel="House # - text-field-delete ">
+                            <rect key="frame" x="263" y="8" width="22" height="22"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <state key="normal" image="text-field-delete">
+                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                            <connections>
+                                <action selector="onHouseDeletePress:" destination="-1" eventType="touchUpInside" id="5oB-sX-qvq"/>
+                            </connections>
+                        </button>
+                    </subviews>
+                </view>
+                <view hidden="YES" contentMode="scaleToFill" id="VkX-PQ-bCQ" userLabel="Street View">
+                    <rect key="frame" x="13" y="327" width="293" height="37"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <subviews>
+                        <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" image="text-field" id="lHM-JX-RGz">
+                            <rect key="frame" x="0.0" y="0.0" width="293" height="37"/>
+                            <autoresizingMask key="autoresizingMask"/>
+                        </imageView>
+                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" usesAttributedText="YES" placeholder="Street" minimumFontSize="17" id="GSo-wc-lTm">
+                            <rect key="frame" x="6" y="4" width="230" height="30"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <attributedString key="attributedText"/>
+                            <textInputTraits key="textInputTraits" returnKeyType="next"/>
+                            <connections>
+                                <outlet property="delegate" destination="-1" id="eH2-m9-AKC"/>
+                            </connections>
+                        </textField>
+                        <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="fur-Vh-pu8" userLabel="Street - text-field-delete">
+                            <rect key="frame" x="263" y="8" width="22" height="22"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <state key="normal" image="text-field-delete">
+                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                            <connections>
+                                <action selector="onStreetDeletePress:" destination="-1" eventType="touchUpInside" id="PFB-V6-eSB"/>
+                            </connections>
+                        </button>
+                    </subviews>
+                </view>
+                <view hidden="YES" contentMode="scaleToFill" id="LLH-XY-bCQ" userLabel="City View">
+                    <rect key="frame" x="13" y="372" width="293" height="37"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <subviews>
+                        <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" image="text-field" id="gtf-tD-cJo">
+                            <rect key="frame" x="0.0" y="0.0" width="293" height="37"/>
+                            <autoresizingMask key="autoresizingMask"/>
+                        </imageView>
+                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" usesAttributedText="YES" placeholder="CIty" minimumFontSize="17" id="h6T-ZG-hJd">
+                            <rect key="frame" x="6" y="4" width="230" height="30"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <attributedString key="attributedText"/>
+                            <textInputTraits key="textInputTraits" returnKeyType="done"/>
+                            <connections>
+                                <outlet property="delegate" destination="-1" id="EkR-CE-7aR"/>
+                            </connections>
+                        </textField>
+                        <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="Kgz-wR-cvX" userLabel="City - text-field-delete">
+                            <rect key="frame" x="263" y="8" width="22" height="22"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <state key="normal" image="text-field-delete">
+                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                            <connections>
+                                <action selector="onCityDeletePress:" destination="-1" eventType="touchUpInside" id="6nd-am-Vqu"/>
+                            </connections>
+                        </button>
+                    </subviews>
+                </view>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="X7L-iW-LR6" userLabel="SetPicButton">
+                    <rect key="frame" x="14" y="79" width="293" height="47"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <state key="normal" image="set-pic-btn">
                         <color key="titleColor" red="0.1400408061" green="0.91665338009999997" blue="0.29529888929999998" alpha="1" colorSpace="calibratedRGB"/>
@@ -68,7 +170,7 @@
                     </connections>
                 </button>
                 <view contentMode="scaleToFill" id="8e8-q7-5ZT" userLabel="uploadingPhotoIndicator">
-                    <rect key="frame" x="93" y="384" width="134" height="38"/>
+                    <rect key="frame" x="93" y="134" width="134" height="38"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <subviews>
                         <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" animating="YES" style="gray" id="sV3-3z-VX5">
@@ -78,93 +180,8 @@
                     </subviews>
                     <color key="backgroundColor" red="0.29019607843137252" green="0.69411764705882351" blue="0.9882352941176471" alpha="1" colorSpace="deviceRGB"/>
                 </view>
-                <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" image="settings-title" id="Ja6-9u-RtY">
-                    <rect key="frame" x="108" y="26" width="105" height="45"/>
-                    <autoresizingMask key="autoresizingMask"/>
-                </imageView>
-                <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" image="text-field" id="smL-xV-Tsj">
-                    <rect key="frame" x="14" y="84" width="293" height="37"/>
-                    <autoresizingMask key="autoresizingMask"/>
-                </imageView>
-                <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" image="text-field" id="lHM-JX-RGz">
-                    <rect key="frame" x="14" y="129" width="293" height="37"/>
-                    <autoresizingMask key="autoresizingMask"/>
-                </imageView>
-                <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" image="text-field" id="gtf-tD-cJo">
-                    <rect key="frame" x="14" y="174" width="293" height="37"/>
-                    <autoresizingMask key="autoresizingMask"/>
-                </imageView>
-                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" usesAttributedText="YES" placeholder="House #" minimumFontSize="17" id="EyZ-hR-zEc">
-                    <rect key="frame" x="20" y="88" width="230" height="30"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <attributedString key="attributedText"/>
-                    <textInputTraits key="textInputTraits" keyboardType="numberPad" returnKeyType="next"/>
-                    <connections>
-                        <outlet property="delegate" destination="-1" id="GdY-0d-PAL"/>
-                    </connections>
-                </textField>
-                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" usesAttributedText="YES" placeholder="Street" minimumFontSize="17" id="GSo-wc-lTm">
-                    <rect key="frame" x="20" y="133" width="230" height="30"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <attributedString key="attributedText"/>
-                    <textInputTraits key="textInputTraits" returnKeyType="next"/>
-                    <connections>
-                        <outlet property="delegate" destination="-1" id="eH2-m9-AKC"/>
-                    </connections>
-                </textField>
-                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" usesAttributedText="YES" placeholder="CIty" minimumFontSize="17" id="h6T-ZG-hJd">
-                    <rect key="frame" x="20" y="178" width="230" height="30"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <attributedString key="attributedText"/>
-                    <textInputTraits key="textInputTraits" returnKeyType="done"/>
-                    <connections>
-                        <outlet property="delegate" destination="-1" id="EkR-CE-7aR"/>
-                    </connections>
-                </textField>
-                <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="Kgz-wR-cvX" userLabel="City - text-field-delete">
-                    <rect key="frame" x="278" y="182" width="22" height="22"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <state key="normal" image="text-field-delete">
-                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                    </state>
-                    <connections>
-                        <action selector="onCityDeletePress:" destination="-1" eventType="touchUpInside" id="6nd-am-Vqu"/>
-                    </connections>
-                </button>
-                <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="fur-Vh-pu8" userLabel="Street - text-field-delete">
-                    <rect key="frame" x="278" y="137" width="22" height="22"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <state key="normal" image="text-field-delete">
-                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                    </state>
-                    <connections>
-                        <action selector="onStreetDeletePress:" destination="-1" eventType="touchUpInside" id="PFB-V6-eSB"/>
-                    </connections>
-                </button>
-                <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="KhR-fO-MJg" userLabel="House # - text-field-delete ">
-                    <rect key="frame" x="278" y="92" width="22" height="22"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <state key="normal" image="text-field-delete">
-                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                    </state>
-                    <connections>
-                        <action selector="onHouseDeletePress:" destination="-1" eventType="touchUpInside" id="5oB-sX-qvq"/>
-                    </connections>
-                </button>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="M6h-Gn-ch4">
-                    <rect key="frame" x="14" y="274" width="293" height="47"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <state key="normal" image="use-current-location-btn">
-                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                    </state>
-                    <connections>
-                        <action selector="onSetLocationPress:" destination="-1" eventType="touchUpInside" id="azQ-GP-Kff"/>
-                    </connections>
-                </button>
             </subviews>
             <color key="backgroundColor" red="0.29019609089999998" green="0.69411766529999996" blue="0.98823535439999999" alpha="1" colorSpace="deviceRGB"/>
-            <simulatedStatusBarMetrics key="simulatedStatusBarMetrics"/>
-            <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
         </view>
     </objects>
     <resources>
@@ -177,4 +194,9 @@
         <image name="use-current-location-btn" width="293" height="47"/>
         <image name="white-back-arrow" width="22" height="28"/>
     </resources>
+    <simulatedMetricsContainer key="defaultSimulatedMetrics">
+        <simulatedStatusBarMetrics key="statusBar"/>
+        <simulatedOrientationMetrics key="orientation"/>
+        <simulatedScreenMetrics key="destination" type="retina4"/>
+    </simulatedMetricsContainer>
 </document>

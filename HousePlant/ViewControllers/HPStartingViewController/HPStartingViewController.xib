@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="5053" systemVersion="13C64" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6254" systemVersion="14B25" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="HPStartingViewController">
@@ -17,69 +18,83 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <view contentMode="scaleToFill" id="B6c-bV-ayD">
-                    <rect key="frame" x="0.0" y="423" width="320" height="93"/>
+                    <rect key="frame" x="0.0" y="423" width="320" height="95"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <subviews>
-                        <button opaque="NO" contentMode="scaleToFill" placeholderIntrinsicWidth="320" placeholderIntrinsicHeight="46" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="O0L-PT-aD6" userLabel="ButtonLogin">
+                        <view contentMode="scaleToFill" id="i3m-pn-q7w" userLabel="LoginButtonVIew">
                             <rect key="frame" x="0.0" y="0.0" width="320" height="47"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                            <state key="normal" image="1-text-field-bg">
-                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                            </state>
-                            <state key="selected" image="TextFieldBarHighlight"/>
-                            <state key="highlighted" image="1blue-text-field-bg"/>
-                            <connections>
-                                <action selector="onLoginPress:" destination="-1" eventType="touchUpInside" id="Iik-dD-guc"/>
-                            </connections>
-                        </button>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="QZK-G0-lB2" userLabel="ButtonSignup">
-                            <rect key="frame" x="0.0" y="48" width="320" height="46"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                            <state key="normal" image="1-text-field-bg">
-                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                            </state>
-                            <state key="selected" image="TextFieldBarHighlight"/>
-                            <state key="highlighted" image="1blue-text-field-bg"/>
-                            <connections>
-                                <action selector="onSignupPress:" destination="-1" eventType="touchUpInside" id="f23-bn-xIq"/>
-                            </connections>
-                        </button>
-                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="arrow" id="nxK-pu-w3K">
-                            <rect key="frame" x="275" y="11" width="25" height="25"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        </imageView>
-                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="arrow" id="h5d-7m-BiH">
-                            <rect key="frame" x="275" y="58" width="25" height="25"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        </imageView>
-                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="username" id="nDN-dt-CTE">
-                            <rect key="frame" x="31" y="11" width="25" height="25"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        </imageView>
-                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="signup" id="vwW-lI-1I3">
-                            <rect key="frame" x="31" y="58" width="25" height="25"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        </imageView>
-                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Login" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Rce-Xe-XXe">
-                            <rect key="frame" x="74" y="13" width="48" height="21"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="15"/>
-                            <color key="textColor" red="0.39607846736907959" green="0.74901962280273438" blue="0.98431378602981567" alpha="1" colorSpace="deviceRGB"/>
-                            <color key="highlightedColor" red="0.16470588743686676" green="0.50196081399917603" blue="0.49803924560546875" alpha="1" colorSpace="deviceRGB"/>
-                        </label>
-                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sign up" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="4gw-uB-82T">
-                            <rect key="frame" x="74" y="57" width="58" height="24"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="15"/>
-                            <color key="textColor" red="0.29411765933036804" green="0.70196080207824707" blue="0.98431378602981567" alpha="1" colorSpace="deviceRGB"/>
-                            <color key="highlightedColor" red="0.1647058874" green="0.50196081400000003" blue="0.49803924560000001" alpha="1" colorSpace="deviceRGB"/>
-                        </label>
+                            <subviews>
+                                <button opaque="NO" contentMode="scaleToFill" placeholderIntrinsicWidth="320" placeholderIntrinsicHeight="46" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="O0L-PT-aD6" userLabel="ButtonLogin">
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="47"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                    <state key="normal" image="1-text-field-bg">
+                                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                    </state>
+                                    <state key="selected" image="TextFieldBarHighlight"/>
+                                    <state key="highlighted" image="1blue-text-field-bg"/>
+                                    <connections>
+                                        <action selector="onLoginPress:" destination="-1" eventType="touchUpInside" id="Iik-dD-guc"/>
+                                    </connections>
+                                </button>
+                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="arrow" id="nxK-pu-w3K">
+                                    <rect key="frame" x="275" y="11" width="25" height="25"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                </imageView>
+                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="username" id="nDN-dt-CTE">
+                                    <rect key="frame" x="31" y="11" width="25" height="25"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                </imageView>
+                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Login" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Rce-Xe-XXe">
+                                    <rect key="frame" x="74" y="13" width="48" height="21"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="15"/>
+                                    <color key="textColor" red="0.39607846736907959" green="0.74901962280273438" blue="0.98431378602981567" alpha="1" colorSpace="deviceRGB"/>
+                                    <color key="highlightedColor" red="0.16470588743686676" green="0.50196081399917603" blue="0.49803924560546875" alpha="1" colorSpace="deviceRGB"/>
+                                </label>
+                            </subviews>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        </view>
                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="full-divider" id="YKd-7i-r8p">
                             <rect key="frame" x="0.0" y="47" width="320" height="1"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         </imageView>
+                        <view contentMode="scaleToFill" id="1j5-78-ZKw" userLabel="SignupButtonVIew">
+                            <rect key="frame" x="0.0" y="48" width="320" height="47"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <subviews>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="QZK-G0-lB2" userLabel="ButtonSignup">
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="46"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                    <state key="normal" image="1-text-field-bg">
+                                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                    </state>
+                                    <state key="selected" image="TextFieldBarHighlight"/>
+                                    <state key="highlighted" image="1blue-text-field-bg"/>
+                                    <connections>
+                                        <action selector="onSignupPress:" destination="-1" eventType="touchUpInside" id="f23-bn-xIq"/>
+                                    </connections>
+                                </button>
+                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="arrow" id="h5d-7m-BiH">
+                                    <rect key="frame" x="275" y="11" width="25" height="25"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                </imageView>
+                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="signup" id="vwW-lI-1I3" userLabel="signupImage">
+                                    <rect key="frame" x="31" y="11" width="25" height="25"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                </imageView>
+                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sign up" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="4gw-uB-82T">
+                                    <rect key="frame" x="74" y="12" width="58" height="24"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="15"/>
+                                    <color key="textColor" red="0.29411765933036804" green="0.70196080207824707" blue="0.98431378602981567" alpha="1" colorSpace="deviceRGB"/>
+                                    <color key="highlightedColor" red="0.1647058874" green="0.50196081400000003" blue="0.49803924560000001" alpha="1" colorSpace="deviceRGB"/>
+                                </label>
+                            </subviews>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        </view>
                     </subviews>
                     <color key="backgroundColor" red="0.85882359740000003" green="0.94117653369999998" blue="0.99607849120000003" alpha="1" colorSpace="deviceRGB"/>
                 </view>
@@ -89,8 +104,6 @@
                 </imageView>
             </subviews>
             <color key="backgroundColor" red="0.26274511218070984" green="0.69019609689712524" blue="0.98823535442352295" alpha="1" colorSpace="deviceRGB"/>
-            <simulatedStatusBarMetrics key="simulatedStatusBarMetrics"/>
-            <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
         </view>
     </objects>
     <resources>
@@ -103,4 +116,9 @@
         <image name="signup" width="50" height="50"/>
         <image name="username" width="50" height="50"/>
     </resources>
+    <simulatedMetricsContainer key="defaultSimulatedMetrics">
+        <simulatedStatusBarMetrics key="statusBar"/>
+        <simulatedOrientationMetrics key="orientation"/>
+        <simulatedScreenMetrics key="destination" type="retina4"/>
+    </simulatedMetricsContainer>
 </document>
