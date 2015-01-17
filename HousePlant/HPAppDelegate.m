@@ -10,9 +10,12 @@
 #import "HPMainViewController.h"
 #import "HPStartingViewController.h"
 #import "HPNoHomeViewController.h"
+#import "CheckConnectivityView.h"
 
 #import "ParseKeys.h"
 #import "TestFlight.h"
+#import "NPReachability.h"
+#import "KLCPopup.h"
 
 
 @implementation HPAppDelegate
@@ -23,6 +26,8 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+    NPReachability *reachability = [NPReachability sharedInstance];
+    
     [Parse setApplicationId:kParseAppId
                   clientKey:kParseClientKey];
     
@@ -75,8 +80,35 @@
         self.window.rootViewController = [[HPStartingViewController alloc] init];
         [self.window makeKeyAndVisible];
     }
+    
+    [reachability addHandler:^(NPReachability *curReach) {
+        [self checkNetworkConnectivityPopup:curReach];
+    }];
+    
 
     return YES;
+}
+
+- (void)checkNetworkConnectivityPopup:(NPReachability *) currentReachability
+{
+    if (currentReachability.isCurrentlyReachable)
+    {
+        [KLCPopup dismissAllPopups];
+    }
+    else
+    {
+        [CheckConnectivityView class];
+        UIView *popupView = [[[NSBundle mainBundle]
+                         loadNibNamed:@"CheckConnectivityView"
+                         owner:self options:nil]
+                        firstObject];
+        
+        KLCPopup *popup = [KLCPopup popupWithContentView:popupView];
+        [popup setUserInteractionEnabled:NO];
+        [popup show];
+        
+        
+    }
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application

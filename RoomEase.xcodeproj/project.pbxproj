@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		641AF380FE954A6D996B029D /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F2ADBFAE68984DBDA17CC3D1 /* libPods.a */; };
+		7AC41DEE1A6AA066006C3A3B /* CheckConnectivityView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7AC41DED1A6AA066006C3A3B /* CheckConnectivityView.xib */; };
+		7AC41DF11A6AA3A3006C3A3B /* CheckConnectivityView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7AC41DF01A6AA3A3006C3A3B /* CheckConnectivityView.m */; };
 		7AD77F691A690DE200421DB8 /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7AD77F671A690DE200421DB8 /* Bolts.framework */; };
 		7AD77F6B1A690DE200421DB8 /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7AD77F681A690DE200421DB8 /* Parse.framework */; };
 		7AD77F6E1A690EB100421DB8 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 7AD77F6D1A690EB100421DB8 /* libsqlite3.dylib */; };
@@ -83,6 +85,9 @@
 
 /* Begin PBXFileReference section */
 		447CBE3F67C1D3BDB780BEF1 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
+		7AC41DED1A6AA066006C3A3B /* CheckConnectivityView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CheckConnectivityView.xib; sourceTree = "<group>"; };
+		7AC41DEF1A6AA37C006C3A3B /* CheckConnectivityView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CheckConnectivityView.h; sourceTree = "<group>"; };
+		7AC41DF01A6AA3A3006C3A3B /* CheckConnectivityView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CheckConnectivityView.m; sourceTree = "<group>"; };
 		7AD77F671A690DE200421DB8 /* Bolts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Bolts.framework; path = "parse-library-1.6.1/Bolts.framework"; sourceTree = "<group>"; };
 		7AD77F681A690DE200421DB8 /* Parse.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Parse.framework; path = "parse-library-1.6.1/Parse.framework"; sourceTree = "<group>"; };
 		7AD77F6D1A690EB100421DB8 /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
@@ -231,6 +236,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		7A1B1D1A1A6A9F9600945AAF /* Popups */ = {
+			isa = PBXGroup;
+			children = (
+				7AC41DED1A6AA066006C3A3B /* CheckConnectivityView.xib */,
+				7AC41DEF1A6AA37C006C3A3B /* CheckConnectivityView.h */,
+				7AC41DF01A6AA3A3006C3A3B /* CheckConnectivityView.m */,
+			);
+			name = Popups;
+			sourceTree = "<group>";
+		};
 		DA734B980359F9A8D8DF60DE /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -690,6 +705,7 @@
 		F7E3E52718EE23EF007A9C02 /* CustomViews */ = {
 			isa = PBXGroup;
 			children = (
+				7A1B1D1A1A6A9F9600945AAF /* Popups */,
 				F7E3E52318EE2332007A9C02 /* HPTableView */,
 				F77D56E418D792EF00CFF118 /* HPListTableViewCell */,
 			);
@@ -761,6 +777,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F714B83D18B13BC200B598E7 /* SingleRoommateSubview.xib in Resources */,
+				7AC41DEE1A6AA066006C3A3B /* CheckConnectivityView.xib in Resources */,
 				F711388618777B8800D9BA9E /* HPNoHomeViewController.xib in Resources */,
 				F7A1222618522A4100E51B06 /* InfoPlist.strings in Resources */,
 				F7A1223118522A4100E51B06 /* Images.xcassets in Resources */,
@@ -831,6 +848,7 @@
 				F714B83218B1387800B598E7 /* RoommateImageSubview.m in Sources */,
 				F76535811867D1B20046263B /* HPSignupViewController.m in Sources */,
 				F36CEC1B18C6880B0013D094 /* HPSyncWorker.m in Sources */,
+				7AC41DF11A6AA3A3006C3A3B /* CheckConnectivityView.m in Sources */,
 				F737152D18FF40F800668251 /* HPToDoListDataSource.m in Sources */,
 				F73A01B418AAFD00000F25B6 /* HPSettingsViewController.m in Sources */,
 				F73F9EAC18BE9674009D6097 /* HPUINotifier.m in Sources */,

@@ -4,25 +4,25 @@ PODS:
   - ISMethodSwizzling (0.0.2)
   - ISRefreshControl (1.4.1):
     - ISMethodSwizzling (~> 0.0.2)
+  - KLCPopup (1.0)
   - MBProgressHUD (0.8)
   - NPReachability (0.1.0)
-  - Reachability (3.1.1)
 
 DEPENDENCIES:
   - AMPAvatarView (~> 1.0.3)
   - CSNotificationView (~> 0.5.3)
   - ISRefreshControl (~> 1.4.1)
+  - KLCPopup (~> 1.0)
   - MBProgressHUD (~> 0.8)
   - NPReachability (~> 0.1.0)
-  - Reachability (~> 3.1.1)
 
 SPEC CHECKSUMS:
   AMPAvatarView: b4b26cb1350a4eaefc47e6b71f389d190dbde073
   CSNotificationView: e4d26da44dfb569ab284949c822a8239f23cc13d
   ISMethodSwizzling: 867d17ca20bd0ca2d3e7c1516a0c1f0ee9ca94c9
   ISRefreshControl: a22ffc641933ca489b85d192d591546f93c47d07
+  KLCPopup: 23548d0454ca156b0eb684f791f234b9c2134369
   MBProgressHUD: c356980b0cd097f19acec959b49dca5eb8ec31be
   NPReachability: 3f1d22668d58b79ac37d08e88d03477cef7b4c24
-  Reachability: 8e9635e3cb4f98e7f825e51147f677ecc694d0e7
 
 COCOAPODS: 0.35.0
