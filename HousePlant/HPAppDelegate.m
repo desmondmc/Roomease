@@ -82,6 +82,7 @@
     else
     {
         [CheckConnectivityView class];
+        [KLCPopup dismissAllPopups];
         UIView *popupView = [[[NSBundle mainBundle]
                          loadNibNamed:@"CheckConnectivityView"
                          owner:self options:nil]

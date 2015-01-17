@@ -779,12 +779,10 @@
 
 + (bool) userWithHouseInLocalStorage
 {
-    NSData *roommateData = [persistantStore objectForKey:kPersistantStoreCurrentUser];
-    HPRoommate *roommate =  [NSKeyedUnarchiver unarchiveObjectWithData:roommateData];
     NSData *homeData = [persistantStore objectForKey:kPersistantStoreHome];
     HPHouse *home =  [NSKeyedUnarchiver unarchiveObjectWithData:homeData];
     
-    if (home && roommate) {
+    if (home && [PFUser currentUser]) {
         return true;
     }
     else
