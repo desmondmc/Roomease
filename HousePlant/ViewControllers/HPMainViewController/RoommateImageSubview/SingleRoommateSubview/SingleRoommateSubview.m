@@ -82,8 +82,11 @@
 }
 
 - (IBAction)onViewPress:(id)sender {
-    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"User Settings" message:@"Do you want to recieve notifications from this user when they leave/arrive home?" delegate:self cancelButtonTitle:@"No" otherButtonTitles:@"Yes",nil];
-    [alert show];
+    if (AT_HOME_ENABLED)
+    {
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"User Settings" message:@"Do you want to recieve notifications from this user when they leave/arrive home?" delegate:self cancelButtonTitle:@"No" otherButtonTitles:@"Yes",nil];
+        [alert show];
+    }
 }
 
 - (void)alertView:(UIAlertView *)alertView
