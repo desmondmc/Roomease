@@ -15,5 +15,6 @@ If you don't already have codoapods install it:
     $ sudo gem install cocoapods
     
 Run pod install in the project directory to intall cocoapods:
-
+    
+    $ pod setup
     $ pod install
