@@ -8,6 +8,10 @@
       "idiom" : "universal",
       "scale" : "2x",
       "filename" : "white-back-arrow.png"
+    },
+    {
+      "idiom" : "universal",
+      "scale" : "3x"
     }
   ],
   "info" : {

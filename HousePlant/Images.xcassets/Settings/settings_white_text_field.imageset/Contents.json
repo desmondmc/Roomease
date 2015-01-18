@@ -2,12 +2,12 @@
   "images" : [
     {
       "idiom" : "universal",
-      "scale" : "1x",
-      "filename" : "login-btn-normal.png"
+      "scale" : "1x"
     },
     {
       "idiom" : "universal",
-      "scale" : "2x"
+      "scale" : "2x",
+      "filename" : "settings_white_text_field.png"
     },
     {
       "idiom" : "universal",

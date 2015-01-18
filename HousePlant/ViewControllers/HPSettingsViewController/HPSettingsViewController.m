@@ -45,7 +45,7 @@
     if (screenSize.height > 480.0f)
     {
         /*Do iPhone 5 stuff here.*/
-        [[self logoutButton] setFrame:CGRectMake(14, 501, [self logoutButton].frame.size.width, [self logoutButton].frame.size.height)];
+        [[self bottomButtonsView] setFrame:CGRectMake(0, 369, [self bottomButtonsView].frame.size.width, [self bottomButtonsView].frame.size.height)];
     }
     
 }
