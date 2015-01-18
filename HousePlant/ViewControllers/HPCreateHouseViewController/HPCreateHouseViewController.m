@@ -174,6 +174,22 @@ typedef void (^BackgroundTaskResultBlock)(NSString *errorString);
                 PFUser *currentUser = [PFUser currentUser];
                 currentUser[@"home"] = house;
                 [currentUser save];
+                
+                //Create some default list entries.
+                HPListEntry *listEntry = [[HPListEntry alloc] init];
+                
+                listEntry.description2 = @"Do the dishes!";
+                listEntry.dateAdded = [NSDate date];
+                [HPCentralData saveToDoListEntryWithSingleEntryLocalAndRemote:listEntry];
+                
+                listEntry.description2 = @"Buy Milk";
+                listEntry.dateAdded = [NSDate date];
+                [HPCentralData saveToDoListEntryWithSingleEntryLocalAndRemote:listEntry];
+                
+                listEntry.description2 = @"Clean the bathroom.";
+                listEntry.dateAdded = [NSDate date];
+                [HPCentralData saveToDoListEntryWithSingleEntryLocalAndRemote:listEntry];
+                
             }
             
             if(!errorString)
