@@ -31,6 +31,8 @@
     
     [HPCentralData getHouseInBackgroundWithBlock:^(HPHouse *house, NSError *error) {
         _homeLocationLabel.text = [house addressText];
+        [_houseNameLabel setHidden:NO];
+        _houseNameLabel.text = [house houseName];
     }];
     
     [_uploadingPhotoIndicator setHidden:true];
@@ -43,6 +45,7 @@
         /*Do iPhone 5 stuff here.*/
         [[self logoutButton] setFrame:CGRectMake(14, 501, [self logoutButton].frame.size.width, [self logoutButton].frame.size.height)];
     }
+    
 }
 
 - (void)viewDidAppear:(BOOL)animated

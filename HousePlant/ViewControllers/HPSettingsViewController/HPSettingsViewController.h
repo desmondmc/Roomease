@@ -26,6 +26,7 @@
 - (IBAction)onHouseDeletePress:(id)sender;
 - (IBAction)onStreetDeletePress:(id)sender;
 - (IBAction)onCityDeletePress:(id)sender;
+@property (weak, nonatomic) IBOutlet UILabel *houseNameLabel;
 
 
 

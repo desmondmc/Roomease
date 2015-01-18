@@ -10,6 +10,7 @@
                 <outlet property="cityDeleteButton" destination="Kgz-wR-cvX" id="NzS-BM-9LJ"/>
                 <outlet property="cityField" destination="h6T-ZG-hJd" id="XEQ-qV-JfK"/>
                 <outlet property="houseDeleteButton" destination="KhR-fO-MJg" id="gUQ-ig-ujr"/>
+                <outlet property="houseNameLabel" destination="3Fn-rn-VhE" id="6q6-g4-jso"/>
                 <outlet property="houseNumberField" destination="EyZ-hR-zEc" id="Vqy-BT-QxK"/>
                 <outlet property="logoutButton" destination="H1y-yb-D0Q" id="aXg-mr-9rG"/>
                 <outlet property="setLocationButton" destination="adP-Z1-RLa" id="076-RC-jBj"/>
@@ -159,7 +160,7 @@
                     </subviews>
                 </view>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="X7L-iW-LR6" userLabel="SetPicButton">
-                    <rect key="frame" x="14" y="79" width="293" height="47"/>
+                    <rect key="frame" x="19" y="113" width="293" height="47"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <state key="normal" image="set-pic-btn">
                         <color key="titleColor" red="0.1400408061" green="0.91665338009999997" blue="0.29529888929999998" alpha="1" colorSpace="calibratedRGB"/>
@@ -170,7 +171,7 @@
                     </connections>
                 </button>
                 <view contentMode="scaleToFill" id="8e8-q7-5ZT" userLabel="uploadingPhotoIndicator">
-                    <rect key="frame" x="93" y="134" width="134" height="38"/>
+                    <rect key="frame" x="93" y="162" width="134" height="38"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <subviews>
                         <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" animating="YES" style="gray" id="sV3-3z-VX5">
@@ -180,6 +181,20 @@
                     </subviews>
                     <color key="backgroundColor" red="0.29019607843137252" green="0.69411764705882351" blue="0.9882352941176471" alpha="1" colorSpace="deviceRGB"/>
                 </view>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="House Name:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="jhQ-l0-JMy">
+                    <rect key="frame" x="19" y="78" width="105" height="21"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="HouseName" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="3Fn-rn-VhE">
+                    <rect key="frame" x="126" y="78" width="186" height="21"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                    <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
             </subviews>
             <color key="backgroundColor" red="0.29019609089999998" green="0.69411766529999996" blue="0.98823535439999999" alpha="1" colorSpace="deviceRGB"/>
         </view>
