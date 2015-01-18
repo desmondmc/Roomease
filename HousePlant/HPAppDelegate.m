@@ -14,7 +14,6 @@
 #import "CheckConnectivityView.h"
 
 #import "ParseKeys.h"
-#import "TestFlight.h"
 #import "NPReachability.h"
 #import "KLCPopup.h"
 
@@ -33,10 +32,6 @@
                   clientKey:kParseClientKey];
     
     [PFAnalytics trackAppOpenedWithLaunchOptions:launchOptions];
-    
-    [TestFlight takeOff:@"14906e3c-2003-4328-946b-bf7afdbe9b29"];
-    
-    //[Crashlytics startWithAPIKey:kCrashlyticsKey];
     
     [[UIApplication sharedApplication] setMinimumBackgroundFetchInterval:UIApplicationBackgroundFetchIntervalMinimum];
     

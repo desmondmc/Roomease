@@ -7,8 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <MessageUI/MFMailComposeViewController.h>
 
-@interface HPSettingsViewController : UIViewController <CLLocationManagerDelegate, UIImagePickerControllerDelegate, UITextFieldDelegate>
+@interface HPSettingsViewController : UIViewController <CLLocationManagerDelegate, UIImagePickerControllerDelegate, UITextFieldDelegate, UIAlertViewDelegate, MFMailComposeViewControllerDelegate>
 @property (weak, nonatomic) IBOutlet UITextField *houseNumberField;
 @property (weak, nonatomic) IBOutlet UITextField *streetField;
 @property (weak, nonatomic) IBOutlet UITextField *cityField;
@@ -27,6 +28,7 @@
 - (IBAction)onStreetDeletePress:(id)sender;
 - (IBAction)onCityDeletePress:(id)sender;
 @property (weak, nonatomic) IBOutlet UILabel *houseNameLabel;
+- (IBAction)onFeedbackPress:(id)sender;
 
 
 

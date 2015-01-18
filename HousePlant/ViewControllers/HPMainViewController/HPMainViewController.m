@@ -48,7 +48,7 @@
     
     self->refreshControl = [[ISRefreshControl alloc] init];
 //    [self->refreshControl setAttributedTitle:[[NSAttributedString alloc] initWithString:@"Refreshing..." attributes:nil]];
-    [self->refreshControl setTintColor:[UIColor blueColor]];
+    [self->refreshControl setTintColor:[UIColor colorWithRed:218.0/255.0 green:240.0/255.0 blue:254.0/251.0 alpha:1]];
     [self.todoListTableView addSubview:refreshControl];
     
     [self->refreshControl addTarget:self

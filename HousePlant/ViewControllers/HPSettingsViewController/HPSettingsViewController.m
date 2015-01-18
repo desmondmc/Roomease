@@ -10,6 +10,8 @@
 #import "HPCameraManager.h"
 #import "HPStartingViewController.h"
 
+#import <MessageUI/MFMailComposeViewController.h>
+
 @interface HPSettingsViewController ()
 
 @end
@@ -200,5 +202,53 @@
     return true;
 }
 
+
+- (IBAction)onFeedbackPress:(id)sender {
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle: @"Tell us what you think!"
+                                                    message: @"Thanks for being one of the first people to install Roomease. I'm still an extremely new app and I'd love to hear what you think. If you have ideas about features you'd like in future realeases or pointers on how we can improve, send us an email."
+                                                   delegate: self
+                                          cancelButtonTitle:@"No Way!"
+                                          otherButtonTitles:@"Sure!", nil];
+    
+    [alert show];
+}
+
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    NSLog(@"Clicked button at index: %d", buttonIndex);
+    if (buttonIndex == 1) // Clicked "Sure!" Open an email.
+    {
+        if ([MFMailComposeViewController canSendMail]) {
+            //Open mailview.
+            MFMailComposeViewController* mailViewController = [[MFMailComposeViewController alloc] init];
+            mailViewController.mailComposeDelegate = self;
+            [mailViewController setToRecipients:@[@"info@roomeaseapp.com"]];
+            [mailViewController setSubject:@"Feedback"];
+            [mailViewController setMessageBody:@"Hey Roomease here's how I think you can improve you app: " isHTML:NO];
+            
+            [self presentViewController:mailViewController animated:YES completion:^{
+                [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
+            }];
+        } else {
+            // Handle the error
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle: @"Sorry!"
+                                                            message: @"This device cannot send emails."
+                                                           delegate: self
+                                                  cancelButtonTitle:@"Ahh Frig."
+                                                  otherButtonTitles:nil];
+        }
+
+    }
+}
+
+- (void)mailComposeController:(MFMailComposeViewController *)controller didFinishWithResult:(MFMailComposeResult)result error:(NSError *)error
+{
+    if (result == MFMailComposeResultSent)
+    {
+        [CSNotificationView showInViewController:self style:CSNotificationViewStyleSuccess message:@"Thanks, You're Awesome!"];
+    }
+
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
 
 @end
