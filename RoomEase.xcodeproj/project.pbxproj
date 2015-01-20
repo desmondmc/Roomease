@@ -9,6 +9,10 @@
 /* Begin PBXBuildFile section */
 		641AF380FE954A6D996B029D /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F2ADBFAE68984DBDA17CC3D1 /* libPods.a */; };
 		7A2F91D81A6F006900675106 /* HPCoreDataStack.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A2F91D71A6F006900675106 /* HPCoreDataStack.m */; };
+		7A2F91DB1A6F03CF00675106 /* RoomeaseDataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 7A2F91D91A6F03CF00675106 /* RoomeaseDataModel.xcdatamodeld */; };
+		7A2F91E71A6F086C00675106 /* ListItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A2F91E61A6F086C00675106 /* ListItem.m */; };
+		7A2F91EA1A6F086D00675106 /* Roommate.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A2F91E91A6F086D00675106 /* Roommate.m */; };
+		7A2F91ED1A6F086D00675106 /* House.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A2F91EC1A6F086D00675106 /* House.m */; };
 		7A492FBF1A6C3F7F0088F547 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7A492FBE1A6C3F7F0088F547 /* MessageUI.framework */; };
 		7AC41DEE1A6AA066006C3A3B /* CheckConnectivityView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7AC41DED1A6AA066006C3A3B /* CheckConnectivityView.xib */; };
 		7AC41DF11A6AA3A3006C3A3B /* CheckConnectivityView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7AC41DF01A6AA3A3006C3A3B /* CheckConnectivityView.m */; };
@@ -24,7 +28,6 @@
 		F710E6051879213800BD9D54 /* global.json in Resources */ = {isa = PBXBuildFile; fileRef = F710E6011879213800BD9D54 /* global.json */; };
 		F710E6061879213800BD9D54 /* index.html in Resources */ = {isa = PBXBuildFile; fileRef = F710E6031879213800BD9D54 /* index.html */; };
 		F710E60B187F77BC00BD9D54 /* HPCentralData.m in Sources */ = {isa = PBXBuildFile; fileRef = F710E60A187F77BC00BD9D54 /* HPCentralData.m */; };
-		F710E60E1890A97A00BD9D54 /* ParseSync.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = F710E60C1890A97A00BD9D54 /* ParseSync.xcdatamodeld */; };
 		F711387E1876086B00D9BA9E /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F7A6F4A81852320A00CEB9FD /* CoreLocation.framework */; };
 		F71138801877008600D9BA9E /* ottawa.gpx in Resources */ = {isa = PBXBuildFile; fileRef = F711387F1877008600D9BA9E /* ottawa.gpx */; };
 		F711388518777B8800D9BA9E /* HPNoHomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F711388318777B8800D9BA9E /* HPNoHomeViewController.m */; };
@@ -86,6 +89,13 @@
 		447CBE3F67C1D3BDB780BEF1 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		7A2F91D61A6F006900675106 /* HPCoreDataStack.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HPCoreDataStack.h; sourceTree = "<group>"; };
 		7A2F91D71A6F006900675106 /* HPCoreDataStack.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HPCoreDataStack.m; sourceTree = "<group>"; };
+		7A2F91DA1A6F03CF00675106 /* RoomeaseDataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = RoomeaseDataModel.xcdatamodel; sourceTree = "<group>"; };
+		7A2F91E51A6F086C00675106 /* ListItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ListItem.h; sourceTree = "<group>"; };
+		7A2F91E61A6F086C00675106 /* ListItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ListItem.m; sourceTree = "<group>"; };
+		7A2F91E81A6F086D00675106 /* Roommate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Roommate.h; sourceTree = "<group>"; };
+		7A2F91E91A6F086D00675106 /* Roommate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Roommate.m; sourceTree = "<group>"; };
+		7A2F91EB1A6F086D00675106 /* House.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = House.h; sourceTree = "<group>"; };
+		7A2F91EC1A6F086D00675106 /* House.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = House.m; sourceTree = "<group>"; };
 		7A492FBE1A6C3F7F0088F547 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
 		7AC41DED1A6AA066006C3A3B /* CheckConnectivityView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CheckConnectivityView.xib; sourceTree = "<group>"; };
 		7AC41DEF1A6AA37C006C3A3B /* CheckConnectivityView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CheckConnectivityView.h; sourceTree = "<group>"; };
@@ -109,7 +119,6 @@
 		F710E6031879213800BD9D54 /* index.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = index.html; sourceTree = "<group>"; };
 		F710E609187F77BC00BD9D54 /* HPCentralData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HPCentralData.h; path = HelperClasses/HPCentralData/HPCentralData.h; sourceTree = "<group>"; };
 		F710E60A187F77BC00BD9D54 /* HPCentralData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HPCentralData.m; path = HelperClasses/HPCentralData/HPCentralData.m; sourceTree = "<group>"; };
-		F710E60D1890A97A00BD9D54 /* ParseSync.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = ParseSync.xcdatamodel; sourceTree = "<group>"; };
 		F710E62E1891738700BD9D54 /* ParseKeys.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ParseKeys.h; sourceTree = "<group>"; };
 		F711387F1877008600D9BA9E /* ottawa.gpx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = ottawa.gpx; sourceTree = "<group>"; };
 		F711388218777B8800D9BA9E /* HPNoHomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HPNoHomeViewController.h; path = ViewControllers/HPNoHomeViewController/HPNoHomeViewController.h; sourceTree = "<group>"; };
@@ -247,6 +256,13 @@
 			children = (
 				7A2F91D61A6F006900675106 /* HPCoreDataStack.h */,
 				7A2F91D71A6F006900675106 /* HPCoreDataStack.m */,
+				7A2F91D91A6F03CF00675106 /* RoomeaseDataModel.xcdatamodeld */,
+				7A2F91EB1A6F086D00675106 /* House.h */,
+				7A2F91EC1A6F086D00675106 /* House.m */,
+				7A2F91E81A6F086D00675106 /* Roommate.h */,
+				7A2F91E91A6F086D00675106 /* Roommate.m */,
+				7A2F91E51A6F086C00675106 /* ListItem.h */,
+				7A2F91E61A6F086C00675106 /* ListItem.m */,
 			);
 			name = CoreDataStack;
 			sourceTree = "<group>";
@@ -614,7 +630,6 @@
 				F7A1223018522A4100E51B06 /* Images.xcassets */,
 				F7A1222D18522A4100E51B06 /* HousePlant.xcdatamodeld */,
 				F7A1222218522A4100E51B06 /* Supporting Files */,
-				F710E60C1890A97A00BD9D54 /* ParseSync.xcdatamodeld */,
 				F710E62E1891738700BD9D54 /* ParseKeys.h */,
 			);
 			path = HousePlant;
@@ -826,6 +841,7 @@
 			files = (
 				F7A1225118522ABE00E51B06 /* HPStartingViewController.m in Sources */,
 				F7A1222C18522A4100E51B06 /* HPAppDelegate.m in Sources */,
+				7A2F91E71A6F086C00675106 /* ListItem.m in Sources */,
 				F714B82018ABD54C00B598E7 /* HPLocationManager.m in Sources */,
 				F765357B1867C3840046263B /* HPSigninViewController.m in Sources */,
 				F714B83218B1387800B598E7 /* RoommateImageSubview.m in Sources */,
@@ -834,11 +850,11 @@
 				7AC41DF11A6AA3A3006C3A3B /* CheckConnectivityView.m in Sources */,
 				F737152D18FF40F800668251 /* HPToDoListDataSource.m in Sources */,
 				F73A01B418AAFD00000F25B6 /* HPSettingsViewController.m in Sources */,
+				7A2F91EA1A6F086D00675106 /* Roommate.m in Sources */,
 				F73F9EAC18BE9674009D6097 /* HPUINotifier.m in Sources */,
 				F711388518777B8800D9BA9E /* HPNoHomeViewController.m in Sources */,
 				F78D484E185AAB03000A79BC /* HPNetworkObject.m in Sources */,
 				F714B89518B5B96E00B598E7 /* HPCameraManager.m in Sources */,
-				F710E60E1890A97A00BD9D54 /* ParseSync.xcdatamodeld in Sources */,
 				F711388B1877832000D9BA9E /* HPCreateHouseViewController.m in Sources */,
 				F737152918FF2CD700668251 /* HPListEntry.m in Sources */,
 				F714B84118B167B700B598E7 /* HPNewHouseSetup.m in Sources */,
@@ -851,8 +867,10 @@
 				F76F513B189869B100A202A6 /* HPRoommate.m in Sources */,
 				F71138911877837D00D9BA9E /* HPJoinHouseViewController.m in Sources */,
 				F714B83C18B13BC200B598E7 /* SingleRoommateSubview.m in Sources */,
+				7A2F91ED1A6F086D00675106 /* House.m in Sources */,
 				F7E3E52218E22251007A9C02 /* HPFreshLoginNewUserSetup.m in Sources */,
 				F710E6041879213800BD9D54 /* main.js in Sources */,
+				7A2F91DB1A6F03CF00675106 /* RoomeaseDataModel.xcdatamodeld in Sources */,
 				7A2F91D81A6F006900675106 /* HPCoreDataStack.m in Sources */,
 				F78D4854185AC0E2000A79BC /* HPHouse.m in Sources */,
 				F7A1222818522A4100E51B06 /* main.m in Sources */,
@@ -993,7 +1011,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Desmond McNamee";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos8.1]" = "iPhone Distribution: Desmond McNamee";
 				COPY_PHASE_STRIP = NO;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -1043,13 +1061,13 @@
 /* End XCConfigurationList section */
 
 /* Begin XCVersionGroup section */
-		F710E60C1890A97A00BD9D54 /* ParseSync.xcdatamodeld */ = {
+		7A2F91D91A6F03CF00675106 /* RoomeaseDataModel.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
-				F710E60D1890A97A00BD9D54 /* ParseSync.xcdatamodel */,
+				7A2F91DA1A6F03CF00675106 /* RoomeaseDataModel.xcdatamodel */,
 			);
-			currentVersion = F710E60D1890A97A00BD9D54 /* ParseSync.xcdatamodel */;
-			path = ParseSync.xcdatamodeld;
+			currentVersion = 7A2F91DA1A6F03CF00675106 /* RoomeaseDataModel.xcdatamodel */;
+			path = RoomeaseDataModel.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
 		};

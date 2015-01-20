@@ -14,6 +14,17 @@
 @synthesize managedObjectModel = _managedObjectModel;
 @synthesize persistentStoreCoordinator = _persistentStoreCoordinator;
 
++ (instancetype)defaultStack {
+    static HPCoreDataStack *defaultStack;
+    static dispatch_once_t onceToken;
+    
+    dispatch_once(&onceToken, ^{
+        defaultStack = [[self alloc] init];
+    });
+    
+    return defaultStack;
+}
+
 - (NSURL *)applicationDocumentsDirectory {
     // The directory the application uses to store the Core Data store file. This code uses a directory named "com.Roomeaseapp.CoreData" in the application's documents directory.
     return [[[NSFileManager defaultManager] URLsForDirectory:NSDocumentDirectory inDomains:NSUserDomainMask] lastObject];
