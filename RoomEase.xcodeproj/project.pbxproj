@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		641AF380FE954A6D996B029D /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F2ADBFAE68984DBDA17CC3D1 /* libPods.a */; };
+		7A2F91D81A6F006900675106 /* HPCoreDataStack.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A2F91D71A6F006900675106 /* HPCoreDataStack.m */; };
 		7A492FBF1A6C3F7F0088F547 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7A492FBE1A6C3F7F0088F547 /* MessageUI.framework */; };
 		7AC41DEE1A6AA066006C3A3B /* CheckConnectivityView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7AC41DED1A6AA066006C3A3B /* CheckConnectivityView.xib */; };
 		7AC41DF11A6AA3A3006C3A3B /* CheckConnectivityView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7AC41DF01A6AA3A3006C3A3B /* CheckConnectivityView.m */; };
@@ -83,6 +84,8 @@
 
 /* Begin PBXFileReference section */
 		447CBE3F67C1D3BDB780BEF1 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
+		7A2F91D61A6F006900675106 /* HPCoreDataStack.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HPCoreDataStack.h; sourceTree = "<group>"; };
+		7A2F91D71A6F006900675106 /* HPCoreDataStack.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HPCoreDataStack.m; sourceTree = "<group>"; };
 		7A492FBE1A6C3F7F0088F547 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
 		7AC41DED1A6AA066006C3A3B /* CheckConnectivityView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CheckConnectivityView.xib; sourceTree = "<group>"; };
 		7AC41DEF1A6AA37C006C3A3B /* CheckConnectivityView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CheckConnectivityView.h; sourceTree = "<group>"; };
@@ -237,6 +240,15 @@
 				7AC41DF01A6AA3A3006C3A3B /* CheckConnectivityView.m */,
 			);
 			name = Popups;
+			sourceTree = "<group>";
+		};
+		7A2F91D51A6F002E00675106 /* CoreDataStack */ = {
+			isa = PBXGroup;
+			children = (
+				7A2F91D61A6F006900675106 /* HPCoreDataStack.h */,
+				7A2F91D71A6F006900675106 /* HPCoreDataStack.m */,
+			);
+			name = CoreDataStack;
 			sourceTree = "<group>";
 		};
 		DA734B980359F9A8D8DF60DE /* Pods */ = {
@@ -589,6 +601,7 @@
 		F7A1222118522A4100E51B06 /* HousePlant */ = {
 			isa = PBXGroup;
 			children = (
+				7A2F91D51A6F002E00675106 /* CoreDataStack */,
 				F77D56EA18DC93A800CFF118 /* Resources */,
 				F73F9EA818BE940D009D6097 /* Protocols */,
 				F710E5FB187862BE00BD9D54 /* HelperClasses */,
@@ -840,6 +853,7 @@
 				F714B83C18B13BC200B598E7 /* SingleRoommateSubview.m in Sources */,
 				F7E3E52218E22251007A9C02 /* HPFreshLoginNewUserSetup.m in Sources */,
 				F710E6041879213800BD9D54 /* main.js in Sources */,
+				7A2F91D81A6F006900675106 /* HPCoreDataStack.m in Sources */,
 				F78D4854185AC0E2000A79BC /* HPHouse.m in Sources */,
 				F7A1222818522A4100E51B06 /* main.m in Sources */,
 			);
