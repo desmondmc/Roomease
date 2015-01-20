@@ -31,12 +31,6 @@
 {
     [super viewDidLoad];
     
-    [HPCentralData getHouseInBackgroundWithBlock:^(HPHouse *house, NSError *error) {
-        _homeLocationLabel.text = [house addressText];
-        [_houseNameLabel setHidden:NO];
-        _houseNameLabel.text = [house houseName];
-    }];
-    
     [_uploadingPhotoIndicator setHidden:true];
     // Do any additional setup after loading the view from its nib.
     
@@ -53,6 +47,14 @@
 - (void)viewDidAppear:(BOOL)animated
 {
     [[UIApplication sharedApplication] setStatusBarHidden:NO];
+    [_houseNameActivityIndicator setHidden:NO];
+    [_houseNameLabel setHidden:YES];
+    [HPCentralData getHouseInBackgroundWithBlock:^(HPHouse *house, NSError *error) {
+        _homeLocationLabel.text = [house addressText];
+        [_houseNameLabel setHidden:NO];
+        [_houseNameActivityIndicator setHidden:YES];
+        _houseNameLabel.text = [house houseName];
+    }];
     
 }
 

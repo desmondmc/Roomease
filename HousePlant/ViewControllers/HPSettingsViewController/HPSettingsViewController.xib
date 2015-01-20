@@ -11,6 +11,7 @@
                 <outlet property="cityDeleteButton" destination="Kgz-wR-cvX" id="NzS-BM-9LJ"/>
                 <outlet property="cityField" destination="h6T-ZG-hJd" id="XEQ-qV-JfK"/>
                 <outlet property="houseDeleteButton" destination="KhR-fO-MJg" id="gUQ-ig-ujr"/>
+                <outlet property="houseNameActivityIndicator" destination="c7m-nm-Bqp" id="inu-km-fIo"/>
                 <outlet property="houseNameLabel" destination="3Fn-rn-VhE" id="6q6-g4-jso"/>
                 <outlet property="houseNumberField" destination="EyZ-hR-zEc" id="Vqy-BT-QxK"/>
                 <outlet property="logoutButton" destination="H1y-yb-D0Q" id="aXg-mr-9rG"/>
@@ -217,13 +218,18 @@
                     <rect key="frame" x="13" y="79" width="293" height="34"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 </imageView>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="HouseName" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="3Fn-rn-VhE">
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="3Fn-rn-VhE">
                     <rect key="frame" x="68" y="85" width="186" height="21"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="17"/>
                     <color key="textColor" red="0.29019609089999998" green="0.69411766529999996" blue="0.98823535439999999" alpha="1" colorSpace="deviceRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
+                <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="gray" id="c7m-nm-Bqp" userLabel="HouseNameActivityIndicator">
+                    <rect key="frame" x="150" y="86" width="20" height="20"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <color key="color" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                </activityIndicatorView>
             </subviews>
             <color key="backgroundColor" red="0.29019609089999998" green="0.69411766529999996" blue="0.98823535439999999" alpha="1" colorSpace="deviceRGB"/>
         </view>

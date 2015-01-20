@@ -30,6 +30,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *houseNameLabel;
 - (IBAction)onFeedbackPress:(id)sender;
 @property (weak, nonatomic) IBOutlet UIView *bottomButtonsView;
+@property (weak, nonatomic) IBOutlet UIActivityIndicatorView *houseNameActivityIndicator;
 
 
 
