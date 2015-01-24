@@ -9,21 +9,20 @@
 #import <UIKit/UIKit.h>
 #import <CoreLocation/CoreLocation.h>
 #import "HPUINotifierDelegate.h"
-#import "HPToDoListDataSource.h"
+#import "HPToDoListTableView.h"
 
 
-@interface HPMainViewController : UIViewController <HPUINotifierDelegate, UITableViewDelegate, UIAlertViewDelegate>
+@interface HPMainViewController : UIViewController <HPUINotifierDelegate,  UIAlertViewDelegate, UITableViewDelegate, NSFetchedResultsControllerDelegate>
 
 @property (weak, nonatomic) IBOutlet UIView *roommateImageSubviewContainer;
-@property (strong, nonatomic) HPToDoListDataSource *tableViewDataSource;
-@property (weak, nonatomic) IBOutlet UITableView *todoListTableView;
+@property (strong, nonatomic) IBOutlet HPToDoListTableView *toDoListTableView;
 
 - (void) removeCell:(id) cell;
 - (void) checkCell:(id) cell;
 - (void) uncheckCell:(id) cell;
 - (IBAction)onSettingsPress:(id)sender;
-- (IBAction)onRefreshRmPress:(id)sender;
 - (IBAction)onAddListEntryPress:(id)sender;
+
 
 
 @end

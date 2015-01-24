@@ -8,7 +8,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="HPMainViewController">
             <connections>
                 <outlet property="roommateImageSubviewContainer" destination="erO-rm-eCD" id="nF9-dW-hbe"/>
-                <outlet property="todoListTableView" destination="nt6-rd-uTn" id="ZKL-fb-mKf"/>
+                <outlet property="toDoListTableView" destination="nt6-rd-uTn" id="FDI-5h-p5t"/>
                 <outlet property="view" destination="1" id="3"/>
             </connections>
         </placeholder>
@@ -51,15 +51,15 @@
                     <rect key="frame" x="0.0" y="77" width="320" height="85"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                 </view>
-                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" allowsSelection="NO" showsSelectionImmediatelyOnTouchBegin="NO" rowHeight="55" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="nt6-rd-uTn" userLabel="HPTableView">
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" allowsSelection="NO" showsSelectionImmediatelyOnTouchBegin="NO" rowHeight="55" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="nt6-rd-uTn" userLabel="HPTableView" customClass="HPToDoListTableView">
                     <rect key="frame" x="0.0" y="209" width="320" height="359"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="320" id="gvm-9a-1PF"/>
                     </constraints>
                     <connections>
-                        <outlet property="dataSource" destination="-1" id="foV-CL-EMO"/>
-                        <outlet property="delegate" destination="-1" id="m84-qz-0l2"/>
+                        <outlet property="dataSource" destination="-1" id="fmf-Ln-ncA"/>
+                        <outlet property="delegate" destination="-1" id="YhF-nS-oc0"/>
                     </connections>
                 </tableView>
                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="To Do List" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Bgu-85-9AM">

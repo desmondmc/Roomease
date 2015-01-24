@@ -18,6 +18,8 @@
 
 @interface HPMainViewController ()
 
+@property (strong, nonatomic) NSFetchedResultsController *fetchedResultsController;
+
 @end
 
 @implementation HPMainViewController
@@ -31,7 +33,6 @@
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
-        _tableViewDataSource = [[HPToDoListDataSource alloc] init];
     }
     return self;
 }
@@ -47,9 +48,11 @@
                                                object:nil];
     
     self->refreshControl = [[ISRefreshControl alloc] init];
-//    [self->refreshControl setAttributedTitle:[[NSAttributedString alloc] initWithString:@"Refreshing..." attributes:nil]];
     [self->refreshControl setTintColor:[UIColor colorWithRed:218.0/255.0 green:240.0/255.0 blue:254.0/251.0 alpha:1]];
-    [self.todoListTableView addSubview:refreshControl];
+    
+    
+    [[self fetchedResultsController] performFetch:nil];
+    [_toDoListTableView addSubview:refreshControl];
     
     [self->refreshControl addTarget:self
                        action:@selector(onRefreshRmPress:)
@@ -123,29 +126,16 @@
 
 - (void) removeCell:(HPListTableViewCell *) cell
 {
-    [self.todoListTableView beginUpdates];
-    [self.todoListTableView deleteRowsAtIndexPaths:[[NSArray alloc] initWithObjects:[self.todoListTableView indexPathForCell:cell], nil]  withRowAnimation:UITableViewRowAnimationFade];
-    [HPCentralData removeToDoListEntryWithSingleEntryLocalAndRemote:cell.listEntry];
-    [self.todoListTableView endUpdates];
+    
 }
 
 - (void) checkCell:(HPListTableViewCell *) cell
 {
-    [self countChecked];
-    NSIndexPath *lastIndexPath = [NSIndexPath indexPathForRow:([self.todoListTableView numberOfRowsInSection:0] - 1) inSection:0];
     
-    [self.todoListTableView beginUpdates];
-    [self.todoListTableView moveRowAtIndexPath:[self.todoListTableView indexPathForCell:cell] toIndexPath:lastIndexPath];
-    [self.todoListTableView endUpdates];
 }
 - (void) uncheckCell:(HPListTableViewCell *) cell
 {
-    int numberOfCheckedCells = [self countChecked] + 1;
-    NSIndexPath *lastIndexPath = [NSIndexPath indexPathForRow:([self.todoListTableView numberOfRowsInSection:0] - (numberOfCheckedCells)) inSection:0];
     
-    [self.todoListTableView beginUpdates];
-    [self.todoListTableView moveRowAtIndexPath:[self.todoListTableView indexPathForCell:cell] toIndexPath:lastIndexPath];
-    [self.todoListTableView endUpdates];
 }
 
 
@@ -176,12 +166,7 @@
     if (buttonIndex == 1) {
         //Save entry to parse.
         
-        HPListEntry *listEntry = [[HPListEntry alloc] init];
-        
-        listEntry.description2 = [alertView textFieldAtIndex:0].text;
-        listEntry.dateAdded = [NSDate date];
-        
-        [HPCentralData saveToDoListEntryWithSingleEntryLocalAndRemote:listEntry];
+        [HPCentralData saveNewToDoListEntryWithName:[alertView textFieldAtIndex:0].text];
         
         [HPSyncWorker handleSyncRequestWithType:todoListSyncRequest andData:nil];
     }
@@ -191,18 +176,21 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return [[NSMutableArray arrayWithArray:[HPCentralData getToDoListEntriesAndForceReloadFromParse:NO]] count];
+    id <NSFetchedResultsSectionInfo> sectionInfo =  [[self fetchedResultsController] sections][section];
+    
+    return [sectionInfo numberOfObjects];
 }
 
-// Row display. Implementers should *always* try to reuse cells by setting each cell's reuseIdentifier and querying for available reusable cells with dequeueReusableCellWithIdentifier:
-// Cell gets various attributes set automatically based on table (separators) and data source (accessory views, editing controls)
+- (NSInteger)tableView:(NSInteger)numberOfSections
+{
+    return [self fetchedResultsController].sections.count;
+}
+
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (!listItems) {
-        listItems = [NSMutableArray arrayWithArray:[HPCentralData getToDoListEntriesAndForceReloadFromParse:NO]];
-    }
-    HPListTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"hpListTableViewCell"];
+    static NSString *cellIdentifier = @"hpListTableViewCell";
+    HPListTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
     
     if (cell == nil) {
         //There was no reusablecell to dequeue
@@ -210,13 +198,53 @@
         cell = [nib objectAtIndex:0];
     }
     
-    HPListEntry *entry = [listItems objectAtIndex:indexPath.row];
-    [cell initWithListEntry:entry andTableView:self];
+    
+    ListItem *toDoListItem = [self.fetchedResultsController objectAtIndexPath:indexPath];
+    
+    cell.entryTitle.text = toDoListItem.name;
+    
+    cell.entryDate.text = [NSDateFormatter localizedStringFromDate:
+                           [NSDate dateWithTimeIntervalSince1970:toDoListItem.createdAt]
+                                                         dateStyle:NSDateFormatterMediumStyle
+                                                         timeStyle:NSDateFormatterNoStyle];
+    
+    cell.entryTime.text = [NSDateFormatter localizedStringFromDate:
+                           [NSDate dateWithTimeIntervalSince1970:toDoListItem.createdAt]
+                                                         dateStyle:NSDateFormatterNoStyle
+                                                         timeStyle:NSDateFormatterShortStyle];
+    
     return cell;
 }
 
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath {
-    return YES;
+- (NSFetchRequest *) toDoListFetchRequest
+{
+    NSFetchRequest *fetchRequest = [NSFetchRequest fetchRequestWithEntityName:@"CDListItem"];
+    
+    //This sort descripor should arrange entries with uncompleted at the top and completed at the bottom and then sort by their created date.
+    fetchRequest.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"isComplete" ascending:NO], [NSSortDescriptor sortDescriptorWithKey:@"createdAt" ascending:NO]];
+    
+    return fetchRequest;
+}
+
+-(NSFetchedResultsController *)fetchedResultsController
+{
+    if (_fetchedResultsController != nil) {
+        return _fetchedResultsController;
+    }
+    
+    HPCoreDataStack *coreDataStack = [HPCoreDataStack defaultStack];
+    NSFetchRequest *fetchRequest = [self toDoListFetchRequest];
+    
+    _fetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest managedObjectContext:coreDataStack.managedObjectContext sectionNameKeyPath:nil cacheName:nil];
+    
+    _fetchedResultsController.delegate = self;
+    
+    return _fetchedResultsController;
+}
+
+-(void)controllerDidChangeContent:(NSFetchedResultsController *)controller
+{
+    [self.toDoListTableView reloadData];
 }
 
 #pragma mark - Notification Handlers
@@ -234,16 +262,13 @@
     {
         listItems = [NSMutableArray arrayWithArray:[HPCentralData getToDoListEntriesAndForceReloadFromParse:NO]];
         [self countChecked];
-        
-        [[self todoListTableView] reloadData];
-        
     }
 }
 
 - (int) countChecked {
     int numberOfCheckedCells = 0;
-    for (HPListEntry *entry in listItems) {
-        if(entry.completedByName)
+    for (ListItem *entry in listItems) {
+        if(entry.completedBy)
             numberOfCheckedCells++;
     }
     return numberOfCheckedCells;

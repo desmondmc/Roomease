@@ -21,9 +21,15 @@
 #import "CSNotificationView.h"
 #import "constants.h"
 #import "HPNetworkObjectResultBlocks.h"
+
+#warning remove HP objects once coredata is swaped in for local storage.
 #import "HPHouse.h"
 #import "HPRoommate.h"
-#import "HPListEntry.h"
+
+#import "ListItem+Extention.h"
+#import "House.h"
+#import "Roommate.h"
+
 #import "HPCentralData.h"
 #import "HPLocationManager.h"
 #import "HPAppDelegate.h"

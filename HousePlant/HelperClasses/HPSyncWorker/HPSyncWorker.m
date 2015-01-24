@@ -36,13 +36,13 @@
         }
         case todoListSyncRequest:
         {
-            dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
-                [HPCentralData getToDoListEntriesAndForceReloadFromParse:YES];
-                dispatch_async(dispatch_get_main_queue(), ^{
-                    NSDictionary *notifierDictionary = [[NSDictionary alloc] initWithObjectsAndKeys:[NSNumber numberWithBool:TRUE], kRefreshTodoListKey, nil];
-                    [[HPUINotifier sharedUINotifier] notifyDelegatesWithChange:notifierDictionary];
-                });
-            });
+#warning I have a feeling we won't need this after Coredata is fully implemented. Remove if true.
+//            dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
+//                dispatch_async(dispatch_get_main_queue(), ^{
+//                    NSDictionary *notifierDictionary = [[NSDictionary alloc] initWithObjectsAndKeys:[NSNumber numberWithBool:TRUE], kRefreshTodoListKey, nil];
+//                    [[HPUINotifier sharedUINotifier] notifyDelegatesWithChange:notifierDictionary];
+//                });
+//            });
 
             break;
         }

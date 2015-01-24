@@ -129,6 +129,7 @@
                                                 [CSNotificationView showInViewController:self
                                                                                    style:CSNotificationViewStyleError
                                                                                  message:@"An error occured."];
+                                                NSLog(@"Login Error: %@", error);
                                             }
                                             
                                             

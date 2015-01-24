@@ -9,6 +9,11 @@
 #import <Foundation/Foundation.h>
 #import "HPSyncWorker.h"
 
+#import "House.h"
+#import "Roommate.h"
+#import "ListItem+Extention.h"
+#import "HPCoreDataStack.h"
+
 #define kPersistantStoreHome @"hp_home"
 #define kPersistantStoreCurrentUser @"hp_currentUser"
 #define kPersistantStoreRoommates @"hp_roommates"
@@ -28,20 +33,22 @@
 +(void) resyncEntryForId:(NSString *)objectId andList:(syncRequest_t)listId withBlock:(CentralDataSaveResultBlock)block;
 
 +(void) getCurrentUserInBackgroundWithBlock:(CentralDataRoommateResultBlock)block;
-+(HPRoommate *) getCurrentUser;
++(Roommate *) getCurrentUser;
 +(void) saveCurrentUserInBackgroundWithRoommate:(HPRoommate*)roommate andBlock:(CentralDataSaveResultBlock)block;
 +(bool) saveCurrentUser:(HPRoommate *)roommate;
 
 +(void) getHouseInBackgroundWithBlock:(CentralDataHouseResultBlock)block;
-+(HPHouse *) getHouse;
++(House *) getHouse;
 +(void) saveHouseInBackgroundWithHouse:(HPHouse *)house andBlock:(CentralDataSaveResultBlock)block;
 +(bool) saveHouse:(HPHouse *)house;
 
 + (void) getToDoListEntriesInBackgroundWithBlock:(CentralDataListEntriesResultBlock)block;
 + (NSArray *) getToDoListEntriesAndForceReloadFromParse: (BOOL) forceReload;
-+ (bool)removeToDoListEntryWithSingleEntryLocalAndRemote:(HPListEntry *) entry;
-+ (bool)saveToDoListEntryWithSingleEntryLocalAndRemote:(HPListEntry *)entry;
-+ (bool)saveToDoListEntryWithSingleEntryLocal:(HPListEntry *)entry;
+
++ (void)saveNewToDoListEntryWithName:(NSString *)name;
++ (bool)removeToDoListEntryWithSingleEntryLocalAndRemote:(ListItem *) entry;
++ (bool)saveToDoListEntryWithSingleEntryLocalAndRemote:(ListItem *)entry;
++ (bool)saveToDoListEntryWithSingleEntryLocal:(ListItem *)entry;
 
 +(void) getRoommatesInBackgroundWithBlock:(CentralDataRoommatesResultBlock)block;
 +(NSArray *) getRoommates;

@@ -12,6 +12,8 @@
 #import "HPNoHomeViewController.h"
 #import "HPCentralData.h"
 #import "CheckConnectivityView.h"
+#import "HPCoreDataStack.h"
+
 
 #import "ParseKeys.h"
 #import "NPReachability.h"
@@ -26,6 +28,8 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+    [[HPCoreDataStack defaultStack] applicationDocumentsDirectory];
+    
     NPReachability *reachability = [NPReachability sharedInstance];
     
     [Parse setApplicationId:kParseAppId

@@ -176,18 +176,16 @@ typedef void (^BackgroundTaskResultBlock)(NSString *errorString);
                 [currentUser save];
                 
                 //Create some default list entries.
-                HPListEntry *listEntry = [[HPListEntry alloc] init];
+                ListItem *listEntry = [[ListItem alloc] init];
                 
-                listEntry.description2 = @"Do the dishes!";
-                listEntry.dateAdded = [NSDate date];
+                listEntry.name = @"Do the dishes!";
+                listEntry.createdAt = [[NSDate date] timeIntervalSince1970];
                 [HPCentralData saveToDoListEntryWithSingleEntryLocalAndRemote:listEntry];
                 
-                listEntry.description2 = @"Buy Milk";
-                listEntry.dateAdded = [NSDate date];
+                listEntry.name = @"Buy Milk";
                 [HPCentralData saveToDoListEntryWithSingleEntryLocalAndRemote:listEntry];
                 
-                listEntry.description2 = @"Clean the bathroom.";
-                listEntry.dateAdded = [NSDate date];
+                listEntry.name = @"Clean the bathroom.";
                 [HPCentralData saveToDoListEntryWithSingleEntryLocalAndRemote:listEntry];
                 
             }

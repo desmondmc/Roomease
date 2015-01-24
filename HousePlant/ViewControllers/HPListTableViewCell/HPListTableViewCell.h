@@ -15,10 +15,10 @@
 {
 
 }
-@property (weak, nonatomic) HPListEntry *listEntry;
+@property (weak, nonatomic) ListItem *listItem;
 
 - (IBAction)onDeletePress:(id)sender;
-- (void) initWithListEntry:(HPListEntry *) entry andTableView:(HPMainViewController *) tableViewController;
+- (void) initWithListItem:(ListItem *) entry andTableView:(HPMainViewController *) tableViewController;
 @property (weak, nonatomic) IBOutlet UIImageView *deleteButton;
 @property (weak, nonatomic) IBOutlet UIView *mainCellView;
 @property (weak, nonatomic) IBOutlet UILabel *entryTitle;

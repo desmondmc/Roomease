@@ -104,16 +104,16 @@
     [recognizer setTranslation:CGPointMake(0, 0) inView:self];
 }
 
-- (void) checkCellAndMove:(BOOL) move {
+- (void) checkCell {
     
-    if([self.listEntry completedByImage] != nil)
+    if(self.listItem.completedBy.profilePicture != nil)
     {
         [_noProfilePicImage setHidden:YES];
         _avatar = [[AMPAvatarView alloc] initWithFrame:CGRectMake(20, 12, 31, 31)];
         
         [self.mainCellView addSubview:_avatar];
         [self.mainCellView sendSubviewToBack:_avatar];
-        _avatar.image = [self.listEntry completedByImage];
+        _avatar.image = [UIImage imageWithData:self.listItem.completedBy.profilePicture];
         
         [_avatar setBorderWith:0.0];
         [_avatar setShadowRadius:0.0];
@@ -136,13 +136,9 @@
 
     
     _checked = true;
-    
-    if(move) {
-        [self->mainTableViewController checkCell:self];
-    }
 }
 
-- (void) uncheckCellAndMove:(BOOL) move {
+- (void) uncheckCell {
     [_blankCheckbox setHidden:false];
 
     [_avatar setHidden:true];
@@ -156,10 +152,6 @@
     _entryTitle.attributedText = attrText;
     
     _checked = false;
-    
-    if(move){
-        [self->mainTableViewController uncheckCell:self];
-    }
 }
 
 - (IBAction)onDeletePress:(id)sender {
@@ -177,32 +169,32 @@
 - (IBAction)onCheckboxPress:(id)sender {
 
     if (self.checked) {
-        [self.listEntry setCompletedByName:nil];
-        [self.listEntry setCompletedByImage:nil];
-        self.listEntry.dateCompleted = nil;
+        self.listItem.completedBy = nil;
+        self.listItem.completedByImage = nil;
+        self.listItem.completedAt = 0;
         [avatar2 setHidden:YES];
-        [self uncheckCellAndMove:YES];
-        [self.listEntry setCompletedBy:nil];
+        [self uncheckCell];
     }
     else
     {
-
-        [self.listEntry setCompletedBy:[HPCentralData getCurrentUser]];
-        [self.listEntry setCompletedByName:self.listEntry.completedBy.username];
-        self.listEntry.completedByImage = self.listEntry.completedBy.profilePic;
-        self.listEntry.dateCompleted = [[NSDate alloc] init];
-        [self checkCellAndMove:YES];
+        self.listItem.completedBy = [HPCentralData getCurrentUser];
+        self.listItem.completedByImage = [UIImage imageWithData:self.listItem.completedBy.profilePicture];
+        self.listItem.completedAt = [[[NSDate alloc] init] timeIntervalSince1970];
+        [self checkCell];
     }
     [self setText];
-    [HPCentralData saveToDoListEntryWithSingleEntryLocalAndRemote:self.listEntry];
+    [HPCentralData saveToDoListEntryWithSingleEntryLocalAndRemote:self.listItem];
 }
 
 - (void) setText {
-    if ([self.listEntry completedByName]) {
-        NSString *dateString = [NSDateFormatter localizedStringFromDate:self.listEntry.dateCompleted
+    if (self.listItem.completedBy) {
+        NSString *dateString = [NSDateFormatter localizedStringFromDate:
+                                [NSDate dateWithTimeIntervalSince1970:self.listItem.completedAt]
                                                               dateStyle:NSDateFormatterMediumStyle
                                                               timeStyle:NSDateFormatterNoStyle];
-        NSString *timeString = [NSDateFormatter localizedStringFromDate:self.listEntry.dateCompleted
+        
+        NSString *timeString = [NSDateFormatter localizedStringFromDate:
+                                [NSDate dateWithTimeIntervalSince1970:self.listItem.completedAt]
                                                               dateStyle:NSDateFormatterNoStyle
                                                               timeStyle:NSDateFormatterShortStyle];
         self.entryDate.text = [NSString stringWithFormat:@"%@ at", dateString ];
@@ -215,10 +207,12 @@
         frame.origin.x = 195;
         self.entryTime.frame =frame;
     } else {
-        NSString *dateString = [NSDateFormatter localizedStringFromDate:self.listEntry.dateAdded
+        NSString *dateString = [NSDateFormatter localizedStringFromDate:
+                                [NSDate dateWithTimeIntervalSince1970:self.listItem.createdAt]
                                                               dateStyle:NSDateFormatterMediumStyle
                                                               timeStyle:NSDateFormatterNoStyle];
-        NSString *timeString = [NSDateFormatter localizedStringFromDate:self.listEntry.dateAdded
+        NSString *timeString = [NSDateFormatter localizedStringFromDate:
+                                [NSDate dateWithTimeIntervalSince1970:self.listItem.createdAt]
                                                               dateStyle:NSDateFormatterNoStyle
                                                               timeStyle:NSDateFormatterShortStyle];
         self.entryDate.text = [NSString stringWithFormat:@"%@ at", dateString ];
@@ -234,17 +228,17 @@
     [self layoutSubviews];
 }
 
-- (void) initWithListEntry:(HPListEntry *) entry andTableView:(HPMainViewController *) tableViewController
+- (void) initWithListItem:(ListItem *) entry andTableView:(HPMainViewController *) tableViewController
 {
-    self.listEntry = entry;
+    self.listItem = entry;
     self->mainTableViewController = tableViewController;
-    self.entryTitle.text = entry.description2;
+    self.entryTitle.text = entry.name;
     
     [self setText];
-    if ([entry completedByName]) {
-        [self checkCellAndMove:NO];
+    if (entry.completedBy) {
+        [self checkCell];
     } else {
-        [self uncheckCellAndMove:NO];
+        [self uncheckCell];
     }
     
 }

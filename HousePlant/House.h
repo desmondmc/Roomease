@@ -2,7 +2,7 @@
 //  House.h
 //  RoomEase
 //
-//  Created by Desmond McNamee on 2015-01-20.
+//  Created by Desmond McNamee on 2015-01-21.
 //  Copyright (c) 2015 HousePlant. All rights reserved.
 //
 
@@ -14,6 +14,7 @@
 @interface House : NSManagedObject
 
 @property (nonatomic, retain) NSString * name;
+@property (nonatomic, retain) NSString * parseObjectId;
 @property (nonatomic, retain) NSSet *roommates;
 @property (nonatomic, retain) NSSet *listItems;
 @end

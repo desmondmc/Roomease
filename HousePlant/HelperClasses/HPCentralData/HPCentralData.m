@@ -49,6 +49,7 @@
         
         NSArray *pfRoommates = [parseHome objectForKey:@"users"];
         for (PFObject *pfRoommate in pfRoommates) {
+            
             HPRoommate * roommate = [[HPRoommate alloc] initWithPFObject:pfRoommate];
             
             NSData *roommateData = [NSKeyedArchiver archivedDataWithRootObject:roommate];
@@ -72,17 +73,11 @@
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
         PFQuery *query = [PFQuery queryWithClassName:@"Entry"];
         PFObject *pfEntry = [query getObjectWithId:objectId];
-
-        HPListEntry *listEntry = [[HPListEntry alloc] init];
-        listEntry.description2 = pfEntry[@"description"];
-        listEntry.dateCompleted = pfEntry[@"dateCompleted"];
-        listEntry.dateAdded = pfEntry[@"createdAt"];
-        listEntry.completedBy = pfEntry[@"completedBy"];
         
         
         if (listId == todoListSyncRequest)
         {
-            [HPCentralData saveToDoListEntryWithSingleEntryLocal:listEntry];
+            //[HPCentralData saveToDoListEntryWithSingleEntryLocal:listEntry];
         }
         else
         {
@@ -158,7 +153,7 @@
 }
 
 
-+(HPRoommate *) getCurrentUser;
++(Roommate *) getCurrentUser;
 {
     //if the user isn't stored in NSUserDefaults pull him from parse. Otherwise return the user stored in NSUserDefaults.
     
@@ -278,7 +273,7 @@
         
 }
 
-+(HPHouse *) getHouse
++(House *) getHouse
 {
     NSData *homeData = [persistantStore objectForKey:kPersistantStoreHome];
     HPHouse *home =  [NSKeyedUnarchiver unarchiveObjectWithData:homeData];
@@ -409,94 +404,44 @@
     });
 }
 
-+ (NSArray *) getToDoListEntriesAndForceReloadFromParse: (BOOL) forceReload
-{
-    NSMutableArray *listEntriesData = [persistantStore objectForKey:kPersistantStoreToDoListEntries];
-    NSMutableArray *todoListEntries = [[NSMutableArray alloc] init];
-    
-    for (NSData *singleListEntryData in listEntriesData) {
-        HPListEntry *listEntry = [NSKeyedUnarchiver unarchiveObjectWithData:singleListEntryData];
-        [todoListEntries addObject:listEntry];
-    }
-    
-    if ([todoListEntries count] == 0 || forceReload)
-    {
-        listEntriesData = [[NSMutableArray alloc] init];
-        
-        //query for todolist for this house.
-        HPHouse *house = [HPCentralData getHouse];
-        
-        
-        PFQuery *query = [PFQuery queryWithClassName:@"Entry"];
-        [query whereKey:@"houseObjectId" equalTo:house.objectId];
-        [query includeKey:@"completedBy"];
-        [query orderByAscending:@"completedAt"];
-        NSArray *pfEntries = [query findObjects];
-        if (pfEntries)
-        {
-            for (PFObject *pfEntry in pfEntries) {
-                HPListEntry * listEntry = [[HPListEntry alloc] initWithPFObject:pfEntry];
-                
-                
-                [todoListEntries addObject:listEntry];
-                
-                NSData *listEntryData = [NSKeyedArchiver archivedDataWithRootObject:listEntry];
-                [listEntriesData addObject:listEntryData];
-            }
-        }
-        
-        [persistantStore setObject:listEntriesData forKey:kPersistantStoreToDoListEntries];
-        [persistantStore synchronize];
-        
-    }
-    
-    return todoListEntries;
-}
 
-+ (bool)removeToDoListEntryWithSingleEntryLocalAndRemote:(HPListEntry *) entry
++ (bool)removeToDoListEntryWithSingleEntryLocalAndRemote:(ListItem *) entry
 {
-    PFObject *pfNewListEntry = [PFObject objectWithoutDataWithClassName:@"Entry" objectId:entry.objectId];
+    PFObject *pfNewListEntry = [PFObject objectWithoutDataWithClassName:@"Entry" objectId:entry.parseObjectId];
     [pfNewListEntry delete];
     
-    NSMutableArray *toDoListEntriesData = [[NSMutableArray alloc] init];
-    
-    NSMutableArray *todoListEntries = [NSMutableArray arrayWithArray:[HPCentralData getToDoListEntriesAndForceReloadFromParse:NO]];
-    
-    for (int entryCount = 0; entryCount < [todoListEntries count]; entryCount++) {
-        HPListEntry *entryToFind = [todoListEntries objectAtIndex:entryCount];
-        if ([entryToFind.objectId isEqualToString:entry.objectId]) {
-            [todoListEntries replaceObjectAtIndex:entryCount withObject:entry];
-        }
-    }
-    
-    //Loop through and convert all the listEntries into data
-    for (HPListEntry* listEntryToConvertToData in todoListEntries) {
-        if ([listEntryToConvertToData objectId] == [entry objectId]) {
-            continue;
-        }
-        NSData *listEntryData = [NSKeyedArchiver archivedDataWithRootObject:listEntryToConvertToData];
-        [toDoListEntriesData addObject:listEntryData];
-    }
-    
-    [persistantStore setObject:toDoListEntriesData forKey:kPersistantStoreToDoListEntries];
-    [persistantStore synchronize];
     return YES;
 }
 
-+ (bool)saveToDoListEntryWithSingleEntryLocalAndRemote:(HPListEntry *)entry
++ (void)saveNewToDoListEntryWithName:(NSString *)name
+{
+    HPCoreDataStack *coreDataStack = [HPCoreDataStack defaultStack];
+    ListItem *newListItem = [NSEntityDescription insertNewObjectForEntityForName:@"CDListItem" inManagedObjectContext:coreDataStack.managedObjectContext];
+    
+    newListItem.name = name;
+    newListItem.createdAt = [[NSDate date] timeIntervalSince1970];
+    newListItem.isComplete = NO;
+    
+    [coreDataStack saveContext];
+}
+
++ (bool)saveToDoListEntryWithSingleEntryLocalAndRemote:(ListItem *)entry
 {
     //Find the user in the local storage roommate array.
-    if (!entry.description2) {
+    if (!entry.name) {
         [NSException raise:@"HP Exception: Invalid entry sent to saveToDoListEntryWithSingleEntry, nil description" format:@"entry of %@ is invalid", entry];
     }
     
     PFObject *pfNewListEntry;
     
-    if(entry.objectId) {
-        pfNewListEntry = [PFObject objectWithoutDataWithClassName:@"Entry" objectId:entry.objectId];
+    //Existing listItem
+    if(entry.parseObjectId) {
+        pfNewListEntry = [PFObject objectWithoutDataWithClassName:@"Entry" objectId:entry.parseObjectId];
         [pfNewListEntry setObject:[NSNumber numberWithBool:([entry completedBy] != nil) ] forKey:@"isComplete"];
-        [pfNewListEntry setObject:[entry completedBy].objectId ? [PFUser currentUser] : [NSNull null] forKey:@"completedBy"];
-        [pfNewListEntry setObject:entry.dateCompleted ? entry.dateCompleted : [NSNull null] forKey:@"completedAt"];
+        [pfNewListEntry setObject:[entry completedBy].parseObjectId ? [PFUser currentUser] : [NSNull null] forKey:@"completedBy"];
+        [pfNewListEntry setObject:entry.completedAt ?
+         [NSDate dateWithTimeIntervalSince1970:entry.completedAt] :
+         [NSNull null] forKey:@"completedAt"];
     }
     
     //Save the NEW entry to parse
@@ -504,42 +449,32 @@
         pfNewListEntry = [PFObject objectWithClassName:@"Entry"];
 
         [pfNewListEntry setObject:@"ToDo List" forKey:@"listName"];
-        [pfNewListEntry setObject:[HPCentralData getHouse].objectId forKey:@"houseObjectId"];
-        [pfNewListEntry setObject:entry.description2 forKey:@"description"];
+        
+        //GetHouseForUser
+        [pfNewListEntry setObject:[HPCentralData getHouse].parseObjectId forKey:@"houseObjectId"];
+        [pfNewListEntry setObject:entry.name forKey:@"description"];
         [pfNewListEntry setObject:[NSNumber numberWithBool:false] forKey:@"isComplete"];
     }
 
     
     [pfNewListEntry saveInBackground];
     
-    entry.objectId = pfNewListEntry.objectId;
+    entry.parseObjectId = pfNewListEntry.objectId;
     
+    //Save The New Entry to CoreData.
     [HPCentralData saveToDoListEntryWithSingleEntryLocal:entry];
     
     return true;
 }
 
-+ (bool)saveToDoListEntryWithSingleEntryLocal:(HPListEntry *)entry
++ (bool)saveToDoListEntryWithSingleEntryLocal:(ListItem *)entry
 {
-    NSMutableArray *toDoListEntriesData = [[NSMutableArray alloc] init];
-
-    NSMutableArray *todoListEntries = [NSMutableArray arrayWithArray:[HPCentralData getToDoListEntriesAndForceReloadFromParse:NO]];
+    HPCoreDataStack *coreDataStack = [HPCoreDataStack defaultStack];
+    ListItem *listItem = [NSEntityDescription insertNewObjectForEntityForName:@"CDListItem" inManagedObjectContext:coreDataStack.managedObjectContext];
     
-    for (int entryCount = 0; entryCount < [todoListEntries count]; entryCount++) {
-        HPListEntry *entryToFind = [todoListEntries objectAtIndex:entryCount];
-        if ([entryToFind.objectId isEqualToString:entry.objectId]) {
-            [todoListEntries replaceObjectAtIndex:entryCount withObject:entry];
-        }
-    }
+    [listItem copyAttributesFromListItem:entry];
     
-    //Loop through and convert all the listEntries into data
-    for (HPListEntry* listEntryToConvertToData in todoListEntries) {
-        NSData *listEntryData = [NSKeyedArchiver archivedDataWithRootObject:listEntryToConvertToData];
-        [toDoListEntriesData addObject:listEntryData];
-    }
-    
-    [persistantStore setObject:toDoListEntriesData forKey:kPersistantStoreToDoListEntries];
-    [persistantStore synchronize];
+    [coreDataStack saveContext];
     
     return true;
 }

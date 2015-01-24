@@ -2,6 +2,7 @@
 <model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="6254" systemVersion="14B25" minimumToolsVersion="Xcode 4.3" macOSVersion="Automatic" iOSVersion="Automatic">
     <entity name="CDHouse" representedClassName="House" syncable="YES">
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="parseObjectId" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="listItems" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="CDListItem" inverseName="house" inverseEntity="CDListItem" syncable="YES"/>
         <relationship name="roommates" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="CDRoommate" inverseName="house" inverseEntity="CDRoommate" syncable="YES"/>
     </entity>
@@ -10,18 +11,20 @@
         <attribute name="createdAt" optional="YES" attributeType="Date" syncable="YES"/>
         <attribute name="isComplete" optional="YES" attributeType="Boolean" syncable="YES"/>
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="parseObjectId" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="completedBy" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="CDRoommate" inverseName="completedListItems" inverseEntity="CDRoommate" syncable="YES"/>
         <relationship name="house" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="CDHouse" inverseName="listItems" inverseEntity="CDHouse" syncable="YES"/>
     </entity>
     <entity name="CDRoommate" representedClassName="Roommate" syncable="YES">
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="parseObjectId" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="profilePicture" optional="YES" attributeType="Binary" storedInTruthFile="YES" syncable="YES"/>
         <relationship name="completedListItems" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="CDListItem" inverseName="completedBy" inverseEntity="CDListItem" syncable="YES"/>
         <relationship name="house" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="CDHouse" inverseName="roommates" inverseEntity="CDHouse" syncable="YES"/>
     </entity>
     <elements>
-        <element name="CDHouse" positionX="-279" positionY="153" width="128" height="88"/>
-        <element name="CDRoommate" positionX="88" positionY="167" width="128" height="103"/>
-        <element name="CDListItem" positionX="-128" positionY="405" width="128" height="133"/>
+        <element name="CDHouse" positionX="-279" positionY="153" width="128" height="103"/>
+        <element name="CDRoommate" positionX="88" positionY="167" width="128" height="118"/>
+        <element name="CDListItem" positionX="-128" positionY="405" width="128" height="148"/>
     </elements>
 </model>
