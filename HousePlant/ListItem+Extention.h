@@ -10,8 +10,6 @@
 
 @interface ListItem (Extention)
 
-- (void) copyAttributesFromListItem:(ListItem *) listItem;
-
-@property (strong, nonatomic) UIImage *completedByImage;
+- (void) copyAttributesFromParseObject:(PFObject *) parseListItem;
 
 @end

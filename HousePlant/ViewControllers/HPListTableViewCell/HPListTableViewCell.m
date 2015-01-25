@@ -166,7 +166,7 @@
 
     if (self.checked) {
         self.listItem.completedBy = nil;
-        self.listItem.completedByImage = nil;
+        //self.listItem.completedByImage = nil;
         self.listItem.completedAt = 0;
         [avatar2 setHidden:YES];
         [self uncheckCell];
@@ -174,7 +174,7 @@
     else
     {
         self.listItem.completedBy = [HPCentralData getCurrentUser];
-        self.listItem.completedByImage = [UIImage imageWithData:self.listItem.completedBy.profilePicture];
+        //self.listItem.completedByImage = [UIImage imageWithData:self.listItem.completedBy.profilePicture];
         self.listItem.completedAt = [[[NSDate alloc] init] timeIntervalSince1970];
         [self checkCell];
     }

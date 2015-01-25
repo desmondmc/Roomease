@@ -10,13 +10,8 @@
 
 @implementation ListItem (Extention)
 
-- (void) copyAttributesFromListItem:(ListItem *) listItem {
-    
-    self.name = listItem.name;
-    self.completedAt = listItem.completedAt;
-    self.completedBy = listItem.completedBy;
-    self.createdAt = listItem.createdAt;
-    self.parseObjectId = listItem.parseObjectId;
+- (void) copyAttributesFromParseObject:(PFObject *) parseListItem
+{
 
 }
 

@@ -50,10 +50,10 @@
     
     self->refreshControl = [[ISRefreshControl alloc] init];
     [self->refreshControl setTintColor:[UIColor colorWithRed:218.0/255.0 green:240.0/255.0 blue:254.0/251.0 alpha:1]];
-    
+    [_toDoListTableView addSubview:refreshControl];
     
     [[self fetchedResultsController] performFetch:nil];
-    [_toDoListTableView addSubview:refreshControl];
+    
     
     [self->refreshControl addTarget:self
                        action:@selector(onRefreshRmPress:)
@@ -73,6 +73,7 @@
     // Store a reference to the mainViewController in appdel
     kApplicationDelegate.mainViewController = self;
     
+    [HPCentralData refreshAllListEntriesFromCloudInBackgroundWithBlock:nil];
     roommateView = [RoommateImageSubview initRoommateImageSubview];
     [[self roommateImageSubviewContainer] addSubview:roommateView];
     [self countChecked];
@@ -151,8 +152,13 @@
 - (IBAction)onRefreshRmPress:(id)sender {
     //Starts a sync request. Will be called back on resyncUIWithDictionary.
     [HPSyncWorker handleSyncRequestWithType:roommatesSyncRequest andData:nil];
-    [HPSyncWorker handleSyncRequestWithType:todoListSyncRequest andData:nil];
-    [self->refreshControl endRefreshing];
+    
+    [HPCentralData refreshAllListEntriesFromCloudInBackgroundWithBlock:^(NSError *error) {
+        [self->refreshControl endRefreshing];
+    }];
+    
+    
+    
 }
 
 - (IBAction)onAddListEntryPress:(id)sender {
@@ -244,12 +250,7 @@
 
 - (NSFetchRequest *) toDoListFetchRequest
 {
-    NSFetchRequest *fetchRequest = [NSFetchRequest fetchRequestWithEntityName:@"CDListItem"];
-    
-    //This sort descripor should arrange entries with uncompleted at the top and completed at the bottom and then sort by their created date.
-    fetchRequest.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"isComplete" ascending:NO], [NSSortDescriptor sortDescriptorWithKey:@"createdAt" ascending:NO]];
-    
-    return fetchRequest;
+    return [HPCentralData getAllToDoListEntriesFetchRequest];
 }
 
 -(NSFetchedResultsController *)fetchedResultsController

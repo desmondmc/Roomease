@@ -17,4 +17,6 @@ typedef void (^CentralDataRoommatesResultBlock)(NSArray *roommates, NSError *err
 typedef void (^CentralDataListEntriesResultBlock)(NSArray *listEntries, NSError *error);
 typedef void (^CentralDataRoommateResultBlock)(HPRoommate *roommate, NSError *error);
 typedef void (^CentralDataSaveResultBlock)(NSError *error);
+typedef void (^CentralDataGenericResultBlock)(NSError *error);
+
 #endif

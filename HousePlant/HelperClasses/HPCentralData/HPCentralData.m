@@ -408,7 +408,7 @@
     [pfNewListEntry setObject:[NSNumber numberWithBool:false] forKey:@"isComplete"];
     
     [pfNewListEntry saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
-        //
+        //We save the context twice because saving to parse can take some time.
         newListItem.parseObjectId = pfNewListEntry.objectId;
         [coreDataStack saveContext];
     }];
@@ -416,22 +416,133 @@
 
 + (void)deleteToDoListEntryWithCell:(NSIndexPath *)indexPath andFetchedResultsController:(NSFetchedResultsController *)fetchedResultsController
 {
-    //Delete the item in local storage.
+    //Find the item in local storage.
     ListItem *listItemToDelete = [fetchedResultsController objectAtIndexPath:indexPath];
-    NSLog(@"Text: %@, parseId: %@", listItemToDelete.name, listItemToDelete.parseObjectId);
+    
     //Delete it from the cloud.
     if (listItemToDelete.parseObjectId) {
         PFObject *pfNewListEntry = [PFObject objectWithoutDataWithClassName:@"Entry" objectId:listItemToDelete.parseObjectId];
         [pfNewListEntry deleteInBackground];
     }
     
-    
+    //Delete the item in local storage.
     HPCoreDataStack *coreDataStack = [HPCoreDataStack defaultStack];
     [coreDataStack.managedObjectContext deleteObject:listItemToDelete];
     [coreDataStack saveContext];
     
     
     
+}
+
++ (void) updateToDoListComlpetedStatusWithStatus:(BOOL)status atIndexPath:(NSIndexPath *)indexPath andFetchedResultsContoller:(NSFetchedResultsController *)fetchedResultsController
+{
+    //Find the item in local storage.
+    ListItem *listItemToUpdate = [fetchedResultsController objectAtIndexPath:indexPath];
+    listItemToUpdate.isComplete = YES;
+}
+
+
++ (void)refreshAllListEntriesFromCloudInBackgroundWithBlock:(CentralDataGenericResultBlock)block
+{
+    HPHouse *house = [HPCentralData getHouse];
+    
+    
+    PFQuery *query = [PFQuery queryWithClassName:@"Entry"];
+    [query whereKey:@"houseObjectId" equalTo:house.objectId];
+    [query includeKey:@"completedBy"];
+    [query includeKey:@"createdAt"];
+    [query orderByAscending:@"completedAt"];
+    [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error)
+    {
+        NSArray *pfEntries = objects;
+        HPCoreDataStack *coreDataStack = [HPCoreDataStack defaultStack];
+        
+        NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+        
+        NSEntityDescription *entity = [NSEntityDescription entityForName:@"CDListItem" inManagedObjectContext:coreDataStack.managedObjectContext];
+        [fetchRequest setEntity:entity];
+        
+        error = nil;
+        NSArray *results = [coreDataStack.managedObjectContext executeFetchRequest:fetchRequest error:&error];
+        
+        
+        NSDate *methodStart = [NSDate date];
+        
+        /* ... Do whatever you need to do ... */
+        [HPCentralData findAndDeleteLocalEntiresThatHaveBeenDeletedRemotelyWithRemoteObject:pfEntries andLocalObjects:results];
+        [HPCentralData findNewRemoteObjectsAndUpdateOldOnesToAddToTheLocalStoreWithRemoteObjects:pfEntries andLocalObjects:results];
+        
+        NSDate *methodFinish = [NSDate date];
+        NSTimeInterval executionTime = [methodFinish timeIntervalSinceDate:methodStart];
+        NSLog(@"executionTime = %f", executionTime);
+        
+        
+        if (block)
+        {
+            block(error);
+        }
+        
+        [coreDataStack saveContext];
+        
+    }];
+
+}
+
++ (void) findAndDeleteLocalEntiresThatHaveBeenDeletedRemotelyWithRemoteObject:(NSArray *)remoteObjects andLocalObjects:(NSArray *)localObjects
+{
+    for (ListItem *localItem in localObjects)
+    {
+        BOOL objectWasDeletedRemotely = YES;
+        for (PFObject *remoteItem in remoteObjects)
+        {
+            if ([localItem.parseObjectId isEqualToString:remoteItem.objectId]) {
+                objectWasDeletedRemotely = NO;
+                break;
+            }
+        }
+        if (objectWasDeletedRemotely) {
+            [[HPCoreDataStack defaultStack].managedObjectContext deleteObject:localItem];
+        }
+    }
+
+}
+
++ (void) findNewRemoteObjectsAndUpdateOldOnesToAddToTheLocalStoreWithRemoteObjects:(NSArray *)remoteObjects andLocalObjects:(NSArray *)localObjects
+{
+    HPCoreDataStack *coreDataStack = [HPCoreDataStack defaultStack];
+    for (PFObject *remoteItem in remoteObjects)
+    {
+        BOOL hasLocalObject = NO;
+        for (ListItem *localItem in localObjects)
+        {
+            if ([remoteItem.objectId isEqualToString:localItem.parseObjectId])
+            {
+                hasLocalObject = YES;
+                localItem.isComplete = [[remoteItem objectForKey:@"isComplete"] boolValue];
+                break;
+            }
+        }
+        if (hasLocalObject == NO)
+        {
+            ListItem *newListItem = [NSEntityDescription insertNewObjectForEntityForName:@"CDListItem" inManagedObjectContext:coreDataStack.managedObjectContext];
+            
+            newListItem.name = [remoteItem objectForKey:@"description"];
+            
+            newListItem.createdAt = [remoteItem.createdAt timeIntervalSince1970];
+            newListItem.isComplete = [[remoteItem objectForKey:@"isComplete"] boolValue];
+            newListItem.parseObjectId = remoteItem.objectId;
+        }
+    }
+}
+
++ (NSFetchRequest *) getAllToDoListEntriesFetchRequest
+{
+    NSFetchRequest *fetchRequest = [NSFetchRequest fetchRequestWithEntityName:@"CDListItem"];
+    
+    //This sort descripor should arrange entries with uncompleted at the top and completed at the bottom and then sort by their created date.
+    fetchRequest.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"isComplete" ascending:NO], [NSSortDescriptor sortDescriptorWithKey:@"createdAt" ascending:NO]];
+    
+    return fetchRequest;
 }
 
 #pragma mark - Roommates getters and savers.

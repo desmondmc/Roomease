@@ -45,6 +45,9 @@
 
 + (void)saveNewToDoListEntryWithName:(NSString *)name;
 + (void)deleteToDoListEntryWithCell:(NSIndexPath *)indexPath andFetchedResultsController:(NSFetchedResultsController *)fetchedResultsController;
++ (void)updateToDoListComlpetedStatusWithStatus:(BOOL)status atIndexPath:(NSIndexPath *)indexPath andFetchedResultsContoller:(NSFetchedResultsController *)fetchedResultsController;
++ (void)refreshAllListEntriesFromCloudInBackgroundWithBlock:(CentralDataGenericResultBlock)block;
++ (NSFetchRequest *) getAllToDoListEntriesFetchRequest;
 
 +(void) getRoommatesInBackgroundWithBlock:(CentralDataRoommatesResultBlock)block;
 +(NSArray *) getRoommates;
