@@ -10,15 +10,17 @@
 #import <UIKit/UIKit.h>
 #import <AMPAvatarView/AMPAvatarView.h>
 #import "HPMainViewController.h"
+#import "SWTableViewCell.h"
 
-@interface HPListTableViewCell : UITableViewCell <UIGestureRecognizerDelegate, UIAlertViewDelegate>
+@interface HPListTableViewCell : SWTableViewCell <UIGestureRecognizerDelegate, UIAlertViewDelegate>
 {
 
 }
 @property (weak, nonatomic) ListItem *listItem;
+@property (readwrite) NSIndexPath * cellIndexPath;
 
 - (IBAction)onDeletePress:(id)sender;
-- (void) initWithListItem:(ListItem *) entry andTableView:(HPMainViewController *) tableViewController;
+- (void) initWithListItem:(ListItem *) entry andTableView:(HPMainViewController *) tableViewController andIndexPath:(NSIndexPath *)indexPath;
 @property (weak, nonatomic) IBOutlet UIImageView *deleteButton;
 @property (weak, nonatomic) IBOutlet UIView *mainCellView;
 @property (weak, nonatomic) IBOutlet UILabel *entryTitle;

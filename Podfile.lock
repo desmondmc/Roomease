@@ -7,6 +7,7 @@ PODS:
   - KLCPopup (1.0)
   - MBProgressHUD (0.8)
   - NPReachability (0.1.0)
+  - SWTableViewCell (0.3.7)
 
 DEPENDENCIES:
   - AMPAvatarView (~> 1.0.3)
@@ -15,6 +16,7 @@ DEPENDENCIES:
   - KLCPopup (~> 1.0)
   - MBProgressHUD (~> 0.8)
   - NPReachability (~> 0.1.0)
+  - SWTableViewCell (~> 0.3.7)
 
 SPEC CHECKSUMS:
   AMPAvatarView: b4b26cb1350a4eaefc47e6b71f389d190dbde073
@@ -24,5 +26,6 @@ SPEC CHECKSUMS:
   KLCPopup: 23548d0454ca156b0eb684f791f234b9c2134369
   MBProgressHUD: c356980b0cd097f19acec959b49dca5eb8ec31be
   NPReachability: 3f1d22668d58b79ac37d08e88d03477cef7b4c24
+  SWTableViewCell: 25de71898e3fcd11cf75707ef90245acf990ec03
 
 COCOAPODS: 0.35.0

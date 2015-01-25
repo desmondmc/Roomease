@@ -13,7 +13,6 @@
 #import "RoommateImageSubview.h"
 #import "HPSettingsViewController.h"
 #import "HPUINotifier.h"
-#import "HPListTableViewCell.h"
 #import "ISRefreshControl.h"
 
 @interface HPMainViewController ()
@@ -40,6 +39,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    [self.toDoListTableView registerNib:[UINib nibWithNibName:@"HPListTableViewCell" bundle:nil] forCellReuseIdentifier:@"hpListTableViewCell"];
     
     [HPSyncWorker handleSyncRequestWithType:todoListSyncRequest andData:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self
@@ -124,9 +125,9 @@
     
 }
 
-- (void) removeCell:(HPListTableViewCell *) cell
+- (void) removeCell:(HPListTableViewCell *) cell atIndexPath:(NSIndexPath *)indexPath
 {
-    
+    [HPCentralData deleteToDoListEntryWithCell:indexPath andFetchedResultsController:[self fetchedResultsController]];
 }
 
 - (void) checkCell:(HPListTableViewCell *) cell
@@ -190,7 +191,9 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     static NSString *cellIdentifier = @"hpListTableViewCell";
-    HPListTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
+    HPListTableViewCell *cell = nil;
+    
+    cell = (HPListTableViewCell *)[tableView dequeueReusableCellWithIdentifier:cellIdentifier forIndexPath:indexPath];
     
     if (cell == nil) {
         //There was no reusablecell to dequeue
@@ -198,22 +201,45 @@
         cell = [nib objectAtIndex:0];
     }
     
+    cell.rightUtilityButtons = [self rightButtons];
+    cell.delegate = self;
+    
     
     ListItem *toDoListItem = [self.fetchedResultsController objectAtIndexPath:indexPath];
     
-    cell.entryTitle.text = toDoListItem.name;
-    
-    cell.entryDate.text = [NSDateFormatter localizedStringFromDate:
-                           [NSDate dateWithTimeIntervalSince1970:toDoListItem.createdAt]
-                                                         dateStyle:NSDateFormatterMediumStyle
-                                                         timeStyle:NSDateFormatterNoStyle];
-    
-    cell.entryTime.text = [NSDateFormatter localizedStringFromDate:
-                           [NSDate dateWithTimeIntervalSince1970:toDoListItem.createdAt]
-                                                         dateStyle:NSDateFormatterNoStyle
-                                                         timeStyle:NSDateFormatterShortStyle];
+    [cell initWithListItem:toDoListItem andTableView:self andIndexPath:indexPath];
+
     
     return cell;
+}
+
+- (void)swipeableTableViewCell:(SWTableViewCell *)cell didTriggerRightUtilityButtonWithIndex:(NSInteger)index
+{
+    if (index == 0) //Delete was pressed.
+    {
+        NSLog(@"Delete button was pressed");
+        // Delete button was pressed
+        NSIndexPath *cellIndexPath = [self.toDoListTableView indexPathForCell:cell];
+        [HPCentralData deleteToDoListEntryWithCell:cellIndexPath andFetchedResultsController:[self fetchedResultsController]];
+    }
+}
+
+// prevent multiple cells from showing utilty buttons simultaneously
+- (BOOL)swipeableTableViewCellShouldHideUtilityButtonsOnSwipe:(SWTableViewCell *)cell
+{
+    return true;
+}
+
+
+- (NSArray *)rightButtons
+{
+    NSMutableArray *rightUtilityButtons = [NSMutableArray new];
+    
+    UIColor *deleteButtonColor = [UIColor colorWithRed:241/255.0f green:107/255.0f blue:107/255.0f alpha:1.0f];
+
+    [rightUtilityButtons sw_addUtilityButtonWithColor:deleteButtonColor title:@"Delete"];
+    
+    return rightUtilityButtons;
 }
 
 - (NSFetchRequest *) toDoListFetchRequest
@@ -242,9 +268,57 @@
     return _fetchedResultsController;
 }
 
--(void)controllerDidChangeContent:(NSFetchedResultsController *)controller
+-(void)controllerWillChangeContent:(NSFetchedResultsController *)controller
 {
-    [self.toDoListTableView reloadData];
+    [self.toDoListTableView beginUpdates];
+}
+
+#pragma mark - NSFetchedResultsControllerDelegate
+
+-(void)controller:(NSFetchedResultsController *)controller didChangeObject:(id)anObject atIndexPath:(NSIndexPath *)indexPath forChangeType:(NSFetchedResultsChangeType)type newIndexPath:(NSIndexPath *)newIndexPath
+{
+    switch (type) {
+        case NSFetchedResultsChangeInsert:
+            
+            [self.toDoListTableView insertRowsAtIndexPaths:@[newIndexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
+            break;
+            
+        case NSFetchedResultsChangeDelete:
+            
+            [self.toDoListTableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
+            break;
+            
+        case NSFetchedResultsChangeUpdate:
+            
+            [self.toDoListTableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
+            break;
+            
+        default:
+            break;
+    }
+}
+
+-(void) controller:(NSFetchedResultsController *)controller didChangeSection:(id<NSFetchedResultsSectionInfo>)sectionInfo atIndex:(NSUInteger)sectionIndex forChangeType:(NSFetchedResultsChangeType)type
+{
+    switch (type) {
+        case NSFetchedResultsChangeInsert:
+            
+            [self.toDoListTableView insertSections:[NSIndexSet indexSetWithIndex:sectionIndex] withRowAnimation:UITableViewRowAnimationAutomatic];
+            break;
+            
+        case NSFetchedResultsChangeDelete:
+            
+            [self.toDoListTableView deleteSections:[NSIndexSet indexSetWithIndex:sectionIndex] withRowAnimation:UITableViewRowAnimationAutomatic];
+            break;
+            
+        default:
+            break;
+    }
+}
+
+-(void) controllerDidChangeContent:(NSFetchedResultsController *)controller
+{
+    [self.toDoListTableView endUpdates];
 }
 
 #pragma mark - Notification Handlers
@@ -260,7 +334,6 @@
 {
     if ([uiChanges objectForKey:kRefreshTodoListKey] != nil)
     {
-        listItems = [NSMutableArray arrayWithArray:[HPCentralData getToDoListEntriesAndForceReloadFromParse:NO]];
         [self countChecked];
     }
 }

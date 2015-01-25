@@ -273,7 +273,7 @@
         
 }
 
-+(House *) getHouse
++(HPHouse *) getHouse
 {
     NSData *homeData = [persistantStore objectForKey:kPersistantStoreHome];
     HPHouse *home =  [NSKeyedUnarchiver unarchiveObjectWithData:homeData];
@@ -281,7 +281,7 @@
     if (home == nil) {
         //No local copy yet. Better grab it from parse.
         home = [[HPHouse alloc] init];
-        [[PFUser currentUser] refresh];
+        [[PFUser currentUser] fetch];
         __block PFObject *parseHome = [[PFUser currentUser] objectForKey:@"home"];
         
         [parseHome fetch];
@@ -386,35 +386,9 @@
 
 #pragma mark - ToDoList Saving and Getting
 
-+ (void) getToDoListEntriesInBackgroundWithBlock:(CentralDataListEntriesResultBlock)block
-{
-    dispatch_async( dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
-        NSArray *todoListEntries = [HPCentralData getToDoListEntriesAndForceReloadFromParse:NO];
-        NSError *error;
-        if (!todoListEntries)
-        {
-            NSMutableDictionary* details = [NSMutableDictionary dictionary];
-            [details setValue:@"Getting todo list failed" forKey:NSLocalizedDescriptionKey];
-            error = [NSError errorWithDomain:@"todo list" code:100 userInfo:details];
-        }
-        dispatch_async(dispatch_get_main_queue(), ^{
-            if (block)
-                block(todoListEntries, error);
-        });
-    });
-}
-
-
-+ (bool)removeToDoListEntryWithSingleEntryLocalAndRemote:(ListItem *) entry
-{
-    PFObject *pfNewListEntry = [PFObject objectWithoutDataWithClassName:@"Entry" objectId:entry.parseObjectId];
-    [pfNewListEntry delete];
-    
-    return YES;
-}
-
 + (void)saveNewToDoListEntryWithName:(NSString *)name
 {
+    //Save the new entry locally.
     HPCoreDataStack *coreDataStack = [HPCoreDataStack defaultStack];
     ListItem *newListItem = [NSEntityDescription insertNewObjectForEntityForName:@"CDListItem" inManagedObjectContext:coreDataStack.managedObjectContext];
     
@@ -423,60 +397,41 @@
     newListItem.isComplete = NO;
     
     [coreDataStack saveContext];
+    
+    PFObject *pfNewListEntry = [PFObject objectWithClassName:@"Entry"];
+    
+    [pfNewListEntry setObject:@"ToDo List" forKey:@"listName"];
+    
+    //GetHouseForUser
+    [pfNewListEntry setObject:[HPCentralData getHouse].objectId forKey:@"houseObjectId"];
+    [pfNewListEntry setObject:newListItem.name forKey:@"description"];
+    [pfNewListEntry setObject:[NSNumber numberWithBool:false] forKey:@"isComplete"];
+    
+    [pfNewListEntry saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+        //
+        newListItem.parseObjectId = pfNewListEntry.objectId;
+        [coreDataStack saveContext];
+    }];
 }
 
-+ (bool)saveToDoListEntryWithSingleEntryLocalAndRemote:(ListItem *)entry
++ (void)deleteToDoListEntryWithCell:(NSIndexPath *)indexPath andFetchedResultsController:(NSFetchedResultsController *)fetchedResultsController
 {
-    //Find the user in the local storage roommate array.
-    if (!entry.name) {
-        [NSException raise:@"HP Exception: Invalid entry sent to saveToDoListEntryWithSingleEntry, nil description" format:@"entry of %@ is invalid", entry];
+    //Delete the item in local storage.
+    ListItem *listItemToDelete = [fetchedResultsController objectAtIndexPath:indexPath];
+    NSLog(@"Text: %@, parseId: %@", listItemToDelete.name, listItemToDelete.parseObjectId);
+    //Delete it from the cloud.
+    if (listItemToDelete.parseObjectId) {
+        PFObject *pfNewListEntry = [PFObject objectWithoutDataWithClassName:@"Entry" objectId:listItemToDelete.parseObjectId];
+        [pfNewListEntry deleteInBackground];
     }
     
-    PFObject *pfNewListEntry;
     
-    //Existing listItem
-    if(entry.parseObjectId) {
-        pfNewListEntry = [PFObject objectWithoutDataWithClassName:@"Entry" objectId:entry.parseObjectId];
-        [pfNewListEntry setObject:[NSNumber numberWithBool:([entry completedBy] != nil) ] forKey:@"isComplete"];
-        [pfNewListEntry setObject:[entry completedBy].parseObjectId ? [PFUser currentUser] : [NSNull null] forKey:@"completedBy"];
-        [pfNewListEntry setObject:entry.completedAt ?
-         [NSDate dateWithTimeIntervalSince1970:entry.completedAt] :
-         [NSNull null] forKey:@"completedAt"];
-    }
-    
-    //Save the NEW entry to parse
-    if (!pfNewListEntry){
-        pfNewListEntry = [PFObject objectWithClassName:@"Entry"];
-
-        [pfNewListEntry setObject:@"ToDo List" forKey:@"listName"];
-        
-        //GetHouseForUser
-        [pfNewListEntry setObject:[HPCentralData getHouse].parseObjectId forKey:@"houseObjectId"];
-        [pfNewListEntry setObject:entry.name forKey:@"description"];
-        [pfNewListEntry setObject:[NSNumber numberWithBool:false] forKey:@"isComplete"];
-    }
-
-    
-    [pfNewListEntry saveInBackground];
-    
-    entry.parseObjectId = pfNewListEntry.objectId;
-    
-    //Save The New Entry to CoreData.
-    [HPCentralData saveToDoListEntryWithSingleEntryLocal:entry];
-    
-    return true;
-}
-
-+ (bool)saveToDoListEntryWithSingleEntryLocal:(ListItem *)entry
-{
     HPCoreDataStack *coreDataStack = [HPCoreDataStack defaultStack];
-    ListItem *listItem = [NSEntityDescription insertNewObjectForEntityForName:@"CDListItem" inManagedObjectContext:coreDataStack.managedObjectContext];
-    
-    [listItem copyAttributesFromListItem:entry];
-    
+    [coreDataStack.managedObjectContext deleteObject:listItemToDelete];
     [coreDataStack saveContext];
     
-    return true;
+    
+    
 }
 
 #pragma mark - Roommates getters and savers.

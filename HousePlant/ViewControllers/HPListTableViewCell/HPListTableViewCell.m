@@ -154,17 +154,13 @@
     _checked = false;
 }
 
+//This is programmatically tied to the delete button, that's why it looks disconnected.
 - (IBAction)onDeletePress:(id)sender {
-    UIAlertView *view = [[UIAlertView alloc] initWithTitle:@"You sure?" message:@"Are you sure you want to remove this item?" delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"Yup", nil];
-    [view show];
+    NSIndexPath *indexPath = [(UITableView *)self.superview indexPathForCell: self];
+    
+    [self->mainTableViewController removeCell:self atIndexPath:indexPath];
 }
 
-- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
-{
-    if(buttonIndex == 1) {
-        [self->mainTableViewController removeCell:self];
-    }
-}
 
 - (IBAction)onCheckboxPress:(id)sender {
 
@@ -183,7 +179,6 @@
         [self checkCell];
     }
     [self setText];
-    [HPCentralData saveToDoListEntryWithSingleEntryLocalAndRemote:self.listItem];
 }
 
 - (void) setText {
@@ -228,18 +223,38 @@
     [self layoutSubviews];
 }
 
-- (void) initWithListItem:(ListItem *) entry andTableView:(HPMainViewController *) tableViewController
+- (void) initWithListItem:(ListItem *) entry andTableView:(HPMainViewController *) tableViewController andIndexPath:(NSIndexPath *)indexPath
 {
     self.listItem = entry;
-    self->mainTableViewController = tableViewController;
     self.entryTitle.text = entry.name;
     
-    [self setText];
-    if (entry.completedBy) {
-        [self checkCell];
-    } else {
-        [self uncheckCell];
-    }
+    NSString *createdAtString = [NSString stringWithFormat:@"%@ at", [NSDateFormatter localizedStringFromDate:
+                                                                      [NSDate dateWithTimeIntervalSince1970:entry.createdAt]
+                                                                                                    dateStyle:NSDateFormatterMediumStyle
+                                                                                                    timeStyle:NSDateFormatterNoStyle]];
     
+    self.entryDate.text = createdAtString;
+    
+    self.entryTime.text = [NSDateFormatter localizedStringFromDate:
+                           [NSDate dateWithTimeIntervalSince1970:entry.createdAt]
+                                                         dateStyle:NSDateFormatterNoStyle
+                                                         timeStyle:NSDateFormatterShortStyle];
+    
+    self->mainTableViewController = tableViewController;
+    
+    self.cellIndexPath = indexPath;
+    
+    
+    
+//    self.listItem = entry;
+//    self->mainTableViewController = tableViewController;
+//    self.entryTitle.text = entry.name;
+//    
+//    [self setText];
+//    if (entry.completedBy) {
+//        [self checkCell];
+//    } else {
+//        [self uncheckCell];
+//    }
 }
 @end

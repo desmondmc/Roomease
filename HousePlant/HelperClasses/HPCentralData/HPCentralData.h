@@ -13,6 +13,7 @@
 #import "Roommate.h"
 #import "ListItem+Extention.h"
 #import "HPCoreDataStack.h"
+#import "HPListTableViewCell.h"
 
 #define kPersistantStoreHome @"hp_home"
 #define kPersistantStoreCurrentUser @"hp_currentUser"
@@ -38,17 +39,12 @@
 +(bool) saveCurrentUser:(HPRoommate *)roommate;
 
 +(void) getHouseInBackgroundWithBlock:(CentralDataHouseResultBlock)block;
-+(House *) getHouse;
++(HPHouse *) getHouse;
 +(void) saveHouseInBackgroundWithHouse:(HPHouse *)house andBlock:(CentralDataSaveResultBlock)block;
 +(bool) saveHouse:(HPHouse *)house;
 
-+ (void) getToDoListEntriesInBackgroundWithBlock:(CentralDataListEntriesResultBlock)block;
-+ (NSArray *) getToDoListEntriesAndForceReloadFromParse: (BOOL) forceReload;
-
 + (void)saveNewToDoListEntryWithName:(NSString *)name;
-+ (bool)removeToDoListEntryWithSingleEntryLocalAndRemote:(ListItem *) entry;
-+ (bool)saveToDoListEntryWithSingleEntryLocalAndRemote:(ListItem *)entry;
-+ (bool)saveToDoListEntryWithSingleEntryLocal:(ListItem *)entry;
++ (void)deleteToDoListEntryWithCell:(NSIndexPath *)indexPath andFetchedResultsController:(NSFetchedResultsController *)fetchedResultsController;
 
 +(void) getRoommatesInBackgroundWithBlock:(CentralDataRoommatesResultBlock)block;
 +(NSArray *) getRoommates;
