@@ -2,7 +2,7 @@
 //  Roommate.m
 //  RoomEase
 //
-//  Created by Desmond McNamee on 2015-01-21.
+//  Created by Desmond McNamee on 2015-01-26.
 //  Copyright (c) 2015 HousePlant. All rights reserved.
 //
 
@@ -14,9 +14,10 @@
 @implementation Roommate
 
 @dynamic name;
-@dynamic profilePicture;
 @dynamic parseObjectId;
-@dynamic house;
+@dynamic profilePicture;
+@dynamic updatedAt;
 @dynamic completedListItems;
+@dynamic house;
 
 @end

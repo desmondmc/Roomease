@@ -19,6 +19,7 @@
 @property (strong, nonatomic) IBOutlet HPToDoListTableView *toDoListTableView;
 
 
+- (void) checkBoxPressAtCell: (id) cell withState:(BOOL)state;
 - (void) removeCell:(id) cell atIndexPath:(NSIndexPath *)indexPath;
 - (void) checkCell:(id) cell;
 - (void) uncheckCell:(id) cell;

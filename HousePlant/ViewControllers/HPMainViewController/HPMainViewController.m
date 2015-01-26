@@ -131,16 +131,6 @@
     [HPCentralData deleteToDoListEntryWithCell:indexPath andFetchedResultsController:[self fetchedResultsController]];
 }
 
-- (void) checkCell:(HPListTableViewCell *) cell
-{
-    
-}
-- (void) uncheckCell:(HPListTableViewCell *) cell
-{
-    
-}
-
-
 - (IBAction)onSettingsPress:(id)sender {
     HPSettingsViewController *settingsViewController = [[HPSettingsViewController alloc] init];
     settingsViewController.modalTransitionStyle = UIModalTransitionStyleCoverVertical;
@@ -153,12 +143,11 @@
     //Starts a sync request. Will be called back on resyncUIWithDictionary.
     [HPSyncWorker handleSyncRequestWithType:roommatesSyncRequest andData:nil];
     
-    [HPCentralData refreshAllListEntriesFromCloudInBackgroundWithBlock:^(NSError *error) {
-        [self->refreshControl endRefreshing];
+    [HPCentralData refreshAllRoommatesFromCloudInBackgroundWithBlock:^(NSError *error) {
+        [HPCentralData refreshAllListEntriesFromCloudInBackgroundWithBlock:^(NSError *error) {
+            [self->refreshControl endRefreshing];
+        }];
     }];
-    
-    
-    
 }
 
 - (IBAction)onAddListEntryPress:(id)sender {
@@ -223,11 +212,18 @@
 {
     if (index == 0) //Delete was pressed.
     {
-        NSLog(@"Delete button was pressed");
         // Delete button was pressed
         NSIndexPath *cellIndexPath = [self.toDoListTableView indexPathForCell:cell];
         [HPCentralData deleteToDoListEntryWithCell:cellIndexPath andFetchedResultsController:[self fetchedResultsController]];
     }
+}
+
+- (void) checkBoxPressAtCell: (HPListTableViewCell *) cell withState:(BOOL)state
+{
+    NSIndexPath *cellIndexPath = [self.toDoListTableView indexPathForCell:cell];
+    [HPCentralData updateToDoListCompletedStatusWithStatus:state
+                                               atIndexPath:cellIndexPath
+                                andFetchedResultsContoller:[self fetchedResultsController]];
 }
 
 // prevent multiple cells from showing utilty buttons simultaneously
@@ -292,6 +288,11 @@
         case NSFetchedResultsChangeUpdate:
             
             [self.toDoListTableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
+            break;
+            
+        case NSFetchedResultsChangeMove:
+            [self.toDoListTableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
+            [self.toDoListTableView insertRowsAtIndexPaths:[NSArray arrayWithObject:newIndexPath]withRowAnimation:UITableViewRowAnimationFade];
             break;
             
         default:

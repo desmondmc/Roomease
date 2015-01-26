@@ -101,6 +101,25 @@
     [defs synchronize];
 }
 
++(void) clearCoreData
+{
+    HPCoreDataStack *coreDataStack = [HPCoreDataStack defaultStack];
+    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+    NSString *entityDescription = @"CDListItem";
+    
+    NSEntityDescription *entity = [NSEntityDescription entityForName:entityDescription inManagedObjectContext:coreDataStack.managedObjectContext];
+    [fetchRequest setEntity:entity];
+    
+    NSError *error;
+    NSArray *items = [coreDataStack.managedObjectContext executeFetchRequest:fetchRequest error:&error];
+    
+    for (NSManagedObject *managedObject in items) {
+        [coreDataStack.managedObjectContext deleteObject:managedObject];
+    }
+    
+    [coreDataStack saveContext];
+}
+
 +(void) clearLocalHouseData
 {
     [persistantStore removeObjectForKey:kPersistantStoreHome];
@@ -434,18 +453,50 @@
     
 }
 
-+ (void) updateToDoListComlpetedStatusWithStatus:(BOOL)status atIndexPath:(NSIndexPath *)indexPath andFetchedResultsContoller:(NSFetchedResultsController *)fetchedResultsController
++ (void) updateToDoListCompletedStatusWithStatus:(BOOL)status atIndexPath:(NSIndexPath *)indexPath andFetchedResultsContoller:(NSFetchedResultsController *)fetchedResultsController
 {
     //Find the item in local storage.
     ListItem *listItemToUpdate = [fetchedResultsController objectAtIndexPath:indexPath];
-    listItemToUpdate.isComplete = YES;
+    listItemToUpdate.isComplete = status;
+    
+    HPCoreDataStack *coreDataStack = [HPCoreDataStack defaultStack];
+
+    if (status == YES)
+    {
+        //Get roommate from local store that matches the current user
+        NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+        
+        NSEntityDescription *entity = [NSEntityDescription entityForName:@"CDRoommate" inManagedObjectContext:coreDataStack.managedObjectContext];
+        [fetchRequest setEntity:entity];
+        
+        NSPredicate *predicate = [NSPredicate predicateWithFormat:@"parseObjectId==%@",
+                                  [PFUser currentUser].objectId];
+        [fetchRequest setPredicate:predicate];
+        
+        NSError *error = nil;
+        NSArray *results = [coreDataStack.managedObjectContext executeFetchRequest:fetchRequest error:&error];
+        
+        if (results.count > 0)
+        {
+            Roommate *currentUser = results[0];
+            listItemToUpdate.completedBy = currentUser;
+            [coreDataStack saveContext];
+        }
+    }
+    else
+    {
+        listItemToUpdate.completedBy = nil;
+        [coreDataStack saveContext];
+    }
+
+    
+    //Set listitem.completedBy to that value
 }
 
 
 + (void)refreshAllListEntriesFromCloudInBackgroundWithBlock:(CentralDataGenericResultBlock)block
 {
     HPHouse *house = [HPCentralData getHouse];
-    
     
     PFQuery *query = [PFQuery queryWithClassName:@"Entry"];
     [query whereKey:@"houseObjectId" equalTo:house.objectId];
@@ -465,17 +516,8 @@
         error = nil;
         NSArray *results = [coreDataStack.managedObjectContext executeFetchRequest:fetchRequest error:&error];
         
-        
-        NSDate *methodStart = [NSDate date];
-        
-        /* ... Do whatever you need to do ... */
         [HPCentralData findAndDeleteLocalEntiresThatHaveBeenDeletedRemotelyWithRemoteObject:pfEntries andLocalObjects:results];
-        [HPCentralData findNewRemoteObjectsAndUpdateOldOnesToAddToTheLocalStoreWithRemoteObjects:pfEntries andLocalObjects:results];
-        
-        NSDate *methodFinish = [NSDate date];
-        NSTimeInterval executionTime = [methodFinish timeIntervalSinceDate:methodStart];
-        NSLog(@"executionTime = %f", executionTime);
-        
+        [HPCentralData findNewRemoteListItemsAndUpdateOldOnesToAddToTheLocalStoreWithRemoteObjects:pfEntries andLocalObjects:results];
         
         if (block)
         {
@@ -485,7 +527,6 @@
         [coreDataStack saveContext];
         
     }];
-
 }
 
 + (void) findAndDeleteLocalEntiresThatHaveBeenDeletedRemotelyWithRemoteObject:(NSArray *)remoteObjects andLocalObjects:(NSArray *)localObjects
@@ -507,7 +548,7 @@
 
 }
 
-+ (void) findNewRemoteObjectsAndUpdateOldOnesToAddToTheLocalStoreWithRemoteObjects:(NSArray *)remoteObjects andLocalObjects:(NSArray *)localObjects
++ (void) findNewRemoteListItemsAndUpdateOldOnesToAddToTheLocalStoreWithRemoteObjects:(NSArray *)remoteObjects andLocalObjects:(NSArray *)localObjects
 {
     HPCoreDataStack *coreDataStack = [HPCoreDataStack defaultStack];
     for (PFObject *remoteItem in remoteObjects)
@@ -540,12 +581,84 @@
     NSFetchRequest *fetchRequest = [NSFetchRequest fetchRequestWithEntityName:@"CDListItem"];
     
     //This sort descripor should arrange entries with uncompleted at the top and completed at the bottom and then sort by their created date.
-    fetchRequest.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"isComplete" ascending:NO], [NSSortDescriptor sortDescriptorWithKey:@"createdAt" ascending:NO]];
+    fetchRequest.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"isComplete" ascending:YES], [NSSortDescriptor sortDescriptorWithKey:@"createdAt" ascending:NO]];
     
     return fetchRequest;
 }
 
 #pragma mark - Roommates getters and savers.
++ (void)refreshAllRoommatesFromCloudInBackgroundWithBlock:(CentralDataGenericResultBlock)block
+{
+    //Needed to manually use background thread because of potential profile picture download.
+    dispatch_async( dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
+        //First Get Remote Items.
+        PFQuery *query = [PFQuery queryWithClassName:@"House"];
+        [query includeKey:@"users"];
+        PFObject *parseHome = [query getObjectWithId:[[[PFUser currentUser] objectForKey:@"home"] objectId]];
+        NSArray *pfRoommates = [parseHome objectForKey:@"users"];
+        
+        //Next get local Items.
+        HPCoreDataStack *coreDataStack = [HPCoreDataStack defaultStack];
+        NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+        NSEntityDescription *entity = [NSEntityDescription entityForName:@"CDRoommate" inManagedObjectContext:coreDataStack.managedObjectContext];
+        [fetchRequest setEntity:entity];
+        
+        NSError *error;
+        NSArray *results = [coreDataStack.managedObjectContext executeFetchRequest:fetchRequest error:&error];
+        
+        [HPCentralData findNewRemoteRoommatesAndUpdateOldOnesToAddToTheLocalStoreWithRemoteObjects:pfRoommates andLocalObjects:results];
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            if (block)
+                block(nil);
+            [coreDataStack saveContext];
+        });
+    });
+    
+
+}
+
++ (void) findNewRemoteRoommatesAndUpdateOldOnesToAddToTheLocalStoreWithRemoteObjects:(NSArray *)remoteObjects andLocalObjects:(NSArray *)localObjects
+{
+    HPCoreDataStack *coreDataStack = [HPCoreDataStack defaultStack];
+    for (PFObject *remoteItem in remoteObjects)
+    {
+        BOOL hasLocalObject = NO;
+        for (Roommate *localItem in localObjects)
+        {
+            if ([remoteItem.objectId isEqualToString:localItem.parseObjectId])
+            {
+                //Check update the profile picture.
+                hasLocalObject = YES;
+                
+                //Only get profile picture if it's been updated since last fetch.
+                if ([[NSDate dateWithTimeIntervalSince1970:localItem.updatedAt] compare:remoteItem.updatedAt] != NSOrderedSame)
+                {
+                    PFFile *userImageFile = [remoteItem objectForKey:@"profilePic"];
+                    localItem.profilePicture = [userImageFile getData];
+                }
+                
+                localItem.updatedAt = [remoteItem.updatedAt timeIntervalSince1970];
+
+                break;
+            }
+        }
+        if (hasLocalObject == NO)
+        {
+            Roommate *newRoommate = [NSEntityDescription insertNewObjectForEntityForName:@"CDRoommate" inManagedObjectContext:coreDataStack.managedObjectContext];
+            
+            newRoommate.name = [remoteItem objectForKey:@"username"];
+            newRoommate.parseObjectId = remoteItem.objectId;
+            newRoommate.updatedAt = [remoteItem.updatedAt timeIntervalSince1970];
+            
+            PFFile *userImageFile = [remoteItem objectForKey:@"profilePic"];
+            newRoommate.profilePicture = [userImageFile getData];
+            
+        }
+    }
+}
+
+
 
 +(void) getRoommatesInBackgroundWithBlock:(CentralDataRoommatesResultBlock)block
 {

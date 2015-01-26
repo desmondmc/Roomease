@@ -2,7 +2,7 @@
 //  Roommate.h
 //  RoomEase
 //
-//  Created by Desmond McNamee on 2015-01-21.
+//  Created by Desmond McNamee on 2015-01-26.
 //  Copyright (c) 2015 HousePlant. All rights reserved.
 //
 
@@ -14,10 +14,11 @@
 @interface Roommate : NSManagedObject
 
 @property (nonatomic, retain) NSString * name;
-@property (nonatomic, retain) NSData * profilePicture;
 @property (nonatomic, retain) NSString * parseObjectId;
-@property (nonatomic, retain) House *house;
+@property (nonatomic, retain) NSData * profilePicture;
+@property (nonatomic) NSTimeInterval updatedAt;
 @property (nonatomic, retain) NSSet *completedListItems;
+@property (nonatomic, retain) House *house;
 @end
 
 @interface Roommate (CoreDataGeneratedAccessors)

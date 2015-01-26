@@ -19,12 +19,13 @@
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="parseObjectId" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="profilePicture" optional="YES" attributeType="Binary" storedInTruthFile="YES" syncable="YES"/>
+        <attribute name="updatedAt" optional="YES" attributeType="Date" syncable="YES"/>
         <relationship name="completedListItems" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="CDListItem" inverseName="completedBy" inverseEntity="CDListItem" syncable="YES"/>
         <relationship name="house" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="CDHouse" inverseName="roommates" inverseEntity="CDHouse" syncable="YES"/>
     </entity>
     <elements>
         <element name="CDHouse" positionX="-279" positionY="153" width="128" height="103"/>
-        <element name="CDRoommate" positionX="88" positionY="167" width="128" height="118"/>
         <element name="CDListItem" positionX="-128" positionY="405" width="128" height="148"/>
+        <element name="CDRoommate" positionX="88" positionY="167" width="128" height="135"/>
     </elements>
 </model>

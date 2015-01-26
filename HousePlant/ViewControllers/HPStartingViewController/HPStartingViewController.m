@@ -33,6 +33,7 @@
     
     //Clear central data
     [HPCentralData clearCentralData];
+    [HPCentralData clearCoreData];
     
     //Stop monitoring for any regions.
     if (kApplicationDelegate.appLocationManager != nil) {

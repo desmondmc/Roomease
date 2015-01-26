@@ -10,11 +10,11 @@
 		641AF380FE954A6D996B029D /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F2ADBFAE68984DBDA17CC3D1 /* libPods.a */; };
 		7A2F91D81A6F006900675106 /* HPCoreDataStack.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A2F91D71A6F006900675106 /* HPCoreDataStack.m */; };
 		7A2F91DB1A6F03CF00675106 /* RoomeaseDataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 7A2F91D91A6F03CF00675106 /* RoomeaseDataModel.xcdatamodeld */; };
-		7A2F91F01A6FDF8200675106 /* ListItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A2F91EF1A6FDF8200675106 /* ListItem.m */; };
-		7A2F91F31A6FDF8200675106 /* House.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A2F91F21A6FDF8200675106 /* House.m */; };
-		7A2F91F61A6FDF8300675106 /* Roommate.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A2F91F51A6FDF8300675106 /* Roommate.m */; };
 		7A2F91F91A6FE2E700675106 /* ListItem+Extention.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A2F91F81A6FE2E700675106 /* ListItem+Extention.m */; };
 		7A3541271A73EB32002CA33D /* HPToDoListTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A3541261A73EB32002CA33D /* HPToDoListTableView.m */; };
+		7A3541331A767502002CA33D /* Roommate.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A3541321A767502002CA33D /* Roommate.m */; };
+		7A3541361A767503002CA33D /* House.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A3541351A767503002CA33D /* House.m */; };
+		7A3541391A767503002CA33D /* ListItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A3541381A767503002CA33D /* ListItem.m */; };
 		7A492FBF1A6C3F7F0088F547 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7A492FBE1A6C3F7F0088F547 /* MessageUI.framework */; };
 		7AC41DEE1A6AA066006C3A3B /* CheckConnectivityView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7AC41DED1A6AA066006C3A3B /* CheckConnectivityView.xib */; };
 		7AC41DF11A6AA3A3006C3A3B /* CheckConnectivityView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7AC41DF01A6AA3A3006C3A3B /* CheckConnectivityView.m */; };
@@ -90,16 +90,16 @@
 		7A2F91D61A6F006900675106 /* HPCoreDataStack.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HPCoreDataStack.h; sourceTree = "<group>"; };
 		7A2F91D71A6F006900675106 /* HPCoreDataStack.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HPCoreDataStack.m; sourceTree = "<group>"; };
 		7A2F91DA1A6F03CF00675106 /* RoomeaseDataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = RoomeaseDataModel.xcdatamodel; sourceTree = "<group>"; };
-		7A2F91EE1A6FDF8200675106 /* ListItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ListItem.h; sourceTree = "<group>"; };
-		7A2F91EF1A6FDF8200675106 /* ListItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ListItem.m; sourceTree = "<group>"; };
-		7A2F91F11A6FDF8200675106 /* House.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = House.h; sourceTree = "<group>"; };
-		7A2F91F21A6FDF8200675106 /* House.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = House.m; sourceTree = "<group>"; };
-		7A2F91F41A6FDF8300675106 /* Roommate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Roommate.h; sourceTree = "<group>"; };
-		7A2F91F51A6FDF8300675106 /* Roommate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Roommate.m; sourceTree = "<group>"; };
 		7A2F91F71A6FE2E700675106 /* ListItem+Extention.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ListItem+Extention.h"; sourceTree = "<group>"; };
 		7A2F91F81A6FE2E700675106 /* ListItem+Extention.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "ListItem+Extention.m"; sourceTree = "<group>"; };
 		7A3541251A73EB32002CA33D /* HPToDoListTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HPToDoListTableView.h; sourceTree = "<group>"; };
 		7A3541261A73EB32002CA33D /* HPToDoListTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HPToDoListTableView.m; sourceTree = "<group>"; };
+		7A3541311A767502002CA33D /* Roommate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Roommate.h; sourceTree = "<group>"; };
+		7A3541321A767502002CA33D /* Roommate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Roommate.m; sourceTree = "<group>"; };
+		7A3541341A767503002CA33D /* House.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = House.h; sourceTree = "<group>"; };
+		7A3541351A767503002CA33D /* House.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = House.m; sourceTree = "<group>"; };
+		7A3541371A767503002CA33D /* ListItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ListItem.h; sourceTree = "<group>"; };
+		7A3541381A767503002CA33D /* ListItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ListItem.m; sourceTree = "<group>"; };
 		7A492FBE1A6C3F7F0088F547 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
 		7AC41DED1A6AA066006C3A3B /* CheckConnectivityView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CheckConnectivityView.xib; sourceTree = "<group>"; };
 		7AC41DEF1A6AA37C006C3A3B /* CheckConnectivityView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CheckConnectivityView.h; sourceTree = "<group>"; };
@@ -254,15 +254,15 @@
 		7A2F91D51A6F002E00675106 /* CoreDataStack */ = {
 			isa = PBXGroup;
 			children = (
-				7A2F91F41A6FDF8300675106 /* Roommate.h */,
-				7A2F91F51A6FDF8300675106 /* Roommate.m */,
-				7A2F91F11A6FDF8200675106 /* House.h */,
-				7A2F91F21A6FDF8200675106 /* House.m */,
-				7A2F91EE1A6FDF8200675106 /* ListItem.h */,
-				7A2F91EF1A6FDF8200675106 /* ListItem.m */,
 				7A2F91D61A6F006900675106 /* HPCoreDataStack.h */,
 				7A2F91D71A6F006900675106 /* HPCoreDataStack.m */,
 				7A2F91D91A6F03CF00675106 /* RoomeaseDataModel.xcdatamodeld */,
+				7A3541371A767503002CA33D /* ListItem.h */,
+				7A3541381A767503002CA33D /* ListItem.m */,
+				7A3541341A767503002CA33D /* House.h */,
+				7A3541351A767503002CA33D /* House.m */,
+				7A3541311A767502002CA33D /* Roommate.h */,
+				7A3541321A767502002CA33D /* Roommate.m */,
 				7A2F91F71A6FE2E700675106 /* ListItem+Extention.h */,
 				7A2F91F81A6FE2E700675106 /* ListItem+Extention.m */,
 			);
@@ -834,17 +834,17 @@
 				F7A1225118522ABE00E51B06 /* HPStartingViewController.m in Sources */,
 				7A3541271A73EB32002CA33D /* HPToDoListTableView.m in Sources */,
 				F7A1222C18522A4100E51B06 /* HPAppDelegate.m in Sources */,
-				7A2F91F01A6FDF8200675106 /* ListItem.m in Sources */,
+				7A3541391A767503002CA33D /* ListItem.m in Sources */,
 				F714B82018ABD54C00B598E7 /* HPLocationManager.m in Sources */,
 				F765357B1867C3840046263B /* HPSigninViewController.m in Sources */,
 				F714B83218B1387800B598E7 /* RoommateImageSubview.m in Sources */,
-				7A2F91F31A6FDF8200675106 /* House.m in Sources */,
+				7A3541361A767503002CA33D /* House.m in Sources */,
 				F76535811867D1B20046263B /* HPSignupViewController.m in Sources */,
 				F36CEC1B18C6880B0013D094 /* HPSyncWorker.m in Sources */,
-				7A2F91F61A6FDF8300675106 /* Roommate.m in Sources */,
 				7AC41DF11A6AA3A3006C3A3B /* CheckConnectivityView.m in Sources */,
 				F73A01B418AAFD00000F25B6 /* HPSettingsViewController.m in Sources */,
 				F73F9EAC18BE9674009D6097 /* HPUINotifier.m in Sources */,
+				7A3541331A767502002CA33D /* Roommate.m in Sources */,
 				F711388518777B8800D9BA9E /* HPNoHomeViewController.m in Sources */,
 				F78D484E185AAB03000A79BC /* HPNetworkObject.m in Sources */,
 				F714B89518B5B96E00B598E7 /* HPCameraManager.m in Sources */,

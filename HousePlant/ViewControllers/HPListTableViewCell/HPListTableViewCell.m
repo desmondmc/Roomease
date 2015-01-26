@@ -105,26 +105,30 @@
 }
 
 - (void) checkCell {
+//    
+//    if(self.listItem.completedBy.profilePicture != nil)
+//    {
+//        [_noProfilePicImage setHidden:YES];
+//        _avatar = [[AMPAvatarView alloc] initWithFrame:CGRectMake(20, 12, 31, 31)];
+//        
+//        [self.mainCellView addSubview:_avatar];
+//        [self.mainCellView sendSubviewToBack:_avatar];
+//        _avatar.image = [UIImage imageWithData:self.listItem.completedBy.profilePicture];
+//        
+//        [_avatar setBorderWith:0.0];
+//        [_avatar setShadowRadius:0.0];
+//        [_avatar setBorderColor:kLightBlueColour];
+//        
+//    }
+//    else
+//    {
+//        [_avatar setHidden:YES];
+//        [_noProfilePicImage setHidden:NO];
+//    }
     
-    if(self.listItem.completedBy.profilePicture != nil)
-    {
-        [_noProfilePicImage setHidden:YES];
-        _avatar = [[AMPAvatarView alloc] initWithFrame:CGRectMake(20, 12, 31, 31)];
-        
-        [self.mainCellView addSubview:_avatar];
-        [self.mainCellView sendSubviewToBack:_avatar];
-        _avatar.image = [UIImage imageWithData:self.listItem.completedBy.profilePicture];
-        
-        [_avatar setBorderWith:0.0];
-        [_avatar setShadowRadius:0.0];
-        [_avatar setBorderColor:kLightBlueColour];
-        
-    }
-    else
-    {
-        [_avatar setHidden:YES];
-        [_noProfilePicImage setHidden:NO];
-    }
+    [_avatar setHidden:YES];
+    [_noProfilePicImage setHidden:NO];
+    
     [_blankCheckbox setHidden:true];
     
     NSDictionary* attributes = @{
@@ -162,23 +166,34 @@
 }
 
 
-- (IBAction)onCheckboxPress:(id)sender {
-
-    if (self.checked) {
-        self.listItem.completedBy = nil;
-        //self.listItem.completedByImage = nil;
-        self.listItem.completedAt = 0;
-        [avatar2 setHidden:YES];
-        [self uncheckCell];
+- (IBAction)onCheckboxPress:(id)sender
+{
+    if (self.checked)
+    {
+        //Was checked now should be unchecked
+        [self->mainTableViewController checkBoxPressAtCell:self withState:NO];
     }
     else
     {
-        self.listItem.completedBy = [HPCentralData getCurrentUser];
-        //self.listItem.completedByImage = [UIImage imageWithData:self.listItem.completedBy.profilePicture];
-        self.listItem.completedAt = [[[NSDate alloc] init] timeIntervalSince1970];
-        [self checkCell];
+        //Was unchecked now should be checked.
+        [self->mainTableViewController checkBoxPressAtCell:self withState:YES];
     }
-    [self setText];
+    
+//    if (self.checked) {
+//        self.listItem.completedBy = nil;
+//        //self.listItem.completedByImage = nil;
+//        self.listItem.completedAt = 0;
+//        [avatar2 setHidden:YES];
+//        [self uncheckCell];
+//    }
+//    else
+//    {
+//        self.listItem.completedBy = [HPCentralData getCurrentUser];
+//        //self.listItem.completedByImage = [UIImage imageWithData:self.listItem.completedBy.profilePicture];
+//        self.listItem.completedAt = [[[NSDate alloc] init] timeIntervalSince1970];
+//        [self checkCell];
+//    }
+//    [self setText];
 }
 
 - (void) setText {
@@ -243,6 +258,15 @@
     self->mainTableViewController = tableViewController;
     
     self.cellIndexPath = indexPath;
+    
+    if (!entry.isComplete)
+    {
+        [self uncheckCell];
+    }
+    else
+    {
+        [self checkCell];
+    }
     
     
     

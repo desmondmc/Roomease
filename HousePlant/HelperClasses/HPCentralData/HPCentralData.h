@@ -24,6 +24,7 @@
 @interface HPCentralData : NSObject
 
 +(void) clearCentralData;
++(void) clearCoreData;
 +(void) clearLocalHouseData;
 +(void) clearLocalRoommatesData;
 
@@ -43,11 +44,15 @@
 +(void) saveHouseInBackgroundWithHouse:(HPHouse *)house andBlock:(CentralDataSaveResultBlock)block;
 +(bool) saveHouse:(HPHouse *)house;
 
+//TODO Lists
 + (void)saveNewToDoListEntryWithName:(NSString *)name;
 + (void)deleteToDoListEntryWithCell:(NSIndexPath *)indexPath andFetchedResultsController:(NSFetchedResultsController *)fetchedResultsController;
-+ (void)updateToDoListComlpetedStatusWithStatus:(BOOL)status atIndexPath:(NSIndexPath *)indexPath andFetchedResultsContoller:(NSFetchedResultsController *)fetchedResultsController;
++ (void)updateToDoListCompletedStatusWithStatus:(BOOL)status atIndexPath:(NSIndexPath *)indexPath andFetchedResultsContoller:(NSFetchedResultsController *)fetchedResultsController;
 + (void)refreshAllListEntriesFromCloudInBackgroundWithBlock:(CentralDataGenericResultBlock)block;
 + (NSFetchRequest *) getAllToDoListEntriesFetchRequest;
+
+//Roommates
++ (void)refreshAllRoommatesFromCloudInBackgroundWithBlock:(CentralDataGenericResultBlock)block;
 
 +(void) getRoommatesInBackgroundWithBlock:(CentralDataRoommatesResultBlock)block;
 +(NSArray *) getRoommates;
