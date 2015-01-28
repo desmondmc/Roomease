@@ -23,6 +23,8 @@
 		7AD77F6E1A690EB100421DB8 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 7AD77F6D1A690EB100421DB8 /* libsqlite3.dylib */; };
 		7AD77F701A690F5900421DB8 /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7AD77F6F1A690F5900421DB8 /* Social.framework */; };
 		7AD77F741A690FAC00421DB8 /* Accounts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7AD77F731A690FAC00421DB8 /* Accounts.framework */; };
+		C6495B1F1A7705A100847BD4 /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C6495B1D1A7705A100847BD4 /* Crashlytics.framework */; };
+		C6495B201A7705A100847BD4 /* Fabric.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C6495B1E1A7705A100847BD4 /* Fabric.framework */; };
 		F36CEC1B18C6880B0013D094 /* HPSyncWorker.m in Sources */ = {isa = PBXBuildFile; fileRef = F36CEC1A18C6880B0013D094 /* HPSyncWorker.m */; };
 		F36CEC2018C804160013D094 /* HPPushHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = F36CEC1F18C804160013D094 /* HPPushHelper.m */; };
 		F710E5FA187862B700BD9D54 /* HPLoginRouter.m in Sources */ = {isa = PBXBuildFile; fileRef = F710E5F9187862B700BD9D54 /* HPLoginRouter.m */; };
@@ -111,6 +113,8 @@
 		7AD77F711A690F8500421DB8 /* Twitter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Twitter.framework; path = System/Library/Frameworks/Twitter.framework; sourceTree = SDKROOT; };
 		7AD77F731A690FAC00421DB8 /* Accounts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accounts.framework; path = System/Library/Frameworks/Accounts.framework; sourceTree = SDKROOT; };
 		AF077DDD507839C82B4D789F /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
+		C6495B1D1A7705A100847BD4 /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Crashlytics.framework; sourceTree = "<group>"; };
+		C6495B1E1A7705A100847BD4 /* Fabric.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Fabric.framework; sourceTree = "<group>"; };
 		F2ADBFAE68984DBDA17CC3D1 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		F36CEC1918C6880B0013D094 /* HPSyncWorker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HPSyncWorker.h; path = HelperClasses/HPSyncWorker/HPSyncWorker.h; sourceTree = "<group>"; };
 		F36CEC1A18C6880B0013D094 /* HPSyncWorker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HPSyncWorker.m; path = HelperClasses/HPSyncWorker/HPSyncWorker.m; sourceTree = "<group>"; };
@@ -214,6 +218,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C6495B201A7705A100847BD4 /* Fabric.framework in Frameworks */,
 				7A492FBF1A6C3F7F0088F547 /* MessageUI.framework in Frameworks */,
 				7AD77F741A690FAC00421DB8 /* Accounts.framework in Frameworks */,
 				7AD77F701A690F5900421DB8 /* Social.framework in Frameworks */,
@@ -224,6 +229,7 @@
 				F7A6F4B31852324000CEB9FD /* MobileCoreServices.framework in Frameworks */,
 				F7A6F4B41852324000CEB9FD /* QuartzCore.framework in Frameworks */,
 				F7A6F4B51852324000CEB9FD /* Security.framework in Frameworks */,
+				C6495B1F1A7705A100847BD4 /* Crashlytics.framework in Frameworks */,
 				F7A6F4B61852324000CEB9FD /* StoreKit.framework in Frameworks */,
 				F7A6F4B71852324000CEB9FD /* SystemConfiguration.framework in Frameworks */,
 				F7A6F4A91852320A00CEB9FD /* AudioToolbox.framework in Frameworks */,
@@ -558,6 +564,8 @@
 		F7A1220D18522A4100E51B06 = {
 			isa = PBXGroup;
 			children = (
+				C6495B1D1A7705A100847BD4 /* Crashlytics.framework */,
+				C6495B1E1A7705A100847BD4 /* Fabric.framework */,
 				F710E5FD1879213800BD9D54 /* HPCloudCode */,
 				F7A1222118522A4100E51B06 /* HousePlant */,
 				F7A1223E18522A4100E51B06 /* HousePlantTests */,
@@ -716,6 +724,7 @@
 				F7A1221318522A4100E51B06 /* Frameworks */,
 				F7A1221418522A4100E51B06 /* Resources */,
 				C7C5A730D8D04BDDA1D4958C /* Copy Pods Resources */,
+				C6495B1C1A77054300847BD4 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -808,6 +817,19 @@
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
+		};
+		C6495B1C1A77054300847BD4 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "./Fabric.framework/run a842d2a25e2a337bce79b6737d757ad5fc3c0df0 2915a7d24c2ffaf53cf7017e5264f49891d4221afda40c7a037a11be1edd507e";
 		};
 		C7C5A730D8D04BDDA1D4958C /* Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -978,6 +1000,7 @@
 					"$(SRCROOT)/Pods",
 					"$(SRCROOT)",
 					"$(PROJECT_DIR)/parse-library-1.6.1",
+					"$(PROJECT_DIR)",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "HousePlant/RoomEase-Prefix.pch";
@@ -1011,6 +1034,7 @@
 					"$(SRCROOT)/Pods",
 					"$(SRCROOT)",
 					"$(PROJECT_DIR)/parse-library-1.6.1",
+					"$(PROJECT_DIR)",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "HousePlant/RoomEase-Prefix.pch";

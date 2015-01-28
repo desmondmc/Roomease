@@ -19,6 +19,10 @@
 #import "NPReachability.h"
 #import "KLCPopup.h"
 
+#import <Fabric/Fabric.h>
+#import <Crashlytics/Crashlytics.h>
+
+
 
 @implementation HPAppDelegate
 
@@ -30,6 +34,8 @@
 {
     [[HPCoreDataStack defaultStack] applicationDocumentsDirectory];
     
+    [Fabric with:@[CrashlyticsKit]];
+
     NPReachability *reachability = [NPReachability sharedInstance];
     
     [Parse setApplicationId:kParseAppId
