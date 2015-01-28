@@ -73,7 +73,11 @@
     // Store a reference to the mainViewController in appdel
     kApplicationDelegate.mainViewController = self;
     
-    [HPCentralData refreshAllListEntriesFromCloudInBackgroundWithBlock:nil];
+//    [HPCentralData refreshAllRoommatesFromCloudInBackgroundWithBlock:^(NSError *error) {
+//        [HPCentralData refreshAllListEntriesFromCloudInBackgroundWithBlock:nil];
+//    }];
+    
+    
     roommateView = [RoommateImageSubview initRoommateImageSubview];
     [[self roommateImageSubviewContainer] addSubview:roommateView];
     [self countChecked];
@@ -142,11 +146,8 @@
 - (IBAction)onRefreshRmPress:(id)sender {
     //Starts a sync request. Will be called back on resyncUIWithDictionary.
     [HPSyncWorker handleSyncRequestWithType:roommatesSyncRequest andData:nil];
-    
-    [HPCentralData refreshAllRoommatesFromCloudInBackgroundWithBlock:^(NSError *error) {
-        [HPCentralData refreshAllListEntriesFromCloudInBackgroundWithBlock:^(NSError *error) {
-            [self->refreshControl endRefreshing];
-        }];
+    [HPCentralData refreshAllListEntriesFromCloudInBackgroundWithBlock:^(NSError *error) {
+        [self->refreshControl endRefreshing];
     }];
 }
 
@@ -198,13 +199,9 @@
     
     cell.rightUtilityButtons = [self rightButtons];
     cell.delegate = self;
-    
-    
-    ListItem *toDoListItem = [self.fetchedResultsController objectAtIndexPath:indexPath];
-    
-    [cell initWithListItem:toDoListItem andTableView:self andIndexPath:indexPath];
 
-    
+    ListItem *toDoListItem = [self.fetchedResultsController objectAtIndexPath:indexPath];
+    [cell initWithListItem:toDoListItem andTableView:self andIndexPath:indexPath];
     return cell;
 }
 

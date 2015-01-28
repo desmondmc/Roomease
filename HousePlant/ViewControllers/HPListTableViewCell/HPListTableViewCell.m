@@ -104,30 +104,28 @@
     [recognizer setTranslation:CGPointMake(0, 0) inView:self];
 }
 
-- (void) checkCell {
-//    
-//    if(self.listItem.completedBy.profilePicture != nil)
-//    {
-//        [_noProfilePicImage setHidden:YES];
-//        _avatar = [[AMPAvatarView alloc] initWithFrame:CGRectMake(20, 12, 31, 31)];
-//        
-//        [self.mainCellView addSubview:_avatar];
-//        [self.mainCellView sendSubviewToBack:_avatar];
-//        _avatar.image = [UIImage imageWithData:self.listItem.completedBy.profilePicture];
-//        
-//        [_avatar setBorderWith:0.0];
-//        [_avatar setShadowRadius:0.0];
-//        [_avatar setBorderColor:kLightBlueColour];
-//        
-//    }
-//    else
-//    {
-//        [_avatar setHidden:YES];
-//        [_noProfilePicImage setHidden:NO];
-//    }
-    
-    [_avatar setHidden:YES];
-    [_noProfilePicImage setHidden:NO];
+- (void) checkCell
+{
+    if(self.listItem.completedBy.profilePicture != nil)
+    {
+        [_noProfilePicImage setHidden:YES];
+        _avatar = [[AMPAvatarView alloc] initWithFrame:CGRectMake(21, 13, 29, 29)];
+        
+        [self.mainCellView addSubview:_avatar];
+        [self.mainCellView sendSubviewToBack:_avatar];
+        _avatar.image = [UIImage imageWithData:self.listItem.completedBy.profilePicture];
+        
+        [_avatar setBorderWith:0.0];
+        [_avatar setShadowRadius:0.0];
+        [_avatar setBorderColor:kLightBlueColour];
+        [_avatar setHidden:NO];
+        
+    }
+    else
+    {
+        [_avatar setHidden:YES];
+        [_noProfilePicImage setHidden:NO];
+    }
     
     [_blankCheckbox setHidden:true];
     
@@ -143,9 +141,9 @@
 }
 
 - (void) uncheckCell {
-    [_blankCheckbox setHidden:false];
+    [_blankCheckbox setHidden:NO];
 
-    [_avatar setHidden:true];
+    [_avatar setHidden:YES];
     [_noProfilePicImage setHidden:YES];
     
     NSDictionary* attributes = @{

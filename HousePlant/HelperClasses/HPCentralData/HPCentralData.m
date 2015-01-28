@@ -464,33 +464,93 @@
     if (status == YES)
     {
         //Get roommate from local store that matches the current user
-        NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
-        
-        NSEntityDescription *entity = [NSEntityDescription entityForName:@"CDRoommate" inManagedObjectContext:coreDataStack.managedObjectContext];
-        [fetchRequest setEntity:entity];
-        
-        NSPredicate *predicate = [NSPredicate predicateWithFormat:@"parseObjectId==%@",
-                                  [PFUser currentUser].objectId];
-        [fetchRequest setPredicate:predicate];
-        
-        NSError *error = nil;
-        NSArray *results = [coreDataStack.managedObjectContext executeFetchRequest:fetchRequest error:&error];
-        
-        if (results.count > 0)
+        Roommate *currentUser = [HPCentralData getRoommateFromLocalStoreWithRoommateParseObjectId:[PFUser currentUser].objectId];
+
+        if (currentUser)
         {
-            Roommate *currentUser = results[0];
             listItemToUpdate.completedBy = currentUser;
+            listItemToUpdate.isComplete = YES;
+            listItemToUpdate.completedAt = [NSDate date].timeIntervalSince1970;
             [coreDataStack saveContext];
         }
     }
     else
     {
+        listItemToUpdate.isComplete = NO;
         listItemToUpdate.completedBy = nil;
         [coreDataStack saveContext];
     }
 
     
-    //Set listitem.completedBy to that value
+    //Save to cloud
+    PFObject *pfNewListEntry;
+    pfNewListEntry = [PFObject objectWithoutDataWithClassName:@"Entry" objectId:listItemToUpdate.parseObjectId];
+    [pfNewListEntry setObject:[NSNumber numberWithBool:listItemToUpdate.isComplete] forKey:@"isComplete"];
+    [pfNewListEntry setObject:[listItemToUpdate completedBy].parseObjectId ? [PFUser currentUser] : [NSNull null] forKey:@"completedBy"];
+    [pfNewListEntry setObject:(listItemToUpdate.completedAt > NSTimeIntervalSince1970) ? [NSDate dateWithTimeIntervalSince1970:listItemToUpdate.completedAt ] : [NSNull null] forKey:@"completedAt"];
+    
+    [pfNewListEntry saveInBackground];
+}
+
++ (Roommate *) getRoommateFromLocalStoreWithRoommateParseObjectId:(NSString *) objectId
+{
+    HPCoreDataStack *coreDataStack = [HPCoreDataStack defaultStack];
+    //Get roommate from local store that matches the current user
+    
+    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+    
+    NSEntityDescription *entity = [NSEntityDescription entityForName:@"CDRoommate" inManagedObjectContext:coreDataStack.managedObjectContext];
+    [fetchRequest setEntity:entity];
+    
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"parseObjectId==%@",
+                              objectId];
+    [fetchRequest setPredicate:predicate];
+    
+    NSError *error = nil;
+    NSArray *results = [coreDataStack.managedObjectContext executeFetchRequest:fetchRequest error:&error];
+    
+    NSLog(@"Error: %@", error);
+    
+    if ([results count] < 1)
+    {
+        return nil;
+    }
+    else
+    {
+        return results[0];
+    }
+}
+
++ (Roommate *) getRoommateFromLocalStoreWithListItemParseObjectId:(NSString *) objectId
+{
+    HPCoreDataStack *coreDataStack = [HPCoreDataStack defaultStack];
+    //Get roommate from local store that matches the current user
+    
+    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+    
+    NSEntityDescription *entity = [NSEntityDescription entityForName:@"CDRoommate" inManagedObjectContext:coreDataStack.managedObjectContext];
+    [fetchRequest setEntity:entity];
+    
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"parseObjectId == %@",
+                              objectId ];
+    [fetchRequest setPredicate:predicate];
+    
+    NSError *error = nil;
+    NSArray *results = [coreDataStack.managedObjectContext executeFetchRequest:fetchRequest error:&error];
+    
+    if (error) {
+        NSLog(@"Error Fetching: %@", error);
+        return nil;
+    }
+    
+    if ([results count] < 1)
+    {
+        return nil;
+    }
+    else
+    {
+        return results[0];
+    }
 }
 
 
@@ -500,14 +560,15 @@
     
     PFQuery *query = [PFQuery queryWithClassName:@"Entry"];
     [query whereKey:@"houseObjectId" equalTo:house.objectId];
-    [query includeKey:@"completedBy"];
+    [query includeKey:@"completedBy.objectId"];
     [query includeKey:@"createdAt"];
     [query orderByAscending:@"completedAt"];
     [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error)
     {
+
         NSArray *pfEntries = objects;
         HPCoreDataStack *coreDataStack = [HPCoreDataStack defaultStack];
-        
+
         NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
         
         NSEntityDescription *entity = [NSEntityDescription entityForName:@"CDListItem" inManagedObjectContext:coreDataStack.managedObjectContext];
@@ -519,12 +580,14 @@
         [HPCentralData findAndDeleteLocalEntiresThatHaveBeenDeletedRemotelyWithRemoteObject:pfEntries andLocalObjects:results];
         [HPCentralData findNewRemoteListItemsAndUpdateOldOnesToAddToTheLocalStoreWithRemoteObjects:pfEntries andLocalObjects:results];
         
+        
+        [coreDataStack saveContext];
+    
         if (block)
         {
             block(error);
         }
         
-        [coreDataStack saveContext];
         
     }];
 }
@@ -560,6 +623,12 @@
             {
                 hasLocalObject = YES;
                 localItem.isComplete = [[remoteItem objectForKey:@"isComplete"] boolValue];
+                PFObject *roommate = [remoteItem objectForKey:@"completedBy"];
+                if (![roommate isEqual:[NSNull null]])
+                {
+                    localItem.completedBy = [HPCentralData getRoommateFromLocalStoreWithRoommateParseObjectId:roommate.objectId];
+                }
+                
                 break;
             }
         }
@@ -568,10 +637,24 @@
             ListItem *newListItem = [NSEntityDescription insertNewObjectForEntityForName:@"CDListItem" inManagedObjectContext:coreDataStack.managedObjectContext];
             
             newListItem.name = [remoteItem objectForKey:@"description"];
+            NSLog(@"%@", newListItem.name);
             
             newListItem.createdAt = [remoteItem.createdAt timeIntervalSince1970];
             newListItem.isComplete = [[remoteItem objectForKey:@"isComplete"] boolValue];
+            NSLog(@"%d", newListItem.isComplete);
+            
             newListItem.parseObjectId = remoteItem.objectId;
+            PFUser *completedBy = [remoteItem objectForKey:@"completedBy"];
+            if(![completedBy isEqual:[NSNull null]])
+            {
+                NSLog(@"%@", completedBy.objectId);
+                newListItem.completedBy = [HPCentralData getRoommateFromLocalStoreWithRoommateParseObjectId:completedBy.objectId];
+            }
+            else
+            {
+                newListItem.completedBy = nil;
+            }
+            
         }
     }
 }
