@@ -103,11 +103,17 @@
 
 +(void) clearCoreData
 {
+    [HPCentralData removeAllCoreDataEntitiesWithName:@"CDListItem"];
+    [HPCentralData removeAllCoreDataEntitiesWithName:@"CDRoommate"];
+    
+}
+
++ (void) removeAllCoreDataEntitiesWithName:(NSString *) entityName
+{
     HPCoreDataStack *coreDataStack = [HPCoreDataStack defaultStack];
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
-    NSString *entityDescription = @"CDListItem";
     
-    NSEntityDescription *entity = [NSEntityDescription entityForName:entityDescription inManagedObjectContext:coreDataStack.managedObjectContext];
+    NSEntityDescription *entity = [NSEntityDescription entityForName:entityName inManagedObjectContext:coreDataStack.managedObjectContext];
     [fetchRequest setEntity:entity];
     
     NSError *error;
@@ -116,7 +122,6 @@
     for (NSManagedObject *managedObject in items) {
         [coreDataStack.managedObjectContext deleteObject:managedObject];
     }
-    
     [coreDataStack saveContext];
 }
 
