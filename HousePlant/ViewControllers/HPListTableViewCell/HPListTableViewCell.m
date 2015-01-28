@@ -135,7 +135,6 @@
     
     NSAttributedString* attrText = [[NSAttributedString alloc] initWithString:_entryTitle.text attributes:attributes];
     _entryTitle.attributedText = attrText;
-
     
     _checked = true;
 }
@@ -177,6 +176,8 @@
         [self->mainTableViewController checkBoxPressAtCell:self withState:YES];
     }
     
+    [self setText];
+    
 //    if (self.checked) {
 //        self.listItem.completedBy = nil;
 //        //self.listItem.completedByImage = nil;
@@ -191,7 +192,6 @@
 //        self.listItem.completedAt = [[[NSDate alloc] init] timeIntervalSince1970];
 //        [self checkCell];
 //    }
-//    [self setText];
 }
 
 - (void) setText {
@@ -208,12 +208,13 @@
         self.entryDate.text = [NSString stringWithFormat:@"%@ at", dateString ];
         self.entryTime.text = timeString;
         _entryAddedName.text = @"Completed";
-        CGRect frame = self.entryDate.frame;
-        frame.origin.x = 110;
-        self.entryDate.frame = frame;
-        frame = self.entryTime.frame;
-        frame.origin.x = 195;
-        self.entryTime.frame =frame;
+        CGRect dateFrame = self.entryDate.frame;
+        dateFrame.origin.x = 111;
+        
+        self.entryDate.frame = dateFrame;
+        CGRect timeFrame = self.entryTime.frame;
+        timeFrame.origin.x = 183;
+        self.entryTime.frame = timeFrame;
     } else {
         NSString *dateString = [NSDateFormatter localizedStringFromDate:
                                 [NSDate dateWithTimeIntervalSince1970:self.listItem.createdAt]
@@ -227,10 +228,10 @@
         self.entryTime.text = timeString;
         _entryAddedName.text = @"Added";
         CGRect frame = self.entryDate.frame;
-        frame.origin.x = 90;
+        frame.origin.x = 92;
         self.entryDate.frame = frame;
         frame = self.entryTime.frame;
-        frame.origin.x = 175;
+        frame.origin.x = 165;
         self.entryTime.frame =frame;
     }
     [self layoutSubviews];
@@ -265,6 +266,8 @@
     {
         [self checkCell];
     }
+    
+    [self setText];
     
     
     
