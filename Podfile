@@ -8,5 +8,6 @@ pod 'MBProgressHUD', '~> 0.8'
 pod 'ISRefreshControl', '~> 1.4.1'
 pod 'KLCPopup', '~> 1.0'
 pod 'SWTableViewCell', '~> 0.3.7'
+pod 'GoogleAnalytics-iOS-SDK', '~> 3.0.3'
 
 link_with 'Roomease'

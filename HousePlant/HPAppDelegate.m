@@ -18,6 +18,7 @@
 #import "ParseKeys.h"
 #import "NPReachability.h"
 #import "KLCPopup.h"
+#import "GAI.h"
 
 #import <Fabric/Fabric.h>
 #import <Crashlytics/Crashlytics.h>
@@ -35,6 +36,19 @@
     [[HPCoreDataStack defaultStack] applicationDocumentsDirectory];
     
     [Fabric with:@[CrashlyticsKit]];
+    
+    //Google Analytics
+    // Optional: automatically send uncaught exceptions to Google Analytics.
+    [GAI sharedInstance].trackUncaughtExceptions = YES;
+    
+    // Optional: set Google Analytics dispatch interval to e.g. 20 seconds.
+    [GAI sharedInstance].dispatchInterval = 20;
+    
+    // Optional: set Logger to VERBOSE for debug information.
+    [[[GAI sharedInstance] logger] setLogLevel:kGAILogLevelVerbose];
+    
+    // Initialize tracker. Replace with your tracking ID.
+    [[GAI sharedInstance] trackerWithTrackingId:@"UA-58305844-1"];
 
     NPReachability *reachability = [NPReachability sharedInstance];
     
@@ -184,6 +198,7 @@ didReceiveRemoteNotification:(NSDictionary *)userInfo {
     //if (![[userInfo objectForKey:@"src_usr"] isEqualToString:[PFUser currentUser].objectId] ) {
         //NSLog(@"Recieved Push from someone else.");
         [HPSyncWorker handleSyncRequestWithDictionary:userInfo];
+    [HPCentralData refreshAllListEntriesFromCloudInBackgroundWithBlock:nil];
     //}
 //    else
 //    {

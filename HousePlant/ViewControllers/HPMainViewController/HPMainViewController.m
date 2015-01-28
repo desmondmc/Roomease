@@ -73,9 +73,9 @@
     // Store a reference to the mainViewController in appdel
     kApplicationDelegate.mainViewController = self;
     
-//    [HPCentralData refreshAllRoommatesFromCloudInBackgroundWithBlock:^(NSError *error) {
-//        [HPCentralData refreshAllListEntriesFromCloudInBackgroundWithBlock:nil];
-//    }];
+    [HPCentralData refreshAllRoommatesFromCloudInBackgroundWithBlock:^(NSError *error) {
+        [HPCentralData refreshAllListEntriesFromCloudInBackgroundWithBlock:nil];
+    }];
     
     
     roommateView = [RoommateImageSubview initRoommateImageSubview];
