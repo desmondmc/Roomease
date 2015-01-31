@@ -18,3 +18,5 @@ Run pod install in the project directory to intall cocoapods:
     
     $ pod setup
     $ pod install
+
+Make sure you open and work out of the RoomEase.xcworkspace file and not RoomEase.xcodeproj
