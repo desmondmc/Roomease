@@ -42,7 +42,6 @@
     
     [self.toDoListTableView registerNib:[UINib nibWithNibName:@"HPListTableViewCell" bundle:nil] forCellReuseIdentifier:@"hpListTableViewCell"];
     
-    [HPSyncWorker handleSyncRequestWithType:todoListSyncRequest andData:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(receiveNotificationAppActive:)
                                                  name:NOTIFICATION_APP_BECAME_ACTIVE

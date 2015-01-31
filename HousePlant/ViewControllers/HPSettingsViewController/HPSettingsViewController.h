@@ -8,8 +8,9 @@
 
 #import <UIKit/UIKit.h>
 #import <MessageUI/MFMailComposeViewController.h>
+#import <MessageUI/MFMessageComposeViewController.h>
 
-@interface HPSettingsViewController : UIViewController <CLLocationManagerDelegate, UIImagePickerControllerDelegate, UITextFieldDelegate, UIAlertViewDelegate, MFMailComposeViewControllerDelegate>
+@interface HPSettingsViewController : UIViewController <CLLocationManagerDelegate, UIImagePickerControllerDelegate, UITextFieldDelegate, UIAlertViewDelegate, MFMailComposeViewControllerDelegate, UIActionSheetDelegate, MFMessageComposeViewControllerDelegate>
 @property (weak, nonatomic) IBOutlet UITextField *houseNumberField;
 @property (weak, nonatomic) IBOutlet UITextField *streetField;
 @property (weak, nonatomic) IBOutlet UITextField *cityField;
@@ -32,6 +33,7 @@
 @property (weak, nonatomic) IBOutlet UIView *bottomButtonsView;
 @property (weak, nonatomic) IBOutlet UIActivityIndicatorView *houseNameActivityIndicator;
 
+- (IBAction)onInviteRoommatesPress:(id)sender;
 
 
 

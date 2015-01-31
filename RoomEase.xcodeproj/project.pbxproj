@@ -948,6 +948,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				ONLY_ACTIVE_ARCH = YES;
+				PROVISIONING_PROFILE = "052b5f4c-8d71-49bc-855b-2ff79c46b1ce";
 				SDKROOT = iphoneos;
 			};
 			name = Debug;

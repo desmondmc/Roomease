@@ -10,8 +10,6 @@
 #import "HPCameraManager.h"
 #import "HPStartingViewController.h"
 
-#import <MessageUI/MFMailComposeViewController.h>
-
 @interface HPSettingsViewController ()
 
 @end
@@ -39,7 +37,7 @@
     if (screenSize.height > 480.0f)
     {
         /*Do iPhone 5 stuff here.*/
-        [[self bottomButtonsView] setFrame:CGRectMake(0, 369, [self bottomButtonsView].frame.size.width, [self bottomButtonsView].frame.size.height)];
+        [[self bottomButtonsView] setFrame:CGRectMake(0, 327, [self bottomButtonsView].frame.size.width, [self bottomButtonsView].frame.size.height)];
     }
     
 }
@@ -226,7 +224,7 @@
             mailViewController.mailComposeDelegate = self;
             [mailViewController setToRecipients:@[@"info@roomeaseapp.com"]];
             [mailViewController setSubject:@"Feedback"];
-            [mailViewController setMessageBody:@"Hey Roomease here's how I think you can improve you app: " isHTML:NO];
+            [mailViewController setMessageBody:@"Hey Roomease here's how I think you can improve your app: " isHTML:NO];
             
             [self presentViewController:mailViewController animated:YES completion:^{
                 [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
@@ -253,4 +251,63 @@
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
+- (IBAction)onInviteRoommatesPress:(id)sender {
+    UIActionSheet *popup = [[UIActionSheet alloc] initWithTitle:@"Invite by:" delegate:self cancelButtonTitle:@"cancel" destructiveButtonTitle:nil otherButtonTitles:
+                            @"Email",
+                            @"SMS",
+                            nil];
+    popup.tag = 1;
+    [popup showInView:[UIApplication sharedApplication].keyWindow];
+    
+}
+
+- (void)actionSheet:(UIActionSheet *)popup clickedButtonAtIndex:(NSInteger)buttonIndex {
+    
+    switch (popup.tag) {
+        case 1: {
+            switch (buttonIndex) {
+                case 0:
+                    NSLog(@"Email Pressed");
+                    break;
+                case 1:
+                    NSLog(@"SMS Pressed");
+                    [self inviteBySms];
+                    break;
+                default:
+                    break;
+            }
+            break;
+        }
+        default:
+            break;
+    }
+}
+
+- (void) inviteByEmail
+{
+    
+}
+
+-(void) inviteBySms
+{
+    HPHouse *house = [HPCentralData getHouse];
+    
+    NSString *houseName = house.houseName;
+    NSString *housePassword = house.password;
+    NSString *roomeaseUrl = @"https://itunes.apple.com/ca/app/roomease/id796703048?mt=8";
+    NSString *messageBody = [NSString stringWithFormat:@"Hey! Try this app for Roommates. %@. You can join my house called %@, use the password: %@", roomeaseUrl, houseName, housePassword];
+    
+    
+    MFMessageComposeViewController *controller = [[MFMessageComposeViewController alloc] init];
+    if([MFMessageComposeViewController canSendText])
+    {
+        controller.body = messageBody;
+        controller.recipients = nil;
+        controller.messageComposeDelegate = self;
+        [self presentViewController:controller animated:YES completion:^{
+            [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
+        }];
+        
+    }
+}
 @end

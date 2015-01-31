@@ -316,6 +316,7 @@
         }
         home.houseName = [parseHome objectForKey:@"name"];
         home.objectId = [parseHome objectId];
+        home.password = [parseHome objectForKey:@"password"];
         
         //Get the parse GeoPoint and convert it into a location to be stored locally
         PFGeoPoint *parseGeoPoint = [parseHome objectForKey:@"location"];

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6254" systemVersion="14B25" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6254" systemVersion="14C109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
@@ -121,7 +121,7 @@
                     </subviews>
                 </view>
                 <view hidden="YES" contentMode="scaleToFill" id="LLH-XY-bCQ" userLabel="City View">
-                    <rect key="frame" x="13" y="255" width="293" height="37"/>
+                    <rect key="frame" x="13" y="211" width="293" height="37"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <subviews>
                         <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" image="text-field" id="gtf-tD-cJo">
@@ -161,11 +161,11 @@
                     <color key="backgroundColor" red="0.29019607843137252" green="0.69411764705882351" blue="0.9882352941176471" alpha="1" colorSpace="deviceRGB"/>
                 </view>
                 <view contentMode="scaleToFill" id="wVI-m2-7W4" userLabel="BottomButtonsView">
-                    <rect key="frame" x="-1" y="311" width="320" height="175"/>
+                    <rect key="frame" x="-1" y="253" width="320" height="233"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <subviews>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="H1y-yb-D0Q" userLabel="LogoutButton">
-                            <rect key="frame" x="14" y="118" width="293" height="47"/>
+                            <rect key="frame" x="14" y="176" width="293" height="47"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <state key="normal" image="logout-btn">
                                 <color key="titleColor" red="0.1400408061" green="0.91665338009999997" blue="0.29529888929999998" alpha="1" colorSpace="calibratedRGB"/>
@@ -177,7 +177,7 @@
                             </connections>
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="X7L-iW-LR6" userLabel="SetPicButton">
-                            <rect key="frame" x="14" y="63" width="293" height="47"/>
+                            <rect key="frame" x="14" y="121" width="293" height="47"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <state key="normal" image="button-dark-blue">
                                 <color key="titleColor" red="0.1400408061" green="0.91665338009999997" blue="0.29529888929999998" alpha="1" colorSpace="calibratedRGB"/>
@@ -188,14 +188,32 @@
                             </connections>
                         </button>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Set Profile Pic" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="j9l-yA-dhl">
-                            <rect key="frame" x="79" y="72" width="157" height="30"/>
+                            <rect key="frame" x="79" y="130" width="157" height="30"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="25"/>
+                            <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="m3G-S2-OOp" userLabel="InviteRoommatesButton">
+                            <rect key="frame" x="14" y="11" width="293" height="47"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <state key="normal" image="button-dark-blue">
+                                <color key="titleColor" red="0.1400408061" green="0.91665338009999997" blue="0.29529888929999998" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                            <connections>
+                                <action selector="onInviteRoommatesPress:" destination="-1" eventType="touchUpInside" id="cav-p2-i2F"/>
+                            </connections>
+                        </button>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Invite Roommates" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="e2m-hn-EeH" userLabel="Invite Roommates">
+                            <rect key="frame" x="59" y="20" width="203" height="30"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="25"/>
                             <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                             <nil key="highlightedColor"/>
                         </label>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" hasAttributedTitle="YES" id="eqm-tY-hgP">
-                            <rect key="frame" x="14" y="8" width="293" height="47"/>
+                            <rect key="frame" x="14" y="66" width="293" height="47"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <state key="normal" image="button-dark-blue">
                                 <attributedString key="attributedTitle"/>
@@ -205,7 +223,7 @@
                             </connections>
                         </button>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Feedback" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="C5k-3O-Ury">
-                            <rect key="frame" x="107" y="21" width="112" height="21"/>
+                            <rect key="frame" x="107" y="79" width="112" height="21"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="25"/>
                             <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
