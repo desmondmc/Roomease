@@ -515,8 +515,6 @@
     NSError *error = nil;
     NSArray *results = [coreDataStack.managedObjectContext executeFetchRequest:fetchRequest error:&error];
     
-    NSLog(@"Error: %@", error);
-    
     if ([results count] < 1)
     {
         return nil;
