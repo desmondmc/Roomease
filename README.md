@@ -10,6 +10,8 @@ Roomease is an iOS app for roommates.
 ## Development Setup ##
 Clone the repo.
 
+    $ git clone https://github.com/desmondmcnamee/Roomease.git
+
 If you don't already have codoapods install it:
 
     $ sudo gem install cocoapods
